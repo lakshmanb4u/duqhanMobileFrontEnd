@@ -1,0 +1,61 @@
+<ion-side-menus enable-menu-with-back-views="false">
+
+  <!-- CONTENT -->
+  <ion-side-menu-content>
+
+    <!-- header bar -->
+    <!-- the nav bar will be updated as we navigate between views -->
+    <ion-nav-bar align-title="left" class="bar-energized">
+      <!-- back button, shown if applicable -->
+      <ion-nav-back-button>
+      </ion-nav-back-button>
+      <!-- nav button, shown if applicable -->
+      <ion-nav-buttons side="left">
+        <button class="button button-icon button-clear ion-navicon" menu-toggle="left">
+        </button>
+      </ion-nav-buttons>
+      <ion-nav-buttons side="right">
+        <button class="button button-small button-icon button-clear ion-bag">
+          <span class="badge badge-assertive header-badge">5</span>
+        </button>
+        <button class="button button-small button-icon button-clear ion-levels">
+        </button>
+        <button class="button button-small button-icon button-clear ion-ios-search">
+        </button>
+      </ion-nav-buttons>
+    </ion-nav-bar>
+
+    <!-- ROUTING INJECTED HERE: storeContent -->
+    <ion-nav-view name="storeContent"></ion-nav-view>
+
+  </ion-side-menu-content>
+
+  <!-- SIDEMENU -->
+  <ion-side-menu side="left">
+
+    <!-- menu header -->
+    <ion-header-bar class="bar-stable">
+      <h1 class="title">Nav</h1>
+    </ion-header-bar>
+
+    <!-- menu content -->
+    <ion-content>
+      <ion-list>
+        <ion-item menu-close ui-sref="store.products.latest">
+          Products
+        </ion-item>
+<!--         <ion-item menu-close ui-sref="store.list">
+          List
+        </ion-item>
+        <ion-item menu-close ui-sref="store.debug">
+          Debug
+        </ion-item> -->
+        <ion-item menu-close ng-click="menu.logout()">
+          Logout
+        </ion-item>
+      </ion-list>
+    </ion-content>
+
+  </ion-side-menu>
+
+</ion-side-menus>

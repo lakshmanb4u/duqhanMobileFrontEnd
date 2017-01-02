@@ -1,0 +1,52 @@
+<ion-view view-title="Sign up">
+  <!-- do you want padding? -->
+  <ion-content class="padding authenticate">
+
+    <!-- content goes here -->
+    <ion-list class="list-inset">
+      <ion-item class="item text-center">
+        <div class="logo-wrapper">
+          <img class="logo" src="main/assets/images/logo.png" style="width: 56px; height: 55px">
+          <p class="logo-text">Duqhan</p>
+        </div>
+      </ion-item>
+      <ion-item class="item item-input">
+        <i class="icon ion-ios-person-outline placeholder-icon"></i>
+        <input name="name" type="text" placeholder="Name" ng-model="ctrl.user.name">
+      </ion-item>
+      <ion-item class="item item-input">
+        <i class="icon ion-ios-email-outline placeholder-icon"></i>
+        <input name="email" type="email" placeholder="E-Mail" ng-model="ctrl.user.email">
+      </ion-item>
+      <ion-item class="item item-input">
+        <i class="icon ion-ios-locked-outline placeholder-icon"></i>
+        <input name="password" type="password" placeholder="Password" ng-model="ctrl.user.password">
+      </ion-item>
+      <ion-item class="item item-button">
+        <button class="button button-block button-positive" ng-click="ctrl.signup()">
+          Sign up
+        </button>
+      </ion-item>
+      <ion-item class="item item-divider">
+        <div class="">
+          <button class="button button-clear button-stable" ui-sref="login">
+            Already use Duqhan?
+          </button>
+        </div>
+      </ion-item>
+      <ion-item class="item item-button">
+        <button class="button icon-left ion-social-facebook button-block button-facebook" ng-click="ctrl.facebookLogin()">
+          Login with Facebook
+        </button>
+      </ion-item>
+    </ion-list>
+
+    <div class="list" ng-if="ctrl.user.resultType">
+      <ion-item class="item item-divider">{{ctrl.user.resultType}} for {{ctrl.user.email}}:</ion-item>
+      <ion-item class="item item-text-wrap">
+        <pre>{{ctrl.user.result | json}}</pre>
+      </ion-item>
+    </div>
+
+  </ion-content>
+</ion-view>

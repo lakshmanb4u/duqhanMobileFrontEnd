@@ -1,0 +1,18 @@
+{
+  "generator-m-ionic": {
+    "answers": {
+      "appName": "Duqhan",
+      "appId": "com.weavers.duqhun",
+      "ionicCss": false,
+      "bowerPackages": [],
+      "platforms": [
+        "android"
+      ],
+      "plugins": [
+        "cordova-plugin-device"
+      ],
+      "appModule": "Duqhan",
+      "ecosystems": []
+    }
+  }
+}
