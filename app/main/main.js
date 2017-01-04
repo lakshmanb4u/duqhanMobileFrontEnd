@@ -22,6 +22,7 @@ angular.module('main', [
 })
 .run(function ($location, $ionicAuth) {
   if ($ionicAuth.isAuthenticated()) {
-    $location.path('/store/products/latest');
+    // $location.path('/store/products/latest');
+    // $location.path('/store/product/overview');
   }
 });

@@ -1,0 +1,101 @@
+<ion-view view-title="Duqhan">
+  <!-- do you want padding? -->
+  <ion-content class="cart has-footer">
+
+    <!-- content goes here -->
+    <div class="list summary">
+
+      <a class="item" href="#">
+        Item Total
+        <span class="item-note">
+          $199.01
+        </span>
+      </a>
+
+      <a class="item" href="#">
+        Estimated Shipping
+        <span class="item-note">
+          $4.00
+        </span>
+      </a>
+
+      <a class="item positive" href="#">
+        Discount 5%
+        <span class="item-note">
+          -$0.70
+        </span>
+      </a>
+
+      <a class="item" href="#">
+        Order Total
+        <span class="item-note">
+          $202.31 
+        </span>
+      </a>
+
+    </div>
+
+<!--     <div class="list">
+      <a class="item item-thumbnail-left" href="#">
+        <img src="main/assets/images/dummy-product-1.jpg">
+        <h2>Pretty Hate Machine</h2>
+        <p>Size: <span>M</span></p>
+        <p>Color: <span>Brown</span></p>
+        <p>Quantity: <span>1</span></p>
+        <p>Shipping: <span>$4 (Jan 26 - Feb 5)</span></p>
+        <p><span>$240</span> $199</p>
+      </a>
+    </div> -->
+    <div class="cart-items" ng-repeat="p in ctrl.cartItems">
+      <div class="row product">
+        <div class="col col-75">
+          <h2>Pretty Hate Machine</h2>
+          <p>Size: <span>M</span>, Color: <span>Brown</span></p>
+          <p>Shipping: <span>$4 (Jan 26 - Feb 5)</span></p>
+
+        </div>
+        <div class="col col-25 text-right">
+          <img src="main/assets/images/dummy-product-1.jpg">
+          
+        </div>
+      </div>
+      <div class="row product m-b-xs">
+        <div class="col">
+          <div class="list">
+            <label class="item item-input item-select">
+              <div class="input-label">
+                Qty
+              </div>
+              <select>
+                <option selected>1</option>
+                <option>2</option>
+                <option>3</option>
+              </select>
+            </label>
+          </div>
+        </div>
+        <div class="col text-right">
+          <h3><span>$240</span> $199</h3>
+        </div>
+      </div>
+      <button class="button button-full button-stable m-none">
+        Remove
+      </button>
+    </div>
+  </ion-content>
+  <ion-footer-bar class="cart-footer">
+    <div class="row m-none p-none">
+      <div class="col text-center">
+        <h3>$199</h3>
+        <button class="button button-clear button-small button-light return-policy-button">
+          Return Policy
+        </button>
+      </div>
+      <div class="col text-right">
+        <div class="button-bar">
+          <button class="button button-positive add-cart-button">Add to Bag</button>
+        </div>
+      </div>
+    </div>
+  </ion-footer-bar>
+</ion-view>

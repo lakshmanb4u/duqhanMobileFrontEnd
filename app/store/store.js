@@ -24,7 +24,7 @@ angular.module('store', [
       abstract: true,
       views: {
         'storeContent': {
-          templateUrl: 'store/templates/products.html',
+          templateUrl: 'store/templates/products/products-tab.html',
           controller: 'ProductsCtrl as ctrl'
         }
       }
@@ -34,7 +34,7 @@ angular.module('store', [
       views: {
         'latestProductsContent': {
           templateUrl: 'store/templates/products/latest.html',
-          // controller: '<someCtrl> as ctrl'
+          controller: 'ProductsCtrl as ctrl'
         }
       }
     })
@@ -43,10 +43,58 @@ angular.module('store', [
       views: {
         'recentProductsContent': {
           templateUrl: 'store/templates/products/recent.html',
-          // controller: '<someCtrl> as ctrl'
+          controller: 'ProductsCtrl as ctrl'
         }
       }
     })
+    .state('store.product', {
+      url: '/product',
+      abstract: true,
+      views: {
+        'storeContent': {
+          templateUrl: 'store/templates/product/product-tab.html',
+          controller: 'ProductCtrl as ctrl'
+        }
+      }
+    })
+    .state('store.product.overview', {
+      url: '/overview',
+      views: {
+        'overviewProductContent': {
+          templateUrl: 'store/templates/product/overview.html',
+          controller: 'ProductCtrl as ctrl'
+        }
+      }
+    })
+    .state('store.product.related', {
+      url: '/related',
+      views: {
+        'relatedProductContent': {
+          templateUrl: 'store/templates/product/related.html',
+          controller: 'ProductCtrl as ctrl'
+        }
+      }
+    })
+    .state('store.product.description', {
+      url: '/description',
+      views: {
+        'descriptionProductContent': {
+          templateUrl: 'store/templates/product/description.html',
+          controller: 'ProductCtrl as ctrl'
+        }
+      }
+    })
+    .state('store.cart', {
+      url: '/cart',
+      views: {
+        'storeContent': {
+          templateUrl: 'store/templates/cart.html',
+          controller: 'CartCtrl as ctrl'
+        }
+      }
+    })
+
+
     .state('store.list', {
       url: '/list',
       views: {

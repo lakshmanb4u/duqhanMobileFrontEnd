@@ -1,0 +1,51 @@
+<ion-view view-title="Detail">
+  <!-- do you want padding? -->
+  <ion-content class="product-tab-content has-footer has-tabs">
+
+    <!-- content goes here -->
+    <ion-slide-box>
+        <ion-slide ng-repeat="image in ctrl.product.image">
+            <img ng-src="{{image.mediaUrl}}" style="width:100%; margin:auto; display:block" >
+        </ion-slide>
+    </ion-slide-box>
+    <div class="product-brief p-sm">
+      <h1 class="product-name">Levis Denim</h1>
+      <p class="product-price m-b-none"><span>$240</span> $199</p>
+    </div>
+    <div class="product-detail p-sm">
+      <div class="size-wrapper m-b-md">
+        <div class="row m-b-xs">
+          <div class="col title">Sizes</div>
+          <div class="col link text-right">Size chart</div>
+        </div>
+        <div class="values">XXS, XS, S, M, L, XL, XXL, XXXL, XXXXL</div>
+      </div>
+      <div class="color-wrapper m-b-md">
+        <div class="row m-b-xs">
+          <div class="col title">Colors</div>
+        </div>
+        <div class="values">Black, Brown</div>
+      </div>
+      <div class="shipping-time-wrapper m-b-md">
+        <div class="row m-b-xs">
+          <div class="col title">Estimated Arrival</div>
+          <div class="col link text-right">Details</div>
+        </div>
+        <div class="values">Jan 26 - Feb 5</div>
+      </div>
+      <div class="shipping-cost-wrapper m-b-md">
+        <div class="row m-b-xs">
+          <div class="col title">Estimated Shipping</div>
+          <div class="col link text-right">Details</div>
+        </div>
+        <div class="values">$5</div>
+      </div>
+    </div>
+  </ion-content>
+  <ion-footer-bar class="">
+    <div class="button-bar">
+      <button class="button button-dark purchase-price-button">Price: $199 <span> $240</span></button>
+      <button class="button button-positive add-cart-button">Add to Bag</button>
+    </div>
+  </ion-footer-bar>
+</ion-view>
