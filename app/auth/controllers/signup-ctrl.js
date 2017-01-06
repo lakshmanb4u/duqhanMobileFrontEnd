@@ -3,7 +3,8 @@ angular.module('auth')
 .controller('SignupCtrl', function (
 	$log,
 	$location,
-	$ionicAuth
+	$ionicAuth,
+  Auth
 ) {
 
   var ctrl = this;
@@ -31,7 +32,7 @@ angular.module('auth')
   }.bind(ctrl);
 
   // tries to sign the user up and displays the result in the UI
-  ctrl.signup = function () {
+  ctrl.signupOld = function () {
     $ionicAuth.signup(ctrl.user)
     .then(function () {
       ctrl.login();
@@ -40,10 +41,33 @@ angular.module('auth')
   };
 
   // tries to sign in the user and displays the result in the UI
-  ctrl.login = function () {
+  ctrl.loginOld = function () {
     $ionicAuth.login('basic', {'email': ctrl.user.email, 'password': ctrl.user.password})
     .then(responseCB)
     .catch(rejectionCB);
+  };
+
+  ctrl.signup = function () {
+    Auth.signup(ctrl.user)
+    .then(function (response) {
+      $log.log(response);
+      ctrl.login();
+    })
+    .catch(function (response) {
+      $log.log(response);
+    });
+  };
+
+  ctrl.login = function () {
+    delete ctrl.user.name;
+    Auth.login(ctrl.user)
+    .then(function (response) {
+      $log.log(response);
+      $location.path('/store/products/latest');
+    })
+    .catch(function (response) {
+      $log.log(response);
+    });
   };
 
 });

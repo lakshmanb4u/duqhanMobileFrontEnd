@@ -1,36 +1,69 @@
 'use strict';
 angular.module('auth')
 .controller('LoginCtrl', function (
-	$log,
-	$location,
-	$ionicAuth
-) {
+  $log,
+  $location,
+  $ionicAuth,
+  $ionicFacebookAuth,
+  $ionicUser,
+  Auth
+  ) {
 
-  $log.log('Hello from your Controller: LoginCtrl in module auth:. This is your controller:', this);
+  var ctrl = this;
 
-  this.user = {
+  $log.log('Hello from your Controller: LoginCtrl in module auth:. ctrl is your controller:', ctrl);
+
+  ctrl.user = {
     email: '',
     password: ''
   };
-  this.updateResult = function (type, result) {
+  ctrl.updateResult = function (type, result) {
     $log.log(type, result);
-    this.user.resultType = type;
-    this.user.result = result;
+    ctrl.user.resultType = type;
+    ctrl.user.result = result;
   };
 
   var responseCB = function (response) {
-    this.updateResult('Response', response);
+    ctrl.updateResult('Response', response);
     $location.path('/store/products/latest');
-  }.bind(this);
+  }.bind(ctrl);
 
   var rejectionCB = function (rejection) {
-    this.updateResult('Rejection', rejection);
-  }.bind(this);
+    ctrl.updateResult('Rejection', rejection);
+  }.bind(ctrl);
 
   // tries to sign in the user and displays the result in the UI
-  this.login = function () {
-    $ionicAuth.login('basic', this.user)
+  ctrl.loginOld = function () {
+    $ionicAuth.login('basic', ctrl.user)
     .then(responseCB)
     .catch(rejectionCB);
   };
+
+  ctrl.login = function () {
+    Auth.login(ctrl.user)
+    .then(function (response) {
+      $log.log(response);
+      $location.path('/store/products/latest');
+    })
+    .catch(function (response) {
+      $log.log(response);
+    });
+  };
+
+  ctrl.facebookLogin = function () {
+    $log.log('facebookLogin');
+    // if (!$ionicAuth.isAuthenticated()) {
+      $ionicFacebookAuth.login()
+      .then(function (success) {
+        $log.log($ionicUser.social.facebook);
+        $location.path('/store/products/latest');
+      }, function (error) {
+        $log.log(error);
+      });
+    // } else {
+    //   $location.path('/store/products/latest');
+    // }
+    
+  };
+
 });

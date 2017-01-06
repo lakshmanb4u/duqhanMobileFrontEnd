@@ -3,22 +3,37 @@ angular.module('auth')
 .controller('ForgotPasswordCtrl', function (
 	$log,
 	$location,
-	$ionicAuth
-) {
+	$ionicAuth,
+  Auth
+  ) {
 
-  $log.log('Hello from your Controller: ForgotPasswordCtrl in module auth:. This is your controller:', this);
+  var ctrl = this;
 
-  this.user = {
+  $log.log('Hello from your Controller: ForgotPasswordCtrl in module auth:. This is your controller:', ctrl);
+
+  ctrl.user = {
     email: '',
     resetCode: '',
     newPassword: ''
   };
-  this.requestPasswordReset = function () {
-    $ionicAuth.requestPasswordReset(this.user.email);
-    $location.path('/change-password');
+  ctrl.requestPasswordReset = function () {
+    Auth.requestPasswordReset(ctrl.user.email)
+    .then(function (response) {
+      $log.log(response);
+      $location.path('/change-password');
+    })
+    .catch(function (response) {
+      $log.log(response);
+    });
   };
-  this.confirmPasswordReset = function () {
-    $ionicAuth.confirmPasswordReset(this.user.resetCode, this.user.newPassword);
-    $location.path('/login');
+  ctrl.confirmPasswordReset = function () {
+    Auth.confirmPasswordReset(ctrl.user)
+    .then(function (response) {
+      $log.log(response);
+      $location.path('/login');
+    })
+    .catch(function (response) {
+      $log.log(response);
+    });
   };
 });
