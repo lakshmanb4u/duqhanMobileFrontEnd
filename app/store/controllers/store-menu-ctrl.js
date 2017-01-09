@@ -4,15 +4,25 @@ angular.module('store')
 	$log,
 	$location,
 	$ionicAuth,
-	$ionicFacebookAuth
+  $localStorage,
+	$ionicFacebookAuth,
+  Config
 ) {
 
-  $log.log('Hello from your Controller: StoreMenuCtrl in module store:. This is your controller:', this);
+  var ctrl = this;
 
-  this.logout = function () {
+  $log.log('Hello from your Controller: StoreMenuCtrl in module store:. This is your controller:', ctrl);
+
+  ctrl.logout = function () {
     // $ionicAuth.logout();
-    $ionicFacebookAuth.logout();
+    var savedUser = JSON.parse($localStorage.savedUser);
+    if (savedUser.socialLogin) {
+      $ionicFacebookAuth.logout();
+    }
+    $localStorage.$reset();
     $location.path('/landing');
   };
+
+  ctrl.username = Config.ENV.USER.NAME;
 
 });

@@ -4,11 +4,13 @@ angular.module('main', [
   'ionic.cloud',
   'ngCordova',
   'ui.router',
+  'ngStorage',
   'auth',
   'store'
 ])
-.config(function ($stateProvider, $urlRouterProvider) {
+.config(function ($stateProvider, $urlRouterProvider, $httpProvider) {
 
+  $httpProvider.interceptors.push('HttpInterceptor');
   // ROUTING with ui.router
   $urlRouterProvider.otherwise('/landing');
 })
@@ -25,9 +27,6 @@ angular.module('main', [
     }
   });
 })
-.run(function ($location, $ionicAuth) {
-  if ($ionicAuth.isAuthenticated()) {
-    // $location.path('/store/products/latest');
-    // $location.path('/store/product/overview');
-  }
+.run(function () {
+
 });

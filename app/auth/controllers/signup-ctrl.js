@@ -2,8 +2,7 @@
 angular.module('auth')
 .controller('SignupCtrl', function (
 	$log,
-	$location,
-	$ionicAuth,
+  $rootScope,
   Auth
 ) {
 
@@ -16,58 +15,36 @@ angular.module('auth')
     password: '',
     name: ''
   };
-  ctrl.updateResult = function (type, result) {
-    $log.log(type, result);
-    ctrl.user.resultType = type;
-    ctrl.user.result = result;
-  };
-
-  var responseCB = function (response) {
-    ctrl.updateResult('Response', response);
-    $location.path('/store/products/latest');
-  }.bind(ctrl);
-
-  var rejectionCB = function (rejection) {
-    ctrl.updateResult('Rejection', rejection);
-  }.bind(ctrl);
-
-  // tries to sign the user up and displays the result in the UI
-  ctrl.signupOld = function () {
-    $ionicAuth.signup(ctrl.user)
-    .then(function () {
-      ctrl.login();
-    })
-    .catch(rejectionCB);
-  };
-
-  // tries to sign in the user and displays the result in the UI
-  ctrl.loginOld = function () {
-    $ionicAuth.login('basic', {'email': ctrl.user.email, 'password': ctrl.user.password})
-    .then(responseCB)
-    .catch(rejectionCB);
+  ctrl.savedUser = {
+    email: '',
+    password: '',
+    name: '',
+    authtoken: '',
+    socialLogin: false,
+    userId: ''
   };
 
   ctrl.signup = function () {
-    Auth.signup(ctrl.user)
-    .then(function (response) {
-      $log.log(response);
-      ctrl.login();
-    })
-    .catch(function (response) {
-      $log.log(response);
-    });
+    ctrl.responseCB = '';
+    if (ctrl.signupForm.$valid) {
+      Auth.signup(ctrl.user)
+      .then(function (response) {
+        $log.log(response);
+        $rootScope.$emit('internalLogin', ctrl.user);
+      })
+      .catch(function (response) {
+        $log.log(response);
+        if (response.data.statusCode === '403') {
+          ctrl.responseCB = response.data.status;
+        } else {
+          ctrl.responseCB = 'Something went wrong. Please try again.';
+        }
+      });
+    }
   };
 
-  ctrl.login = function () {
-    delete ctrl.user.name;
-    Auth.login(ctrl.user)
-    .then(function (response) {
-      $log.log(response);
-      $location.path('/store/products/latest');
-    })
-    .catch(function (response) {
-      $log.log(response);
-    });
+  ctrl.facebookLogin = function () {
+    $rootScope.$emit('internalFacebookLogin', ctrl.user);
   };
 
 });

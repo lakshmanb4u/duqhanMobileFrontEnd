@@ -3,7 +3,7 @@ angular.module('auth', [
   'ionic',
   'ngCordova',
   'ui.router',
-  // TODO: load other modules selected during generation
+  'ngMessages'
 ])
 .config(function ($stateProvider) {
 
@@ -12,7 +12,8 @@ angular.module('auth', [
     // this state is placed in the <ion-nav-view> in the index.html
     .state('landing', {
       url: '/landing',
-      templateUrl: 'auth/templates/landing.html'
+      templateUrl: 'auth/templates/landing.html',
+      controller: 'UserCtrl as ctrl'
     })
     .state('signup', {
       url: '/signup',

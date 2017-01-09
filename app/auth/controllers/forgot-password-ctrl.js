@@ -17,23 +17,30 @@ angular.module('auth')
     newPassword: ''
   };
   ctrl.requestPasswordReset = function () {
-    Auth.requestPasswordReset(ctrl.user.email)
-    .then(function (response) {
-      $log.log(response);
-      $location.path('/change-password');
-    })
-    .catch(function (response) {
-      $log.log(response);
-    });
+    ctrl.responseCB = '';
+    if (ctrl.requestPasswordResetForm.$valid) {
+      Auth.requestPasswordReset(ctrl.user.email)
+      .then(function (response) {
+        $log.log(response);
+        $location.path('/change-password');
+      })
+      .catch(function (response) {
+        $log.log(response);
+        ctrl.responseCB = 'This email is not registered with us.';
+      });
+    }
   };
   ctrl.confirmPasswordReset = function () {
-    Auth.confirmPasswordReset(ctrl.user)
-    .then(function (response) {
-      $log.log(response);
-      $location.path('/login');
-    })
-    .catch(function (response) {
-      $log.log(response);
-    });
+    ctrl.responseCB = '';
+    if (ctrl.confirmPasswordResetForm.$valid) {
+      Auth.confirmPasswordReset(ctrl.user)
+      .then(function (response) {
+        $log.log(response);
+        $location.path('/login');
+      })
+      .catch(function (response) {
+        $log.log(response);
+      });
+    }
   };
 });

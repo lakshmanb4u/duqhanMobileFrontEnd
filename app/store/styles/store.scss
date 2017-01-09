@@ -13,6 +13,26 @@ $positive:                        #39abf3 !default;
   .scroll-content, .item, .item-complex .item-content {
     background-color: #fafafa;
   }
+
+  .list {
+    padding-top: 0px;
+  }
+
+  .menu-image {
+    background-image: url("../assets/images/user-background.png");
+
+    img {
+      max-width: 100px !important;
+      max-height: 100px !important;
+      width: 40% !important;
+      margin: 20px 0 10px;  
+    }
+
+    h2 {
+      margin-bottom: 20px !important;
+      color: #fff;
+    }
+  }
 }
 
 
