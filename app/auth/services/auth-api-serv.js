@@ -23,6 +23,10 @@ angular.module('auth')
 
     fbLogin: function (user) {
       return $http.post(Config.ENV.SERVER_URL + 'fb-login', user);
+    },
+
+    logout: function (user) {
+      return $http.post(Config.ENV.SERVER_URL + 'user/logout', user);
     }
   };
 });

@@ -3,6 +3,7 @@ angular.module('store', [
   'ionic',
   'ngCordova',
   'ui.router',
+  'ion-datetime-picker'
   // TODO: load other modules selected during generation
 ])
 .config(function ($stateProvider, $ionicConfigProvider) {
@@ -31,22 +32,25 @@ angular.module('store', [
     })
     .state('store.products.latest', {
       url: '/latest',
+      // cache: false,
       views: {
         'latestProductsContent': {
-          templateUrl: 'store/templates/products/latest.html',
-          controller: 'ProductsCtrl as ctrl'
+          templateUrl: 'store/templates/products/products.html'
+          // controller: 'ProductsCtrl as ctrl'
         }
       }
     })
     .state('store.products.recent', {
       url: '/recent',
+      // cache: false,
       views: {
         'recentProductsContent': {
-          templateUrl: 'store/templates/products/recent.html',
-          controller: 'ProductsCtrl as ctrl'
+          templateUrl: 'store/templates/products/products.html'
+          // controller: 'ProductsCtrl as ctrl'
         }
       }
     })
+
     .state('store.product', {
       url: '/product',
       abstract: true,
@@ -93,7 +97,15 @@ angular.module('store', [
         }
       }
     })
-
+    .state('store.profile', {
+      url: '/profile',
+      views: {
+        'storeContent': {
+          templateUrl: 'store/templates/profile.html',
+          controller: 'ProfileCtrl as ctrl'
+        }
+      }
+    })
 
     .state('store.list', {
       url: '/list',

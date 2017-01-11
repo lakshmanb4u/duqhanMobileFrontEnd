@@ -1,5 +1,5 @@
 {
-  "SERVER_URL": "http://sample-env.qtbvngb2iz.us-west-2.elasticbeanstalk.com/",
+  "SERVER_URL": "http://localhost:8084/",
   "SOME_OTHER_URL": "/postman-proxy",
   "USER": {
     "AUTH_TOKEN": null,

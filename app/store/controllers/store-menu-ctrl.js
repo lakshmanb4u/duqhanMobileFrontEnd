@@ -6,7 +6,8 @@ angular.module('store')
 	$ionicAuth,
   $localStorage,
 	$ionicFacebookAuth,
-  Config
+  Config,
+  Auth
 ) {
 
   var ctrl = this;
@@ -15,14 +16,29 @@ angular.module('store')
 
   ctrl.logout = function () {
     // $ionicAuth.logout();
-    var savedUser = JSON.parse($localStorage.savedUser);
-    if (savedUser.socialLogin) {
-      $ionicFacebookAuth.logout();
+    if ($localStorage.savedUser) {
+      var savedUser = JSON.parse($localStorage.savedUser);
+      if (savedUser.socialLogin) {
+        $ionicFacebookAuth.logout();
+      }
+      Auth.logout(savedUser)
+      .then(function (response) {
+        $log.log(response);
+        $localStorage.$reset();
+        $location.path('/landing');
+      })
+      .catch(function (response) {
+        $log.log(response);
+        if (response.data.statusCode === '403') {
+          ctrl.responseCB = 'Invalid credential.';
+        } else {
+          ctrl.responseCB = 'Something went wrong. Please try again.';
+        }
+      });
+    } else {
+      $location.path('/landing');
     }
-    $localStorage.$reset();
-    $location.path('/landing');
   };
 
   ctrl.username = Config.ENV.USER.NAME;
-
 });

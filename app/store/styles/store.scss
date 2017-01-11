@@ -192,3 +192,93 @@ $positive:                        #39abf3 !default;
     }
   }
 }
+
+
+
+// Profile Page
+// -------------------------------
+
+.profile {
+  background-image: url("../assets/images/login-background.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  font-family: "Facit Light";
+
+  .list {
+    min-width: 220px;
+    background: transparent;
+
+    .item {
+      background: transparent;
+      border-width: 0;
+
+      &.item-input {
+        border-bottom: 1px solid #9b9b9b;
+        padding-bottom: 0;
+
+        .icon {
+          color: $energized;
+          font-size: 20px;
+        }
+
+        input {
+          font-size: 12px;
+        }
+
+        &.item-datepicker {
+          height: 41px;
+          font-size: 12px;
+        }
+      }
+
+      &.item-radio {
+        font-size: 12px;
+
+        .item-content {
+          background-color: transparent;
+        }
+
+        input:checked + .radio-content {
+          .item-content {
+            background: transparent;
+          }
+
+          .radio-icon {
+            color: #ff771c;
+          }
+        }
+
+        .icon {
+          visibility: visible;
+          color: #ccc;
+        }
+      }
+
+      &.item-button {
+        padding-left: 0;
+        padding-right: 0;
+      }
+
+      &.item-image {
+        img {
+          max-width: 100px !important;
+          max-height: 100px !important;
+          width: 40% !important;
+          margin: 20px 0 10px;
+        }
+        em {
+          display: block;
+          color: #aaa;
+          font-size: 12px;
+          font-style: italic;
+        }
+      }
+
+      .placeholder-icon:first-child {
+        padding-right: 10px;
+      }
+
+
+    }
+  }
+}

@@ -1,0 +1,73 @@
+[
+  {
+    "productId": 10001,
+    "name": "Peter England Solid Mens Kurta",
+    "categoryId": 10,
+    "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+    "imgurl": "main/assets/images/dummy-product.png",
+    "lastUpdate": "lastUpdate",
+    "price": 200.00,
+    "discountedPrice": 180.00,
+    "discountPCT": 10,
+    "size": "XXXL",
+    "sizeUnit": "Inch",
+    "color": "Red",
+    "available": 20
+  }, {
+    "productId": 10002,
+    "name": "Riders Solid Men Straight Kurta",
+    "categoryId": 11,
+    "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+    "imgurl": "main/assets/images/dummy-product.png",
+    "lastUpdate": "lastUpdate",
+    "price": 190.00,
+    "discountedPrice": 160.00,
+    "discountPCT": 15,
+    "size": "XXXL",
+    "sizeUnit": "Inch",
+    "color": "Red",
+    "available": 20
+  }, {
+    "productId": 10003,
+    "name": "Riders Solid Mens Straight Kurta",
+    "categoryId": 10,
+    "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+    "imgurl": "main/assets/images/dummy-product.png",
+    "lastUpdate": "lastUpdate",
+    "price": 220.00,
+    "discountedPrice": 190.00,
+    "discountPCT": 12,
+    "size": "XXXL",
+    "sizeUnit": "Inch",
+    "color": "Red",
+    "available": 20
+  }, {
+    "productId": 10004,
+    "name": "Riders Solid Mens Straight Kurta",
+    "categoryId": 10,
+    "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+    "imgurl": "main/assets/images/dummy-product.png",
+    "lastUpdate": "lastUpdate",
+    "price": 520.00,
+    "discountedPrice": 490.00,
+    "discountPCT": 18,
+    "size": "XXXL",
+    "sizeUnit": "Inch",
+    "color": "Red",
+    "available": 20
+  }, {
+    "productId": 10005,
+    "name": "Sanwara Mens Kurta and Churidar Set",
+    "categoryId": 10,
+    "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+    "imgurl": "main/assets/images/dummy-product.png",
+    "lastUpdate": "lastUpdate",
+    "price": 150.00,
+    "discountedPrice": 130.00,
+    "discountPCT": 20,
+    "size": "XXXL",
+    "sizeUnit": "Inch",
+    "color": "Red",
+    "available": 20
+  }
+]

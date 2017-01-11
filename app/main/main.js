@@ -8,9 +8,9 @@ angular.module('main', [
   'auth',
   'store'
 ])
-.config(function ($stateProvider, $urlRouterProvider, $httpProvider) {
+.config(function ($stateProvider, $urlRouterProvider) {
 
-  $httpProvider.interceptors.push('HttpInterceptor');
+  // $httpProvider.interceptors.push('HttpInterceptor');
   // ROUTING with ui.router
   $urlRouterProvider.otherwise('/landing');
 })
