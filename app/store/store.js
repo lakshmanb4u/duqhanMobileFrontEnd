@@ -52,8 +52,9 @@ angular.module('store', [
     })
 
     .state('store.product', {
-      url: '/product',
+      url: '/product/:productId',
       abstract: true,
+      cache: false,
       views: {
         'storeContent': {
           templateUrl: 'store/templates/product/product-tab.html',
@@ -66,7 +67,7 @@ angular.module('store', [
       views: {
         'overviewProductContent': {
           templateUrl: 'store/templates/product/overview.html',
-          controller: 'ProductCtrl as ctrl'
+          // controller: 'ProductCtrl as ctrl'
         }
       }
     })
@@ -75,7 +76,7 @@ angular.module('store', [
       views: {
         'relatedProductContent': {
           templateUrl: 'store/templates/product/related.html',
-          controller: 'ProductCtrl as ctrl'
+          // controller: 'ProductCtrl as ctrl'
         }
       }
     })
@@ -84,7 +85,7 @@ angular.module('store', [
       views: {
         'descriptionProductContent': {
           templateUrl: 'store/templates/product/description.html',
-          controller: 'ProductCtrl as ctrl'
+          // controller: 'ProductCtrl as ctrl'
         }
       }
     })

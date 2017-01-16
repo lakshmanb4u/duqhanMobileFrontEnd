@@ -33,6 +33,7 @@ angular.module('auth')
   ctrl.confirmPasswordReset = function () {
     ctrl.responseCB = '';
     if (ctrl.confirmPasswordResetForm.$valid) {
+      ctrl.user.newPassword = ctrl.user.newPassword;
       Auth.confirmPasswordReset(ctrl.user)
       .then(function (response) {
         $log.log(response);

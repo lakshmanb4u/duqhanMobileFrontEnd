@@ -7,12 +7,12 @@
     </ion-tab>
 
     <!-- Debug Tab -->
-    <ion-tab title="Related" ui-sref="store.product.related">
+    <ion-tab title="Related" ng-click="ctrl.gotoRelated()">
       <ion-nav-view name="relatedProductContent"></ion-nav-view>
     </ion-tab>
 
     <!-- Debug Tab -->
-    <ion-tab title="Description" ui-sref="store.product.description">
+    <ion-tab title="Description" ng-click="ctrl.gotoDescription()">
       <ion-nav-view name="descriptionProductContent"></ion-nav-view>
     </ion-tab>
   </ion-tabs>

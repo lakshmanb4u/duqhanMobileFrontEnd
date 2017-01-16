@@ -10,7 +10,8 @@ angular.module('main')
   $ionicFacebookAuth,
   $ionicUser,
   Config,
-  Auth
+  Auth,
+  BusyLoader
 ) {
 
   var ctrl = this;
@@ -46,17 +47,55 @@ angular.module('main')
     })
     .catch(function (response) {
       $log.log(response);
+      $localStorage.$reset();
       if (response.data.statusCode === '403') {
         ctrl.responseCB = 'Invalid credential.';
       } else {
         ctrl.responseCB = 'Something went wrong. Please try again.';
       }
-      $state.go('login');
+      $state.go('landing');
     });
   };
 
-  ctrl.internalLoginForFBUsers = function (fbUser) {
-    Auth.fbLogin(fbUser)
+  // ctrl.internalLoginForFBUsers = function (fbUser) {
+  //   Auth.fbLogin(fbUser)
+  //   .then(function (response) {
+  //     $log.log(response);
+  //     ctrl.savedUser.email = $ionicUser.social.facebook.data.email;
+  //     ctrl.savedUser.name = $ionicUser.social.facebook.data.full_name;
+  //     ctrl.savedUser.userId = $ionicUser.social.facebook.userId;
+  //     ctrl.savedUser.authtoken = response.data.authtoken;
+  //     ctrl.savedUser.socialLogin = true;
+  //     Config.ENV.USER.AUTH_TOKEN = response.data.authtoken;
+  //     Config.ENV.USER.NAME = response.data.name;
+  //     $localStorage.savedUser = JSON.stringify(ctrl.savedUser);
+  //     $state.go('store.products.latest');
+  //     //$location.path('/store/products/latest');
+  //   })
+  //   .catch(function (response) {
+  //     $log.log(response);
+  //     if (response.data.statusCode === '403') {
+  //       ctrl.responseCB = 'Invalid credential.';
+  //     } else {
+  //       ctrl.responseCB = 'Something went wrong. Please try again.';
+  //     }
+  //     $state.go('landing');
+  //   });
+  // };
+
+  ctrl.internalFacebookLogin = function () {
+    BusyLoader.show();
+    $log.log('facebookLogin');
+    $ionicFacebookAuth.login()
+    .then(function () {
+      $log.log($ionicUser.social.facebook);
+
+      var fbUser = {};
+      fbUser.email = $ionicUser.social.facebook.data.email;
+      fbUser.name = $ionicUser.social.facebook.data.full_name;
+      fbUser.fbid = $ionicUser.social.facebook.uid;
+      return Auth.fbLogin(fbUser);
+    })
     .then(function (response) {
       $log.log(response);
       ctrl.savedUser.email = $ionicUser.social.facebook.data.email;
@@ -68,59 +107,80 @@ angular.module('main')
       Config.ENV.USER.NAME = response.data.name;
       $localStorage.savedUser = JSON.stringify(ctrl.savedUser);
       $state.go('store.products.latest');
-      //$location.path('/store/products/latest');
     })
-    .catch(function (response) {
-      $log.log(response);
-      if (response.data.statusCode === '403') {
-        ctrl.responseCB = 'Invalid credential.';
-      } else {
-        ctrl.responseCB = 'Something went wrong. Please try again.';
-      }
-      $state.go('login');
-    });
-  };
-
-  ctrl.internalFacebookLogin = function () {
-    $log.log('facebookLogin');
-    $ionicFacebookAuth.login()
-    .then(function () {
-      $log.log($ionicUser.social.facebook);
-
-      var fbUser = {};
-      fbUser.email = $ionicUser.social.facebook.data.email;
-      fbUser.name = $ionicUser.social.facebook.data.full_name;
-      fbUser.fbid = $ionicUser.social.facebook.uid;
-      ctrl.internalLoginForFBUsers(fbUser);
-      // $localStorage.savedUser = JSON.stringify(ctrl.savedUser);
-      // $location.path('/store/products/latest');
-    }, function (error) {
+    .catch(function (error) {
       $log.log(error);
-      $state.go('login');
+      $localStorage.$reset();
+      BusyLoader.hide();
+      $state.go('landing');
     });
   };
 
   // Auto log in for the already logged in users
   // if ($location.path().indexOf('/landing') >= 0) {
+  // ctrl.autoLogin = function () {
+  //   var savedUser = $localStorage.savedUser;
+  //   $log.log(savedUser);
+  //   if (savedUser) {
+  //     var parsedUser = JSON.parse(savedUser);
+  //     $log.log(parsedUser);
+  //     if (parsedUser.socialLogin) {
+  //       if ($ionicAuth.isAuthenticated()) {
+  //         $state.go('store.products.latest');
+  //       } else {
+  //         ctrl.internalFacebookLogin();
+  //       }
+  //     } else {
+  //       var user = {};
+  //       user.email = parsedUser.email;
+  //       user.password = parsedUser.password;
+  //       ctrl.internalLogin(user);
+  //     }
+  //   }
+  // };
+
   ctrl.autoLogin = function () {
     var savedUser = $localStorage.savedUser;
     $log.log(savedUser);
-    if (savedUser) {
-      var parsedUser = JSON.parse(savedUser);
-      $log.log(parsedUser);
-      if (parsedUser.socialLogin) {
-        if ($ionicAuth.isAuthenticated()) {
+    if (!savedUser) {
+      return;
+    }
+
+    var parsedUser = JSON.parse(savedUser);
+    $log.log(parsedUser);
+
+    if (parsedUser.socialLogin) {
+      if ($ionicAuth.isAuthenticated()) {
+        var fbUser = {};
+        fbUser.email = $ionicUser.social.facebook.data.email;
+        fbUser.name = $ionicUser.social.facebook.data.full_name;
+        fbUser.fbid = $ionicUser.social.facebook.uid;
+        Auth.fbLogin(fbUser)
+        .then(function (response) {
+          $log.log(response);
+          ctrl.savedUser.email = $ionicUser.social.facebook.data.email;
+          ctrl.savedUser.name = $ionicUser.social.facebook.data.full_name;
+          ctrl.savedUser.userId = $ionicUser.social.facebook.userId;
+          ctrl.savedUser.authtoken = response.data.authtoken;
+          ctrl.savedUser.socialLogin = true;
+          Config.ENV.USER.AUTH_TOKEN = response.data.authtoken;
+          Config.ENV.USER.NAME = response.data.name;
+          $localStorage.savedUser = JSON.stringify(ctrl.savedUser);
           $state.go('store.products.latest');
-          //$location.path('/store/products/latest');
-        } else {
-          ctrl.internalFacebookLogin();
-        }
+        })
+        .catch(function (error) {
+          $log.log(error);
+          $localStorage.$reset();
+          $state.go('landing');
+        });
       } else {
-        var user = {};
-        user.email = parsedUser.email;
-        user.password = parsedUser.password;
-        ctrl.internalLogin(user);
+        ctrl.internalFacebookLogin();
       }
+    } else {
+      var user = {};
+      user.email = parsedUser.email;
+      user.password = parsedUser.password;
+      ctrl.internalLogin(user);
     }
   };
 

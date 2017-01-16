@@ -1,0 +1,19 @@
+<ion-modal-view class="add-to-bag">
+  <ion-header-bar>
+    <h1 class="title">Thank You</h1>
+  </ion-header-bar>
+  <ion-content class="padding">
+    <ion-list>
+      <ion-item class="item item-thumbnail-left">
+        <img src="{{ctrl.product.images[0].imgUrl}}">
+        <h2>Item Added to your Bag!</h2>
+        <h3>{{ctrl.product.name}}</h3>
+        <p>Size: {{ctrl.productSelected.size1.sizeText}}, Color: {{ctrl.productSelected.size1.sizeColorMap1.colorText}}</p>
+      </ion-item>
+    </ion-list>
+    <div class="button-bar bar-energized">
+      <a class="button" ng-click="ctrl.closeModal()">Continue</a>
+      <a class="button" ng-click="ctrl.closeModal()" ui-sref="store.cart">Checkout</a>
+    </div>
+  </ion-content>
+</ion-modal-view>

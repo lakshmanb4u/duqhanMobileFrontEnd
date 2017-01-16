@@ -3,14 +3,14 @@
   <ion-content class="product-tab-content has-footer has-tabs">
 
     <!-- content goes here -->
-    <ion-slide-box>
-        <ion-slide ng-repeat="image in ctrl.product.image">
-            <img ng-src="{{image.mediaUrl}}" style="width:100%; margin:auto; display:block" >
+    <ion-slide-box delegate-handle="image-viewer" show-pager="true">
+        <ion-slide ng-repeat="i in ctrl.product.images">
+            <img src="{{i.imgUrl}}" style="width:100%; margin:auto; display:block" >
         </ion-slide>
     </ion-slide-box>
     <div class="product-brief p-sm">
-      <h1 class="product-name">Levis Denim</h1>
-      <p class="product-price m-b-none"><span>$240</span> $199</p>
+      <h1 class="product-name">{{ctrl.product.name}}</h1>
+      <p class="product-price m-b-none"><span>Rs.{{ctrl.product.orginalPrice}}</span> Rs.{{ctrl.product.salesPrice}}</p>
     </div>
     <div class="product-detail p-sm">
       <div class="size-wrapper m-b-md">
@@ -18,13 +18,13 @@
           <div class="col title">Sizes</div>
           <div class="col link text-right">Size chart</div>
         </div>
-        <div class="values">XXS, XS, S, M, L, XL, XXL, XXXL, XXXXL</div>
+        <div class="values">{{ctrl.product.sizeArr}}</div>
       </div>
       <div class="color-wrapper m-b-md">
         <div class="row m-b-xs">
           <div class="col title">Colors</div>
         </div>
-        <div class="values">Black, Brown</div>
+        <div class="values">{{ctrl.product.colorArr}}</div>
       </div>
       <div class="shipping-time-wrapper m-b-md">
         <div class="row m-b-xs">
@@ -44,8 +44,9 @@
   </ion-content>
   <ion-footer-bar class="">
     <div class="button-bar">
-      <button class="button button-dark purchase-price-button">Price: $199 <span> $240</span></button>
-      <button class="button button-positive add-cart-button">Add to Bag</button>
+      <button class="button button-dark purchase-price-button">Price: Rs.{{ctrl.product.salesPrice}} <span> Rs.{{ctrl.product.orginalPrice}}</span></button>
+      <button class="button button-positive add-cart-button" ng-click="ctrl.addToBag(ctrl.product)">Add to Bag</button>
+      <!-- <button class="button button-positive add-cart-button" ng-click="ctrl.openModal()">Add to Bag</button> -->
     </div>
   </ion-footer-bar>
 </ion-view>

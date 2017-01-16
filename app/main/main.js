@@ -6,7 +6,8 @@ angular.module('main', [
   'ui.router',
   'ngStorage',
   'auth',
-  'store'
+  'store',
+  'base64'
 ])
 .config(function ($stateProvider, $urlRouterProvider) {
 

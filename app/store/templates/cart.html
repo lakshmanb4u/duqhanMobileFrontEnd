@@ -8,42 +8,42 @@
       <a class="item" href="#">
         Item Total
         <span class="item-note">
-          $199.01
+          Rs.{{ctrl.cart.itemTotal}}
         </span>
       </a>
 
       <a class="item" href="#">
         Estimated Shipping
         <span class="item-note">
-          $4.00
+          Rs.0.00
         </span>
       </a>
 
       <a class="item positive" href="#">
-        Discount 5%
+        Discount {{ctrl.cart.discountPctTotal| number : 0}}%
         <span class="item-note">
-          -$0.70
+          - Rs.{{ctrl.cart.discountTotal}}
         </span>
       </a>
 
       <a class="item" href="#">
         Order Total
         <span class="item-note">
-          $202.31 
+          Rs.{{ctrl.cart.orderTotal}}
         </span>
       </a>
 
     </div>
-    <div class="cart-items" ng-repeat="p in ctrl.cartItems">
+    <div class="cart-items" ng-repeat="p in ctrl.cart.products">
       <div class="row product">
         <div class="col col-75">
-          <h2>Pretty Hate Machine</h2>
-          <p>Size: <span>M</span>, Color: <span>Brown</span></p>
+          <h2>{{p.name}}</h2>
+          <p>Size: <span>{{p.size}}</span>, Color: <span>{{p.color}}</span></p>
           <p>Shipping: <span>$4 (Jan 26 - Feb 5)</span></p>
 
         </div>
         <div class="col col-25 text-right">
-          <img src="main/assets/images/dummy-product-1.jpg">
+          <img src="{{p.imgurl}}">
           
         </div>
       </div>
@@ -55,33 +55,31 @@
                 Qty
               </div>
               <select>
-                <option selected>1</option>
-                <option>2</option>
-                <option>3</option>
+                <option ng-repeat="i in ctrl.getAvailability(p.available) track by $index">{{$index+1}}</option>
               </select>
             </label>
           </div>
         </div>
         <div class="col text-right">
-          <h3><span>$240</span> $199</h3>
+          <h3><span>Rs.{{p.price}}</span> Rs.{{p.discountedPrice}}</h3>
         </div>
       </div>
       <button class="button button-full button-stable m-none">
-        <i class="ion-information-circled m-r-xs"></i> Remove
+        <i class="ion-close-circled m-r-xs"></i> Remove
       </button>
     </div>
   </ion-content>
   <ion-footer-bar class="cart-footer">
     <div class="row m-none p-none">
       <div class="col text-center">
-        <h3>$199</h3>
+        <h3>Rs.{{ctrl.cart.orderTotal}}</h3>
         <button class="button button-clear button-small button-light return-policy-button">
           Return Policy
         </button>
       </div>
       <div class="col text-right">
         <div class="button-bar">
-          <button class="button button-positive add-cart-button">Add to Bag</button>
+          <button class="button button-positive add-cart-button">Checkout</button>
         </div>
       </div>
     </div>

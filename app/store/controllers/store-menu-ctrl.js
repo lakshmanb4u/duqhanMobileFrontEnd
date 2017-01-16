@@ -6,8 +6,10 @@ angular.module('store')
 	$ionicAuth,
   $localStorage,
 	$ionicFacebookAuth,
+  $rootScope,
   Config,
-  Auth
+  Auth,
+  Store
 ) {
 
   var ctrl = this;
@@ -40,5 +42,25 @@ angular.module('store')
     }
   };
 
+  ctrl.getCartTotalNumber = function () {
+    Store.getCart()
+    .then(function (response) {
+      $log.log(response.data);
+      ctrl.cartTotalNumber = response.data.products.length;
+    })
+    .catch(function (response) {
+      $log.log(response);
+    });
+  };
+
+  ctrl.getCartTotalNumber();
+
   ctrl.username = Config.ENV.USER.NAME;
+
+  // Catching calls from outside this controller
+  $rootScope.$on('getCartTotalNumber', function (event) {
+    $log.log(event);
+    $log.log('on getCartTotalNumber');
+    ctrl.getCartTotalNumber();
+  });
 });

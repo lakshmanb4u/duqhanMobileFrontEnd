@@ -115,6 +115,18 @@ $positive:                        #39abf3 !default;
   }
 }
 
+.modal-backdrop-bg {
+  background-color: #000;
+  opacity: 0.3;
+}
+
+.add-to-bag {
+  height: 200px;
+  bottom: 0;
+  min-height: 200px;
+  top: inherit;
+}
+
 
 
 // Cart Page

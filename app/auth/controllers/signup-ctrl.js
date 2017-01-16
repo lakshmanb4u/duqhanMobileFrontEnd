@@ -27,6 +27,7 @@ angular.module('auth')
   ctrl.signup = function () {
     ctrl.responseCB = '';
     if (ctrl.signupForm.$valid) {
+      ctrl.user.password = ctrl.user.password;
       Auth.signup(ctrl.user)
       .then(function (response) {
         $log.log(response);
