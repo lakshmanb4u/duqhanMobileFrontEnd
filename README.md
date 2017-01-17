@@ -1,22 +1,29 @@
 # Duqhan
-This project was generated with Generator-M-Ionic v1.10.1. For more info visit the [repository](https://github.com/mwaylabs/generator-m-ionic) or check out the README below.
+This is an e-commerce mobile app. It has been created using ionic framework.
 
-# Git integration
-The generator provides a default set of configuration for git:
-- `.gitignore` and `.gitattributes` - http://git-scm.com/docs/gitignore
+## Git clone
+Clone the project from https://github.com/lakshmanb4u/duqhan.git using the following command:
 
-Leaving them as they are generated, you will allow git to exclude all of the 3rd party code from your project. Specifically this means:
-- no bower components
-- no node modules
-- no Cordova platforms and plugins
+    git clone https://github.com/lakshmanb4u/duqhan.git
 
-### After git clone
-Since all these files are excluded from git, you need to install all of them when you start with a fresh clone of your project. In order to do so, run the following commands in that order:
-```sh
-npm install # installs all node modules from the package.json
-bower install # install all bower components from the bower.json
-gulp --cordova "prepare" # install all Cordova platforms and plugins from the config.xml
-```
+This will download the whole project except all of the 3rd party files. Specifically except:
+
+- bower components
+- node modules
+- Cordova platforms and plugins
+
+## After git clone
+Since all these files are excluded from git, we need to install all of them. In order to do so, run the following commands in that order:
+
+    npm install
+installs all node modules from the package.json
+
+    bower install
+install all bower components from the bower.json
+
+    gulp --cordova "prepare"
+install all Cordova platforms and plugins from the config.xml
+
 
 ### Platforms and plugins in config.xml
 Since `cordova 5.0` all platforms and plugins you install can be added to the `config.xml`.
