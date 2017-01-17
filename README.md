@@ -25,6 +25,9 @@ install all bower components from the bower.json
 install all Cordova platforms and plugins from the config.xml
 
 
+It may get an exception that of not finding files in '/resources', then copy the 'resources' folder and paste it inside 'platforms/android'.
+
+
 ### Platforms and plugins in config.xml
 Since `cordova 5.0` all platforms and plugins you install can be added to the `config.xml`.
 
