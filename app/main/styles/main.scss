@@ -317,7 +317,9 @@ $font-family-base:                "Facit Light" !default;
 .space-30 {
   margin: 30px 0;
 }
-
+.text-italic {
+  font-style: italic;
+}
 .has-footer.has-tabs {
   bottom: 89px;
 }

@@ -8,37 +8,45 @@
       <a class="item" href="#">
         Item Total
         <span class="item-note">
-          Rs.{{ctrl.cart.itemTotal}}
+          Rs.{{ctrl.cart.itemTotal || 0.00}}
         </span>
       </a>
 
       <a class="item" href="#">
         Estimated Shipping
         <span class="item-note">
-          Rs.0.00
+          Rs.0
         </span>
       </a>
 
       <a class="item positive" href="#">
-        Discount {{ctrl.cart.discountPctTotal| number : 0}}%
+        Discount {{ctrl.cart.discountPctTotal| number : 0 || 0}}%
         <span class="item-note">
-          - Rs.{{ctrl.cart.discountTotal}}
+          - Rs.{{ctrl.cart.discountTotal || 0.00}}
         </span>
       </a>
 
       <a class="item" href="#">
         Order Total
         <span class="item-note">
-          Rs.{{ctrl.cart.orderTotal}}
+          Rs.{{ctrl.cart.orderTotal || 0.00}}
         </span>
       </a>
 
+    </div>
+    <div class="card" ng-hide="ctrl.cart.products">
+      <div class="item item-text-wrap">
+        You don't have any items in your cart yet. Please add some items to the cart.
+      </div>
     </div>
     <div class="cart-items" ng-repeat="p in ctrl.cart.products">
       <div class="row product">
         <div class="col col-75">
           <h2>{{p.name}}</h2>
-          <p>Size: <span>{{p.size}}</span>, Color: <span>{{p.color}}</span></p>
+          <p>
+            <span ng-if="p.size">Size: {{p.size}}, </span>
+            <span ng-if="p.color">Color: {{p.color}}</span>
+          </p>
           <p>Shipping: <span>$4 (Jan 26 - Feb 5)</span></p>
 
         </div>
@@ -72,8 +80,8 @@
   <ion-footer-bar class="cart-footer">
     <div class="row m-none p-none">
       <div class="col text-center">
-        <h3>Rs.{{ctrl.cart.orderTotal}}</h3>
-        <button class="button button-clear button-small button-light return-policy-button">
+        <h3>Rs.{{ctrl.cart.orderTotal || 0}}</h3>
+        <button class="button button-clear button-small button-light return-policy-button" ui-sref="store.returnpolicy">
           Return Policy
         </button>
       </div>

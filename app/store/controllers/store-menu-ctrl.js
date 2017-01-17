@@ -12,12 +12,17 @@ angular.module('store')
   Store
 ) {
 
+  /* Storing contextual this in a variable for easy access */
+
   var ctrl = this;
 
   $log.log('Hello from your Controller: StoreMenuCtrl in module store:. This is your controller:', ctrl);
 
+  /*==============================
+  =            Logout            =
+  ==============================*/
+
   ctrl.logout = function () {
-    // $ionicAuth.logout();
     if ($localStorage.savedUser) {
       var savedUser = JSON.parse($localStorage.savedUser);
       if (savedUser.socialLogin) {
@@ -42,25 +47,49 @@ angular.module('store')
     }
   };
 
+  /*=====  End of Logout  ======*/
+
+
+  /*==============================================================
+  =            Get the number of items in user's cart            =
+  ==============================================================*/
+
   ctrl.getCartTotalNumber = function () {
     Store.getCart()
     .then(function (response) {
       $log.log(response.data);
-      ctrl.cartTotalNumber = response.data.products.length;
+      if (response.data.products) {
+        ctrl.cartTotalNumber = response.data.products.length;
+      }
     })
     .catch(function (response) {
       $log.log(response);
     });
   };
 
+
+  /*----------  call the function at the time of initialization  ----------*/
+
   ctrl.getCartTotalNumber();
 
-  ctrl.username = Config.ENV.USER.NAME;
 
-  // Catching calls from outside this controller
+  /*----------  catching calls from outside of this controller  ----------*/
+
   $rootScope.$on('getCartTotalNumber', function (event) {
     $log.log(event);
     $log.log('on getCartTotalNumber');
     ctrl.getCartTotalNumber();
   });
+
+  /*=====  End of Get the number of items in user's cart  ======*/
+
+
+  /*==========================================================================
+  =            Include user's name in scope to display in sidebar            =
+  ==========================================================================*/
+
+  ctrl.username = Config.ENV.USER.NAME;
+
+  /*=====  End of Include user's name in scope to display in sidebar  ======*/
+
 });

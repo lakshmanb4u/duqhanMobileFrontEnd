@@ -5,14 +5,22 @@ angular.module('store')
   $rootScope,
   Store
 ) {
+
+  /* Storing contextual this in a variable for easy access */
+
   var ctrl = this;
 
   $log.log('Hello from your Controller: ProductsCtrl in module store:. This is your controller:', ctrl);
 
-  ctrl.latestProducts = [1, 2, 3, 4, 5, 6];
-  ctrl.recentProducts = [1, 2];
+  /*========================================
+  =            Get product list            =
+  ========================================*/
+
+  /*----------  Initialize products object  ----------*/
 
   ctrl.products = [];
+
+  /*----------  Get list of products from backend  ----------*/
 
   ctrl.loadProductList = function (productsParam) {
     Store.getProducts(productsParam)
@@ -30,23 +38,32 @@ angular.module('store')
     });
   };
 
+  /*----------  Get latest products  ----------*/
+
   ctrl.loadLatestProductList = function () {
     var productsParam = {};
     ctrl.loadProductList(productsParam);
   };
+
+  /*----------  Get recently viewd products  ----------*/
 
   ctrl.loadRecentlyViewedProductList = function () {
     var productsParam = {isRecent: true};
     ctrl.loadProductList(productsParam);
   };
 
+  /*----------  Get products by category  ----------*/
+
   ctrl.loadProductListByCategory = function () {
     var productsParam = {categoryId: 11};
     ctrl.loadProductList(productsParam);
   };
 
-  // Load latest products at the time of controller initialization
+  /*----------  call the function at the time of initialization  ----------*/
+
   ctrl.loadLatestProductList();
+
+  /*----------  Get the latest or recent products depending on which page user is in  ----------*/
 
   $rootScope.$on('$stateChangeSuccess', function (event, toState) {
     ctrl.products = [];
@@ -59,5 +76,7 @@ angular.module('store')
       ctrl.loadLatestProductList();
     }
   });
+
+  /*=====  End of Get product list  ======*/
 
 });

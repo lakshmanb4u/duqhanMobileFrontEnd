@@ -1,18 +1,22 @@
 'use strict';
 angular.module('store')
-.controller('ProductCtrl', function ($log, $stateParams, $ionicSlideBoxDelegate, $state, $ionicActionSheet, $ionicModal, $scope, Store) {
+.controller('ProductCtrl', function ($log, $stateParams, $ionicSlideBoxDelegate, $state, $ionicActionSheet, $ionicModal, $scope, $rootScope, Store) {
+
+  /* Storing contextual this in a variable for easy access */
 
   var ctrl = this;
 
   $log.log('Hello from your Controller: ProductCtrl in module store:. This is your controller:', ctrl);
 
+  /*=============================================
+  =            Get product details            =
+  =============================================*/
+
+  /*----------  Initialize product object  ----------*/
+
   ctrl.product = {};
-  ctrl.relatedProducts = [1, 2, 3, 4, 5, 6];
-  ctrl.images = [
-    {imgUrl: 'http://res.cloudinary.com/duqhan/image/upload/v1484226413/test/T%20Shirts.jpg'},
-    {imgUrl: 'http://res.cloudinary.com/duqhan/image/upload/v1484226402/test/Trousers.jpg'},
-    {imgUrl: 'http://res.cloudinary.com/duqhan/image/upload/v1484226463/test/tv.jpg'}
-  ];
+
+  /*----------  Get details of a product from backend  ----------*/
 
   ctrl.loadProductDetail = function (productId) {
     var productParam = {'productId': productId};
@@ -44,8 +48,20 @@ angular.module('store')
     });
   };
 
+  /*----------  Storing url parameter (product id) in scope ----------*/
+
   ctrl.productId = $stateParams.productId;
+
+  /*----------  call the function at the time of initialization  ----------*/
+
   ctrl.loadProductDetail($stateParams.productId);
+
+  /*=====  End of Get product details  ======*/
+
+
+  /*==========================================================================================
+  =            Helping functions to traverse through tabs in product details page            =
+  ==========================================================================================*/
 
   ctrl.gotoDescription = function () {
     $log.log(ctrl.productId);
@@ -56,70 +72,53 @@ angular.module('store')
     $state.go('store.product.related', {productId: ctrl.productId});
   };
 
+  /*=====  End of Helping functions to traverse through tabs in product details page  ======*/
+
+  /*=================================================
+  =            Add a product to the cart            =
+  =================================================*/
+
+  /*----------  Add to cart - get triggered when user press "Add to Bag" button from the product detail page ----------*/
+
   ctrl.addToBag = function (product) {
     ctrl.productSelected = {};
     ctrl.productSelected.productId = product.productId;
     $log.log(product);
-    if (product.sizes) {
-      var buttons = [];
-      angular.forEach(ctrl.product.sizes, function (value) {
-        buttons.push({text: value.sizeText});
-      });
-      $ionicActionSheet.show({
-        buttons: buttons,
-        titleText: 'Select size',
-        cancelText: 'Cancel',
-        cancel: function () {
-          // add cancel code..
-        },
-        buttonClicked: function (index) {
-          // $log.log(index);
-          // $log.log(ctrl.product.sizes[index]);
-          ctrl.productSelected.size1 = ctrl.product.sizes[index];
-          if (ctrl.productSelected.size1.sizeColorMap) {
-            var buttons = [];
-            angular.forEach(ctrl.productSelected.size1.sizeColorMap, function (value) {
-              buttons.push({text: value.colorText});
-            });
-
-            $ionicActionSheet.show({
-              buttons: buttons,
-              titleText: 'Select color',
-              cancelText: 'Cancel',
-              cancel: function () {
-                // add cancel code..
-              },
-              buttonClicked: function (index) {
-                // $log.log(index);
-                // $log.log(ctrl.productSelected.size.sizeColorMap[index]);
-                ctrl.productSelected.size1.sizeColorMap1 = ctrl.productSelected.size1.sizeColorMap[index];
-                ctrl.productSelected.mapId = ctrl.productSelected.size1.sizeColorMap1.mapId;
-                // $log.log(ctrl.productSelected.mapId);
-                ctrl.addToBagPersist(ctrl.productSelected, ctrl.product);
-                return true;
-              }
-            });
-          }
-          return true;
-        }
-      });
+    if (!product.sizes || !product.sizes.length > 0) {
+      return;
+    }
+    if (product.sizes[0].sizeId) {
+      ctrl.sizeModal();
+    } else {
+      ctrl.productSelected.size = ctrl.product.sizes[0];
+      ctrl.colorModal();
     }
   };
+
+  /*----------  Send the product to the backend which user newly added to the cart  ----------*/
 
   ctrl.addToBagPersist = function (productSelected, product) {
     // delete productSelected.size;
     $log.log(ctrl.productSelected);
-    ctrl.openModal(productSelected, product);
 
-    // Store.addToCart(productSelected)
-    // .then(function (response) {
-    //   $log.log(response.data);
-
-    // })
-    // .catch(function (response) {
-    //   $log.log(response);
-    // });
+    Store.addToCart(productSelected)
+    .then(function (response) {
+      $log.log(response.data);
+      if (response.data.status === 'success') {
+        productSelected.response = 'Item Added to your Bag!';
+        ctrl.openModal(productSelected, product);
+        $rootScope.$emit('getCartTotalNumber');
+      } else if (response.data.status === 'Product already added') {
+        productSelected.response = 'Item is already in the Bag!';
+        ctrl.openModal(productSelected, product);
+      }
+    })
+    .catch(function (response) {
+      $log.log(response);
+    });
   };
+
+  /*----------  Ionic modal to show the response of addition of the product to the cart  ----------*/
 
   $ionicModal.fromTemplateUrl('store/templates/product/addedToBagModal.html', {
     scope: $scope,
@@ -139,5 +138,60 @@ angular.module('store')
   ctrl.closeModal = function () {
     ctrl.modal.hide();
   };
+
+  /*----------  Open a Action sheet to select the size of the product  ----------*/
+
+  ctrl.sizeModal = function () {
+    var buttons = [];
+    angular.forEach(ctrl.product.sizes, function (value) {
+      buttons.push({text: value.sizeText});
+    });
+    $ionicActionSheet.show({
+      buttons: buttons,
+      titleText: 'Select size',
+      cancelText: 'Cancel',
+      cancel: function () {
+        // add cancel code..
+      },
+      buttonClicked: function (index) {
+        // $log.log(index);
+        // $log.log(ctrl.product.sizes[index]);
+        ctrl.productSelected.size = ctrl.product.sizes[index];
+        if (ctrl.productSelected.size.sizeColorMap) {
+          ctrl.colorModal();
+        }
+        return true;
+      }
+    });
+  };
+
+  /*----------  Open a Action sheet to select the color of the product  ----------*/
+
+  ctrl.colorModal = function () {
+    var buttons = [];
+    angular.forEach(ctrl.productSelected.size.sizeColorMap, function (value) {
+      buttons.push({text: value.colorText});
+    });
+
+    $ionicActionSheet.show({
+      buttons: buttons,
+      titleText: 'Select color',
+      cancelText: 'Cancel',
+      cancel: function () {
+        // add cancel code..
+      },
+      buttonClicked: function (index) {
+        // $log.log(index);
+        // $log.log(ctrl.productSelected.size.sizeColorMap[index]);
+        ctrl.productSelected.size.sizeColor = ctrl.productSelected.size.sizeColorMap[index];
+        ctrl.productSelected.mapId = ctrl.productSelected.size.sizeColor.mapId;
+        // $log.log(ctrl.productSelected.mapId);
+        ctrl.addToBagPersist(ctrl.productSelected, ctrl.product);
+        return true;
+      }
+    });
+  };
+
+  /*=====  End of Add a product to the cart  ======*/
 
 });

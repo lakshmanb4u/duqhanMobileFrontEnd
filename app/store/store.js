@@ -107,6 +107,33 @@ angular.module('store', [
         }
       }
     })
+    .state('store.sizes', {
+      url: '/sizes',
+      views: {
+        'storeContent': {
+          templateUrl: 'store/templates/size-chart.html',
+          controller: 'SizeChartCtrl as ctrl'
+        }
+      }
+    })
+    .state('store.shipping', {
+      url: '/shipping',
+      views: {
+        'storeContent': {
+          templateUrl: 'store/templates/shipping.html',
+          controller: 'ShippingCtrl as ctrl'
+        }
+      }
+    })
+    .state('store.returnpolicy', {
+      url: '/return-policy',
+      views: {
+        'storeContent': {
+          templateUrl: 'store/templates/return-policy.html',
+          controller: 'ReturnPolicyCtrl as ctrl'
+        }
+      }
+    })
 
     .state('store.list', {
       url: '/list',
