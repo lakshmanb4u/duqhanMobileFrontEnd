@@ -11,20 +11,22 @@
       </ion-nav-back-button>
       <!-- nav button, shown if applicable -->
       <ion-nav-buttons side="left">
-        <button class="button button-icon button-clear ion-navicon" menu-toggle="left">
+        <button class="button button-icon button-clear ion-navicon" menu-toggle="primary">
         </button>
       </ion-nav-buttons>
       <ion-nav-buttons side="right">
+        <button class="button button-small button-icon button-clear ion-ios-home-outline larger-icon" ui-sref="store.products.latest">
+        </button>
         <button class="button button-small button-icon button-clear ion-bag" ui-sref="store.cart">
           <span class="badge badge-assertive header-badge" ng-show="menu.cartTotalNumber>0">{{menu.cartTotalNumber}}</span>
         </button>
-        <button class="button button-small button-icon button-clear ion-levels">
-        </button>
-        <button class="button button-small button-icon button-clear ion-ios-search">
+<!--         <button class="button button-small button-icon button-clear ion-levels">
+        </button> -->
+        <button class="button button-small button-icon button-clear ion-ios-search larger-icon">
         </button>
       </ion-nav-buttons>
     </ion-nav-bar>
-
+    <div class="notification animated bounceInDown" ng-show="menu.notification.type" ng-class="{'success': menu.notification.type == 'success' , 'failure': menu.notification.type == 'failure'}">{{menu.notification.text}}</div>
     <!-- ROUTING INJECTED HERE: storeContent -->
     <ion-nav-view name="storeContent"></ion-nav-view>
 
@@ -51,12 +53,6 @@
         <ion-item menu-close ui-sref="store.products.latest">
           Products
         </ion-item>
-<!--         <ion-item menu-close ui-sref="store.list">
-          List
-        </ion-item>
-        <ion-item menu-close ui-sref="store.debug">
-          Debug
-        </ion-item> -->
         <ion-item menu-close ng-click="menu.logout()">
           Logout
         </ion-item>

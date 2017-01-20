@@ -14,6 +14,7 @@
     <!-- build:css styles/vendor.css -->
     <!-- bower:css -->
     <link rel="stylesheet" href="bower_components/ion-datetime-picker/release/ion-datetime-picker.min.css" />
+    <link rel="stylesheet" href="bower_components/animate.css/animate.css" />
     <!-- endbower -->
     <!-- endbuild -->
 
@@ -30,15 +31,21 @@
     <!-- the nav bar will be updated as we navigate between views -->
     <!-- <ion-nav-bar> can be removed when using sidemenu (contained in menu.html) -->
     <ion-nav-bar class="bar-energized">
-      <ion-nav-back-button></ion-nav-back-button>
+      <!-- <ion-nav-back-button></ion-nav-back-button> -->
     </ion-nav-bar>
     <!-- the current view will be rendered in the <ion-nav-view> directive -->
     <ion-nav-view></ion-nav-view>
 
-    <!-- will be a 404 during development -->
-    <script src="cordova.js"></script>
-
     <!-- build:js scripts/vendor.js -->
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/jquery-bridget/jquery-bridget.js"></script>
+    <script src="bower_components/get-size/get-size.js"></script>
+    <script src="bower_components/ev-emitter/ev-emitter.js"></script>
+    <script src="bower_components/desandro-matches-selector/matches-selector.js"></script>
+    <script src="bower_components/fizzy-ui-utils/utils.js"></script>
+    <script src="bower_components/outlayer/item.js"></script>
+    <script src="bower_components/outlayer/outlayer.js"></script>
+    <script src="bower_components/masonry/masonry.js"></script>
     <!-- bower:js -->
     <script src="bower_components/angular/angular.js"></script>
     <script src="bower_components/angular-animate/angular-animate.js"></script>
@@ -51,14 +58,31 @@
     <script src="bower_components/ngstorage/ngStorage.js"></script>
     <script src="bower_components/ion-datetime-picker/release/ion-datetime-picker.min.js"></script>
     <script src="bower_components/angular-base64/angular-base64.js"></script>
+    <script src="bower_components/jshashes/hashes.js"></script>
+    <script src="bower_components/get-size/get-size.js"></script>
+    <script src="bower_components/ev-emitter/ev-emitter.js"></script>
+    <script src="bower_components/desandro-matches-selector/matches-selector.js"></script>
+    <script src="bower_components/fizzy-ui-utils/utils.js"></script>
+    <script src="bower_components/outlayer/outlayer.js"></script>
+    <script src="bower_components/masonry/masonry.js"></script>
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/imagesloaded/imagesloaded.js"></script>
+    <script src="bower_components/jquery-bridget/jquery-bridget.js"></script>
+    <script src="bower_components/angular-masonry/angular-masonry.js"></script>
     <!-- endbower -->
-    <script src="bower_components/ionic.cloud.min.js"></script>
+    <script src="bower_components/ionic-ion-imageCacheFactory/ionic.ion.imagecachefactory.js"></script>
+    <script src="bower_components/ionic-cloud/ionic.cloud.min.js"></script>
     <!-- endbuild -->
+
+    <!-- will be a 404 during development -->
+    <script src="cordova.js"></script>
 
     <!-- build:js scripts/app.js -->
     <!-- inject:js -->
     <script src="store/store.js"></script>
     <script src="store/services/store-serv.js"></script>
+    <script src="store/services/image-upload-serv.js"></script>
+    <script src="store/services/common-serv.js"></script>
     <script src="store/controllers/store-menu-ctrl.js"></script>
     <script src="store/controllers/store-debug-ctrl.js"></script>
     <script src="store/controllers/size-chart-ctrl.js"></script>

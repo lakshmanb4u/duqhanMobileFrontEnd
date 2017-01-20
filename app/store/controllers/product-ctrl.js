@@ -89,9 +89,12 @@ angular.module('store')
     }
     if (product.sizes[0].sizeId) {
       ctrl.sizeModal();
-    } else {
+    } else if (product.sizes[0].sizeColorMap[0].colorId) {
       ctrl.productSelected.size = ctrl.product.sizes[0];
       ctrl.colorModal();
+    } else {
+      ctrl.productSelected.mapId = ctrl.product.sizes[0].sizeColorMap[0].mapId;
+      ctrl.addToBagPersist(ctrl.productSelected, ctrl.product);
     }
   };
 

@@ -3,7 +3,9 @@ angular.module('store', [
   'ionic',
   'ngCordova',
   'ui.router',
-  'ion-datetime-picker'
+  'ion-datetime-picker',
+  'wu.masonry',
+  'ionic.ion.imageCacheFactory'
   // TODO: load other modules selected during generation
 ])
 .config(function ($stateProvider, $ionicConfigProvider) {

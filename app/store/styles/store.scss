@@ -3,6 +3,8 @@
 
 $energized:                       #ff771c !default;
 $positive:                        #39abf3 !default;
+$balanced:                        #33cd5f !default;
+$assertive:                       #ef473a !default;
 
 
 
@@ -35,6 +37,28 @@ $positive:                        #39abf3 !default;
   }
 }
 
+
+
+// Notification
+// -------------------------------
+
+.notification {
+  position: absolute;
+  top: 44px;
+  width: 100%;
+  color: white;
+  z-index: 999;
+  padding: 2px 10px;
+  font-size: 12px;
+
+  &.success {
+    background: $balanced;
+  }
+
+  &.failure {
+    background: $assertive;
+  }
+}
 
 
 // Products Page and Product Page
@@ -108,9 +132,13 @@ $positive:                        #39abf3 !default;
       opacity: .8;
     }
 
-    .old-price {
-      text-decoration: line-through;
-      color: #a1a1a1;
+    .price-wraper {
+      font-size: 12px;
+
+      .old-price {
+        text-decoration: line-through;
+        color: #a1a1a1;
+      }
     }
   }
 }

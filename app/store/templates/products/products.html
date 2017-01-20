@@ -2,8 +2,8 @@
   <ion-content class="padding products-tab-content">
 
     <!-- content goes here -->
-    <div class="row p-l-n p-r-n products-row">
-      <div class="col col-50" ng-repeat="p in ctrl.products">
+    <div class="row p-l-n p-r-n products-row" masonry item-selector=".m-product" load-images="false" >
+      <div class="col col-50 m-product" ng-repeat="p in ctrl.products" masonry-brick>
         <div class="product-preview" ui-sref="store.product.overview({productId: p.productId})">
           <span class="discount">{{p.discountPCT| number : 0}}%</span>
           <div class="item-image">
@@ -13,12 +13,14 @@
             {{p.name}}
           </div>
           <div class="item item-divider">
-            <div class="row p-none">
+            <div class="row p-none price-wraper">
               <div class="col col-50 p-none old-price">Rs.{{p.price}}</div>
               <div class="col col-50 p-none price text-right">Rs.{{p.discountedPrice}}</div>
+            </div>
           </div>
         </div>
       </div>
     </div>
+    <div class="p-lg"></div>
   </ion-content>
 </ion-view>

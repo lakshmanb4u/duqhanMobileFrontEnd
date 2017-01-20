@@ -3,6 +3,9 @@ angular.module('store')
 .controller('ProductsCtrl', function (
   $log,
   $rootScope,
+  $timeout,
+  $ImageCacheFactory,
+  BusyLoader,
   Store
 ) {
 
@@ -25,8 +28,17 @@ angular.module('store')
   ctrl.loadProductList = function (productsParam) {
     Store.getProducts(productsParam)
     .then(function (response) {
+      BusyLoader.show();
       $log.log(response);
-      ctrl.products = response.data;
+      var productImages = [];
+      angular.forEach(response.data, function (value) {
+        productImages.push(value.imgurl);
+      });
+      $ImageCacheFactory.Cache(productImages)
+      .then(function () {
+        ctrl.products = response.data;
+        BusyLoader.hide();
+      });
     })
     .catch(function (response) {
       $log.log(response);

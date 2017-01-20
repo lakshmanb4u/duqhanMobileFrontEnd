@@ -10,6 +10,11 @@ angular.module('main')
     'USER': {
       'AUTH_TOKEN': null,
       'NAME': ''
+    },
+    'CLOUDINARY': {
+      'CLOUD_NAME': 'duqhan',
+      'API_KEY': '211572778157664',
+      'API_SECRET': 'BjqvouftX41P4NHFbAEPFaBWFog'
     }
     /*endinject*/
   },

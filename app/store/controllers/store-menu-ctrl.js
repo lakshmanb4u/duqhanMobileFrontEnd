@@ -7,6 +7,7 @@ angular.module('store')
   $localStorage,
 	$ionicFacebookAuth,
   $rootScope,
+  $timeout,
   Config,
   Auth,
   Store
@@ -55,12 +56,10 @@ angular.module('store')
   ==============================================================*/
 
   ctrl.getCartTotalNumber = function () {
-    Store.getCart()
+    Store.getCartTotalNumber()
     .then(function (response) {
       $log.log(response.data);
-      if (response.data.products) {
-        ctrl.cartTotalNumber = response.data.products.length;
-      }
+      ctrl.cartTotalNumber = response.data.cartCount;
     })
     .catch(function (response) {
       $log.log(response);
@@ -92,4 +91,30 @@ angular.module('store')
 
   /*=====  End of Include user's name in scope to display in sidebar  ======*/
 
+  /*================================================================
+  =            Showing server side notification message            =
+  ================================================================*/
+
+  ctrl.notification = {};
+
+  ctrl.setNotification = function (notification) {
+    ctrl.notification.type = notification.type;
+    ctrl.notification.text = notification.text;
+    $timeout(function () {
+      ctrl.notification = {};
+    }, 5000);
+  };
+
+  /*----------  catching calls from outside of this controller  ----------*/
+
+  $rootScope.$on('setNotification', function (event, notification) {
+    $log.log(event);
+    ctrl.setNotification(notification);
+  });
+
+  /*=====  End of Showing server side notification message  ======*/
+
+  $rootScope.$on('$ionicView.beforeEnter', function (event, viewData) {
+    viewData.enableBack = true;
+  });
 });

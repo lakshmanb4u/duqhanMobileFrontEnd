@@ -387,6 +387,12 @@ $bar-title-font-size:             17px !default;
           line-height: $button-bar-button-height;
         }
 
+        &.larger-icon:before {
+          vertical-align: top;
+          font-size: $button-icon-size + 5;
+          line-height: $button-bar-button-height;
+        }
+
         span.badge {
           font-weight: normal;
           font-size: 10px;
