@@ -163,5 +163,50 @@ angular.module('store', [
           controller: 'StoreDebugCtrl as ctrl'
         }
       }
+    })
+    .state('store.orderhistory', {
+      url: '/order-history',
+      views: {
+        'storeContent': {
+          templateUrl: 'store/templates/order-history.html',
+          // controller: '<someCtrl> as ctrl'
+        }
+      }
+    })
+    .state('store.customersupport', {
+      url: '/customer-support',
+      views: {
+        'storeContent': {
+          templateUrl: 'store/templates/customer-support.html',
+          // controller: '<someCtrl> as ctrl'
+        }
+      }
+    })
+    .state('store.changepassword', {
+      url: '/change-password',
+      views: {
+        'storeContent': {
+          templateUrl: 'store/templates/change-password.html',
+          // controller: '<someCtrl> as ctrl'
+        }
+      }
+    })
+    .state('store.myaddress', {
+      url: '/my-address',
+      views: {
+        'storeContent': {
+          templateUrl: 'store/templates/my-address.html',
+          // controller: '<someCtrl> as ctrl'
+        }
+      }
+    })
+    .state('store.orderdetails', {
+      url: '/order-details',
+      views: {
+        'storeContent': {
+          templateUrl: 'store/templates/order-details.html',
+          // controller: '<someCtrl> as ctrl'
+        }
+      }
     });
 });
