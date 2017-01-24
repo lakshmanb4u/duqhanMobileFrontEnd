@@ -65,7 +65,8 @@ $assertive:                       #ef473a !default;
 // -------------------------------
 
 .products-tab-pane.pane,
-.product-tab-pane.pane {
+.product-tab-pane.pane,
+.product-by-category-pane.pane {
   top: 44px;
 
   .products-tab-content,
@@ -138,6 +139,30 @@ $assertive:                       #ef473a !default;
       .old-price {
         text-decoration: line-through;
         color: #a1a1a1;
+      }
+    }
+  }
+}
+
+.product-by-category-pane.pane {
+  top: 0px;
+
+  .category-card {
+    margin: 0 -10px 10px;
+    border-radius: 0px;
+
+    .item {
+      background-color: darken( $energized, 10% );
+      border-radius: 0px;
+      color: #fff;
+      padding-top: 10px;
+      padding-bottom: 10px;
+
+      .category-link {
+        float: right;
+        font-size: 80%;
+        text-decoration: underline;
+        color: darken( #fff, 8% );
       }
     }
   }

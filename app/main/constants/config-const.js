@@ -5,7 +5,7 @@ angular.module('main')
   // gulp environment: injects environment vars
   ENV: {
     /*inject-env*/
-    'SERVER_URL': 'http://sample-env.qtbvngb2iz.us-west-2.elasticbeanstalk.com/',
+    'SERVER_URL': 'http://duqhan.us-west-2.elasticbeanstalk.com/',
     'SOME_OTHER_URL': 'http://localhost:8084/',
     'USER': {
       'AUTH_TOKEN': null,

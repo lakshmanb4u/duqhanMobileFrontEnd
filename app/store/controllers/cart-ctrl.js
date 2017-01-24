@@ -23,9 +23,6 @@ angular.module('store')
     .then(function (response) {
       $log.log(response.data);
       ctrl.cart = response.data;
-      angular.forEach(ctrl.cart.products, function (item, key) {
-        ctrl.cart.products[key].qty = '1';
-      });
     })
     .catch(function (response) {
       $log.log(response);

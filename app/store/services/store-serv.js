@@ -14,7 +14,7 @@ angular.module('store')
       // return $http.get('dummy/products.json');
       return $http.post(Config.ENV.SERVER_URL + 'user/get-product', param, {transformResponse: function (response) {
         var data = JSON.parse(response);
-        return data.products;
+        return data;
       }});
     },
     getProductDetail: function (param) {
@@ -62,6 +62,14 @@ angular.module('store')
     },
     updateProfileImage: function (image) {
       return $http.post(Config.ENV.SERVER_URL + 'user/update-profile-image', image, {transformResponse: function (response) {
+        var data = JSON.parse(response);
+        return data;
+      }});
+    },
+    getChildCategories: function (categoryId) {
+      var category = {};
+      category.categoryId = categoryId;
+      return $http.post(Config.ENV.SERVER_URL + 'get-child-categoty', category, {transformResponse: function (response) {
         var data = JSON.parse(response);
         return data;
       }});

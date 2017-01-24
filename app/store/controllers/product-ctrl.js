@@ -197,4 +197,7 @@ angular.module('store')
 
   /*=====  End of Add a product to the cart  ======*/
 
+  $scope.$on('$ionicView.beforeEnter', function (event, viewData) {
+    viewData.enableBack = true;
+  });
 });

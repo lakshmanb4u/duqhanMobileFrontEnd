@@ -12,6 +12,8 @@ angular.module('store', [
 
   // $ionicConfigProvider.tabs.style('striped');
   $ionicConfigProvider.tabs.position('top');
+  $ionicConfigProvider.backButton.text('');
+  $ionicConfigProvider.backButton.previousTitleText(false);
 
   // ROUTING with ui.router
   $stateProvider
@@ -49,6 +51,26 @@ angular.module('store', [
         'recentProductsContent': {
           templateUrl: 'store/templates/products/products.html'
           // controller: 'ProductsCtrl as ctrl'
+        }
+      }
+    })
+    .state('store.productsByCategory', {
+      url: '/products-by-category/:categoryId',
+      // cache: false,
+      views: {
+        'storeContent': {
+          templateUrl: 'store/templates/products/products-by-category.html',
+          controller: 'ProductsByCategoryCtrl as ctrl'
+        }
+      }
+    })
+    .state('store.categories', {
+      url: '/categories/:categoryId',
+      // cache: false,
+      views: {
+        'storeContent': {
+          templateUrl: 'store/templates/products/categories.html',
+          controller: 'ProductsByCategoryCtrl as ctrl'
         }
       }
     })

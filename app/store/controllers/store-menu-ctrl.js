@@ -10,7 +10,8 @@ angular.module('store')
   $timeout,
   Config,
   Auth,
-  Store
+  Store,
+  Product
 ) {
 
   /* Storing contextual this in a variable for easy access */
@@ -113,6 +114,25 @@ angular.module('store')
   });
 
   /*=====  End of Showing server side notification message  ======*/
+
+  /*================================================
+  =            Getting top level menu            =
+  ================================================*/
+
+  ctrl.getTopLevelMenu = function () {
+    Product.getChildCategories(0)
+    .then(function (response) {
+      $log.log(response.data);
+      ctrl.topLevelMenu = response;
+    })
+    .catch(function (response) {
+      $log.log(response);
+    });
+  };
+
+  ctrl.getTopLevelMenu();
+
+  /*=====  End of Getting top level menu  ======*/
 
   $rootScope.$on('$ionicView.beforeEnter', function (event, viewData) {
     viewData.enableBack = true;

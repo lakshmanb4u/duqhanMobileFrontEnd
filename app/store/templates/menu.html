@@ -47,11 +47,17 @@
           <img src="store/assets/images/user.png">
           <h2>{{menu.username}}</h2>
         </ion-item>
+        <ion-item menu-close ui-sref="store.products.latest">
+          Latest
+        </ion-item>
+        <ion-item menu-close ui-sref="store.products.recent">
+          Recent
+        </ion-item>
+        <ion-item menu-close ng-repeat="m in menu.topLevelMenu" ui-sref="store.productsByCategory({categoryId: m.categoryId})">
+          {{m.categoryName}}
+        </ion-item>
         <ion-item menu-close ui-sref="store.profile">
           Profile
-        </ion-item>
-        <ion-item menu-close ui-sref="store.products.latest">
-          Products
         </ion-item>
         <ion-item menu-close ng-click="menu.logout()">
           Logout

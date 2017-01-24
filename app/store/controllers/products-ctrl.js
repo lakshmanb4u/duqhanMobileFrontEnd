@@ -30,23 +30,14 @@ angular.module('store')
     .then(function (response) {
       BusyLoader.show();
       $log.log(response);
-      var productImages = [];
-      angular.forEach(response.data, function (value) {
-        productImages.push(value.imgurl);
-      });
-      $ImageCacheFactory.Cache(productImages)
+      $ImageCacheFactory.Cache(response.data.allImages)
       .then(function () {
-        ctrl.products = response.data;
+        ctrl.products = response.data.products;
         BusyLoader.hide();
       });
     })
     .catch(function (response) {
       $log.log(response);
-      if (response.data.statusCode === '403') {
-        ctrl.responseCB = 'Invalid credential.';
-      } else {
-        ctrl.responseCB = 'Something went wrong. Please try again.';
-      }
     });
   };
 
@@ -90,5 +81,4 @@ angular.module('store')
   });
 
   /*=====  End of Get product list  ======*/
-
 });
