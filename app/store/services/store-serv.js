@@ -69,7 +69,7 @@ angular.module('store')
     getChildCategories: function (categoryId) {
       var category = {};
       category.categoryId = categoryId;
-      return $http.post(Config.ENV.SERVER_URL + 'get-child-categoty', category, {transformResponse: function (response) {
+      return $http.post(Config.ENV.SERVER_URL + 'get-child-category', category, {transformResponse: function (response) {
         var data = JSON.parse(response);
         return data;
       }});

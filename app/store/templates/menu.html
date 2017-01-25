@@ -56,6 +56,9 @@
         <ion-item menu-close ng-repeat="m in menu.topLevelMenu" ui-sref="store.productsByCategory({categoryId: m.categoryId})">
           {{m.categoryName}}
         </ion-item>
+        <ion-item class="item-divider">
+          Settings
+        </ion-item>
         <ion-item menu-close ui-sref="store.profile">
           Profile
         </ion-item>
@@ -63,8 +66,10 @@
           Logout
         </ion-item>
       </ion-list>
+      <div class="menu-footer p-md text-center energized">
+        <p class="m-none">Version - 1.0</p>
+        <p class="m-none">Build - 1.0.1</p>
+      </div>
     </ion-content>
-
   </ion-side-menu>
-
 </ion-side-menus>

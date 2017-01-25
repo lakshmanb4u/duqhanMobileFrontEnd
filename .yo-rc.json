@@ -2,7 +2,7 @@
   "generator-m-ionic": {
     "answers": {
       "appName": "Duqhan",
-      "appId": "com.weavers.duqhun",
+      "appId": "com.weavers.duqhan",
       "ionicCss": false,
       "bowerPackages": [],
       "platforms": [
