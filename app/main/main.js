@@ -28,6 +28,19 @@ angular.module('main', [
     }
   });
 })
-.run(function () {
-
+.run(function ($ionicPlatform, $log) {
+  $ionicPlatform.ready( function () {
+    if (!ionic.Platform.is('browser')) {
+      // eslint-disable-next-line no-undef
+      FCMPlugin.onNotification( function (data) {
+        if (data.wasTapped) {
+          $log.log('Notification was received on device tray and tapped by the user.');
+          $log.log(JSON.stringify(data));
+        } else {
+          $log.log('Notification was received in foreground. Maybe the user needs to be notified.');
+          $log.log(JSON.stringify(data));
+        }
+      });
+    }
+  });
 });

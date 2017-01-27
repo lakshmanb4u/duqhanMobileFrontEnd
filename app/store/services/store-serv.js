@@ -73,6 +73,18 @@ angular.module('store')
         var data = JSON.parse(response);
         return data;
       }});
+    },
+    saveAddress: function (address) {
+      return $http.post(Config.ENV.SERVER_URL + 'user/save-address', address, {transformResponse: function (response) {
+        var data = JSON.parse(response);
+        return data;
+      }});
+    },
+    getAddresses: function () {
+      return $http.post(Config.ENV.SERVER_URL + 'user/get-addresses', {transformResponse: function (response) {
+        var data = JSON.parse(response);
+        return data;
+      }});
     }
   };
 });

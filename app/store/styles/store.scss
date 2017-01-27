@@ -356,8 +356,45 @@ $assertive:                       #ef473a !default;
       .placeholder-icon:first-child {
         padding-right: 10px;
       }
-
-
     }
   }
+}
+
+.my-address {
+
+  background-color: #e5e5e5;
+
+  .card {
+    .badge-wrapper {
+      text-align: right;
+      padding: 10px 16px 2px 0;
+    }
+
+    .item {
+      border-width: 0;
+      padding-top: 7px;
+      padding-bottom: 7px;
+
+      h2 {
+        font-size: 20px;
+      }
+
+      i.icon {
+        font-size: 16px;
+      }
+    }
+  }
+}
+
+.new-address-modal {
+  label.item.item-checkbox {
+    border-width: 0px;
+  }
+  .bar.bar-footer {
+    bottom: 0px;
+  }
+}
+
+.address-options-popover {
+  height: 170px;
 }
