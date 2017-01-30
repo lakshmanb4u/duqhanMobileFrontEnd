@@ -1,0 +1,107 @@
+<ion-view view-title="Delivery">
+  <!-- do you want padding? -->
+  <ion-content class="padding has-footer checkout">
+
+    <!-- content goes here -->
+    <h4 class="m-none">Delivery address</h4>
+    <ion-list>
+      <div class="card m-t-none">
+        <div class="item item-text-wrap" ng-show="ctrl.address">
+          <h2>{{ctrl.address.contactName}}</h2>
+          <p>{{ctrl.address.streetOne}}, {{ctrl.address.streetTwo}}, {{ctrl.address.city}}, {{ctrl.address.state}} - {{ctrl.address.zipCode}}</p>
+          <p>{{ctrl.address.phone}}</p>
+        </div>
+        <div>
+          <button class="button button-block button-stable m-none" ng-click="ctrl.changeAddress()">
+            <span ng-show="ctrl.address">Change address</span><span ng-hide="ctrl.address">Select address</span>
+          </button>                           
+        </div>
+      </div>
+    </ion-list>
+
+    <h4 class="m-b-md m-t-xs">Review products</h4>
+    <ion-list class="checkout-review-items">
+      <div class="item item-thumbnail-left" ng-repeat="p in ctrl.cart.products">
+        <img src="{{p.imgurl}}">
+        <h2>{{p.name}}</h2>
+        <p>
+          <span ng-if="p.size">Size: {{p.size}}, </span>
+          <span ng-if="p.color">Color: {{p.color}}, </span>
+          <span>Qty: {{p.qty}}</span>
+        </p>
+        <h3>Rs.{{p.discountedPrice * p.qty}} <span class="discounted-price">Rs.{{p.price * p.qty}}</span> <span class="discount-percentage">{{p.discountPCT| number : 0}}% off</span></h3>
+        <p>Delivery: <span>$4 (Jan 26 - Feb 5)</span></p>
+      </div>
+    </ion-list>
+
+    <h4 class="m-b-md m-t-xs">Price details</h4>
+    <div class="list summary">
+      <a class="item">
+        Total price ({{ctrl.cart.products.length}} items)
+        <span class="item-note">
+          Rs.{{ctrl.cart.orderTotal}}
+        </span>
+      </a>
+      <a class="item">
+        Delivery
+        <span class="item-note">
+          Rs.0
+        </span>
+      </a>
+      <a class="item">
+        Amount payble
+        <span class="item-note">
+          Rs.{{ctrl.cart.orderTotal}}
+        </span>
+      </a>
+    </div>
+
+    <div class="m-lg">
+      <!-- PayPal Logo --><table border="0" cellpadding="10" cellspacing="0" align="center"><tr><td align="center"></td></tr><tr><td align="center"><a href="https://www.paypal.com/webapps/mpp/paypal-popup" title="How PayPal Works" onclick="javascript:window.open('https://www.paypal.com/webapps/mpp/paypal-popup','WIPaypal','toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=yes, resizable=yes, width=1060, height=700'); return false;"><img src="https://www.paypalobjects.com/webstatic/mktg/logo-center/Security_Banner_234x60_4a.gif" border="0" alt="PayPal Logo"></a></td></tr></table><!-- PayPal Logo -->
+    </div>
+  </ion-content>
+  <ion-footer-bar class="cart-footer">
+    <div class="row m-none p-none">
+      <div class="col text-center">
+        <h3>Rs.{{ctrl.cart.orderTotal}}</h3>
+        <button class="button button-clear button-small button-light return-policy-button" ui-sref="store.returnpolicy">
+          Return Policy
+        </button>
+      </div>
+      <div class="col text-right">
+        <div class="button-bar">
+          <button class="button button-positive add-cart-button" ng-click="ctrl.pay()">Pay</button>
+        </div>
+      </div>
+    </div>
+  </ion-footer-bar>
+</ion-view>
+<script id="select-address-modal.html" type="text/ng-template">
+  <ion-modal-view class="new-address-modal">
+    <ion-header-bar class="bar-energized">
+      <h1 class="title">Select address</h1>
+    </ion-header-bar>
+    <ion-content class="has-footer">
+      <ion-list>
+        <ion-radio ng-model="ctrl.selectedAddress" ng-value="address" ng-repeat="address in ctrl.addresses">
+          <h2>{{address.contactName}}</h2>
+          <p>{{address.streetOne}}, {{address.streetTwo}}, {{address.city}}, {{address.state}} - {{address.zipCode}}</p>
+          <p>{{address.phone}}</p>
+        </ion-radio>
+        <div class="item item-text-wrap" ng-hide="ctrl.addresses.length > 0">
+          You have not added any address yet. Add one now, before the purchase.
+          <button class="button button-clear button-block button-positive" ng-click="ctrl.closeModal()" ui-sref="store.myaddress">My addresses</button>
+        </div>
+      </ion-list>
+      <div class="error server-side text-center m-t-md" ng-hide="ctrl.addressSelectionError || ctrl.selectedAddress">
+        <i class="ion-information-circled"></i> Please select an address
+      </div>
+    </ion-content>
+    <ion-footer-bar>
+      <div class="button-bar">
+        <button class="button button-positive" ng-click="ctrl.selectAddress()">Deliver here</button>
+        <button class="button button-stable" ng-click="ctrl.closeModal()">Cancel</button>
+      </div>
+    </ion-footer-bar>
+  </ion-modal-view>
+</script>

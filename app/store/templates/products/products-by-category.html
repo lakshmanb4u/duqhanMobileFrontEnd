@@ -5,7 +5,7 @@
       <!-- content goes here -->
       <div class="card category-card">
         <div class="item item-text-wrap">
-          Fashion
+          {{ctrl.productCategory}}
           <div class="category-link" ui-sref="store.categories({categoryId: ctrl.categoryId})">Other categories</div>
         </div>
       </div>
@@ -26,6 +26,11 @@
               </div>
             </div>
           </div>
+        </div>
+      </div>
+      <div class="card" ng-hide="ctrl.products">
+        <div class="item item-text-wrap">
+          No more subcategory available. 
         </div>
       </div>
       <div class="p-lg"></div>

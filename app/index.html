@@ -26,7 +26,7 @@
     <!-- endinject -->
     <!-- endbuild -->
   </head>
-  <body ng-app="Duqhan">
+  <body>
 
     <!-- the nav bar will be updated as we navigate between views -->
     <!-- <ion-nav-bar> can be removed when using sidemenu (contained in menu.html) -->
@@ -69,6 +69,8 @@
     <script src="bower_components/imagesloaded/imagesloaded.js"></script>
     <script src="bower_components/jquery-bridget/jquery-bridget.js"></script>
     <script src="bower_components/angular-masonry/angular-masonry.js"></script>
+    <script src="bower_components/moment/moment.js"></script>
+    <script src="bower_components/angular-moment/angular-moment.js"></script>
     <!-- endbower -->
     <script src="bower_components/ionic-ion-imageCacheFactory/ionic.ion.imagecachefactory.js"></script>
     <script src="bower_components/ionic-cloud/ionic.cloud.min.js"></script>
@@ -84,6 +86,8 @@
     <script src="store/services/product-serv.js"></script>
     <script src="store/services/image-upload-serv.js"></script>
     <script src="store/services/common-serv.js"></script>
+    <script src="store/filters/order-status-fil.js"></script>
+    <script src="store/filters/date-fil.js"></script>
     <script src="store/controllers/store-menu-ctrl.js"></script>
     <script src="store/controllers/store-debug-ctrl.js"></script>
     <script src="store/controllers/size-chart-ctrl.js"></script>
@@ -93,6 +97,8 @@
     <script src="store/controllers/products-ctrl.js"></script>
     <script src="store/controllers/products-by-category-ctrl.js"></script>
     <script src="store/controllers/product-ctrl.js"></script>
+    <script src="store/controllers/order-history-ctrl.js"></script>
+    <script src="store/controllers/checkout-ctrl.js"></script>
     <script src="store/controllers/cart-ctrl.js"></script>
     <script src="store/controllers/address-ctrl.js"></script>
     <script src="store/constants/store-config-const.js"></script>
@@ -111,5 +117,20 @@
     <script src="app.js"></script>
     <!-- endinject -->
     <!-- endbuild -->
+
+    <script type="text/javascript">
+        angular.element(document).ready(function () {
+        if (window.cordova) {
+          console.log("Running in Cordova, will bootstrap AngularJS once 'deviceready' event fires.");
+          document.addEventListener('deviceready', function () {
+            console.log("Deviceready event has fired, bootstrapping AngularJS.");
+            angular.bootstrap(document.body, ['Duqhan']);
+          }, false);
+        } else {
+          console.log("Running in browser, bootstrapping AngularJS now.");
+          angular.bootstrap(document.body, ['Duqhan']);
+        }
+      });
+    </script>
   </body>
 </html>

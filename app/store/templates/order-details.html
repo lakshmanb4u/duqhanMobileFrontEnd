@@ -1,34 +1,62 @@
 <ion-view view-title="Order Details">
   <!-- do you want padding? -->
-  <ion-content class="padding">
+  <ion-content class="padding order-detail">
 
     <!-- content goes here -->
-    <ion-list>
-      <a class="item item-thumbnail-left" href="#">
-        <img src="http://res.cloudinary.com/duqhan/image/upload/v1484909270/1_h7vdx5.jpg">
-        <h2>Moto E3 Power (Black,16 GB)</h2>
-        <span>
-         <p>Price 58 (Rupees)</p> 
-         </span>
-         <span>
-          <p>Discount 10%</p>
-         </span>
-      </a>
-      <!-- <div class="item">
-      <p>10% instant Discount * with State bank card</p>
+    <div class="row p-none">
+      <div class="col p-none">
+        <p class="m-n">{{ctrl.order.orderId}}</p>
       </div>
-      <div class="item">
-        <h2>Manage your order</h2>
-      </div> -->
-      <div class="item">
-       <i class="icon ion-checkmark-circled m-r-xs" style="color: #96cb7f;"></i> Delivered
+      <div class="col p-none">
+        <p class="text-right m-n">{{ctrl.order.orderDate | dateFilter}}</p>
       </div>
-      <div class="item">
-        <h2>Delivery Address</h2>
-        <!-- <span><i class="icon ion-location"></i>kolkata</span> -->
-        <p>18-B, Mandeville Gardens,</p>
-        <p>Kolkata 700 019</p>
+    </div>
+    <div class="card">
+      <div class="item item-text-wrap">
+        <h2>{{ctrl.order.productName}}</h2>
+        <p>
+          <span ng-if="ctrl.order.size">Size: {{ctrl.order.size}}, </span>
+          <span ng-if="ctrl.order.color">Color: {{ctrl.order.color}}</span>
+        </p>
       </div>
-    </ion-list>
+      <div class="item item-image">
+        <img src="{{ctrl.order.prodImg}}">
+        <div class="backdrop-layer">{{ctrl.order.status | orderStatusFilter}}</div>
+      </div>
+      <div class="item item-text-wrap">
+        <div class="row">
+          <div class="col">
+            <p>Delivered On</p>
+            <h3>Sat, 5th Mar</h3>
+          </div>
+          <div class="col">
+            <p>Quantity</p>
+            <h3>{{ctrl.order.quty}}</h3>
+          </div>
+          <div class="col">
+            <p>Price</p>
+            <h3>Rs. {{ctrl.order.paymentAmount}}</h3>
+          </div>
+        </div>
+      </div>
+      <div class="item item-text-wrap">
+        <p class="text-italic balanced">Offer: You have saved Rs. {{ctrl.order.price - ctrl.order.paymentAmount}} with this purchase.</p>
+      </div>
+    </div>
+
+    <h5>Delivery Address</h5>
+    <div class="card">
+      <div class="item item-text-wrap">
+        <h2>{{ctrl.order.addressDto.contactName}}</h2>
+      </div>
+      <div class="item item-icon-left item-text-wrap">
+        <i class="icon ion-ios-telephone"></i>
+        <p>{{ctrl.order.addressDto.phone}}</p>
+      </div>
+      <div class="item item-icon-left item-text-wrap">
+        <i class="icon ion-ios-location"></i>
+        <p>{{ctrl.order.addressDto.streetOne}}, {{ctrl.order.addressDto.streetTwo}}, {{ctrl.order.addressDto.city}}, {{ctrl.order.addressDto.state}} - {{ctrl.order.addressDto.zipCode}}</p>
+      </div>
+    </div>
   </ion-content>
 </ion-view>

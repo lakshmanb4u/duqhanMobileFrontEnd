@@ -21,8 +21,9 @@ angular.module('store')
   ctrl.loadProductListByCategory = function () {
     var productsParam = {categoryId: ctrl.categoryId};
     Product.getProductList(productsParam)
-    .then(function (products) {
-      ctrl.products = products;
+    .then(function (data) {
+      ctrl.products = data.products;
+      ctrl.productCategory = data.categoryName;
     })
     .catch(function (response) {
       $log.log(response);

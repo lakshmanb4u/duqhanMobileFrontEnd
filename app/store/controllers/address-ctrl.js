@@ -47,17 +47,18 @@ angular.module('store')
   ===================================*/
 
   ctrl.addAddress = function () {
+    ctrl.addressDTO.addressId = null;
     ctrl.modal.show();
   };
 
   ctrl.saveAddress = function () {
     if (ctrl.addAddressForm.$valid) {
       $log.log(ctrl.addressDTO);
-      ctrl.addressDTO.addressId = null;
       ctrl.addressDTO.status = 2;
       Store.saveAddress(ctrl.addressDTO)
       .then(function (response) {
         $log.log(response);
+        ctrl.loadAddresses();
         ctrl.closeModal();
       })
       .catch(function (error) {
@@ -67,6 +68,57 @@ angular.module('store')
   };
 
   /*=====  End of Add address  ======*/
+
+  /*===========================================
+  =            Set default address            =
+  ===========================================*/
+
+  ctrl.setDefaultAddress = function () {
+    $log.log(ctrl.popover.address);
+    ctrl.closeAddressOptions();
+    Store.setDefaultAddress(ctrl.popover.address.addressId)
+    .then(function (response) {
+      $log.log(response);
+      ctrl.loadAddresses();
+    })
+    .catch(function (error) {
+      $log.log(error);
+    });
+  };
+
+  /*=====  End of Set default address  ======*/
+
+  /*====================================
+  =            Edit address            =
+  ====================================*/
+
+  ctrl.openEditAddressModal = function () {
+    ctrl.addressDTO = ctrl.popover.address;
+    ctrl.addressDTO.phone = Number(ctrl.addressDTO.phone);
+    ctrl.addressDTO.zipCode = Number(ctrl.addressDTO.zipCode);
+    ctrl.modal.show();
+  };
+
+  /*=====  End of Edit address  ======*/
+
+  /*======================================
+  =            Remove address            =
+  ======================================*/
+
+  ctrl.removeAddress = function () {
+    ctrl.closeAddressOptions();
+    Store.deactivateAddress(ctrl.popover.address.addressId)
+    .then(function (response) {
+      $log.log(response);
+      ctrl.loadAddresses();
+    })
+    .catch(function (error) {
+      $log.log(error);
+    });
+  };
+
+  /*=====  End of Remove address  ======*/
+
 
   /*===============================================
   =            Modal related functions            =
@@ -81,6 +133,7 @@ angular.module('store')
   });
 
   ctrl.closeModal = function () {
+    ctrl.closeAddressOptions();
     ctrl.modal.hide();
   };
 
@@ -99,6 +152,7 @@ angular.module('store')
     scope: $scope,
   }).then(function (popover) {
     ctrl.popover = popover;
+    ctrl.popover.address = {};
   });
 
   //Cleanup the popover when we're done with it!
@@ -106,8 +160,15 @@ angular.module('store')
     $scope.popover.remove();
   });
 
-  ctrl.openAddressOptions = function ($event) {
+  ctrl.closeAddressOptions = function () {
+    ctrl.popover.hide();
+  };
+
+  ctrl.openAddressOptions = function ($event, address) {
     ctrl.popover.show($event);
+    ctrl.popover.address = address;
+    $log.log('Test logs ===========');
+    $log.log(address);
   };
 
   /*=====  End of Popover  ======*/

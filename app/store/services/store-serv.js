@@ -80,8 +80,50 @@ angular.module('store')
         return data;
       }});
     },
+    setDefaultAddress: function (id) {
+      var address = {};
+      address.addressId  = id;
+      return $http.post(Config.ENV.SERVER_URL + 'user/set-default-addresses', address, {transformResponse: function (response) {
+        var data = JSON.parse(response);
+        return data;
+      }});
+    },
     getAddresses: function () {
       return $http.post(Config.ENV.SERVER_URL + 'user/get-addresses', {transformResponse: function (response) {
+        var data = JSON.parse(response);
+        return data;
+      }});
+    },
+    getDefaultAddress: function () {
+      return $http.post(Config.ENV.SERVER_URL + 'user/get-default-addresses', {transformResponse: function (response) {
+        var data = JSON.parse(response);
+        return data;
+      }});
+    },
+    deactivateAddress: function (id) {
+      var address = {};
+      address.addressId  = id;
+      return $http.post(Config.ENV.SERVER_URL + 'user/deactivate-address', address, {transformResponse: function (response) {
+        var data = JSON.parse(response);
+        return data;
+      }});
+    },
+    checkout: function (cart) {
+      return $http.post(Config.ENV.SERVER_URL + 'user/checkout', cart, {transformResponse: function (response) {
+        var data = JSON.parse(response);
+        return data;
+      }});
+    },
+    checkPaymentStatus: function (payKey) {
+      var obj = {};
+      obj.name = payKey;
+      return $http.post(Config.ENV.SERVER_URL + 'user/check-payment-status', obj, {transformResponse: function (response) {
+        var data = JSON.parse(response);
+        return data;
+      }});
+    },
+    getOrderHistory: function () {
+      return $http.post(Config.ENV.SERVER_URL + 'user/get-order-details', {transformResponse: function (response) {
         var data = JSON.parse(response);
         return data;
       }});

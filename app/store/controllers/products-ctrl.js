@@ -26,15 +26,18 @@ angular.module('store')
   /*----------  Get list of products from backend  ----------*/
 
   ctrl.loadProductList = function (productsParam) {
+    var products = [];
     Store.getProducts(productsParam)
     .then(function (response) {
       BusyLoader.show();
       $log.log(response);
-      $ImageCacheFactory.Cache(response.data.allImages)
-      .then(function () {
-        ctrl.products = response.data.products;
-        BusyLoader.hide();
-      });
+      products = response.data.products;
+      ctrl.productCategory = response.data.categoryName;
+      return $ImageCacheFactory.Cache(response.data.allImages);
+    })
+    .then(function () {
+      ctrl.products = products;
+      BusyLoader.hide();
     })
     .catch(function (response) {
       $log.log(response);

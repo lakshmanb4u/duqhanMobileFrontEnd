@@ -1,20 +1,24 @@
 <ion-view view-title="Order History">
   <!-- do you want padding? -->
-  <ion-content class="padding">
+  <ion-content class="padding order-history">
     <!-- content goes here -->
     <ion-list>
-      <a class="item item-thumbnail-left" href="#">
-        <img src="http://res.cloudinary.com/duqhan/image/upload/v1484909270/1_h7vdx5.jpg">
-        <h2>Moto E3 Power (Black,16 GB)</h2>
-         <span>
-          <p>Price 58 (Rupees)</p> 
-         </span>
-         <span>
-          <p>Discount 10%</p>
-         </span>
-      </a>
-      <div class="item">
-        <i class="icon ion-checkmark-circled m-r-xs" style="color: #96cb7f;"></i> Delivered
+      <div ng-repeat="order in ctrl.orders">
+        <!-- <h5 class="m-b-xs">{{order.orderDate | date : "EEE, MMM d, yyyy"}} (OD41516456525451)</h5> -->
+        <h5 class="m-b-xs">{{order.orderDate | dateFilter}} ({{order.orderId}})</h5>
+        <div class="card" ui-sref="store.orderdetails({order: order})">
+          <div class="item item-thumbnail-left item-text-wrap">
+            <img src="{{order.prodImg}}">
+            <h2>{{order.productName}}</h2>
+            <h3>{{order.status | orderStatusFilter}}</h3>
+            <p>Delivered On Mon, Dec 7th</p>
+          </div>
+        </div>
+      </div>
+      <div class="card" ng-hide="ctrl.orders">
+        <div class="item item-text-wrap">
+          You don't have any orders till now.
+        </div>
       </div>
     </ion-list>
   </ion-content>

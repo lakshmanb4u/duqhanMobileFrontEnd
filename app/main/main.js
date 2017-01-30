@@ -30,7 +30,7 @@ angular.module('main', [
 })
 .run(function ($ionicPlatform, $log) {
   $ionicPlatform.ready( function () {
-    if (!ionic.Platform.is('browser')) {
+    if (window.cordova) {
       // eslint-disable-next-line no-undef
       FCMPlugin.onNotification( function (data) {
         if (data.wasTapped) {

@@ -48,9 +48,8 @@
             <span ng-if="p.color">Color: {{p.color}}</span>
           </p>
           <p>Shipping: <span>$4 (Jan 26 - Feb 5)</span></p>
-
         </div>
-        <div class="col col-25 text-right">
+        <div class="col col-25 text-center">
           <img src="{{p.imgurl}}">
           
         </div>
@@ -88,7 +87,7 @@
       </div>
       <div class="col text-right">
         <div class="button-bar">
-          <button class="button button-positive add-cart-button">Checkout</button>
+          <button class="button button-positive add-cart-button" ui-sref="store.checkout({cart: ctrl.cart})">Checkout</button>
         </div>
       </div>
     </div>

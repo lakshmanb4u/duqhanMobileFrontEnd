@@ -5,7 +5,8 @@ angular.module('store', [
   'ui.router',
   'ion-datetime-picker',
   'wu.masonry',
-  'ionic.ion.imageCacheFactory'
+  'ionic.ion.imageCacheFactory',
+  'angularMoment'
   // TODO: load other modules selected during generation
 ])
 .config(function ($stateProvider, $ionicConfigProvider) {
@@ -122,6 +123,18 @@ angular.module('store', [
         }
       }
     })
+    .state('store.checkout', {
+      url: '/checkout',
+      params: {
+        cart: null
+      },
+      views: {
+        'storeContent': {
+          templateUrl: 'store/templates/checkout-review-address.html',
+          controller: 'CheckoutCtrl as ctrl'
+        }
+      }
+    })
     .state('store.profile', {
       url: '/profile',
       views: {
@@ -154,16 +167,19 @@ angular.module('store', [
       views: {
         'storeContent': {
           templateUrl: 'store/templates/order-history.html',
-          // controller: '<someCtrl> as ctrl'
+          controller: 'OrderHistoryCtrl as ctrl'
         }
       }
     })
     .state('store.orderdetails', {
       url: '/order-details',
+      params: {
+        order: null
+      },
       views: {
         'storeContent': {
           templateUrl: 'store/templates/order-details.html',
-          // controller: '<someCtrl> as ctrl'
+          controller: 'OrderHistoryCtrl as ctrl'
         }
       }
     })

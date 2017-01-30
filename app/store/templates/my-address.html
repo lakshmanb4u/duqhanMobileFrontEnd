@@ -3,7 +3,7 @@
   <ion-content class="padding my-address">
     <div class="row">
       <div class="col col-60">
-        <h5 class="m-none">0 saved addresses</h5>
+        <h5 class="m-none">{{ctrl.addresses.length}} saved addresses</h5>
       </div>
       <div class="col col-40 text-right">
         <h5 class="positive m-none" ng-click="ctrl.addAddress()">Add address</h5>
@@ -16,7 +16,7 @@
         </div>
         <div class="item item item-icon-left item-icon-right item-text-wrap">
           <h2>{{address.contactName}}</h2>
-          <i class="icon ion-android-more-vertical" ng-click="ctrl.openAddressOptions($event)"></i>
+          <i class="icon ion-android-more-vertical" ng-click="ctrl.openAddressOptions($event, address)"></i>
         </div>
         <div class="item item-icon-left item-text-wrap">
           <i class="icon ion-ios-telephone"></i>
@@ -35,6 +35,7 @@
 <script id="new-address-modal.html" type="text/ng-template">
   <ion-modal-view class="new-address-modal">
     <form name="ctrl.addAddressForm" ng-submit="ctrl.saveAddress()" novalidate="">
+      <input name="addressId" type="hidden" ng-model="ctrl.addressDTO.addressId" >
       <ion-header-bar class="bar-energized">
         <h1 class="title">Add new address</h1>
       </ion-header-bar>
@@ -101,8 +102,8 @@
       </ion-content>
       <ion-footer-bar>
         <div class="button-bar">
-          <button class="button button-positive" ng-click="ctrl.saveAddress()">Save</button>
-          <button class="button button-stable" ng-click="ctrl.closeModal()">Cancel</button>
+          <button class="button button-positive">Save</button>
+          <button type="button" class="button button-stable" ng-click="ctrl.closeModal()">Cancel</button>
         </div>
       </ion-footer-bar>
     </form>
@@ -113,13 +114,13 @@
   <ion-popover-view class="address-options-popover">
     <ion-content>
       <div class="list">
-        <a class="item" ng-hide="address.status == 1">
+        <a class="item" ng-hide="address.status == 1" ng-click="ctrl.setDefaultAddress()">
           Make default
         </a>
-        <a class="item">
+        <a class="item" ng-click="ctrl.openEditAddressModal()">
           Edit
         </a>
-        <a class="item">
+        <a class="item" ng-click="ctrl.removeAddress()">
           Remove
         </a>
       </div>

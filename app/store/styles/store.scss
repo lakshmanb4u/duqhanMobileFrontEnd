@@ -257,8 +257,8 @@ $assertive:                       #ef473a !default;
       img {
         max-width: 75px;
         max-height: 75px;
-        width: 100%;
-        height: 100%;
+        // width: 100%;
+        // height: 100%;
       }
 
       .item.item-input.item-select {
@@ -268,6 +268,43 @@ $assertive:                       #ef473a !default;
           padding: 5px 5px 5px 0px;
         }
       }
+    }
+  }
+}
+
+
+
+// Checkout Page
+// -------------------------------
+
+.checkout {
+  .checkout-review-items {
+    .item.item-thumbnail-left img {
+      width: auto;
+      height: auto;
+    }
+
+    h3 {
+      color: $energized;
+
+      span {
+        color: #c4c4c4;
+
+        &.discounted-price {
+          text-decoration: line-through;
+        }
+
+        &.discount-percentage {
+          font-size: 80%;
+        }
+      }
+    }
+  }
+
+  .summary {
+    .item {
+      padding-top: 10px;
+      padding-bottom: 10px;
     }
   }
 }
@@ -360,6 +397,11 @@ $assertive:                       #ef473a !default;
   }
 }
 
+
+
+// Addresses
+// -------------------------------
+
 .my-address {
 
   background-color: #e5e5e5;
@@ -368,6 +410,10 @@ $assertive:                       #ef473a !default;
     .badge-wrapper {
       text-align: right;
       padding: 10px 16px 2px 0;
+      .badge {
+        font-size: 12px;
+        line-height: 12px;
+      }
     }
 
     .item {
@@ -397,4 +443,70 @@ $assertive:                       #ef473a !default;
 
 .address-options-popover {
   height: 170px;
+}
+
+
+
+// Orders Page
+// -------------------------------
+
+.order-history {
+  background: #e8e8e8;
+  .card {
+    margin-top: 10px; 
+    .item {
+      img {
+        width: auto;
+        height: auto;
+      }
+      h3 {
+        color: $balanced;
+      }
+      p {
+        font-size: 12px;
+      }
+    }
+  }
+}
+
+.order-detail {
+  background-color: #e5e5e5;
+  .card {
+    margin-top: 10px;
+    .item.item-image {
+      position: relative;
+      img {
+        width: 50%;
+      }
+      .backdrop-layer {
+        // position: absolute;
+        // bottom: 0;
+        width: 100%;
+        background: $balanced;
+        height: 30px;
+        line-height: 30px;
+        color: white;
+        font-size: 18px;
+      }
+    }
+
+    .item {
+      border-width: 0;
+      padding-top: 7px;
+      padding-bottom: 7px;
+
+      h2 {
+        font-size: 20px;
+      }
+
+      i.icon {
+        font-size: 16px;
+      }
+
+      .row {
+        padding: 0;
+        text-align: center;
+      }
+    }
+  }
 }

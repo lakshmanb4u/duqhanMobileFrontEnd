@@ -7,16 +7,17 @@ angular.module('store')
   return {
     getProductList: function (productsParam) {
       var q = $q.defer();
-
+      var products = [];
       Store.getProducts(productsParam)
       .then(function (response) {
         BusyLoader.show();
         $log.log(response);
-        $ImageCacheFactory.Cache(response.data.allImages)
-        .then(function () {
-          BusyLoader.hide();
-          q.resolve(response.data.products);
-        });
+        products = response.data;
+        return $ImageCacheFactory.Cache(response.data.allImages);
+      })
+      .then(function () {
+        BusyLoader.hide();
+        q.resolve(products);
       })
       .catch(function (err) {
         $log.log(err);

@@ -61,4 +61,5 @@
     <plugin name="cordova-plugin-actionsheet" spec="https://github.com/EddyVerbruggen/cordova-plugin-actionsheet.git" />
     <plugin name="cordova-plugin-fcm" spec="~2.1.1" />
     <engine name="android" spec="~6.1.1" />
+    <plugin name="cordova-plugin-inappbrowser" spec="~1.6.1" />
 </widget>
