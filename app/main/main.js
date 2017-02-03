@@ -41,6 +41,7 @@ angular.module('main', [
           $log.log(JSON.stringify(data));
         }
       });
+      window.cordova.plugins.firebase.crash.report('BOOM! Testing crash report');
     }
   });
 });

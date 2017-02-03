@@ -47,6 +47,7 @@ angular.module('store')
   ===================================*/
 
   ctrl.addAddress = function () {
+    ctrl.addressDTO = {};
     ctrl.addressDTO.addressId = null;
     ctrl.modal.show();
   };
@@ -93,6 +94,7 @@ angular.module('store')
   ====================================*/
 
   ctrl.openEditAddressModal = function () {
+    ctrl.closeAddressOptions();
     ctrl.addressDTO = ctrl.popover.address;
     ctrl.addressDTO.phone = Number(ctrl.addressDTO.phone);
     ctrl.addressDTO.zipCode = Number(ctrl.addressDTO.zipCode);
@@ -167,8 +169,6 @@ angular.module('store')
   ctrl.openAddressOptions = function ($event, address) {
     ctrl.popover.show($event);
     ctrl.popover.address = address;
-    $log.log('Test logs ===========');
-    $log.log(address);
   };
 
   /*=====  End of Popover  ======*/

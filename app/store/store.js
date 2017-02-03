@@ -130,7 +130,7 @@ angular.module('store', [
       },
       views: {
         'storeContent': {
-          templateUrl: 'store/templates/checkout-review-address.html',
+          templateUrl: 'store/templates/checkout.html',
           controller: 'CheckoutCtrl as ctrl'
         }
       }

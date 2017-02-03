@@ -80,6 +80,11 @@ angular.module('store')
     }
   };
 
+  ctrl.addAddress = function () {
+    ctrl.closeModal();
+    $state.go('store.myaddress');
+  };
+
   /*=====  End of Change delivery address  ======*/
 
   /*=======================================

@@ -13,7 +13,8 @@
         </div>
         <div>
           <button class="button button-block button-stable m-none" ng-click="ctrl.changeAddress()">
-            <span ng-show="ctrl.address">Change address</span><span ng-hide="ctrl.address">Select address</span>
+            <span ng-show="ctrl.address">Change address</span>
+            <span ng-hide="ctrl.address">Select address</span>
           </button>                           
         </div>
       </div>
@@ -21,7 +22,7 @@
 
     <h4 class="m-b-md m-t-xs">Review products</h4>
     <ion-list class="checkout-review-items">
-      <div class="item item-thumbnail-left" ng-repeat="p in ctrl.cart.products">
+      <div class="item item-thumbnail-left item-text-wrap" ng-repeat="p in ctrl.cart.products">
         <img src="{{p.imgurl}}">
         <h2>{{p.name}}</h2>
         <p>
@@ -57,8 +58,11 @@
     </div>
 
     <div class="m-lg">
-      <!-- PayPal Logo --><table border="0" cellpadding="10" cellspacing="0" align="center"><tr><td align="center"></td></tr><tr><td align="center"><a href="https://www.paypal.com/webapps/mpp/paypal-popup" title="How PayPal Works" onclick="javascript:window.open('https://www.paypal.com/webapps/mpp/paypal-popup','WIPaypal','toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=yes, resizable=yes, width=1060, height=700'); return false;"><img src="https://www.paypalobjects.com/webstatic/mktg/logo-center/Security_Banner_234x60_4a.gif" border="0" alt="PayPal Logo"></a></td></tr></table><!-- PayPal Logo -->
+      <!-- PayPal Logo -->
+      <img src="https://www.paypalobjects.com/webstatic/mktg/logo-center/Security_Banner_234x60_4a.gif" border="0" alt="PayPal Logo" width="100%">
+      <!-- PayPal Logo -->
     </div>
+    <div class="m-md"></div>
   </ion-content>
   <ion-footer-bar class="cart-footer">
     <div class="row m-none p-none">
@@ -90,9 +94,12 @@
         </ion-radio>
         <div class="item item-text-wrap" ng-hide="ctrl.addresses.length > 0">
           You have not added any address yet. Add one now, before the purchase.
-          <button class="button button-clear button-block button-positive" ng-click="ctrl.closeModal()" ui-sref="store.myaddress">My addresses</button>
+          <!-- <button class="button button-clear button-block button-positive" ng-click="ctrl.closeModal()" ui-sref="store.myaddress">My addresses</button> -->
         </div>
       </ion-list>
+      <div class="m-t-sm padding">
+        <button class="button button-block button-balanced" ng-click="ctrl.addAddress()">Add address</button>
+      </div>
       <div class="error server-side text-center m-t-md" ng-hide="ctrl.addressSelectionError || ctrl.selectedAddress">
         <i class="ion-information-circled"></i> Please select an address
       </div>
