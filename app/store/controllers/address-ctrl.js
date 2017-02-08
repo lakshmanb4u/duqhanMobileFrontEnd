@@ -159,7 +159,7 @@ angular.module('store')
 
   //Cleanup the popover when we're done with it!
   $scope.$on('$destroy', function () {
-    $scope.popover.remove();
+    ctrl.popover.remove();
   });
 
   ctrl.closeAddressOptions = function () {

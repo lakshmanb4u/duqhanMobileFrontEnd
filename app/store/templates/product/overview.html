@@ -5,7 +5,7 @@
     <!-- content goes here -->
     <ion-slide-box delegate-handle="image-viewer" show-pager="true">
         <ion-slide ng-repeat="i in ctrl.product.images">
-            <img src="{{i.imgUrl}}" style="width:100%; margin:auto; display:block" >
+            <img src="{{i.imgUrl || 'store/assets/images/default.jpg'}}" style="width:100%; margin:auto; display:block" >
         </ion-slide>
     </ion-slide-box>
     <div class="product-brief p-sm">

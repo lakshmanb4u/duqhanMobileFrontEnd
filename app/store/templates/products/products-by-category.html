@@ -14,7 +14,7 @@
           <div class="product-preview" ui-sref="store.product.overview({productId: p.productId})">
             <span class="discount">{{p.discountPCT| number : 0}}%</span>
             <div class="item-image">
-              <img src="{{p.imgurl}}">
+              <img src="{{p.imgurl || 'store/assets/images/default.jpg'}}">
             </div>
             <div class="item item-text-wrap text-center p-xs">
               {{p.name}}

@@ -23,7 +23,7 @@
     <h4 class="m-b-md m-t-xs">Review products</h4>
     <ion-list class="checkout-review-items">
       <div class="item item-thumbnail-left item-text-wrap" ng-repeat="p in ctrl.cart.products">
-        <img src="{{p.imgurl}}">
+        <img src="{{p.imgurl || 'store/assets/images/default.jpg'}}">
         <h2>{{p.name}}</h2>
         <p>
           <span ng-if="p.size">Size: {{p.size}}, </span>
