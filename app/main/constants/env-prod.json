@@ -3,7 +3,8 @@
   "SOME_OTHER_URL": "https://echo.getpostman.com/",
   "USER": {
     "AUTH_TOKEN": null,
-    "NAME": ""
+    "NAME": "",
+    "PROFILE_IMG": ""
   },
   "CLOUDINARY": {
     "CLOUD_NAME": "duqhan",

@@ -7,9 +7,12 @@ angular.module('main')
   return {
     includeFCMToken: function (user) {
       var q = $q.defer();
-      if (!ionic.Platform.is('browser')) {
+      if (window.cordova) {
         // eslint-disable-next-line no-undef
         FCMPlugin.getToken( function (token) {
+          $log.log('fcmToken===================');
+          $log.log(token);
+          $log.log('fcmToken===================');
           user.fcmToken = token;
           q.resolve(user);
         });

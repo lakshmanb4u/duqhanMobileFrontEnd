@@ -46,20 +46,28 @@ angular.module('store')
   =            Add address            =
   ===================================*/
 
-  ctrl.addAddress = function () {
+  ctrl.addAddress = function (fromCheckout) {
     ctrl.addressDTO = {};
     ctrl.addressDTO.addressId = null;
+    ctrl.addressDTO.status = true;
+    if (fromCheckout) {
+      ctrl.addressDTO.fromCheckout = fromCheckout;
+    }
     ctrl.modal.show();
   };
 
   ctrl.saveAddress = function () {
     if (ctrl.addAddressForm.$valid) {
       $log.log(ctrl.addressDTO);
-      ctrl.addressDTO.status = 2;
+      ctrl.addressDTO.status = ctrl.addressDTO.status ? 1 : 2;
       Store.saveAddress(ctrl.addressDTO)
       .then(function (response) {
         $log.log(response);
-        ctrl.loadAddresses();
+        if (ctrl.addressDTO.fromCheckout) {
+          $rootScope.$emit('setTempAddressForCheckout', response.data.addresses[0]);
+        } else {
+          ctrl.loadAddresses();
+        }
         ctrl.closeModal();
       })
       .catch(function (error) {
@@ -67,6 +75,13 @@ angular.module('store')
       });
     }
   };
+
+  // Catching calls from outside this controller
+  $rootScope.$on('addAddress', function (event, fromCheckout) {
+    $log.log(event);
+    $log.log('on addAddress');
+    ctrl.addAddress(fromCheckout);
+  });
 
   /*=====  End of Add address  ======*/
 
@@ -98,6 +113,7 @@ angular.module('store')
     ctrl.addressDTO = ctrl.popover.address;
     ctrl.addressDTO.phone = Number(ctrl.addressDTO.phone);
     ctrl.addressDTO.zipCode = Number(ctrl.addressDTO.zipCode);
+    ctrl.addressDTO.status = ctrl.addressDTO.status === 1 ? true : false;
     ctrl.modal.show();
   };
 
@@ -126,7 +142,7 @@ angular.module('store')
   =            Modal related functions            =
   ===============================================*/
 
-  $ionicModal.fromTemplateUrl('new-address-modal.html', {
+  $ionicModal.fromTemplateUrl('store/templates/my-address-modal.html', {
     scope: $scope,
     animation: 'slide-in-up'
   })
@@ -163,7 +179,9 @@ angular.module('store')
   });
 
   ctrl.closeAddressOptions = function () {
-    ctrl.popover.hide();
+    if (ctrl.popover) {
+      ctrl.popover.hide();
+    }
   };
 
   ctrl.openAddressOptions = function ($event, address) {

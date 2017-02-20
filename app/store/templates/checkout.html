@@ -31,7 +31,7 @@
           <span>Qty: {{p.qty}}</span>
         </p>
         <h3>Rs.{{p.discountedPrice * p.qty}} <span class="discounted-price">Rs.{{p.price * p.qty}}</span> <span class="discount-percentage">{{p.discountPCT| number : 0}}% off</span></h3>
-        <p>Delivery: <span>$4 (Jan 26 - Feb 5)</span></p>
+        <p>Delivery: <span>Rs.{{p.shippingRate | number : 0}} ({{p.shippingTime}} days)</span></p>
       </div>
     </ion-list>
 
@@ -46,13 +46,13 @@
       <a class="item">
         Delivery
         <span class="item-note">
-          Rs.0
+          Rs.{{ctrl.cart.shippingTotal | number : 0}}
         </span>
       </a>
       <a class="item">
         Amount payble
         <span class="item-note">
-          Rs.{{ctrl.cart.orderTotal}}
+          Rs.{{ctrl.cart.orderTotalWithShipping | number : 0}}
         </span>
       </a>
     </div>
@@ -67,7 +67,7 @@
   <ion-footer-bar class="cart-footer">
     <div class="row m-none p-none">
       <div class="col text-center">
-        <h3>Rs.{{ctrl.cart.orderTotal}}</h3>
+        <h3>Rs.{{ctrl.cart.orderTotalWithShipping | number : 0}}</h3>
         <button class="button button-clear button-small button-light return-policy-button" ui-sref="store.returnpolicy">
           Return Policy
         </button>
@@ -112,3 +112,4 @@
     </ion-footer-bar>
   </ion-modal-view>
 </script>
+<div ng-controller="AddressCtrl as ctrl"></div>

@@ -10,11 +10,12 @@
       </div>
     </div>
     <ion-list>
-      <div class="card" ng-repeat="address in ctrl.addresses">
-        <div class="badge-wrapper" ng-show="address.status == 1">
+      <div class="card" ng-repeat="address in ctrl.addresses" ng-class="{'active-address': address.status == 1}">
+<!--         <div class="badge-wrapper" ng-show="address.status == 1">
           <span class="badge badge-balanced">Default</span>
-        </div>
+        </div> -->
         <div class="item item item-icon-left item-icon-right item-text-wrap">
+          <i class="icon ion-checkmark-circled balanced" ng-show="address.status == 1"></i>
           <h2>{{address.contactName}}</h2>
           <i class="icon ion-android-more-vertical" ng-click="ctrl.openAddressOptions($event, address)"></i>
         </div>
@@ -31,84 +32,6 @@
     </ion-list>
   </ion-content>
 </ion-view>
-
-<script id="new-address-modal.html" type="text/ng-template">
-  <ion-modal-view class="new-address-modal">
-    <form name="ctrl.addAddressForm" ng-submit="ctrl.saveAddress()" novalidate="">
-      <input name="addressId" type="hidden" ng-model="ctrl.addressDTO.addressId" >
-      <ion-header-bar class="bar-energized">
-        <h1 class="title">Add new address</h1>
-      </ion-header-bar>
-      <ion-content class="padding has-footer">
-        <ion-item class="item item-input" ng-class="{ 'has-errors' : ctrl.addAddressForm.contactName.$invalid, 'no-errors' : ctrl.addAddressForm.contactName.$valid}">
-          <input name="contactName" type="text" placeholder="Contact Name" ng-model="ctrl.addressDTO.contactName" required="">
-        </ion-item>
-        <div class="error-container" ng-show="ctrl.addAddressForm.contactName.$error && ctrl.addAddressForm.$submitted" ng-messages="ctrl.addAddressForm.contactName.$error">
-          <div ng-messages-include="error-list.html"></div>
-        </div>
-
-        <ion-item class="item item-input" ng-class="{ 'has-errors' : ctrl.addAddressForm.phone.$invalid, 'no-errors' : ctrl.addAddressForm.phone.$valid}">
-          <input name="phone" type="number" placeholder="Contact Number" ng-model="ctrl.addressDTO.phone" required="" ng-minlength="10" ng-maxlength="10" >
-        </ion-item>
-        <div class="error-container" ng-show="ctrl.addAddressForm.phone.$error && ctrl.addAddressForm.$submitted" ng-messages="ctrl.addAddressForm.phone.$error">
-          <div ng-messages-include="error-list.html"></div>
-        </div>
-
-        <ion-item class="item item-input" ng-class="{ 'has-errors' : ctrl.addAddressForm.zipCode.$invalid, 'no-errors' : ctrl.addAddressForm.zipCode.$valid}">
-          <input name="zipCode" type="number" placeholder="Pin Code" ng-model="ctrl.addressDTO.zipCode" required="">
-        </ion-item>
-        <div class="error-container" ng-show="ctrl.addAddressForm.zipCode.$error && ctrl.addAddressForm.$submitted" ng-messages="ctrl.addAddressForm.zipCode.$error">
-          <div ng-messages-include="error-list.html"></div>
-        </div>
-
-        <ion-item class="item item-input" ng-class="{ 'has-errors' : ctrl.addAddressForm.streetOne.$invalid, 'no-errors' : ctrl.addAddressForm.streetOne.$valid}">
-          <input name="streetOne" type="text" placeholder="Street" ng-model="ctrl.addressDTO.streetOne" required="">
-        </ion-item>
-        <div class="error-container" ng-show="ctrl.addAddressForm.streetOne.$error && ctrl.addAddressForm.$submitted" ng-messages="ctrl.addAddressForm.streetOne.$error">
-          <div ng-messages-include="error-list.html"></div>
-        </div>
-
-        <ion-item class="item item-input" ng-class="{ 'has-errors' : ctrl.addAddressForm.streetTwo.$invalid, 'no-errors' : ctrl.addAddressForm.streetTwo.$valid}">
-          <input name="streetTwo" type="text" placeholder="Street (optional)" ng-model="ctrl.addressDTO.streetTwo" >
-        </ion-item>
-        <div class="error-container" ng-show="ctrl.addAddressForm.streetTwo.$error && ctrl.addAddressForm.$submitted" ng-messages="ctrl.addAddressForm.streetTwo.$error">
-          <div ng-messages-include="error-list.html"></div>
-        </div>
-
-        <ion-item class="item item-input" ng-class="{ 'has-errors' : ctrl.addAddressForm.city.$invalid, 'no-errors' : ctrl.addAddressForm.city.$valid}">
-          <input name="city" type="text" placeholder="City" ng-model="ctrl.addressDTO.city" required="">
-        </ion-item>
-        <div class="error-container" ng-show="ctrl.addAddressForm.city.$error && ctrl.addAddressForm.$submitted" ng-messages="ctrl.addAddressForm.city.$error">
-          <div ng-messages-include="error-list.html"></div>
-        </div>
-
-        <ion-item class="item item-input" ng-class="{ 'has-errors' : ctrl.addAddressForm.state.$invalid, 'no-errors' : ctrl.addAddressForm.state.$valid}">
-          <input name="state" type="text" placeholder="State" ng-model="ctrl.addressDTO.state" required="">
-        </ion-item>
-        <div class="error-container" ng-show="ctrl.addAddressForm.state.$error && ctrl.addAddressForm.$submitted" ng-messages="ctrl.addAddressForm.state.$error">
-          <div ng-messages-include="error-list.html"></div>
-        </div>
-
-        <ion-item class="item item-input" ng-class="{ 'has-errors' : ctrl.addAddressForm.isResidential.$invalid, 'no-errors' : ctrl.addAddressForm.isResidential.$valid}">
-          <ion-checkbox ng-model="ctrl.addressDTO.isResidential">Is it a residential address?</ion-checkbox>
-        </ion-item>
-        <div class="error-container" ng-show="ctrl.addAddressForm.isResidential.$error && ctrl.addAddressForm.$submitted" ng-messages="ctrl.addAddressForm.isResidential.$error">
-          <div ng-messages-include="error-list.html"></div>
-        </div>
-
-        <div class="error server-side text-center m-t-md" ng-show="ctrl.responseCB && ctrl.addAddressForm.$submitted">
-          <i class="ion-information-circled"></i> {{ctrl.responseCB}}
-        </div>
-      </ion-content>
-      <ion-footer-bar>
-        <div class="button-bar">
-          <button class="button button-positive">Save</button>
-          <button type="button" class="button button-stable" ng-click="ctrl.closeModal()">Cancel</button>
-        </div>
-      </ion-footer-bar>
-    </form>
-  </ion-modal-view>
-</script>
 
 <script id="address-options-popover.html" type="text/ng-template">
   <ion-popover-view class="address-options-popover">

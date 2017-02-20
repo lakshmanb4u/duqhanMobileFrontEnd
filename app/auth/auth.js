@@ -31,7 +31,7 @@ angular.module('auth', [
       controller: 'ForgotPasswordCtrl as ctrl'
     })
     .state('change-password', {
-      url: '/change-password',
+      url: '/change-password/:email',
       templateUrl: 'auth/templates/change-password.html',
       controller: 'ForgotPasswordCtrl as ctrl'
     });

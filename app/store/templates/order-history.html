@@ -4,14 +4,18 @@
     <!-- content goes here -->
     <ion-list>
       <div ng-repeat="order in ctrl.orders">
-        <!-- <h5 class="m-b-xs">{{order.orderDate | date : "EEE, MMM d, yyyy"}} (OD41516456525451)</h5> -->
-        <h5 class="m-b-xs">{{order.orderDate | dateFilter}} ({{order.orderId}})</h5>
         <div class="card" ui-sref="store.orderdetails({order: order})">
+          <div class="item item-divider">
+            {{order.orderDate | dateFilter1}} ({{order.orderId}})
+          </div>
           <div class="item item-thumbnail-left item-text-wrap">
             <img src="{{order.prodImg}}">
             <h2>{{order.productName}}</h2>
-            <h3>{{order.status | orderStatusFilter}}</h3>
-            <p>Delivered On Mon, Dec 7th</p>
+            <h3 class="text-capitalize">{{order | orderStatusFilter}}</h3>
+            <p ng-if="order.trackerBean">
+              <span ng-if="order.trackerBean.status == 'delivered'">Delivered On</span>
+              <span ng-if="!(order.trackerBean.status == 'delivered')">Estimated Delivery On</span>
+              {{order.trackerBean.estDeliveryDate | dateFilter1}}</p>
           </div>
         </div>
       </div>
@@ -21,5 +25,10 @@
         </div>
       </div>
     </ion-list>
+    <div class="duqhan-guarantee">
+      <div class="stamp-wraper">
+        <p>We guarantee a safe and secure shopping experience so you never have to worry.</p>
+      </div>
+    </div>
   </ion-content>
 </ion-view>

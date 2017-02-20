@@ -13,7 +13,8 @@ angular.module('store')
         BusyLoader.show();
         $log.log(response);
         products = response.data;
-        return $ImageCacheFactory.Cache(response.data.allImages);
+        // return $ImageCacheFactory.Cache(response.data.allImages);
+        return;
       })
       .then(function () {
         BusyLoader.hide();

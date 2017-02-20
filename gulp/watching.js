@@ -12,6 +12,7 @@ var bsInit = function (paths, openOverride) {
     server: {
       baseDir: paths
     }
+    // port: 3100
   };
   if (options.proxy) {
     var url = require('url');

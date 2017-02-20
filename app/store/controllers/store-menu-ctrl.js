@@ -8,6 +8,7 @@ angular.module('store')
 	$ionicFacebookAuth,
   $rootScope,
   $timeout,
+  $state,
   Config,
   Auth,
   Store,
@@ -85,12 +86,22 @@ angular.module('store')
 
 
   /*==========================================================================
-  =            Include user's name in scope to display in sidebar            =
+  =            Include user's name and image in scope to display in sidebar            =
   ==========================================================================*/
 
-  ctrl.username = Config.ENV.USER.NAME;
+  ctrl.setUserDetailForMenu = function () {
+    ctrl.username = Config.ENV.USER.NAME;
+    ctrl.profileImage = Config.ENV.USER.PROFILE_IMG;
+  };
 
-  /*=====  End of Include user's name in scope to display in sidebar  ======*/
+  ctrl.setUserDetailForMenu();
+
+  $rootScope.$on('setUserDetailForMenu', function (event) {
+    $log.log(event);
+    ctrl.setUserDetailForMenu();
+  });
+
+  /*=====  End of Include user's name and image in scope to display in sidebar  ======*/
 
   /*================================================================
   =            Showing server side notification message            =
@@ -133,6 +144,23 @@ angular.module('store')
   ctrl.getTopLevelMenu();
 
   /*=====  End of Getting top level menu  ======*/
+
+  /*============================================
+  =            Show hide search bar            =
+  ============================================*/
+
+  $rootScope.searcBarActive = false;
+  ctrl.toggleSearchBar = function () {
+    $rootScope.searcBarActive = !$rootScope.searcBarActive;
+  };
+
+  ctrl.searchProduct = function () {
+    ctrl.toggleSearchBar();
+    $log.log(ctrl.searchText);
+    $state.go('store.productsSearch', {searchText: ctrl.searchText});
+  };
+
+  /*=====  End of Show hide search bar  ======*/
 
   $rootScope.$on('$ionicView.beforeEnter', function (event, viewData) {
     viewData.enableBack = true;

@@ -38,10 +38,16 @@
           <ion-radio ng-model="ctrl.user.gender" ng-value="'F'">Female</ion-radio>
         </ion-item>
 
-        <div class="item item-input item-datepicker" ion-datetime-picker date ng-model="ctrl.user.dob">
+<!--         <div class="item item-input item-datepicker" ion-datetime-picker date ng-model="ctrl.user.dob">
           <i class="icon ion-ios-calendar-outline placeholder-icon"></i>
           {{ctrl.user.dob| date: "dd/MM/yyyy"}}
           <span class="input-label placeholder-icon" style="font-size: 12px !important;" ng-hide="ctrl.user.dob">Date of Birth</span>
+        </div> -->
+
+        <div ng-click="ctrl.openDatePicker()" class="item item-input item-datepicker" ng-model="ctrl.user.dob">
+          <i class="icon ion-ios-calendar-outline placeholder-icon"></i>
+          {{ctrl.user.dob| date: "dd/MM/yyyy"}}
+          <span class="input-label placeholder-icon" style="font-size: 12px !important;" ng-hide="ctrl.user.dob2">Date of Birth</span>
         </div>
 
         <ion-item class="item item-button">
@@ -51,7 +57,7 @@
         </ion-item>
 
       </form>
-      <ion-item class="item item-button">
+      <ion-item class="item item-button" ng-show="!ctrl.user.socialLogin">
         <button class="button button-block button-clear button-positive" ui-sref="store.changepassword">
           Change My Password
         </button>

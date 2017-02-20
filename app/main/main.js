@@ -6,8 +6,7 @@ angular.module('main', [
   'ui.router',
   'ngStorage',
   'auth',
-  'store',
-  'base64'
+  'store'
 ])
 .config(function ($stateProvider, $urlRouterProvider) {
 
@@ -28,17 +27,21 @@ angular.module('main', [
     }
   });
 })
-.run(function ($ionicPlatform, $log) {
+.run(function ($ionicPlatform, $log, $rootScope) {
   $ionicPlatform.ready( function () {
     if (window.cordova) {
       // eslint-disable-next-line no-undef
       FCMPlugin.onNotification( function (data) {
+        $log.log(data);
         if (data.wasTapped) {
           $log.log('Notification was received on device tray and tapped by the user.');
           $log.log(JSON.stringify(data));
         } else {
           $log.log('Notification was received in foreground. Maybe the user needs to be notified.');
           $log.log(JSON.stringify(data));
+        }
+        if (data.payment && data.payment === 'Done') {
+          $rootScope.$emit('closeCordovaInAppBrowser');
         }
       });
       window.cordova.plugins.firebase.crash.report('BOOM! Testing crash report');

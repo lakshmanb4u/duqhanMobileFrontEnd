@@ -1,6 +1,6 @@
 'use strict';
 angular.module('store')
-.factory('ImageUpload', function ($log, $q, $ionicActionSheet, $ionicPopup, Config, BusyLoader) {
+.factory('ImageUpload', function ($log, $q, $ionicActionSheet, $ionicPopup, Config, BusyLoader, IonicClosePopupService) {
 
   $log.log('Hello from your Service: ImageUpload in module store');
 
@@ -39,15 +39,22 @@ angular.module('store')
           okText: 'Camera', // String (default: 'OK'). The text of the OK button.
           okType: 'button-energized', // String (default: 'button-positive'). The type of the OK button.
         });
+        IonicClosePopupService.register(confirmPopup);
 
         confirmPopup.then(function (res) {
-          if (res) {
+          if (res === false) {
+            $log.log('Gallery');
+            q.resolve(1);
+          } else if (res === true) {
             $log.log('Camera');
             q.resolve(0);
           } else {
-            $log.log('Gallery');
-            q.resolve(1);
+            q.reject('Pop up closed');
           }
+        })
+        .catch(function (err) {
+          $log.log(err);
+          q.reject(err);
         });
       }
 

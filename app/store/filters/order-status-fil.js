@@ -1,14 +1,12 @@
 'use strict';
 angular.module('store')
-.filter('orderStatusFilter', function ($log) {
+.filter('orderStatusFilter', function () {
   return function (input) {
-    $log.log('input==========');
-    $log.log(input);
     var status = 'Cancelled';
-    if (input === 'created') {
+    if (input.status === 'created') {
       status = 'Waiting for Payment Approval';
-    } else if (input === 'approved') {
-      status = 'Payment Approved';
+    } else if (input.status === 'approved') {
+      status = input.trackerBean.status;
     }
     return status;
   };

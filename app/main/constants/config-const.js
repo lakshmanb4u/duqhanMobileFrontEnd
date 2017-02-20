@@ -9,7 +9,8 @@ angular.module('main')
     'SOME_OTHER_URL': 'http://localhost:8084/',
     'USER': {
       'AUTH_TOKEN': null,
-      'NAME': ''
+      'NAME': '',
+      'PROFILE_IMG': ''
     },
     'CLOUDINARY': {
       'CLOUD_NAME': 'duqhan',

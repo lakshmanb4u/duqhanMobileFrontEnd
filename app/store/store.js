@@ -3,10 +3,10 @@ angular.module('store', [
   'ionic',
   'ngCordova',
   'ui.router',
-  'ion-datetime-picker',
-  'wu.masonry',
+  'ionic-datepicker',
   'ionic.ion.imageCacheFactory',
-  'angularMoment'
+  'angularMoment',
+  'ionic.closePopup'
   // TODO: load other modules selected during generation
 ])
 .config(function ($stateProvider, $ionicConfigProvider) {
@@ -52,6 +52,16 @@ angular.module('store', [
         'recentProductsContent': {
           templateUrl: 'store/templates/products/products.html'
           // controller: 'ProductsCtrl as ctrl'
+        }
+      }
+    })
+    .state('store.productsSearch', {
+      url: '/products-search/:searchText',
+      // cache: false,
+      views: {
+        'storeContent': {
+          templateUrl: 'store/templates/products/products-search.html',
+          controller: 'SearchCtrl as ctrl'
         }
       }
     })

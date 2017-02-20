@@ -43,8 +43,11 @@ angular.module('main')
       ctrl.savedUser.password = user.password;
       ctrl.savedUser.name = response.data.name;
       ctrl.savedUser.authtoken = response.data.authtoken;
+      ctrl.savedUser.profileImage = response.data.profileImg;
       Config.ENV.USER.AUTH_TOKEN = response.data.authtoken;
       Config.ENV.USER.NAME = response.data.name;
+      Config.ENV.USER.PROFILE_IMG = response.data.profileImg;
+      $rootScope.$emit('setUserDetailForMenu');
       $localStorage.savedUser = JSON.stringify(ctrl.savedUser);
       $state.go('store.products.latest');
       //$location.path('/store/products/latest');
@@ -64,28 +67,38 @@ angular.module('main')
   ctrl.internalFacebookLogin = function () {
     BusyLoader.show();
     $log.log('facebookLogin');
+    var img = null;
     $ionicFacebookAuth.login()
     .then(function () {
+      $log.log('FB data ================');
       $log.log($ionicUser.social.facebook);
-
       var fbUser = {};
       fbUser.email = $ionicUser.social.facebook.data.email;
       fbUser.name = $ionicUser.social.facebook.data.full_name;
       fbUser.fbid = $ionicUser.social.facebook.uid;
+      img = $ionicUser.social.facebook.data.profile_picture;
+      $log.log('FB picture ================');
+      $log.log(img);
       return Firebase.includeFCMToken(fbUser);
     })
     .then(function (fbUser) {
       return Auth.fbLogin(fbUser);
     })
     .then(function (response) {
+      $log.log('FB response =====================');
       $log.log(response);
       ctrl.savedUser.email = $ionicUser.social.facebook.data.email;
       ctrl.savedUser.name = $ionicUser.social.facebook.data.full_name;
       ctrl.savedUser.userId = $ionicUser.social.facebook.userId;
       ctrl.savedUser.authtoken = response.data.authtoken;
+      ctrl.savedUser.profileImage = img;
       ctrl.savedUser.socialLogin = true;
       Config.ENV.USER.AUTH_TOKEN = response.data.authtoken;
       Config.ENV.USER.NAME = response.data.name;
+      Config.ENV.USER.PROFILE_IMG = img;
+      $rootScope.$emit('setUserDetailForMenu');
+      $log.log('FB picture ================');
+      $log.log(img);
       $localStorage.savedUser = JSON.stringify(ctrl.savedUser);
       $state.go('store.products.latest');
     })
@@ -113,6 +126,9 @@ angular.module('main')
         fbUser.email = $ionicUser.social.facebook.data.email;
         fbUser.name = $ionicUser.social.facebook.data.full_name;
         fbUser.fbid = $ionicUser.social.facebook.uid;
+        var img = $ionicUser.social.facebook.data.profile_picture;
+        $log.log('FB picture ================');
+        $log.log(img);
         Firebase.includeFCMToken(fbUser)
         .then(function (fbUser) {
           return Auth.fbLogin(fbUser);
@@ -122,10 +138,15 @@ angular.module('main')
           ctrl.savedUser.email = $ionicUser.social.facebook.data.email;
           ctrl.savedUser.name = $ionicUser.social.facebook.data.full_name;
           ctrl.savedUser.userId = $ionicUser.social.facebook.userId;
+          ctrl.savedUser.profileImage = img;
           ctrl.savedUser.authtoken = response.data.authtoken;
           ctrl.savedUser.socialLogin = true;
           Config.ENV.USER.AUTH_TOKEN = response.data.authtoken;
           Config.ENV.USER.NAME = response.data.name;
+          Config.ENV.USER.PROFILE_IMG = img;
+          $rootScope.$emit('setUserDetailForMenu');
+          $log.log('FB picture ================');
+          $log.log(img);
           $localStorage.savedUser = JSON.stringify(ctrl.savedUser);
           $state.go('store.products.latest');
         })

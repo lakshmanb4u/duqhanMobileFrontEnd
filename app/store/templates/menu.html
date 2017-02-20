@@ -22,11 +22,24 @@
         </button>
 <!--         <button class="button button-small button-icon button-clear ion-levels">
         </button> -->
-        <button class="button button-small button-icon button-clear ion-ios-search larger-icon">
+        <button class="button button-small button-icon button-clear ion-ios-search larger-icon" ng-click="menu.toggleSearchBar()">
         </button>
       </ion-nav-buttons>
     </ion-nav-bar>
     <div class="notification animated bounceInDown" ng-show="menu.notification.type" ng-class="{'success': menu.notification.type == 'success' , 'failure': menu.notification.type == 'failure'}">{{menu.notification.text}}</div>
+    <div class="bar bar-header item-input search-bar" ng-show="$root.searcBarActive">
+      <form class="item item-input-inset animated slideInLeft" ng-submit="menu.searchProduct()">
+        <label class="item-input-wrapper">
+          <i class="icon ion-ios-search placeholder-icon"></i>
+          <input ng-model="menu.searchText" type="text" placeholder="Search products" focus-me autofocus>
+        </label>
+        <button class="button button-clear">
+          Go
+        </button>
+      </form>
+      <div class="search-bar-backdrop animated fadeIn" ng-click="menu.toggleSearchBar()"></div>
+    </div>
+
     <!-- ROUTING INJECTED HERE: storeContent -->
     <ion-nav-view name="storeContent"></ion-nav-view>
 
@@ -43,8 +56,10 @@
     <!-- menu content -->
     <ion-content>
       <ion-list>
-        <ion-item class="item-image menu-image" menu-close>
-          <img src="store/assets/images/user.png">
+        <ion-item class="item-image menu-image">
+
+          <img src="{{menu.profileImage || 'store/assets/images/user.png'}}">
+
           <h2>{{menu.username}}</h2>
         </ion-item>
         <ion-item menu-close ui-sref="store.products.latest">
@@ -82,8 +97,7 @@
         </ion-item>
       </ion-list>
       <div class="menu-footer p-md text-center energized">
-        <p class="m-none">Version - 1.0</p>
-        <p class="m-none">Build - 1.0.1</p>
+        <p class="m-none">Version - 0.0.2</p>
       </div>
     </ion-content>
   </ion-side-menu>

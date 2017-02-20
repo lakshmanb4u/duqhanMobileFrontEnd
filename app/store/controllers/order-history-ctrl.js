@@ -46,38 +46,5 @@ angular.module('store')
   /*----------  Storing Order object  ----------*/
 
   ctrl.order = $stateParams.order;
-  // ctrl.order = {
-  //   userId: null,
-  //   paymentKey: 'PAY-6CT16779JM531535BLCFUJXA',
-  //   mapId: 3,
-  //   paymentAmount: 400.0,
-  //   price: 450.0,
-  //   discount: 11.11,
-  //   orderDate: '27/01/2017',
-  //   status: 'created',
-  //   productName: 'T Shirts',
-  //   color: 'Blue',
-  //   size: 'M',
-  //   deliveryDate: null,
-  //   phone: '8013475458',
-  //   email: null,
-  //   prodImg: 'http://res.cloudinary.com/duqhan/image/upload/v1484226413/test/T%20Shirts.jpg',
-  //   addressDto: {
-  //     addressId: 1,
-  //     userId: 4,
-  //     status: 2,
-  //     streetOne: '50, Subodh Garden',
-  //     streetTwo: 'Bansdroni',
-  //     city: 'Kolkata',
-  //     state: 'West Bengal',
-  //     zipCode: '700075',
-  //     country: null,
-  //     isResidential: true,
-  //     contactName: 'Jayanta Kar',
-  //     companyName: null,
-  //     phone: '8013475458',
-  //     email: null
-  //   }
-  // };
 
 });

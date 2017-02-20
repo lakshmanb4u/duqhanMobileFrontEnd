@@ -1,3 +1,8 @@
+// Fonts
+// -------------------------------
+
+@import url('https://fonts.googleapis.com/css?family=Work+Sans');
+
 // Colors
 // -------------------------------
 
@@ -429,6 +434,12 @@ $assertive:                       #ef473a !default;
         font-size: 16px;
       }
     }
+
+    &.active-address {
+      .item {
+        background-color: lighten( $balanced, 40% );
+      }
+    }
   }
 }
 
@@ -465,6 +476,11 @@ $assertive:                       #ef473a !default;
       p {
         font-size: 12px;
       }
+
+      &.item-divider {
+        padding-left: 10px;
+        font-size: 14px;
+      }
     }
   }
 }
@@ -477,16 +493,6 @@ $assertive:                       #ef473a !default;
       position: relative;
       img {
         width: 50%;
-      }
-      .backdrop-layer {
-        // position: absolute;
-        // bottom: 0;
-        width: 100%;
-        background: $balanced;
-        height: 30px;
-        line-height: 30px;
-        color: white;
-        font-size: 18px;
       }
     }
 
@@ -505,8 +511,80 @@ $assertive:                       #ef473a !default;
 
       .row {
         padding: 0;
+        // text-align: center;
+      }
+      
+      &.backdrop-layer {
+        width: 100%;
+        background: #33cd5f;
+        color: white;
+        font-size: 18px;
         text-align: center;
       }
     }
+  }
+}
+
+.search-bar {
+  width: 100%;
+  height: 100%;
+  display: block;
+  padding: 0;
+  background: transparent;
+  position: absolute;
+  // left: 0 !important;
+  // top: 0;
+  // margin: 0;
+  z-index: 999999;
+
+  form {
+    padding: 0;
+    background: darken( $energized, 20% );
+    margin: 0;
+    border: none;
+
+    .item-input-wrapper {
+      border-radius: 0;
+      background: transparent;
+      .placeholder-icon {
+        color: white;
+      }
+      input {
+        height: 45px;
+        color: white;
+      }
+      input::-webkit-input-placeholder {
+        color: white !important;
+      }
+    }
+    .button {
+      color: white;
+      margin-right: 20px;
+      margin-left: 20px;
+    }
+
+    &.animated {
+      -webkit-animation-duration: 0.3s;
+      animation-duration: 0.3s;
+      -webkit-animation-fill-mode: both;
+      animation-fill-mode: both;
+    }
+  }
+  
+  .search-bar-backdrop {
+    height: calc(100% - 45px);
+    width: 100%;
+    background: rgba(0, 0, 0, 0.8);
+  }
+}
+
+.duqhan-guarantee {
+  padding: 10px;
+  background-color: #e8e8e8;
+  .stamp-wraper {
+    background-image: url(../assets/images/duqhan-guarantee.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    padding: 5px 5px 5px 90px;
   }
 }

@@ -320,6 +320,9 @@ $font-family-base:                "Facit Light" !default;
 .text-italic {
   font-style: italic;
 }
+.text-capitalize {
+  text-transform: capitalize;
+}
 .has-footer.has-tabs {
   bottom: 89px;
 }
@@ -332,6 +335,9 @@ $font-family-base:                "Facit Light" !default;
   display: none;
 }
 
+.b-t-n {
+  border-top-width: 0px !important;
+}
 
 // Buttons
 // -------------------------------

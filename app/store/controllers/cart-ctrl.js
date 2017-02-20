@@ -1,6 +1,6 @@
 'use strict';
 angular.module('store')
-.controller('CartCtrl', function ($log, $rootScope, Store, Common) {
+.controller('CartCtrl', function ($log, $rootScope, $cordovaInAppBrowser, Store, Common) {
 
   /* Storing contextual this in a variable for easy access */
 
@@ -50,6 +50,16 @@ angular.module('store')
     return new Array(num);
   };
 
+  /*----------  Get shipping total  ----------*/
+
+  ctrl.getShippingTotal = function () {
+    var cartShippingTotal = 0;
+    angular.forEach(ctrl.cart.products, function (item) {
+      cartShippingTotal += item.shippingRate;
+    });
+    return cartShippingTotal;
+  };
+
   /*----------  Get item total (calculate this manually so that we can change it when user change the quantity)  ----------*/
 
   ctrl.getCartItemTotal = function () {
@@ -67,7 +77,7 @@ angular.module('store')
     angular.forEach(ctrl.cart.products, function (item) {
       cartorderTotal += item.discountedPrice * item.qty;
     });
-    return cartorderTotal;
+    return cartorderTotal + ctrl.getShippingTotal();
   };
 
   /*----------  Get discount total (calculate this manually so that we can change it when user change the quantity)  ----------*/
@@ -130,5 +140,23 @@ angular.module('store')
   };
 
   /*=====  End of Remove from cart  ======*/
+
+  ctrl.testBrowser = function () {
+    $log.log('hello');
+    var options = {
+      EnableViewPortScale: 'yes',
+      transitionstyle: 'fliphorizontal',
+      toolbarposition: 'top',
+      closebuttoncaption: 'BACK',
+      location: 'yes'
+    };
+    $cordovaInAppBrowser.open('http://www.google.com/', '_blank', options)
+    .then(function (event) {
+      $log.log(event);
+    })
+    .catch(function (event) {
+      $log.log(event);
+    });
+  };
 
 });

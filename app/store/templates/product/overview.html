@@ -3,9 +3,9 @@
   <ion-content class="product-tab-content has-footer has-tabs">
 
     <!-- content goes here -->
-    <ion-slide-box delegate-handle="image-viewer" show-pager="true">
+    <ion-slide-box delegate-handle="image-viewer" show-pager="true" class="m-t-md">
         <ion-slide ng-repeat="i in ctrl.product.images">
-            <img src="{{i.imgUrl || 'store/assets/images/default.jpg'}}" style="width:100%; margin:auto; display:block" >
+            <img src="{{i.imgUrl || 'store/assets/images/default.jpg' | cloudinaryImageTransformation}}" style="margin:auto; display:block" >
         </ion-slide>
     </ion-slide-box>
     <div class="product-brief p-sm">
@@ -41,10 +41,15 @@
         <div class="values">$5</div>
       </div>
     </div>
+    <div class="duqhan-guarantee">
+      <div class="stamp-wraper">
+        <p>We guarantee a safe and secure shopping experience so you never have to worry.</p>
+      </div>
+    </div>
   </ion-content>
   <ion-footer-bar class="">
     <div class="button-bar">
-      <button class="button button-dark purchase-price-button">Rs.{{ctrl.product.salesPrice || 0.00}} <span> Rs.{{ctrl.product.orginalPrice || 0.00}}</span></button>
+      <button class="button button-dark purchase-price-button">Rs.{{ctrl.product.salesPrice || 0}} <span> Rs.{{ctrl.product.orginalPrice || 0}}</span></button>
       <button class="button button-positive add-cart-button" ng-click="ctrl.addToBag(ctrl.product)">Add to Bag</button>
       <!-- <button class="button button-positive add-cart-button" ng-click="ctrl.openModal()">Add to Bag</button> -->
     </div>

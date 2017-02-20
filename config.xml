@@ -1,14 +1,14 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.weavers.duqhan" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="com.duqhan.app" version="0.0.2" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>Duqhan</name>
     <description>
 
-        A sample Apache Cordova application that responds to the deviceready event.
+        Duqhan - your store for your products.
 
     </description>
-    <author email="dev@cordova.apache.org" href="http://cordova.io">
+    <author email="duqhanapp@gmail.com" href="http://duqhan.com">
 
-        Apache Cordova Team
+        Duqhan Team
 
     </author>
     <content src="index.html" />
@@ -52,6 +52,7 @@
         <allow-intent href="itms-apps:*" />
     </platform>
     <icon src="resources\android\icon\drawable-xhdpi-icon.png" />
+    <preference name="orientation" value="portrait" />
     <preference name="SplashScreen" value="screen" />
     <preference name="SplashScreenDelay" value="3000" />
     <plugin name="cordova-plugin-camera" spec="~2.3.1" />
@@ -60,7 +61,7 @@
     <plugin name="cordova-plugin-filepath" spec="~1.0.2" />
     <plugin name="cordova-plugin-actionsheet" spec="https://github.com/EddyVerbruggen/cordova-plugin-actionsheet.git" />
     <plugin name="cordova-plugin-fcm" spec="~2.1.1" />
-    <engine name="android" spec="~6.1.1" />
     <plugin name="cordova-plugin-inappbrowser" spec="~1.6.1" />
     <plugin name="cordova-plugin-firebase-crash" spec="~0.9.0" />
+    <engine name="android" spec="~6.1.2" />
 </widget>

@@ -17,6 +17,13 @@ angular.module('store')
         return data;
       }});
     },
+    searchProduct: function (param) {
+      // return $http.get('dummy/products.json');
+      return $http.post(Config.ENV.SERVER_URL + 'user/search-product', param, {transformResponse: function (response) {
+        var data = JSON.parse(response);
+        return data;
+      }});
+    },
     getProductDetail: function (param) {
       // return $http.get('dummy/products.json');
       return $http.post(Config.ENV.SERVER_URL + 'user/get-product-detail', param, {transformResponse: function (response) {
@@ -124,6 +131,12 @@ angular.module('store')
     },
     getOrderHistory: function () {
       return $http.post(Config.ENV.SERVER_URL + 'user/get-order-details', {transformResponse: function (response) {
+        var data = JSON.parse(response);
+        return data;
+      }});
+    },
+    getShippingDetails: function (cart) {
+      return $http.post(Config.ENV.SERVER_URL + 'user/get-shipment', cart, {transformResponse: function (response) {
         var data = JSON.parse(response);
         return data;
       }});

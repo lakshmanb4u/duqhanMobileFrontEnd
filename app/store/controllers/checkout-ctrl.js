@@ -1,6 +1,15 @@
 'use strict';
 angular.module('store')
-.controller('CheckoutCtrl', function ($rootScope, $scope, $log, $ionicModal, $stateParams, $cordovaInAppBrowser, $state, Store) {
+.controller('CheckoutCtrl', function (
+  $rootScope,
+  $scope,
+  $log,
+  $ionicModal,
+  $stateParams,
+  $cordovaInAppBrowser,
+  $state,
+  Store
+) {
 
   $log.log('Hello from your Controller: CheckoutCtrl in module store:. This is your controller:', this);
 
@@ -8,6 +17,18 @@ angular.module('store')
 
   var ctrl = this;
 
+  /*----------  Storing cart object  ----------*/
+
+  ctrl.cart = $stateParams.cart;
+  ctrl.cart.orderTotal = 0;
+  ctrl.cart.shippingTotal = 0;
+  angular.forEach(ctrl.cart.products, function (p) {
+    ctrl.cart.orderTotal = ctrl.cart.orderTotal + (p.discountedPrice * p.qty);
+  });
+  angular.forEach(ctrl.cart.products, function (p) {
+    ctrl.cart.shippingTotal = ctrl.cart.shippingTotal + p.shippingRate;
+  });
+  ctrl.cart.orderTotalWithShipping = ctrl.cart.orderTotal + ctrl.cart.shippingTotal;
 
   /*===========================================
   =            Get default address            =
@@ -20,6 +41,9 @@ angular.module('store')
       $log.log(response.data.addresses);
       if (response.data.addresses.length > 0) {
         ctrl.address = response.data.addresses[0];
+        /* calling the shipping detail function to get the shipping cost with this delivery address */
+        ctrl.cart.deliveryAddressId = response.data.addresses[0].addressId;
+        ctrl.getShippingDetails(ctrl.cart);
       } else {
         ctrl.address = null;
       }
@@ -28,6 +52,37 @@ angular.module('store')
       $log.log(error);
     });
   };
+
+  /*=====  End of Get default address  ======*/
+
+  /*======================================================
+  =            Get the shipping cost and time            =
+  ======================================================*/
+
+  ctrl.getShippingDetails = function (cart) {
+    $log.log(cart);
+    Store.getShippingDetails(cart)
+    .then(function (response) {
+      $log.log('getShippingDetails');
+      $log.log(response.data);
+      var tempCart = response.data;
+      var orderTotal = ctrl.cart.orderTotal;
+      var shippingTotal = 0;
+      angular.forEach(tempCart.products, function (p, i) {
+        orderTotal = orderTotal + p.shippingRate;
+        shippingTotal = shippingTotal + p.shippingRate;
+        ctrl.cart.products[i].shippingRate = p.shippingRate;
+        ctrl.cart.products[i].shippingTime = p.shippingTime;
+      });
+      ctrl.cart.orderTotalWithShipping = orderTotal;
+      ctrl.cart.shippingTotal = shippingTotal;
+    })
+    .catch(function (error) {
+      $log.log(error);
+    });
+  };
+
+  /*=====  End of Get the shipping cost and time  ======*/
 
   /*----------  call the function at the time of initialization  ----------*/
 
@@ -40,17 +95,6 @@ angular.module('store')
     if (toState.name === 'store.checkout') {
       ctrl.getDefaultAddress();
     }
-  });
-
-  /*=====  End of Get default address  ======*/
-
-
-  /*----------  Storing cart object  ----------*/
-
-  ctrl.cart = $stateParams.cart;
-  ctrl.cart.orderTotal = 0;
-  angular.forEach(ctrl.cart.products, function (p) {
-    ctrl.cart.orderTotal = ctrl.cart.orderTotal + (p.discountedPrice * p.qty);
   });
 
   /*===============================================
@@ -74,6 +118,9 @@ angular.module('store')
     $log.log(ctrl.selectedAddress);
     if (ctrl.selectedAddress) {
       ctrl.address = ctrl.selectedAddress;
+      /* calling the shipping detail function to get the shipping cost with this delivery address */
+      ctrl.cart.deliveryAddressId = ctrl.address.addressId;
+      ctrl.getShippingDetails(ctrl.cart);
       ctrl.closeModal();
     } else {
       ctrl.addressSelectionError = false;
@@ -82,8 +129,23 @@ angular.module('store')
 
   ctrl.addAddress = function () {
     ctrl.closeModal();
-    $state.go('store.myaddress');
+    $rootScope.$emit('addAddress', true);
+    // $state.go('store.myaddress');
   };
+
+  ctrl.setTempAddressForCheckout = function (address) {
+    ctrl.address = address;
+    /* calling the shipping detail function to get the shipping cost with this delivery address */
+    ctrl.cart.deliveryAddressId = ctrl.address.addressId;
+    ctrl.getShippingDetails(ctrl.cart);
+  };
+
+  // Catching calls from outside this controller
+  $rootScope.$on('setTempAddressForCheckout', function (event, address) {
+    $log.log(event);
+    $log.log('on setTempAddressForCheckout');
+    ctrl.setTempAddressForCheckout(address);
+  });
 
   /*=====  End of Change delivery address  ======*/
 
@@ -91,9 +153,17 @@ angular.module('store')
   =            Payment section            =
   =======================================*/
 
+  ctrl.isPayPalBrowserOpen = false;
   ctrl.pay = function () {
     $log.log(ctrl.cart);
     $log.log(ctrl.address);
+    if (!ctrl.address) {
+      var notification = {};
+      notification.type = 'failure';
+      notification.text = 'Please select a delivery address';
+      $rootScope.$emit('setNotification', notification);
+      return;
+    }
     ctrl.cart.deliveryAddressId = ctrl.address.addressId;
     ctrl.cart.addressDto = ctrl.address;
 
@@ -107,17 +177,31 @@ angular.module('store')
         transitionstyle: 'fliphorizontal',
         toolbarposition: 'top',
         closebuttoncaption: 'BACK',
-        location: 'yes'
+        location: 'no'
       };
       return $cordovaInAppBrowser.open(response.data.status, '_blank', options);
     })
     .then(function (event) {
+      ctrl.isPayPalBrowserOpen = true;
       $log.log(event);
     })
     .catch(function (error) {
       $log.log(error);
     });
   };
+
+  ctrl.closeCordovaInAppBrowser = function () {
+    if (ctrl.isPayPalBrowserOpen) {
+      $cordovaInAppBrowser.close();
+    }
+  };
+
+  $rootScope.$on('closeCordovaInAppBrowser', function (event) {
+    $log.log(event);
+    $log.log('on closeCordovaInAppBrowser');
+    ctrl.closeCordovaInAppBrowser();
+  });
+
   $rootScope.$on('$cordovaInAppBrowser:exit', function (e, event) {
     $log.log('Exited inapp browser');
     $log.log(e);
@@ -138,10 +222,14 @@ angular.module('store')
         notification.type = 'success';
         notification.text = 'Item purchased successfully.';
         $rootScope.$emit('setNotification', notification);
-      } else {
+      } else if (response.data.status === 'retry') {
         notification.type = 'failure';
         notification.text = 'Something went wrong. Please try again.';
+      } else {
+        notification.type = 'failure';
+        notification.text = 'We did not recieved the payment . Please try again.';
       }
+      $rootScope.$emit('setNotification', notification);
 
     })
     .catch(function (error) {

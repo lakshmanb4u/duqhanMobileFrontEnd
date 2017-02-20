@@ -33,7 +33,8 @@ angular.module('store')
       $log.log(response);
       products = response.data.products;
       ctrl.productCategory = response.data.categoryName;
-      return $ImageCacheFactory.Cache(response.data.allImages);
+      // return $ImageCacheFactory.Cache(response.data.allImages);
+      return;
     })
     .then(function () {
       ctrl.products = products;
@@ -84,4 +85,5 @@ angular.module('store')
   });
 
   /*=====  End of Get product list  ======*/
+
 });

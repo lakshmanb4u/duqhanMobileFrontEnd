@@ -1,6 +1,19 @@
 'use strict';
 angular.module('store')
-.controller('ProfileCtrl', function ($log, $ionicActionSheet, $ionicPopup, $rootScope, $filter, Store, ImageUpload, BusyLoader) {
+.controller('ProfileCtrl', function (
+  $scope,
+  $log,
+  $ionicActionSheet,
+  $ionicPopup,
+  $rootScope,
+  $filter,
+  $localStorage,
+  Store,
+  ImageUpload,
+  BusyLoader,
+  ionicDatePicker,
+  Config
+  ) {
 
   /* Storing contextual this in a variable for easy access */
 
@@ -16,17 +29,31 @@ angular.module('store')
   ctrl.user = {};
 
   ctrl.getProfileDetails = function () {
+    var savedUser = $localStorage.savedUser;
+    var parsedUser = JSON.parse(savedUser);
     Store.getProfileDetails()
     .then(function (response) {
       $log.log(response);
       ctrl.user = response.data;
-      ctrl.user.mobile = Number(response.data.mobile);
+      if (!response.data.mobile) {
+        ctrl.user.mobile = undefined;
+      } else {
+        ctrl.user.mobile = Number(response.data.mobile);
+      }
+      if (parsedUser.socialLogin) {
+        ctrl.user.socialLogin = true;
+        if (!response.data.profileImg) {
+          ctrl.user.profileImg = Config.ENV.USER.PROFILE_IMG;
+        }
+      }
       $log.log(ctrl.user);
     })
     .catch(function (response) {
       $log.log(response);
     });
   };
+
+  ctrl.user.image = 'store/assets/images/user.png';
 
   ctrl.getProfileDetails();
 
@@ -37,8 +64,6 @@ angular.module('store')
       ctrl.getProfileDetails();
     }
   });
-
-  ctrl.user.image = 'store/assets/images/user.png';
 
   /*=====  End of Prefill profile form  ======*/
 
@@ -53,6 +78,7 @@ angular.module('store')
     $log.log(ionic.Platform.device());
     ImageUpload.getImageSource()
     .then(function (source) {
+      $log.log(source);
       return ImageUpload.getPicture(source);
     })
     .then(function (url) {
@@ -91,6 +117,9 @@ angular.module('store')
         $log.log(response);
         ctrl.user = response.data;
         ctrl.user.mobile = Number(response.data.mobile);
+        Config.ENV.USER.NAME = response.data.name;
+        Config.ENV.USER.PROFILE_IMG = response.data.profileImg;
+        $rootScope.$emit('setUserDetailForMenu');
         var notification = {};
         notification.type = 'success';
         notification.text = 'Profile updated successfully';
@@ -103,5 +132,33 @@ angular.module('store')
   };
 
   /*=====  End of Update profile details  ======*/
+
+  /*=======================================
+  =            ionic-datepicker            =
+  =======================================*/
+
+  var options = {
+    callback: function (val) {
+      ctrl.user.dob = val;
+    },
+    from: new Date(1917, 1, 1),
+    to: new Date(),
+    // inputDate: new Date(),
+    titleLabel: 'Select a Date',
+    setLabel: 'Set',
+    todayLabel: 'Today',
+    closeLabel: 'Close',
+    mondayFirst: true,
+    disableWeekdays: [0],
+    closeOnSelect: false,
+    dateFormat: 'dd MM yyyy',
+    templateType: 'popup'
+  };
+
+  ctrl.openDatePicker = function () {
+    ionicDatePicker.openDatePicker(options);
+  };
+
+  /*=====  End of ionic-datepicker  ======*/
 
 });
