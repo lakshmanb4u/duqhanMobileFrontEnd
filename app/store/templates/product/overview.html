@@ -13,6 +13,10 @@
       <p class="product-price m-b-none"><span>Rs.{{ctrl.product.orginalPrice}}</span> Rs.{{ctrl.product.salesPrice}}</p>
     </div>
     <div class="product-detail p-sm">
+      <div class="size-wrapper m-b-md" ng-show="ctrl.product.description">
+        <div class="values">Description</div>
+        <div class="">{{ctrl.product.description}}</div>
+      </div>
       <div class="size-wrapper m-b-md" ng-show="ctrl.product.sizeArr">
         <div class="row m-b-xs">
           <div class="col title">Sizes</div>

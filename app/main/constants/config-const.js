@@ -25,5 +25,4 @@ angular.module('main')
     /*inject-build*/
     /*endinject*/
   }
-
 });

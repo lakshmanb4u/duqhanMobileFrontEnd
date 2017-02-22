@@ -140,6 +140,9 @@ angular.module('store')
         var data = JSON.parse(response);
         return data;
       }});
+    },
+    getFAQ: function () {
+      return $http.get('dummy/support.json');
     }
   };
 });

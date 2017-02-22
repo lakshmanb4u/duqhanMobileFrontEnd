@@ -5,7 +5,7 @@
     <!-- content goes here -->
     <ion-list>
       <ion-item ng-repeat="c in ctrl.categories" class="item item-button-right">
-        <div ui-sref="store.productsByCategory({categoryId: c.categoryId})">{{c.categoryName}}</div>
+        <div ui-sref="store.productsByCategory({categoryId: c.categoryId})" style="text-decoration: underline;">{{c.categoryName}}</div>
         <button class="button button-positive" ui-sref="store.categories({categoryId: c.categoryId})">
           <i class="icon ion-arrow-right-c"></i>
         </button>

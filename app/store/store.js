@@ -194,11 +194,11 @@ angular.module('store', [
       }
     })
     .state('store.customersupport', {
-      url: '/customer-support',
+      url: '/customer-support/:p',
       views: {
         'storeContent': {
           templateUrl: 'store/templates/customer-support.html',
-          // controller: '<someCtrl> as ctrl'
+          controller: 'CustomerSupportCtrl as ctrl'
         }
       }
     })

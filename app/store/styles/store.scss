@@ -588,3 +588,15 @@ $assertive:                       #ef473a !default;
     padding: 5px 5px 5px 90px;
   }
 }
+
+.return-policy {
+  text-align: justify;
+  .item {
+    p {
+      margin-bottom: 15px;
+    }
+    h2 {
+      margin-bottom: 5px;
+    }
+  }
+}
