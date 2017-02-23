@@ -36,7 +36,7 @@ angular.module('store')
       $log.log(response);
       var notification = {};
       notification.type = 'success';
-      notification.text = 'We will process in next 7 working days';
+      notification.text = 'Your request has been recieved. We will process it within 7 working days.';
       $rootScope.$emit('setNotification', notification);
     })
     .catch(function (error) {

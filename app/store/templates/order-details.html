@@ -69,12 +69,9 @@
         <p>{{ctrl.order.addressDto.streetOne}}, {{ctrl.order.addressDto.streetTwo}}, {{ctrl.order.addressDto.city}}, {{ctrl.order.addressDto.state}} - {{ctrl.order.addressDto.zipCode}}</p>
       </div>
     </div>
-    <button class="button button-block button-positive" ng-click="ctrl.cancelOrder(ctrl.order.orderId)">
+    <button class="button button-block button-positive" ng-if="ctrl.order.status === 'approved'" ng-click="ctrl.cancelOrder(ctrl.order.orderId)">
        Return
     </button>
-    <div class="item item-icon-left item-text-wrap">
-      <p></p>
-    </div>
     <div class="duqhan-guarantee">
       <div class="stamp-wraper">
         <p>We guarantee a safe and secure shopping experience so you never have to worry.</p>
