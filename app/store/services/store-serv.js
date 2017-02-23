@@ -143,6 +143,12 @@ angular.module('store')
     },
     getFAQ: function () {
       return $http.get('dummy/support.json');
-    }
+    },
+    cancelOrd: function (order) {
+      return $http.post(Config.ENV.SERVER_URL + 'user/cancel-order', order , {transformResponse: function (response) {
+        var data = JSON.parse(response);
+        return data;
+      }});
+    },
   };
 });

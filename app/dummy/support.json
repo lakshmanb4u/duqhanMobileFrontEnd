@@ -42,84 +42,70 @@
         ]
       },
       {
-        "id": 8,
+        "id": 7,
         "heading": "Return and Refunds",
         "haschild": true,
         "content": null,
         "child": [
           {
-            "id": 9,
+            "id": 8,
             "heading": "How do i return a product",
             "haschild": false,
             "content": "Unfortunately we currently do not offer",
             "child": null
           },
           {
-            "id": 10,
+            "id": 9,
             "heading": "Can I exchange an item",
             "haschild": false,
             "content": "Unfortunately we currently do not offer item exchange",
             "child": null
           },
           {
-            "id": 11,
+            "id": 10,
             "heading": "How do i cancel my order",
             "haschild": false,
             "content": "Unfortunately we currently do not offer cancel order",
-            "child": null
-          },
-          {
-            "id": 13,
-            "heading": "Can you issue my refund to a different card if my card is canceled ,lost ,expired or stolen?",
-            "haschild": false,
-            "content": null,
-            "child": null
-          },
-          {
-            "id": 14,
-            "heading": "i canceled my order .How will i receive my refund ?",
-            "haschild": false,
-            "content": null,
             "child": null
           }
         ]
       },
       {
-        "id": 15,
+        "id": 13,
         "heading": "Payment, Pricing & promotions",
         "haschild": true,
         "content": null,
         "child": [
           {
-            "id": 16,
+            "id": 14,
             "heading": "What Payment method does Duqhan accept",
             "haschild": false,
             "content": "We currency accept payments through the following Payment providers. PAYPAL - www.paypal.com/home . we can not accept cash ,bank transfer ,or Payment installments ",
             "child": null
           },
           {
-            "id": 17,
+            "id": 15,
             "heading": "What currency does Duqhan sell in ?",
             "haschild": false,
             "content": "The order will be charged in INR and will be shown during checkout",
             "child": null
           },
           {
-            "id": 18,
+            "id": 16,
             "heading": "Does Duqhan charge for customs taxes ,VAT ,or any other extra fees ?",
             "haschild": false,
             "content": "Duqhan only charges for purchase price and shipping rate .we do not collect any payment for customers ,taxes, VAT ,currency conversion rates ,or any other fees and can not reimburse any extra charges",
             "child": null
           },
           {
-            "id": 19,
+            "id": 17,
             "heading": "How do i delete my credit card or payment information ?",
             "haschild": false,
             "content": "Your billing information is completely secure on paypal website",
             "child": null
           },
           {
-            "id": 20,
+            "id": 18,
             "heading": "How do i get a free gift",
             "haschild": false,
             "content": "The free gift currently not available",
@@ -128,34 +114,34 @@
         ]
       },
       {
-        "id": 21,
+        "id": 19,
         "heading": "Orders",
         "haschild": true,
         "content": null,
         "child": [
           {
-            "id": 22,
+            "id": 20,
             "heading": "How do i get help with my order ?",
             "haschild": false,
             "content": "For assistance , please contact our Customer support team",
             "child": null
           },
           {
-            "id": 23,
+            "id": 21,
             "heading": "Why is my order history empty ?",
             "haschild": false,
             "content": "If your order history is empty ,it probably means your charges were declined when you tried to place your order this means that we never actually accept payment for your order .if you do not see your purchase in order history please make sure you are loged into the correct account",
             "child": null
           },
           {
-            "id": 24,
+            "id": 22,
             "heading": "Why did not my order go through ?",
             "haschild": false,
             "content": "if your order did not go through or does not appear in your order history ,it probably means your PAYPAL was declined ",
             "child": null
           },
           {
-            "id": 25,
+            "id": 23,
             "heading": "Where can i find an invoice for my order",
             "haschild": false,
             "content": "You can find your  order invoice in your Orders history page",
@@ -164,457 +150,68 @@
         ]
       },
       {
-        "id": 26,
+        "id": 24,
         "heading": "Managing Your Account",
         "haschild": true,
         "content": null,
         "child": [
           {
-            "id": 27,
+            "id": 25,
             "heading": "How can i create account ?",
             "haschild": false,
             "content": "You can create account on Duqhan By using email address and facebook .we recommend using One of these Methods for a more personalized shopping experience ",
             "child": null
           },
           {
-            "id": 28,
+            "id": 26,
             "heading": "How do i reset my password ?",
             "haschild": false,
             "content": "To change your password Please follow this step . Tap the menu at the top , left hand side of the screen tap my password then enter your oldpassword and new password then click on button",
             "child": null
           },
           {
-            "id": 29,
+            "id": 27,
             "heading": "what if i forgot my password ?",
             "haschild": false,
             "content": "Reset your password , please follow this steps . Tap signin and forgot password to reset it ",
             "child": null
           },
           {
-            "id": 30,
+            "id": 28,
             "heading": "what should i do if i think my account was hacked ?",
             "haschild": false,
             "content": "If you think your account was hacked , please contact your Customer support team",
             "child": null
           },
           {
-            "id": 31,
+            "id": 29,
             "heading": "how do i delete my account?",
             "haschild": false,
             "content": "if your account is registered through facebook you can disable Duqhan facebook privilegs . open your facebook app - under the more icon select setting - account setting - select apps -select logged in with facebook -select Duqhan and remove app",
             "child": null
           }
         ]
-      },
-      {
-        "id": 32,
-        "heading": "Customer Support",
-        "haschild": true,
-        "content": null,
-        "child": [
-          {
-            "id": 33,
-            "heading": "order",
-            "haschild": true,
-            "content": null,
-            "child": [
-              {
-                "id": 34,
-                "heading": "Where is my stuff ?",
-                "haschild": true,
-                "content": null,
-                "child": [
-                  {
-                    "id": 35,
-                    "heading": "Check status of an order",
-                    "haschild": false,
-                    "content": null,
-                    "child": null
-                  },
-                  {
-                    "id": 36,
-                    "heading": "Track my package",
-                    "haschild": false,
-                    "content": null,
-                    "child": null
-                  },
-                  {
-                    "id": 37,
-                    "heading": "Shipping delayed",
-                    "haschild": false,
-                    "content": null,
-                    "child": null
-                  },
-                  {
-                    "id": 38,
-                    "heading": "Shipping Late",
-                    "haschild": false,
-                    "content": null,
-                    "child": null
-                  },
-                  {
-                    "id": 39,
-                    "heading": "Shipping not received",
-                    "haschild": false,
-                    "content": null,
-                    "child": null
-                  },
-                  {
-                    "id": 40,
-                    "heading": "Other status questions",
-                    "haschild": false,
-                    "content": null,
-                    "child": null
-                  }
-                ]
-              },
-              {
-                "id": 41,
-                "heading": "Problem with an order ",
-                "haschild": false,
-                "content": null,
-                "child": null
-              },
-              {
-                "id": 42,
-                "heading": "Returns and refunds",
-                "haschild": false,
-                "content": null,
-                "child": null
-              },
-              {
-                "id": 43,
-                "heading": "Change your order",
-                "haschild": false,
-                "content": null,
-                "child": null
-              }
-            ]
-          },
-          {
-            "id": 44,
-            "heading": "My Account setting",
-            "haschild": true,
-            "content": null,
-            "child": [
-              {
-                "id": 45,
-                "heading": "Account settings",
-                "haschild": false,
-                "content": null,
-                "child": null
-              },
-              {
-                "id": 46,
-                "heading": "password, email or login",
-                "haschild": false,
-                "content": null,
-                "child": null
-              }
-            ]
-          }
-        ]
       }
     ]
   },
   {
-    "id": 47,
-    "heading": "Return Policy",
-    "haschild": false,
-    "content": "We want you to be completly satisfied with your purchase on Duqhan or any of our apps. Our 5-Star ",
-    "child": null
-  },
-  {
-    "id": 48,
-    "heading": "My order",
-    "haschild": true,
-    "content": null,
-    "child": [
-      {
-        "id": 49,
-        "heading": "Where is my stuff ?",
-        "haschild": true,
-        "content": null,
-        "child": [
-          {
-            "id": 50,
-            "heading": "check status of an order",
-            "haschild": false,
-            "content": null,
-            "child": null
-          },
-          {
-            "id": 51,
-            "heading": "track my package",
-            "haschild": false,
-            "content": null,
-            "child": null
-          },
-          {
-            "id": 52,
-            "heading": "shipment delayed",
-            "haschild": false,
-            "content": null,
-            "child": null
-          },
-          {
-            "id": 53,
-            "heading": "shipment late",
-            "haschild": false,
-            "content": null,
-            "child": null
-          },
-          {
-            "id": 54,
-            "heading": "shipment not received",
-            "haschild": false,
-            "content": null,
-            "child": null
-          },
-          {
-            "id": 55,
-            "heading": "other status questions",
-            "haschild": false,
-            "content": null,
-            "child": null
-          }
-        ]
-      },
-      {
-        "id": 56,
-        "heading": "problem with an order",
-        "haschild": true,
-        "content": null,
-        "child": [
-          {
-            "id": 57,
-            "heading": "How does my product work ?",
-            "haschild": false,
-            "content": null,
-            "child": null
-          },
-          {
-            "id": 58,
-            "heading": "Damaged item",
-            "haschild": false,
-            "content": null,
-            "child": null
-          },
-          {
-            "id": 59,
-            "heading": "item does not fit",
-            "haschild": false,
-            "content": null,
-            "child": null
-          },
-          {
-            "id": 60,
-            "heading": "wrong size",
-            "haschild": false,
-            "content": null,
-            "child": null
-          },
-          {
-            "id": 61,
-            "heading": "defective item",
-            "haschild": false,
-            "content": null,
-            "child": null
-          },
-          {
-            "id": 62,
-            "heading": "Missing item or parts",
-            "haschild": false,
-            "content": null,
-            "child": null
-          },
-          {
-            "id": 63,
-            "heading": "Wrong item",
-            "haschild": false,
-            "content": null,
-            "child": null
-          }
-        ]
-      },
-      {
-        "id": 64,
-        "heading": "Returns and refunds",
-        "haschild": true,
-        "content": null,
-        "child": [
-          {
-            "id": 65,
-            "heading": "Request a refund",
-            "haschild": false,
-            "content": null,
-            "child": null
-          },
-          {
-            "id": 66,
-            "heading": "Check status of a refund",
-            "haschild": false,
-            "content": null,
-            "child": null
-          },
-          {
-            "id": 67,
-            "heading": "other return issue",
-            "haschild": false,
-            "content": null,
-            "child": null
-          }
-        ]
-      },
-      {
-        "id": 68,
-        "heading": "Change an order",
-        "haschild": true,
-        "content": null,
-        "child": [
-          {
-            "id": 69,
-            "heading": "Cancel an order",
-            "haschild": false,
-            "content": null,
-            "child": null
-          },
-          {
-            "id": 70,
-            "heading": "Change delivery adderss",
-            "haschild": false,
-            "content": null,
-            "child": null
-          },
-          {
-            "id": 71,
-            "heading": "Change size and color",
-            "haschild": false,
-            "content": null,
-            "child": null
-          },
-          {
-            "id": 72,
-            "heading": "Orders order changes",
-            "haschild": false,
-            "content": null,
-            "child": null
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "id": 73,
+    "id": 30,
     "heading": "Payment Issue",
     "haschild": true,
     "content": null,
     "child": [
       {
-        "id": 74,
+        "id": 31,
         "heading": "Payment Declined",
         "haschild": false,
         "content": "Here are a few common reasons why your PAYPAL may have been declined. you have insufficient funds, also for your convenience ,your order will not go through if the product is unable to ship to your country",
         "child": null
       },
       {
-        "id": 75,
-        "heading": "Promotion not applied",
-        "haschild": false,
-        "content": null,
-        "child": null
-      },
-      {
-        "id": 76,
+        "id": 32,
         "heading": "Price Changed",
         "haschild": false,
         "content": "Many products on Duqhan are listed with various options for size and color and our marchanthave the option to sell these variations at different prices . Duqhan functions like a global shopping mall with stores around the worlds . different stores may have similar items for sale and each store may list those items at different prices this means that store compete to give you the best deals",
-        "child": null
-      },
-      {
-        "id": 77,
-        "heading": "Charged for unrecorded order",
-        "haschild": false,
-        "content": null,
-        "child": null
-      },
-      {
-        "id": 78,
-        "heading": "Other Payment issues",
-        "haschild": false,
-        "content": null,
-        "child": null
-      }
-    ]
-  },
-  {
-    "id": 79,
-    "heading": "My account setting",
-    "haschild": true,
-    "content": null,
-    "child": [
-      {
-        "id": 80,
-        "heading": "Account settings",
-        "haschild": true,
-        "content": null,
-        "child": [
-          {
-            "id": 81,
-            "heading": "Update Payment info",
-            "haschild": false,
-            "content": null,
-            "child": null
-          },
-          {
-            "id": 82,
-            "heading": "Update Shipping Address",
-            "haschild": false,
-            "content": null,
-            "child": null
-          },
-          {
-            "id": 83,
-            "heading": "Update Profile",
-            "haschild": false,
-            "content": null,
-            "child": null
-          },
-          {
-            "id": 84,
-            "heading": "Update Profile picture",
-            "haschild": false,
-            "content": null,
-            "child": null
-          },
-          {
-            "id": 85,
-            "heading": "Push notification",
-            "haschild": false,
-            "content": null,
-            "child": null
-          },
-          {
-            "id": 86,
-            "heading": "Email notification",
-            "haschild": false,
-            "content": null,
-            "child": null
-          },
-          {
-            "id": 87,
-            "heading": "Orders account update",
-            "haschild": false,
-            "content": null,
-            "child": null
-          }
-        ]
-      },
-      {
-        "id": 88,
-        "heading": "Password ,Email or login",
-        "haschild": false,
-        "content": null,
         "child": null
       }
     ]

@@ -1,6 +1,6 @@
 'use strict';
 angular.module('store')
-.controller('OrderHistoryCtrl', function ($log, $rootScope, $stateParams, Store) {
+.controller('OrderHistoryCtrl', function ($log, $rootScope, $stateParams, $scope, Store) {
 
   $log.log('Hello from your Controller: OrderHistoryCtrl in module store:. This is your controller:', this);
 
@@ -22,6 +22,22 @@ angular.module('store')
       } else {
         ctrl.orders = null;
       }
+    })
+    .catch(function (error) {
+      $log.log(error);
+    });
+  };
+
+  ctrl.cancelOrder = function (orderId) {
+    var order = {'orderId': orderId};
+    $log.log('hi');
+    Store.cancelOrd(order)
+    .then(function (response) {
+      $log.log(response);
+      var notification = {};
+      notification.type = 'success';
+      notification.text = 'We will process in next 7 working days';
+      $rootScope.$emit('setNotification', notification);
     })
     .catch(function (error) {
       $log.log(error);

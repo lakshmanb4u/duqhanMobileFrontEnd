@@ -2,7 +2,7 @@
 angular.module('store')
 .filter('cloudinaryThumbTransformation', function () {
   return function (input) {
-    return input.replace('upload/', 'upload/w_150,h_150,c_pad,b_white/');
+    return input.replace('upload/', 'upload/w_300,h_300,c_pad,b_white/');
   };
 })
 .filter('cloudinaryImageTransformation', function () {
