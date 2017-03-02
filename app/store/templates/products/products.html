@@ -24,5 +24,6 @@
       </div>
     </div>
     <div class="p-lg"></div>
+    <ion-infinite-scroll ng-if="!ctrl.noMoreItemsAvailable" on-infinite="ctrl.loadMore()" distance="1%" immediate-check="false"></ion-infinite-scroll>
   </ion-content>
 </ion-view>

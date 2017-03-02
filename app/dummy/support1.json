@@ -1,0 +1,219 @@
+[
+  {
+    "id": 1,
+    "heading": "Frequently Asked Question",
+    "haschild": true,
+    "content": null,
+    "child": [
+      {
+        "id": 2,
+        "heading": "Shipping and delivery",
+        "haschild": true,
+        "content": null,
+        "child": [
+          {
+            "id": 3,
+            "heading": "How Long does shipping take",
+            "haschild": false,
+            "content": "Orders typically ship within 1-2 days. Shipping times very based on the individual store and destination to view estimate shipping times for your orders,please visit the order history page.for more information .You can track your package delivery progress at any time fromthis area.",
+            "child": null
+          },
+          {
+            "id": 4,
+            "heading": "how can i track my order",
+            "haschild": false,
+            "content": "if you want to check the delivery status of your order ,you can find the most update tracking information by visiting the Orders history page Tap on to view yours order estimate date of arrival and tracking history .please note depending on how the marchant ships your order ,there may not be trackingin information available .if you have any other question about the status of your order ,you can contact our customer service team from your order history section",
+            "child": null
+          },
+          {
+            "id": 5,
+            "heading": "how much does shipping cost",
+            "haschild": false,
+            "content": "we strive to maintain low shipping costs .the shipping price associated with each item is displeyed at checkout .the cost varies depending on the size ,weight and destination of your order .since items may ship from multiple marchants shipping costs are applied separatly by item ordered",
+            "child": null
+          },
+          {
+            "id": 6,
+            "heading": "where does my order ship from",
+            "haschild": false,
+            "content": "Duqhan is a global platfrom .connecting customer with marchants.your order could ship from a variety of locations depending on marchant",
+            "child": null
+          }
+        ]
+      },
+      {
+        "id": 7,
+        "heading": "Return and Refunds",
+        "haschild": true,
+        "content": null,
+        "child": [
+          {
+            "id": 8,
+            "heading": "How do i return a product",
+            "haschild": false,
+            "content": "Unfortunately we currently do not offer",
+            "child": null
+          },
+          {
+            "id": 9,
+            "heading": "Can I exchange an item",
+            "haschild": false,
+            "content": "Unfortunately we currently do not offer item exchange",
+            "child": null
+          },
+          {
+            "id": 10,
+            "heading": "How do i cancel my order",
+            "haschild": false,
+            "content": "Unfortunately we currently do not offer cancel order",
+            "child": null
+          }
+        ]
+      },
+      {
+        "id": 13,
+        "heading": "Payment, Pricing & promotions",
+        "haschild": true,
+        "content": null,
+        "child": [
+          {
+            "id": 14,
+            "heading": "What Payment method does Duqhan accept",
+            "haschild": false,
+            "content": "We currency accept payments through the following Payment providers. PAYPAL - www.paypal.com/home . we can not accept cash ,bank transfer ,or Payment installments ",
+            "child": null
+          },
+          {
+            "id": 15,
+            "heading": "What currency does Duqhan sell in ?",
+            "haschild": false,
+            "content": "The order will be charged in INR and will be shown during checkout",
+            "child": null
+          },
+          {
+            "id": 16,
+            "heading": "Does Duqhan charge for customs taxes ,VAT ,or any other extra fees ?",
+            "haschild": false,
+            "content": "Duqhan only charges for purchase price and shipping rate .we do not collect any payment for customers ,taxes, VAT ,currency conversion rates ,or any other fees and can not reimburse any extra charges",
+            "child": null
+          },
+          {
+            "id": 17,
+            "heading": "How do i delete my credit card or payment information ?",
+            "haschild": false,
+            "content": "Your billing information is completely secure on paypal website",
+            "child": null
+          },
+          {
+            "id": 18,
+            "heading": "How do i get a free gift",
+            "haschild": false,
+            "content": "The free gift currently not available",
+            "child": null
+          }
+        ]
+      },
+      {
+        "id": 19,
+        "heading": "Orders",
+        "haschild": true,
+        "content": null,
+        "child": [
+          {
+            "id": 20,
+            "heading": "How do i get help with my order ?",
+            "haschild": false,
+            "content": "For assistance , please contact our Customer support team",
+            "child": null
+          },
+          {
+            "id": 21,
+            "heading": "Why is my order history empty ?",
+            "haschild": false,
+            "content": "If your order history is empty ,it probably means your charges were declined when you tried to place your order this means that we never actually accept payment for your order .if you do not see your purchase in order history please make sure you are loged into the correct account",
+            "child": null
+          },
+          {
+            "id": 22,
+            "heading": "Why did not my order go through ?",
+            "haschild": false,
+            "content": "if your order did not go through or does not appear in your order history ,it probably means your PAYPAL was declined ",
+            "child": null
+          },
+          {
+            "id": 23,
+            "heading": "Where can i find an invoice for my order",
+            "haschild": false,
+            "content": "You can find your  order invoice in your Orders history page",
+            "child": null
+          }
+        ]
+      },
+      {
+        "id": 24,
+        "heading": "Managing Your Account",
+        "haschild": true,
+        "content": null,
+        "child": [
+          {
+            "id": 25,
+            "heading": "How can i create account ?",
+            "haschild": false,
+            "content": "You can create account on Duqhan By using email address and facebook .we recommend using One of these Methods for a more personalized shopping experience ",
+            "child": null
+          },
+          {
+            "id": 26,
+            "heading": "How do i reset my password ?",
+            "haschild": false,
+            "content": "To change your password Please follow this step . Tap the menu at the top , left hand side of the screen tap my password then enter your oldpassword and new password then click on button",
+            "child": null
+          },
+          {
+            "id": 27,
+            "heading": "what if i forgot my password ?",
+            "haschild": false,
+            "content": "Reset your password , please follow this steps . Tap signin and forgot password to reset it ",
+            "child": null
+          },
+          {
+            "id": 28,
+            "heading": "what should i do if i think my account was hacked ?",
+            "haschild": false,
+            "content": "If you think your account was hacked , please contact your Customer support team",
+            "child": null
+          },
+          {
+            "id": 29,
+            "heading": "how do i delete my account?",
+            "haschild": false,
+            "content": "if your account is registered through facebook you can disable Duqhan facebook privilegs . open your facebook app - under the more icon select setting - account setting - select apps -select logged in with facebook -select Duqhan and remove app",
+            "child": null
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 30,
+    "heading": "Payment Issue",
+    "haschild": true,
+    "content": null,
+    "child": [
+      {
+        "id": 31,
+        "heading": "Payment Declined",
+        "haschild": false,
+        "content": "Here are a few common reasons why your PAYPAL may have been declined. you have insufficient funds, also for your convenience ,your order will not go through if the product is unable to ship to your country",
+        "child": null
+      },
+      {
+        "id": 32,
+        "heading": "Price Changed",
+        "haschild": false,
+        "content": "Many products on Duqhan are listed with various options for size and color and our marchanthave the option to sell these variations at different prices . Duqhan functions like a global shopping mall with stores around the worlds . different stores may have similar items for sale and each store may list those items at different prices this means that store compete to give you the best deals",
+        "child": null
+      }
+    ]
+  }
+]

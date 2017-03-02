@@ -29,6 +29,11 @@ angular.module('main', [
 })
 .run(function ($ionicPlatform, $log, $rootScope) {
   $ionicPlatform.ready( function () {
+    $log.log('Device details==================');
+    $log.log(ionic.Platform.platform());
+    $log.log(ionic.Platform.device());
+    $log.log(ionic.Platform.version());
+    $log.log(ionic.Platform.ua);
     if (window.cordova) {
       // eslint-disable-next-line no-undef
       FCMPlugin.onNotification( function (data) {

@@ -1,26 +1,32 @@
 'use strict';
 angular.module('store')
-.controller('OrderHistoryCtrl', function ($log, $rootScope, $stateParams, $scope, Store) {
+.controller('OrderHistoryCtrl', function ($log, $rootScope, $stateParams, $state, $scope, Store, Config) {
 
   $log.log('Hello from your Controller: OrderHistoryCtrl in module store:. This is your controller:', this);
 
   /* Storing contextual this in a variable for easy access */
 
   var ctrl = this;
+  ctrl.orders = [];
+  ctrl.start = 0;
+  ctrl.page = 0;
+  ctrl.noMoreItemsAvailable = false;
 
   /*=========================================
   =            Get order history            =
   =========================================*/
 
   ctrl.getOrderHistory = function () {
-    Store.getOrderHistory()
+    var param = {
+      start: ctrl.start + (ctrl.page * Config.ENV.PRODUCTS_PER_PAGE),
+      limit: Config.ENV.PRODUCTS_PER_PAGE,
+    };
+    Store.getOrderHistory(param)
     .then(function (response) {
-      $log.log('getOrderHistory');
-      $log.log(response.data.orderDetailsDtos);
-      if (response.data.orderDetailsDtos.length > 0) {
-        ctrl.orders = response.data.orderDetailsDtos;
-      } else {
-        ctrl.orders = null;
+      ctrl.orders = ctrl.orders.concat(response.data.orderDetailsDtos);
+      ctrl.page++;
+      if (response.data.orderDetailsDtos > 0) {
+        ctrl.noMoreItemsAvailable = false;
       }
     })
     .catch(function (error) {
@@ -48,10 +54,24 @@ angular.module('store')
 
   ctrl.getOrderHistory();
 
+  /*----------  Load more products  ----------*/
+  ctrl.loadMore = function () {
+    if (!ctrl.noMoreItemsAvailable) {
+      ctrl.noMoreItemsAvailable = true;
+      $scope.$broadcast('scroll.infiniteScrollComplete');
+      if ($state.current.name === 'store.orderhistory') {
+        ctrl.getOrderHistory();
+      }
+    }
+  };
+
   /*----------  call the function when user is in cart page  ----------*/
 
   $rootScope.$on('$stateChangeSuccess', function (event, toState) {
-    $log.log(event);
+    ctrl.orders = [];
+    ctrl.start = 0;
+    ctrl.page = 0;
+    ctrl.noMoreItemsAvailable = false;
     if (toState.name === 'store.orderhistory') {
       ctrl.getOrderHistory();
     }

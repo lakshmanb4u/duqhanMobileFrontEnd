@@ -26,10 +26,14 @@
       </div>
       <div class="item item-text-wrap">
         <div class="row">
-          <div class="col" ng-if="ctrl.order.trackerBean">
+<!--           <div class="col" ng-if="ctrl.order.trackerBean">
             <p ng-if="ctrl.order.trackerBean.status == 'delivered'">Delivered On</p>
             <p ng-if="!(ctrl.order.trackerBean.status == 'delivered')">Estimated Delivery</p>
             <h3>{{ctrl.order.trackerBean.estDeliveryDate | dateFilter2}}</h3>
+          </div> -->
+          <div class="col" ng-if="ctrl.order.status === 'approved'">
+            <p>Estimated Delivery</p>
+            <h3>{{ctrl.order.orderDate | dateFilter4}}</h3>
           </div>
           <div class="col">
             <p>Quantity</p>

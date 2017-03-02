@@ -10,6 +10,12 @@
           <p class="logo-text">Duqhan</p>
         </div>
       </ion-item>
+      
+      <ion-item class="item item-button">
+        <button class="button icon-left ion-social-facebook button-block button-facebook" ng-click="ctrl.facebookLogin()">
+          Login with Facebook
+        </button>
+      </ion-item>
 
       <form name="ctrl.loginForm" ng-submit="ctrl.login()" novalidate="">
         <ion-item class="item item-input" ng-class="{ 'has-errors' : ctrl.loginForm.email.$invalid, 'no-errors' : ctrl.loginForm.email.$valid}">
@@ -45,11 +51,6 @@
             Forgot Password?
           </button>
         </div>
-      </ion-item>
-      <ion-item class="item item-button">
-        <button class="button icon-left ion-social-facebook button-block button-facebook" ng-click="ctrl.facebookLogin()">
-          Login with Facebook
-        </button>
       </ion-item>
     </ion-list>
 

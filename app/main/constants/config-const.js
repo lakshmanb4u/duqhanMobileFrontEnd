@@ -16,7 +16,8 @@ angular.module('main')
       'CLOUD_NAME': 'duqhan',
       'API_KEY': '211572778157664',
       'API_SECRET': 'BjqvouftX41P4NHFbAEPFaBWFog'
-    }
+    },
+    'PRODUCTS_PER_PAGE': 6
     /*endinject*/
   },
 

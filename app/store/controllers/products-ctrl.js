@@ -5,8 +5,12 @@ angular.module('store')
   $rootScope,
   $timeout,
   $ImageCacheFactory,
+  $state,
+  $scope,
+  $ionicScrollDelegate,
   BusyLoader,
-  Store
+  Store,
+  Config
 ) {
 
   /* Storing contextual this in a variable for easy access */
@@ -22,6 +26,9 @@ angular.module('store')
   /*----------  Initialize products object  ----------*/
 
   ctrl.products = [];
+  ctrl.start = 0;
+  ctrl.page = 0;
+  ctrl.noMoreItemsAvailable = false;
 
   /*----------  Get list of products from backend  ----------*/
 
@@ -37,7 +44,17 @@ angular.module('store')
       return;
     })
     .then(function () {
-      ctrl.products = products;
+      /* Randoize items */
+      if (!productsParam.isRecent) {
+        products.sort(function () {
+          return .5 - Math.random();
+        });
+      }
+      ctrl.products = ctrl.products.concat(products);
+      ctrl.page++;
+      if (products.length > 0) {
+        ctrl.noMoreItemsAvailable = false;
+      }
       BusyLoader.hide();
     })
     .catch(function (response) {
@@ -48,14 +65,24 @@ angular.module('store')
   /*----------  Get latest products  ----------*/
 
   ctrl.loadLatestProductList = function () {
-    var productsParam = {};
+    var productsParam = {
+      start: ctrl.start + (ctrl.page * Config.ENV.PRODUCTS_PER_PAGE),
+      limit: Config.ENV.PRODUCTS_PER_PAGE,
+      isRecent: false,
+      categoryId: null
+    };
     ctrl.loadProductList(productsParam);
   };
 
   /*----------  Get recently viewd products  ----------*/
 
   ctrl.loadRecentlyViewedProductList = function () {
-    var productsParam = {isRecent: true};
+    var productsParam = {
+      start: ctrl.start + (ctrl.page * Config.ENV.PRODUCTS_PER_PAGE),
+      limit: Config.ENV.PRODUCTS_PER_PAGE,
+      isRecent: true,
+      categoryId: null
+    };
     ctrl.loadProductList(productsParam);
   };
 
@@ -66,6 +93,19 @@ angular.module('store')
     ctrl.loadProductList(productsParam);
   };
 
+  /*----------  Load more products  ----------*/
+  ctrl.loadMore = function () {
+    if (!ctrl.noMoreItemsAvailable) {
+      ctrl.noMoreItemsAvailable = true;
+      $scope.$broadcast('scroll.infiniteScrollComplete');
+      if ($state.current.name === 'store.products.recent') {
+        ctrl.loadRecentlyViewedProductList();
+      } else if ($state.current.name === 'store.products.latest') {
+        ctrl.loadLatestProductList();
+      }
+    }
+  };
+
   /*----------  call the function at the time of initialization  ----------*/
 
   ctrl.loadLatestProductList();
@@ -73,7 +113,11 @@ angular.module('store')
   /*----------  Get the latest or recent products depending on which page user is in  ----------*/
 
   $rootScope.$on('$stateChangeSuccess', function (event, toState) {
+    $ionicScrollDelegate.scrollTop();
     ctrl.products = [];
+    ctrl.start = 0;
+    ctrl.page = 0;
+    ctrl.noMoreItemsAvailable = false;
     $log.log('toState:', toState);
     if (toState.name === 'store.products.recent') {
       $log.log('Load recent list');

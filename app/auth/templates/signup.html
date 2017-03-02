@@ -10,6 +10,12 @@
           <p class="logo-text">Duqhan</p>
         </div>
       </ion-item>
+      
+      <ion-item class="item item-button">
+        <button class="button icon-left ion-social-facebook button-block button-facebook" ng-click="ctrl.facebookLogin()">
+          Login with Facebook
+        </button>
+      </ion-item>
 
       <form name="ctrl.signupForm" ng-submit="ctrl.signup()" novalidate="">
         <ion-item class="item item-input" ng-class="{ 'has-errors' : ctrl.signupForm.name.$invalid, 'no-errors' : ctrl.signupForm.name.$valid}">
@@ -53,11 +59,6 @@
             Already use Duqhan?
           </button>
         </div>
-      </ion-item>
-      <ion-item class="item item-button">
-        <button class="button icon-left ion-social-facebook button-block button-facebook" ng-click="ctrl.facebookLogin()">
-          Login with Facebook
-        </button>
       </ion-item>
     </ion-list>
 

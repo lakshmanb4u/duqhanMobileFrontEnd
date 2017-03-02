@@ -129,8 +129,8 @@ angular.module('store')
         return data;
       }});
     },
-    getOrderHistory: function () {
-      return $http.post(Config.ENV.SERVER_URL + 'user/get-order-details', {transformResponse: function (response) {
+    getOrderHistory: function (param) {
+      return $http.post(Config.ENV.SERVER_URL + 'user/get-order-details', param, {transformResponse: function (response) {
         var data = JSON.parse(response);
         return data;
       }});
@@ -142,10 +142,10 @@ angular.module('store')
       }});
     },
     getFAQ: function () {
-      return $http.get('dummy/support.json');
+      return $http.get('http://res.cloudinary.com/duqhan/raw/upload/v1488292076/support/support.json');
     },
     cancelOrd: function (order) {
-      return $http.post(Config.ENV.SERVER_URL + 'user/cancel-order', order , {transformResponse: function (response) {
+      return $http.post(Config.ENV.SERVER_URL + 'user/cancel-order', order, {transformResponse: function (response) {
         var data = JSON.parse(response);
         return data;
       }});

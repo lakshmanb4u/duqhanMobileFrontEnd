@@ -34,6 +34,7 @@
           No item found in that name. Try something else. 
         </div>
       </div>
+      <ion-infinite-scroll ng-if="!ctrl.noMoreItemsAvailable" on-infinite="ctrl.loadMore()" distance="1%" immediate-check="false"></ion-infinite-scroll>
       <div class="p-lg"></div>
     </ion-content>
   </ion-pane>

@@ -1,6 +1,6 @@
 'use strict';
 angular.module('store')
-.controller('ProductsByCategoryCtrl', function ($log, $stateParams, $state, Product) {
+.controller('ProductsByCategoryCtrl', function ($log, $stateParams, $state, $rootScope, $scope, $ionicScrollDelegate, Product, Config) {
 
   $log.log('Hello from your Controller: ProductsByCategoryCtrl in module store:. This is your controller:', this);
 
@@ -12,6 +12,13 @@ angular.module('store')
 
   ctrl.categoryId = $stateParams.categoryId;
 
+  /*----------  Initialize products object  ----------*/
+
+  ctrl.products = [];
+  ctrl.start = 0;
+  ctrl.page = 0;
+  ctrl.noMoreItemsAvailable = false;
+
   /*=================================================
   =            Show products by category            =
   =================================================*/
@@ -19,10 +26,23 @@ angular.module('store')
   /*----------  Get products by category  ----------*/
 
   ctrl.loadProductListByCategory = function () {
-    var productsParam = {categoryId: ctrl.categoryId};
+    var productsParam = {
+      start: ctrl.start + (ctrl.page * Config.ENV.PRODUCTS_PER_PAGE),
+      limit: Config.ENV.PRODUCTS_PER_PAGE,
+      isRecent: false,
+      categoryId: ctrl.categoryId
+    };
     Product.getProductList(productsParam)
     .then(function (data) {
-      ctrl.products = data.products;
+      /* Randoize items */
+      data.products.sort(function () {
+        return .5 - Math.random();
+      });
+      ctrl.products = ctrl.products.concat(data.products);
+      ctrl.page++;
+      if (data.products.length > 0) {
+        ctrl.noMoreItemsAvailable = false;
+      }
       ctrl.productCategory = data.categoryName;
     })
     .catch(function (response) {
@@ -30,11 +50,35 @@ angular.module('store')
     });
   };
 
+  /*----------  Load more products  ----------*/
+  ctrl.loadMore = function () {
+    if (!ctrl.noMoreItemsAvailable) {
+      ctrl.noMoreItemsAvailable = true;
+      $scope.$broadcast('scroll.infiniteScrollComplete');
+      if ($state.current.name === 'store.productsByCategory') {
+        ctrl.loadProductListByCategory();
+      }
+    }
+  };
+
   /*----------  call the function at the time of initialization  ----------*/
 
   if ($state.current.name === 'store.productsByCategory') {
     ctrl.loadProductListByCategory();
   }
+
+  /*----------  Get the products depending on which page user is in  ----------*/
+
+  $rootScope.$on('$stateChangeSuccess', function (event, toState) {
+    $ionicScrollDelegate.scrollTop();
+    ctrl.products = [];
+    ctrl.start = 0;
+    ctrl.page = 0;
+    ctrl.noMoreItemsAvailable = false;
+    if (toState.name === 'store.productsByCategory') {
+      ctrl.loadProductListByCategory();
+    }
+  });
 
   /*=====  End of Show products by category  ======*/
 

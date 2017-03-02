@@ -9,4 +9,14 @@ angular.module('store')
   return function (input) {
     return moment(input, 'DD/MM/YYYY').format('Do MMM');
   };
+})
+.filter('dateFilter3', function (moment) {
+  return function (input) {
+    return moment(input, 'DD/MM/YYYY').add(21, 'days').format('ddd, MMM Do, YYYY');
+  };
+})
+.filter('dateFilter4', function (moment) {
+  return function (input) {
+    return moment(input, 'DD/MM/YYYY').add(21, 'days').format('Do MMM');
+  };
 });
