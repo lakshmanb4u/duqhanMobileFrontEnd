@@ -6,7 +6,7 @@ angular.module('store')
     if (input.status === 'created') {
       status = 'Waiting for Payment Approval';
     } else if (input.status === 'approved') {
-      status = 'Shipped';
+      status = 'Order Complete';
       // status = input.trackerBean.status;
     }
     return status;

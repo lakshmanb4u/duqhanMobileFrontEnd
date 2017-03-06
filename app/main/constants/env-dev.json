@@ -4,12 +4,15 @@
   "USER": {
     "AUTH_TOKEN": null,
     "NAME": "",
-    "PROFILE_IMG": ""
+    "PROFILE_IMG": "",
+    "LATITUDE": null,
+    "LONGITUDE": null,
+    "USER_AGENT": null
   },
   "CLOUDINARY": {
     "CLOUD_NAME": "duqhan",
     "API_KEY": "211572778157664",
     "API_SECRET": "BjqvouftX41P4NHFbAEPFaBWFog"
   },
-  "PRODUCTS_PER_PAGE": 6
+  "PRODUCTS_PER_PAGE": 10
 }

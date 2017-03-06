@@ -74,7 +74,10 @@
       </div>
     </div>
     <button class="button button-block button-positive" ng-if="ctrl.order.status === 'approved'" ng-click="ctrl.cancelOrder(ctrl.order.orderId)">
-       Return
+       Return Item
+    </button>
+    <button class="button button-block button-stable" ng-if="(ctrl.order.status === 'approved') && (ctrl.order.returnStatus === 'requested')">
+       Return Request Submitted
     </button>
     <div class="duqhan-guarantee">
       <div class="stamp-wraper">

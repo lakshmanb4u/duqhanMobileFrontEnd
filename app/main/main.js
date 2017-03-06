@@ -18,7 +18,7 @@ angular.module('main', [
 .config(function ($ionicCloudProvider) {
   $ionicCloudProvider.init({
     'core': {
-      'app_id': '53b31d77'
+      'app_id': 'ad64e5e2'
     },
     'auth': {
       'facebook': {

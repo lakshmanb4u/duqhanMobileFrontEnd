@@ -216,16 +216,18 @@ angular.module('store')
     .then(function (response) {
       $log.log(response);
       $rootScope.$emit('getCartTotalNumber');
-      $state.go('store.orderhistory');
       var notification = {};
       if (response.data.status === 'approved') {
+        $state.go('store.orderhistory');
         notification.type = 'success';
         notification.text = 'Item purchased successfully.';
         $rootScope.$emit('setNotification', notification);
       } else if (response.data.status === 'retry') {
+        $state.go('store.cart');
         notification.type = 'failure';
         notification.text = 'Something went wrong. Please try again.';
       } else {
+        $state.go('store.cart');
         notification.type = 'failure';
         notification.text = 'We did not recieved the payment . Please try again.';
       }

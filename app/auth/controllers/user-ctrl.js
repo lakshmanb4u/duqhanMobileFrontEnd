@@ -9,6 +9,7 @@ angular.module('main')
   $ionicAuth,
   $ionicFacebookAuth,
   $ionicUser,
+  $cordovaGeolocation,
   Config,
   Auth,
   BusyLoader,
@@ -32,8 +33,44 @@ angular.module('main')
     userId: ''
   };
 
+  ctrl.loggingUser = {};
+
+  var posOptions = {timeout: 1000, enableHighAccuracy: false};
+  $cordovaGeolocation
+  .getCurrentPosition(posOptions)
+  .then(function (position) {
+    $log.log('Geolocation = ');
+    $log.log(position);
+    Config.ENV.USER.LATITUDE = position.coords.latitude;
+    Config.ENV.USER.LONGITUDE = position.coords.longitude;
+  },
+  function (err) {
+    $log.log('Geolocation error = ');
+    $log.log(err);
+  });
+
   ctrl.internalLogin = function (user) {
-    Firebase.includeFCMToken(user)
+    BusyLoader.show();
+    var posOptions = {timeout: 1000, enableHighAccuracy: false};
+    $cordovaGeolocation.getCurrentPosition(posOptions)
+    .then(function (position) {
+      $log.log('Geolocation = ');
+      $log.log(position);
+      Config.ENV.USER.LATITUDE = position.coords.latitude;
+      Config.ENV.USER.LONGITUDE = position.coords.longitude;
+      user.latitude = Config.ENV.USER.LATITUDE;
+      user.longitude = Config.ENV.USER.LONGITUDE;
+      user.userAgent = ionic.Platform.ua;
+      return Firebase.includeFCMToken(user);
+    },
+    function (err) {
+      $log.log('Geolocation error = ');
+      $log.log(err);
+      user.latitude = Config.ENV.USER.LATITUDE;
+      user.longitude = Config.ENV.USER.LONGITUDE;
+      user.userAgent = ionic.Platform.ua;
+      return Firebase.includeFCMToken(user);
+    })
     .then(function (user) {
       return Auth.login(user);
     })
@@ -49,6 +86,7 @@ angular.module('main')
       Config.ENV.USER.PROFILE_IMG = response.data.profileImg;
       $rootScope.$emit('setUserDetailForMenu');
       $localStorage.savedUser = JSON.stringify(ctrl.savedUser);
+      BusyLoader.hide();
       $state.go('store.products.latest');
       //$location.path('/store/products/latest');
     })
@@ -60,6 +98,7 @@ angular.module('main')
       } else {
         ctrl.responseCB = 'Something went wrong. Please try again.';
       }
+      BusyLoader.hide();
       $state.go('landing');
     });
   };
@@ -68,7 +107,20 @@ angular.module('main')
     BusyLoader.show();
     $log.log('facebookLogin');
     var img = null;
-    $ionicFacebookAuth.login()
+    var posOptions = {timeout: 1000, enableHighAccuracy: false};
+    $cordovaGeolocation.getCurrentPosition(posOptions)
+    .then(function (position) {
+      $log.log('Geolocation = ');
+      $log.log(position);
+      Config.ENV.USER.LATITUDE = position.coords.latitude;
+      Config.ENV.USER.LONGITUDE = position.coords.longitude;
+      return $ionicFacebookAuth.login();
+    },
+    function (err) {
+      $log.log('Geolocation error = ');
+      $log.log(err);
+      return $ionicFacebookAuth.login();
+    })
     .then(function () {
       $log.log('FB data ================');
       $log.log($ionicUser.social.facebook);
@@ -76,6 +128,9 @@ angular.module('main')
       fbUser.email = $ionicUser.social.facebook.data.email;
       fbUser.name = $ionicUser.social.facebook.data.full_name;
       fbUser.fbid = $ionicUser.social.facebook.uid;
+      fbUser.latitude = Config.ENV.USER.LATITUDE;
+      fbUser.longitude = Config.ENV.USER.LONGITUDE;
+      fbUser.userAgent = ionic.Platform.ua;
       img = $ionicUser.social.facebook.data.profile_picture;
       $log.log('FB picture ================');
       $log.log(img);
@@ -100,6 +155,7 @@ angular.module('main')
       $log.log('FB picture ================');
       $log.log(img);
       $localStorage.savedUser = JSON.stringify(ctrl.savedUser);
+      BusyLoader.hide();
       $state.go('store.products.latest');
     })
     .catch(function (error) {
@@ -111,9 +167,11 @@ angular.module('main')
   };
 
   ctrl.autoLogin = function () {
+    BusyLoader.show();
     var savedUser = $localStorage.savedUser;
     $log.log(savedUser);
     if (!savedUser) {
+      BusyLoader.hide();
       return;
     }
 
@@ -148,11 +206,13 @@ angular.module('main')
           $log.log('FB picture ================');
           $log.log(img);
           $localStorage.savedUser = JSON.stringify(ctrl.savedUser);
+          BusyLoader.hide();
           $state.go('store.products.latest');
         })
         .catch(function (error) {
           $log.log(error);
           $localStorage.$reset();
+          BusyLoader.hide();
           $state.go('landing');
         });
       } else {

@@ -67,6 +67,6 @@
     ]
   },
   "dependencies": {
-    "@ionic/cloud": "^0.14.1"
+    "@ionic/cloud": "^0.16.0"
   }
 }

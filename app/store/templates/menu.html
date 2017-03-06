@@ -65,9 +65,9 @@
         <ion-item menu-close ui-sref="store.products.latest">
           Latest
         </ion-item>
-        <ion-item menu-close ui-sref="store.products.recent">
+<!--         <ion-item menu-close ui-sref="store.products.recent">
           Recent
-        </ion-item>
+        </ion-item> -->
         <ion-item menu-close ng-repeat="m in menu.topLevelMenu" ui-sref="store.productsByCategory({categoryId: m.categoryId})">
           {{m.categoryName}}
         </ion-item>
@@ -97,7 +97,7 @@
         </ion-item>
       </ion-list>
       <div class="menu-footer p-md text-center energized">
-        <p class="m-none">Version - 1.0.1</p>
+        <p class="m-none">Version - 1.0.3</p>
       </div>
     </ion-content>
   </ion-side-menu>
