@@ -33,10 +33,12 @@ angular.module('store')
   /*----------  Get list of products from backend  ----------*/
 
   ctrl.loadProductList = function (productsParam) {
+    if (ctrl.products.length === 0) {
+      BusyLoader.show();
+    }
     var products = [];
     Store.getProducts(productsParam)
     .then(function (response) {
-      BusyLoader.show();
       $log.log(response);
       products = response.data.products;
       ctrl.productCategory = response.data.categoryName;
@@ -59,6 +61,7 @@ angular.module('store')
     })
     .catch(function (response) {
       $log.log(response);
+      BusyLoader.hide();
     });
   };
 
@@ -83,13 +86,6 @@ angular.module('store')
       isRecent: true,
       categoryId: null
     };
-    ctrl.loadProductList(productsParam);
-  };
-
-  /*----------  Get products by category  ----------*/
-
-  ctrl.loadProductListByCategory = function () {
-    var productsParam = {categoryId: 11};
     ctrl.loadProductList(productsParam);
   };
 

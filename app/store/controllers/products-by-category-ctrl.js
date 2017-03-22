@@ -1,6 +1,6 @@
 'use strict';
 angular.module('store')
-.controller('ProductsByCategoryCtrl', function ($log, $stateParams, $state, $rootScope, $scope, $ionicScrollDelegate, Product, Config) {
+.controller('ProductsByCategoryCtrl', function ($log, $stateParams, $state, $rootScope, $scope, $ionicScrollDelegate, Product, Config, BusyLoader) {
 
   $log.log('Hello from your Controller: ProductsByCategoryCtrl in module store:. This is your controller:', this);
 
@@ -32,6 +32,9 @@ angular.module('store')
       isRecent: false,
       categoryId: ctrl.categoryId
     };
+    if (ctrl.products.length === 0) {
+      BusyLoader.show();
+    }
     Product.getProductList(productsParam)
     .then(function (data) {
       /* Randoize items */
@@ -44,9 +47,11 @@ angular.module('store')
         ctrl.noMoreItemsAvailable = false;
       }
       ctrl.productCategory = data.categoryName;
+      BusyLoader.hide();
     })
     .catch(function (response) {
       $log.log(response);
+      BusyLoader.hide();
     });
   };
 

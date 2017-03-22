@@ -18,29 +18,30 @@
       </ion-item>
 
       <form name="ctrl.loginForm" ng-submit="ctrl.login()" novalidate="">
-        <ion-item class="item item-input" ng-class="{ 'has-errors' : ctrl.loginForm.email.$invalid, 'no-errors' : ctrl.loginForm.email.$valid}">
-          <i class="icon ion-ios-person-outline placeholder-icon"></i>
-          <input name="email" type="email" placeholder="E-Mail" ng-model="ctrl.user.email" required="">
-        </ion-item>
-        <div class="error-container" ng-show="ctrl.loginForm.email.$error && ctrl.loginForm.$submitted" ng-messages="ctrl.loginForm.email.$error">
-          <div ng-messages-include="error-list.html"></div>
-        </div>
+        <div ng-hide="ctrl.buttonView">
+          <ion-item class="item item-input" ng-class="{ 'has-errors' : ctrl.loginForm.email.$invalid, 'no-errors' : ctrl.loginForm.email.$valid}">
+            <i class="icon ion-ios-person-outline placeholder-icon"></i>
+            <input name="email" type="email" placeholder="E-Mail" ng-model="ctrl.user.email" required="">
+          </ion-item>
+          <div class="error-container" ng-show="ctrl.loginForm.email.$error && ctrl.loginForm.$submitted" ng-messages="ctrl.loginForm.email.$error">
+            <div ng-messages-include="error-list.html"></div>
+          </div>
 
-        <ion-item class="item item-input" ng-class="{ 'has-errors' : ctrl.loginForm.password.$invalid, 'no-errors' : ctrl.loginForm.password.$valid}">
-          <i class="icon ion-ios-locked-outline placeholder-icon"></i>
-          <input name="password" type="password" placeholder="Password" ng-model="ctrl.user.password" required="">
-        </ion-item>
-        <div class="error-container" ng-show="ctrl.loginForm.password.$error && ctrl.loginForm.$submitted" ng-messages="ctrl.loginForm.password.$error">
-          <div ng-messages-include="error-list.html"></div>
-        </div>
+          <ion-item class="item item-input" ng-class="{ 'has-errors' : ctrl.loginForm.password.$invalid, 'no-errors' : ctrl.loginForm.password.$valid}">
+            <i class="icon ion-ios-locked-outline placeholder-icon"></i>
+            <input name="password" type="password" placeholder="Password" ng-model="ctrl.user.password" required="">
+          </ion-item>
+          <div class="error-container" ng-show="ctrl.loginForm.password.$error && ctrl.loginForm.$submitted" ng-messages="ctrl.loginForm.password.$error">
+            <div ng-messages-include="error-list.html"></div>
+          </div>
 
-        <div class="error server-side text-center m-t-md" ng-show="ctrl.responseCB && ctrl.loginForm.$submitted">
-          <i class="ion-information-circled"></i> {{ctrl.responseCB}}
+          <div class="error server-side text-center m-t-md" ng-show="ctrl.responseCB && ctrl.loginForm.$submitted">
+            <i class="ion-information-circled"></i> {{ctrl.responseCB}}
+          </div>
         </div>
-
         <ion-item class="item item-button">
-          <button class="button button-block button-positive">
-            Login
+          <button class="button button-email button-block button-positive" ng-class="{'icon-left ion-email' : (ctrl.buttonView === true)}">
+            {{ctrl.loginButtonText}}
           </button>
         </ion-item>
       </form>
@@ -52,6 +53,9 @@
           </button>
         </div>
       </ion-item>
+
+      <ion-item class="item item-divider">
+        <h2 class="text-center tagline">Free shipping and free returns</h2>
     </ion-list>
 
     <div class="list" ng-if="ctrl.user.resultType">

@@ -5,7 +5,7 @@
     <!-- content goes here -->
     <ion-slide-box delegate-handle="image-viewer" show-pager="true" class="m-t-md">
         <ion-slide ng-repeat="i in ctrl.product.images">
-            <img src="{{i.imgUrl || 'store/assets/images/default.jpg' | cloudinaryImageTransformation}}" style="margin:auto; display:block" >
+            <img src="{{i.imgUrl || 'store/assets/images/default.jpg' | cloudinaryImageTransformation}}">
         </ion-slide>
     </ion-slide-box>
     <div class="product-brief p-sm">
@@ -16,6 +16,22 @@
       <div class="size-wrapper m-b-md" ng-show="ctrl.product.description">
         <div class="values">Description</div>
         <div class="">{{ctrl.product.description}}</div>
+      </div>
+      <div class="size-wrapper m-b-md" ng-show="ctrl.product.specifications">
+        <!--<div class="values">Specification</div>-->
+        <ion-list class="product-specification">
+          <ion-item class="item-divider">
+            Specification
+          </ion-item>
+          <ion-item ng-repeat="(key, value) in ctrl.product.specifications">
+            {{key}}
+            <span class="item-note">{{value}}</span>
+          </ion-item>
+        </ion-list>
+        <!--<div class="row m-b-xs" ng-repeat="(key, value) in ctrl.product.specifications">
+          <div class="col title">{{key}}</div>
+          <div class="col text-capitalize">{{value}}</div>
+        </div>-->
       </div>
       <div class="size-wrapper m-b-md" ng-show="ctrl.product.sizeArr">
         <div class="row m-b-xs">
@@ -35,9 +51,9 @@
           <div class="col title">Estimated Arrival</div>
           <!-- <div class="col link text-right" ui-sref="store.shipping">Details</div> -->
         </div>
-        <div class="values">3 Weeks</div>
+        <div class="values">3-4 Weeks</div>
       </div>
-      <div class="shipping-cost-wrapper m-b-md">
+      <div class="shipping-cost-wrapper m-b-md hidden">
         <div class="row m-b-xs">
           <div class="col title">Estimated Shipping</div>
           <!-- <div class="col link text-right" ui-sref="store.shipping">Details</div> -->

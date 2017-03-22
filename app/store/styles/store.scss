@@ -92,6 +92,18 @@ $assertive:                       #ef473a !default;
   .product-tab-content {
     top: 35px;
 
+    .slider {
+      .slider-slides {
+        ion-slide {
+          img {
+            margin: auto;
+            display: block;
+            width: 100%;
+          }
+        }
+      }
+    }
+
     .products-row {
       flex-wrap: wrap;
     }
@@ -129,6 +141,13 @@ $assertive:                       #ef473a !default;
 
       .values {
         font-family: "Facit Regular";
+      }
+
+      .product-specification {
+        .item {
+          font-size: 14px;
+          padding: 10px;
+        }
       }
     }
   }

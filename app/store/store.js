@@ -229,31 +229,12 @@ angular.module('store', [
         }
       }
     })
-
-    .state('store.list', {
-      url: '/list',
+    .state('store.contactus', {
+      url: '/contactus',
       views: {
         'storeContent': {
-          templateUrl: 'store/templates/list.html',
-          // controller: '<someCtrl> as ctrl'
-        }
-      }
-    })
-    .state('store.listDetail', {
-      url: '/list/detail',
-      views: {
-        'storeContent': {
-          templateUrl: 'store/templates/list-detail.html',
-          // controller: '<someCtrl> as ctrl'
-        }
-      }
-    })
-    .state('store.debug', {
-      url: '/debug',
-      views: {
-        'storeContent': {
-          templateUrl: 'store/templates/debug.html',
-          controller: 'StoreDebugCtrl as ctrl'
+          templateUrl: 'store/templates/contactus.html',
+          controller: 'ContactusCtrl as ctrl'
         }
       }
     });

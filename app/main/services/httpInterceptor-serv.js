@@ -4,7 +4,9 @@ angular.module('main')
 
   return {
     request: function (config) {
-      BusyLoader.show();
+      if (!(config.url.indexOf(Config.ENV.SERVER_URL + 'user/get-product') === 0)) {
+        BusyLoader.show();
+      }
       if (!Config.ENV.USER.AUTH_TOKEN) {
         var savedUser = $localStorage.savedUser;
         if (savedUser && JSON.parse(savedUser)) {
@@ -24,7 +26,9 @@ angular.module('main')
       // if (res.config.url.indexOf(Config.ENV.SERVER_URL + 'login') === 0 && res.data) {
       //   Config.ENV.USER.AUTH_TOKEN = data.authtoken;
       // }
-      BusyLoader.hide();
+      if (!(res.config.url.indexOf(Config.ENV.SERVER_URL + 'user/get-product') === 0)) {
+        BusyLoader.hide();
+      }
       return res;
     },
     requestError: function (err) {

@@ -7,6 +7,6 @@ angular.module('store')
 })
 .filter('cloudinaryImageTransformation', function () {
   return function (input) {
-    return input.replace('upload/', 'upload/h_320,c_pad,b_white/');
+    return input.replace('upload/', 'upload/w_768,h_768,c_pad,b_white/');
   };
 });

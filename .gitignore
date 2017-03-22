@@ -30,6 +30,8 @@
 
 # vscode
 /.vscode/
+/typings/
+jsconfig.json
 
 # webstorm
 /.idea/workspace.xml
