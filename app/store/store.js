@@ -37,7 +37,7 @@ angular.module('store', [
     })
     .state('store.products.latest', {
       url: '/latest',
-      // cache: false,
+      cache: true,
       views: {
         'latestProductsContent': {
           templateUrl: 'store/templates/products/products.html'

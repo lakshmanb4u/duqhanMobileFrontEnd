@@ -83,7 +83,7 @@ angular.module('store')
   ctrl.addToBag = function (product) {
     ctrl.productSelected = {};
     ctrl.productSelected.productId = product.productId;
-    $log.log(product);
+    // $log.log(product);
     if (!product.sizes || !product.sizes.length > 0) {
       return;
     }
@@ -102,7 +102,7 @@ angular.module('store')
 
   ctrl.addToBagPersist = function (productSelected, product) {
     // delete productSelected.size;
-    $log.log(ctrl.productSelected);
+    // $log.log(ctrl.productSelected);
 
     Store.addToCart(productSelected)
     .then(function (response) {
@@ -133,7 +133,7 @@ angular.module('store')
   ctrl.openModal = function (productSelected, product) {
     ctrl.productSelected = productSelected;
     ctrl.product = product;
-    $log.log(ctrl.product);
+    $log.log('productSelected======');
     $log.log(ctrl.productSelected);
     ctrl.modal.show();
   };

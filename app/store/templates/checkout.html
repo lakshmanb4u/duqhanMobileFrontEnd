@@ -15,7 +15,7 @@
           <button class="button button-block button-stable m-none" ng-click="ctrl.changeAddress()">
             <span ng-show="ctrl.address">Change address</span>
             <span ng-hide="ctrl.address">Select address</span>
-          </button>                           
+          </button>
         </div>
       </div>
     </ion-list>
@@ -31,7 +31,8 @@
           <span>Qty: {{p.qty}}</span>
         </p>
         <h3>Rs.{{p.discountedPrice * p.qty}} <span class="discounted-price">Rs.{{p.price * p.qty}}</span> <span class="discount-percentage">{{p.discountPCT| number : 0}}% off</span></h3>
-        <p>Delivery: <span>Rs.{{p.shippingRate | number : 0}} ({{p.shippingTime}} days)</span></p>
+        <!--<p>Delivery: <span>Rs.{{p.shippingRate | number : 0}} ({{p.shippingTime}} days)</span></p>-->
+        <p>Free Shipping <span>(estimated {{p.shippingTime}} days)</span></p>
       </div>
     </ion-list>
 

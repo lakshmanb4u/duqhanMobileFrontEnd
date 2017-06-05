@@ -4,9 +4,9 @@
 
     <!-- content goes here -->
     <ion-slide-box delegate-handle="image-viewer" show-pager="true" class="m-t-md">
-        <ion-slide ng-repeat="i in ctrl.product.images">
-            <img src="{{i.imgUrl || 'store/assets/images/default.jpg' | cloudinaryImageTransformation}}">
-        </ion-slide>
+      <ion-slide ng-repeat="i in ctrl.product.images">
+        <img src="{{i.imgUrl || 'store/assets/images/default.jpg' | cloudinaryImageTransformation}}">
+      </ion-slide>
     </ion-slide-box>
     <div class="product-brief p-sm">
       <h1 class="product-name">{{ctrl.product.name}}</h1>
@@ -24,7 +24,7 @@
             Specification
           </ion-item>
           <ion-item ng-repeat="(key, value) in ctrl.product.specifications">
-            {{key}}
+            {{key.replace('-', ' ')}}
             <span class="item-note">{{value}}</span>
           </ion-item>
         </ion-list>
@@ -42,7 +42,7 @@
       </div>
       <div class="color-wrapper m-b-md" ng-show="ctrl.product.colorArr">
         <div class="row m-b-xs">
-          <div class="col title">Colors</div>
+          <div class="col title">Options</div>
         </div>
         <div class="values">{{ctrl.product.colorArr}}</div>
       </div>

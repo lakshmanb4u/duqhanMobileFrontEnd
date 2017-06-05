@@ -12,12 +12,12 @@
         </span>
       </a>
 
-      <a class="item">
+      <!--<a class="item">
         Estimated Shipping
         <span class="item-note">
           Rs.{{ctrl.getShippingTotal() || 0}}
         </span>
-      </a>
+      </a>-->
 
       <a class="item positive">
         Discount {{ctrl.getDiscountPctTotal()| number : 0 || 0}}%
@@ -31,6 +31,10 @@
         <span class="item-note">
           Rs.{{ctrl.getOrderTotal() || 0}}
         </span>
+      </a>
+
+      <a class="item item-divider">
+        Free Shipping
       </a>
     </div>
     <div class="card" ng-hide="ctrl.cart.products">
@@ -46,7 +50,8 @@
             <span ng-if="p.size">Size: {{p.size}}, </span>
             <span ng-if="p.color">Color: {{p.color}}</span>
           </p>
-          <p>Shipping: <span>Rs.{{p.shippingRate}} ({{p.shippingTime}} days)</span></p>
+          <!--<p>Shipping: <span>Rs.{{p.shippingRate}} ({{p.shippingTime}} days)</span></p>-->
+          <p>Free Shipping <span>(estimated {{p.shippingTime}} days)</span></p>
         </div>
         <div class="col col-25 text-center">
           <img src="{{p.imgurl || 'store/assets/images/default.jpg'}}">
