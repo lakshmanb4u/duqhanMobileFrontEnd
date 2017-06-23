@@ -1,21 +1,41 @@
 <ion-view view-title="Contact Us">
   <!-- do you want padding? -->
   <ion-content class="padding">
+    <p>We would love to hear from you. Please provide us your valuable feedback. You can also contact us if you are facing problem accessing the site. Please select appropriate subject and send it to us.</p>
     <form name="ctrl.ContactForm" ng-submit="ctrl.ContactUs()" novalidate="">
-      <label class = "item item-input item-select">
+      <label class="item item-input item-select">
        <div class = "input-label">
           Subject
        </div>
         <select ng-model="ctrl.statusCode" 
-        ng-options="count.id as count.name for count in ctrl.countList">
+        ng-options="count.name as count.name for count in ctrl.countList">
         </select>
       </label>
       <label class="item item-input">
-        <textarea placeholder="Messege" ng-model="ctrl.Contact.status" ></textarea>
+        <textarea placeholder="Messege" ng-model="ctrl.Contact.status" style="height: 73px;"></textarea>
       </label>
       <button class="button button-full button-positive">
         Contact Us
       </button>
     </form>
+    <ion-list>
+      <ion-item class="item item-divider">
+        Where you can find us?
+      </ion-item>
+      <ion-item class="item item-icon-left item-text-wrap">
+        <i class="icon ion-location"></i>
+        <h2>DUQHAN E-COMMERCE INDIA PRIVATE LIMITED</h2>
+        <p>16-11-20/e/2, SALEEM NAGAR, HYDERABAD, Hyderabad,</p>
+        <p>Telangana,</p>
+        <p>India</p>
+        <p>500036</p>
+      </ion-item>
+      <!--<ion-item class="item item-icon-left">
+            <i class="icon ion-iphone"></i> 00112696770
+          </ion-item>-->
+      <ion-item class="item item-icon-left">
+        <i class="icon ion-email"></i> admin@duqhan.com
+      </ion-item>
+    </ion-list>
   </ion-content>
 </ion-view>

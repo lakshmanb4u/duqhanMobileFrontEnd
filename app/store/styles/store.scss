@@ -176,10 +176,19 @@ $assertive: #ef473a !default;
 }
 
 .add-to-bag {
-  height: 200px;
+  height: auto;
   bottom: 0;
-  min-height: 200px;
+  min-height: auto;
   top: inherit;
+  .bar {
+    &.bar-header {
+      position: relative;
+    }
+  }
+  ion-content {
+    position: relative;
+    top: 0;
+  }
 }
 
 // Cart Page
@@ -527,6 +536,14 @@ $assertive: #ef473a !default;
     }
     h2 {
       margin-bottom: 5px;
+    }
+  }
+}
+
+.bar {
+  .title {
+    &.title-left {
+      text-transform: uppercase;
     }
   }
 }

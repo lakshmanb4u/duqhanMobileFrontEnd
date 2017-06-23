@@ -50,3 +50,25 @@ or by typing the following commands before you commit:
 gulp --cordova "platform save"
 gulp --cordova "plugin save"
 ```
+
+## Release Process
+
+### Build Release APK
+```sh
+gulp --cordova "build --release android"
+```
+
+### Sign Release APK
+Go to
+C:\Program Files\Java\jdk1.8.0_66\bin
+```sh
+jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore duqhan-release-key.keystore duqhan-release-unsigned.apk duqhan
+```
+
+
+### Align Release APK
+Go to
+C:\Users\CLB\AppData\Local\Android\sdk\build-tools\23.0.3
+```sh
+zipalign -v 4 duqhan-release-unsigned.apk duqhan-release-signed-1.0.8.apk
+```
