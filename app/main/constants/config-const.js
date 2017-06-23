@@ -5,12 +5,22 @@ angular.module('main')
   // gulp environment: injects environment vars
   ENV: {
     /*inject-env*/
-    'SERVER_URL': 'http://sample-env.qtbvngb2iz.us-west-2.elasticbeanstalk.com/',
-    'SOME_OTHER_URL': 'https://echo.getpostman.com/',
+    'SERVER_URL': 'http://duqhan-api.aq3cm3hjga.us-east-1.elasticbeanstalk.com/',
+    'SOME_OTHER_URL': 'http://custom-env.qtbvngb2iz.us-west-2.elasticbeanstalk.com/',
     'USER': {
       'AUTH_TOKEN': null,
-      'NAME': ''
-    }
+      'NAME': '',
+      'PROFILE_IMG': '',
+      'LATITUDE': null,
+      'LONGITUDE': null,
+      'USER_AGENT': null
+    },
+    'CLOUDINARY': {
+      'CLOUD_NAME': 'duqhan',
+      'API_KEY': '211572778157664',
+      'API_SECRET': 'BjqvouftX41P4NHFbAEPFaBWFog'
+    },
+    'PRODUCTS_PER_PAGE': 20
     /*endinject*/
   },
 
@@ -19,5 +29,4 @@ angular.module('main')
     /*inject-build*/
     /*endinject*/
   }
-
 });

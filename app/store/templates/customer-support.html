@@ -1,0 +1,17 @@
+<ion-view view-title="Support">
+  <!-- do you want padding? -->
+  <ion-content>
+    <ion-list ng-repeat="faq in ctrl.faqs">
+      <ion-item class="item-text-wrap" ui-sref="store.customersupport({p: faq.child})" ng-if="faq.haschild">
+        <h2>{{faq.heading}}</h2>
+      </ion-item>
+      <ion-item class="item-text-wrap" ng-if="!faq.haschild && faq.id != 35">
+        <h2>{{faq.heading}}</h2>
+        <p>{{faq.content}}</p>
+      </ion-item>
+      <ion-item class="item-text-wrap" ng-if="!faq.haschild && faq.id == 35" ui-sref="store.contactus">
+        <h2>{{faq.heading}}</h2>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-view>

@@ -1,6 +1,6 @@
 'use strict';
 angular.module('store')
-.controller('CartCtrl', function ($log, $rootScope, Store) {
+.controller('CartCtrl', function ($log, $rootScope, $cordovaInAppBrowser, Store, Common) {
 
   /* Storing contextual this in a variable for easy access */
 
@@ -50,5 +50,113 @@ angular.module('store')
     return new Array(num);
   };
 
+  /*----------  Get shipping total  ----------*/
+
+  ctrl.getShippingTotal = function () {
+    var cartShippingTotal = 0;
+    angular.forEach(ctrl.cart.products, function (item) {
+      cartShippingTotal += item.shippingRate;
+    });
+    return cartShippingTotal;
+  };
+
+  /*----------  Get item total (calculate this manually so that we can change it when user change the quantity)  ----------*/
+
+  ctrl.getCartItemTotal = function () {
+    var cartItemTotal = 0;
+    angular.forEach(ctrl.cart.products, function (item) {
+      cartItemTotal += item.price * item.qty;
+    });
+    return cartItemTotal;
+  };
+
+  /*----------  Get order total (calculate this manually so that we can change it when user change the quantity)  ----------*/
+
+  ctrl.getOrderTotal = function () {
+    var cartorderTotal = 0;
+    angular.forEach(ctrl.cart.products, function (item) {
+      cartorderTotal += item.discountedPrice * item.qty;
+    });
+    return cartorderTotal + ctrl.getShippingTotal();
+  };
+
+  /*----------  Get discount total (calculate this manually so that we can change it when user change the quantity)  ----------*/
+
+  ctrl.getDiscountTotal = function () {
+    var cartItemTotal = 0, cartorderTotal = 0;
+    angular.forEach(ctrl.cart.products, function (item) {
+      cartItemTotal += item.price * item.qty;
+      cartorderTotal += item.discountedPrice * item.qty;
+    });
+    return (cartItemTotal - cartorderTotal);
+  };
+
+  /*----------  Get discount percentage (calculate this manually so that we can change it when user change the quantity)  ----------*/
+
+  ctrl.getDiscountPctTotal = function () {
+    var cartItemTotal = 0, cartorderTotal = 0;
+    angular.forEach(ctrl.cart.products, function (item) {
+      cartItemTotal += item.price * item.qty;
+      cartorderTotal += item.discountedPrice * item.qty;
+    });
+    return ((cartItemTotal - cartorderTotal) / cartItemTotal) * 100;
+  };
+
   /*=====  End of show cart page items  ======*/
+
+  /*========================================
+  =            Remove from cart            =
+  ========================================*/
+
+  ctrl.removeFromCart = function (p) {
+    $log.log(p);
+    var title = 'Are you sure?', cancelText = 'No', okText = 'Yes';
+    Common.getConfirmation(title, cancelText, okText)
+    .then(function (response) {
+      if (response) {
+        var item = {};
+        item.cartId = p.cartId;
+        item.mapId = p.sizeColorMapId;
+
+        Store.removeFromCart(item)
+        .then(function (response) {
+          $log.log(response.data);
+          $rootScope.$emit('getCartTotalNumber');
+          var notification = {};
+          notification.type = 'success';
+          notification.text = 'Item removed successfully';
+          $rootScope.$emit('setNotification', notification);
+          ctrl.loadCartItems();
+        })
+        .catch(function (response) {
+          $log.log(response);
+        });
+      }
+    })
+    .catch(function (response) {
+      $log.log(response);
+    });
+
+  };
+
+  /*=====  End of Remove from cart  ======*/
+
+  ctrl.testBrowser = function () {
+    $log.log('hello');
+    var options = {
+      EnableViewPortScale: 'yes',
+      transitionstyle: 'fliphorizontal',
+      toolbarposition: 'top',
+      closebuttoncaption: 'BACK',
+      location: 'yes'
+    };
+    $cordovaInAppBrowser.open('http://www.google.com/', '_blank', options)
+    .then(function (event) {
+      $log.log(event);
+    })
+    .catch(function (event) {
+      $log.log(event);
+    });
+  };
+
 });

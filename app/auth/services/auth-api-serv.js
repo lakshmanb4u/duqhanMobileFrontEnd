@@ -13,8 +13,8 @@ angular.module('auth')
       return $http.post(Config.ENV.SERVER_URL + 'signup', user);
     },
 
-    requestPasswordReset: function (email) {
-      return $http.post(Config.ENV.SERVER_URL + 'request-password-reset', email);
+    requestPasswordReset: function (user) {
+      return $http.post(Config.ENV.SERVER_URL + 'request-password-reset', user);
     },
 
     confirmPasswordReset: function (user) {

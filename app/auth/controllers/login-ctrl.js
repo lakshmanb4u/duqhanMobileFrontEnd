@@ -7,12 +7,20 @@ angular.module('auth')
 
   var ctrl = this;
 
+  ctrl.buttonView = true;
+  ctrl.loginButtonText = 'Login with Email';
+
   $log.log('Hello from your Controller: LoginCtrl in module auth:. ctrl is your controller:', ctrl);
 
   ctrl.login = function () {
-    ctrl.responseCB = '';
-    if (ctrl.loginForm.$valid) {
-      $rootScope.$emit('internalLogin', ctrl.user);
+    if (ctrl.buttonView) {
+      ctrl.buttonView = false;
+      ctrl.loginButtonText = 'Login';
+    } else {
+      ctrl.responseCB = '';
+      if (ctrl.loginForm.$valid) {
+        $rootScope.$emit('internalLogin', ctrl.user);
+      }
     }
   };
 

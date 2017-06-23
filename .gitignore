@@ -5,8 +5,9 @@
 
 # npm & bower
 /node_modules/
-/app/bower_components/
-!bower_components/ionic.cloud.min.js
+/app/bower_components/*
+!/app/bower_components/ionic-cloud/
+!/app/bower_components/jshashes/
 
 # custom gulp settings
 /gulp/.gulp_settings.json
@@ -18,7 +19,6 @@
 /platforms/
 /plugins/
 /res/*/current/
-/resources
 
 # build folder
 /www/**
@@ -30,6 +30,8 @@
 
 # vscode
 /.vscode/
+/typings/
+jsconfig.json
 
 # webstorm
 /.idea/workspace.xml

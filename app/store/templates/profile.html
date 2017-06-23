@@ -3,45 +3,85 @@
   <ion-content class="padding">
     <ion-list class="list-inset">
       <ion-item class="item-image profile-image" menu-close>
-        <img src="store/assets/images/user.png">
+        <img src="{{ctrl.user.profileImg || 'store/assets/images/user.png'}}" ng-click="ctrl.openImageSourceSelector()">
         <em>Tap the image to change</em>
       </ion-item>
-      <form ng-submit="ctrl.updateUserProfile()">
-        <ion-item class="item item-input">
+      <form name="ctrl.updateUserProfileForm" ng-submit="ctrl.updateProfileDetails()" novalidate="" >
+
+        <ion-item class="item item-input" ng-class="{ 'has-errors' : ctrl.updateUserProfileForm.name.$invalid, 'no-errors' : ctrl.updateUserProfileForm.name.$valid}">
           <i class="icon ion-ios-person-outline placeholder-icon"></i>
-          <input name="name" type="text" placeholder="Name">
+          <input name="name" type="text" placeholder="Name" ng-model="ctrl.user.name" required="" >
         </ion-item>
-        <ion-item class="item item-input">
-          <i class="icon ion-ios-telephone-outline placeholder-icon"></i>
-          <input name="mobile" type="tel" placeholder="Mobile">
-        </ion-item>
-        <ion-item class="item item-input">
+        <div class="error-container" ng-show="ctrl.updateUserProfileForm.name.$error && ctrl.updateUserProfileForm.$submitted" ng-messages="ctrl.updateUserProfileForm.name.$error">
+          <div ng-messages-include="error-list.html"></div>
+        </div>
+
+        <ion-item class="item item-input" ng-class="{ 'has-errors' : ctrl.updateUserProfileForm.email.$invalid, 'no-errors' : ctrl.updateUserProfileForm.email.$valid}">
           <i class="icon ion-ios-email-outline placeholder-icon"></i>
-          <input name="email" type="email" placeholder="E-Mail">
+          <input name="email" type="email" placeholder="E-Mail" ng-model="ctrl.user.email" required="" >
         </ion-item>
+        <div class="error-container" ng-show="ctrl.updateUserProfileForm.email.$error && ctrl.updateUserProfileForm.$submitted" ng-messages="ctrl.updateUserProfileForm.email.$error">
+          <div ng-messages-include="error-list.html"></div>
+        </div>
+
+        <ion-item class="item item-input" ng-class="{ 'has-errors' : ctrl.updateUserProfileForm.mobile.$invalid, 'no-errors' : ctrl.updateUserProfileForm.mobile.$valid}">
+          <i class="icon ion-ios-telephone-outline placeholder-icon"></i>
+          <input name="mobile" type="number" placeholder="Mobile" ng-model="ctrl.user.mobile" ng-minlength="10" ng-maxlength="10" >
+        </ion-item>
+        <div class="error-container" ng-show="ctrl.updateUserProfileForm.mobile.$error && ctrl.updateUserProfileForm.$submitted" ng-messages="ctrl.updateUserProfileForm.mobile.$error">
+          <div ng-messages-include="error-list.html"></div>
+        </div>
+
         <ion-item class="item item-input">
           <i class="icon ion-ios-people-outline placeholder-icon"></i>
-          <ion-radio ng-model="choice" ng-value="'Male'">Male</ion-radio>
-          <ion-radio ng-model="choice" ng-value="'Female'">Female</ion-radio>
+          <ion-radio ng-model="ctrl.user.gender" ng-value="'M'">Male</ion-radio>
+          <ion-radio ng-model="ctrl.user.gender" ng-value="'F'">Female</ion-radio>
         </ion-item>
-        <div class="item item-input item-datepicker" ion-datetime-picker date  ng-model="ctrl.register.dob">
+
+<!--         <div class="item item-input item-datepicker" ion-datetime-picker date ng-model="ctrl.user.dob">
           <i class="icon ion-ios-calendar-outline placeholder-icon"></i>
-          {{ctrl.register.dob| date: "dd/MM/yyyy"}}
-          <span class="input-label placeholder-icon" style="font-size: 12px !important;" ng-hide="ctrl.register.dob">Date of Birth</span>
-<!--           <input class="item colorForInput" type="text" id="datepicker1" name="dob" ion-datetime-picker date  ng-model="ctrl.register.dob" value="{{ctrl.register.dob}}"> -->
-          
+          {{ctrl.user.dob| date: "dd/MM/yyyy"}}
+          <span class="input-label placeholder-icon" style="font-size: 12px !important;" ng-hide="ctrl.user.dob">Date of Birth</span>
+        </div> -->
+
+        <div ng-click="ctrl.openDatePicker()" class="item item-input item-datepicker" ng-model="ctrl.user.dob">
+          <i class="icon ion-ios-calendar-outline placeholder-icon"></i>
+          {{ctrl.user.dob| date: "dd/MM/yyyy"}}
+          <span class="input-label placeholder-icon" style="font-size: 12px !important;" ng-hide="ctrl.user.dob2">Date of Birth</span>
         </div>
-        
+
         <ion-item class="item item-button">
           <button class="button button-block button-positive" >
             Update
           </button>
         </ion-item>
+
       </form>
-      <ion-item class="item item-divider">
-        <div class="">
-        </div>
+      <ion-item class="item item-button" ng-show="!ctrl.user.socialLogin">
+        <button class="button button-block button-clear button-positive" ui-sref="store.changepassword">
+          Change My Password
+        </button>
       </ion-item>
     </ion-list>
+
   </ion-content>
 </ion-view>
+
+<script id="error-list.html" type="text/ng-template">  
+  <div class="error" ng-message="required">
+    <i class="ion-information-circled"></i> 
+    This field is required!
+  </div>
+  <div class="error" ng-message="email">
+    <i class="ion-information-circled"></i> 
+    This is not a valid email!
+  </div>
+  <div class="error" ng-message="number">
+    <i class="ion-information-circled"></i> 
+    This is not a valid mobile number!
+  </div>
+  <div class="error" ng-message="minlength maxlength">
+    <i class="ion-information-circled"></i> 
+    Mobile number should be 10 digits!
+  </div>
+</script>

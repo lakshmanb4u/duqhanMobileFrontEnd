@@ -11,19 +11,34 @@
       </ion-nav-back-button>
       <!-- nav button, shown if applicable -->
       <ion-nav-buttons side="left">
-        <button class="button button-icon button-clear ion-navicon" menu-toggle="left">
+        <button class="button button-icon button-clear ion-navicon" menu-toggle="primary">
         </button>
       </ion-nav-buttons>
       <ion-nav-buttons side="right">
+        <button class="button button-small button-icon button-clear ion-ios-home-outline larger-icon" ui-sref="store.products.latest">
+        </button>
         <button class="button button-small button-icon button-clear ion-bag" ui-sref="store.cart">
           <span class="badge badge-assertive header-badge" ng-show="menu.cartTotalNumber>0">{{menu.cartTotalNumber}}</span>
         </button>
-        <button class="button button-small button-icon button-clear ion-levels">
-        </button>
-        <button class="button button-small button-icon button-clear ion-ios-search">
+        <!--         <button class="button button-small button-icon button-clear ion-levels">
+        </button> -->
+        <button class="button button-small button-icon button-clear ion-ios-search larger-icon" ng-click="menu.toggleSearchBar()">
         </button>
       </ion-nav-buttons>
     </ion-nav-bar>
+    <div class="notification animated bounceInDown" ng-show="menu.notification.type" ng-class="{'success': menu.notification.type == 'success' , 'failure': menu.notification.type == 'failure'}">{{menu.notification.text}}</div>
+    <div class="bar bar-header item-input search-bar" ng-show="$root.searcBarActive">
+      <form class="item item-input-inset animated slideInLeft" ng-submit="menu.searchProduct()">
+        <label class="item-input-wrapper">
+          <i class="icon ion-ios-search placeholder-icon"></i>
+          <input ng-model="menu.searchText" type="text" placeholder="Search products" focus-me autofocus>
+        </label>
+        <button class="button button-clear">
+          Go
+        </button>
+      </form>
+      <div class="search-bar-backdrop animated fadeIn" ng-click="menu.toggleSearchBar()"></div>
+    </div>
 
     <!-- ROUTING INJECTED HERE: storeContent -->
     <ion-nav-view name="storeContent"></ion-nav-view>
@@ -41,28 +56,64 @@
     <!-- menu content -->
     <ion-content>
       <ion-list>
-        <ion-item class="item-image menu-image" menu-close>
-          <img src="store/assets/images/user.png">
+        <ion-item class="item-image menu-image">
+
+          <img src="{{menu.profileImage || 'store/assets/images/user.png'}}">
+
           <h2>{{menu.username}}</h2>
         </ion-item>
-        <ion-item menu-close ui-sref="store.profile">
-          Profile
-        </ion-item>
         <ion-item menu-close ui-sref="store.products.latest">
-          Products
+          Latest
         </ion-item>
-<!--         <ion-item menu-close ui-sref="store.list">
-          List
-        </ion-item>
-        <ion-item menu-close ui-sref="store.debug">
-          Debug
+        <!--         <ion-item menu-close ui-sref="store.products.recent">
+          Recent
         </ion-item> -->
+        <ion-item menu-close ng-repeat="m in menu.topLevelMenu" ui-sref="store.productsByCategory({categoryId: m.categoryId})">
+          {{m.categoryName}}
+        </ion-item>
+        <ion-item class="item-divider">
+          Settings
+        </ion-item>
+        <ion-item menu-close ui-sref="store.profile">
+          My Profile
+        </ion-item>
+        <ion-item menu-close ui-sref="store.changepassword">
+          My Password
+        </ion-item>
+        <ion-item menu-close ui-sref="store.myaddress">
+          My Addresses
+        </ion-item>
+        <ion-item menu-close ui-sref="store.cart">
+          My Cart
+        </ion-item>
+        <ion-item menu-close ui-sref="store.orderhistory">
+          My Orders
+        </ion-item>
+        <ion-item menu-close ui-sref="store.customersupport">
+          Customer Support
+        </ion-item>
+        <ion-item menu-close ui-sref="store.aboutus">
+          About Us
+        </ion-item>
+        <ion-item menu-close ui-sref="store.contactus">
+          Contact Us
+        </ion-item>
+        <ion-item menu-close ui-sref="store.returnpolicy">
+          Return Policy
+        </ion-item>
+        <ion-item menu-close ui-sref="store.privacyPolicy">
+          Privacy Policy
+        </ion-item>
+        <ion-item menu-close ui-sref="store.termsConditions">
+          Terms & Conditions
+        </ion-item>
         <ion-item menu-close ng-click="menu.logout()">
           Logout
         </ion-item>
       </ion-list>
+      <div class="menu-footer p-md text-center energized">
+        <p class="m-none">Version - 1.0.6</p>
+      </div>
     </ion-content>
-
   </ion-side-menu>
-
 </ion-side-menus>

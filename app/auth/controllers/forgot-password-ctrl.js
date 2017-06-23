@@ -4,6 +4,8 @@ angular.module('auth')
 	$log,
 	$location,
 	$ionicAuth,
+  $state,
+  $stateParams,
   Auth
   ) {
 
@@ -19,10 +21,13 @@ angular.module('auth')
   ctrl.requestPasswordReset = function () {
     ctrl.responseCB = '';
     if (ctrl.requestPasswordResetForm.$valid) {
-      Auth.requestPasswordReset(ctrl.user.email)
+      var user = {};
+      user.email = ctrl.user.email;
+      Auth.requestPasswordReset(user)
       .then(function (response) {
         $log.log(response);
-        $location.path('/change-password');
+        $state.go('change-password', { email: response.data.email });
+        // $location.path('/change-password');
       })
       .catch(function (response) {
         $log.log(response);
@@ -33,6 +38,7 @@ angular.module('auth')
   ctrl.confirmPasswordReset = function () {
     ctrl.responseCB = '';
     if (ctrl.confirmPasswordResetForm.$valid) {
+      ctrl.user.email = $stateParams.email;
       ctrl.user.newPassword = ctrl.user.newPassword;
       Auth.confirmPasswordReset(ctrl.user)
       .then(function (response) {

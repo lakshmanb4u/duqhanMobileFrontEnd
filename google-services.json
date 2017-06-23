@@ -1,0 +1,73 @@
+{
+  "project_info": {
+    "project_number": "386843608193",
+    "firebase_url": "https://duqhan-c78d0.firebaseio.com",
+    "project_id": "duqhan-c78d0",
+    "storage_bucket": "duqhan-c78d0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:386843608193:android:a55e2a1ba1b351ce",
+        "android_client_info": {
+          "package_name": "com.weavers.duqhan"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "386843608193-22f6ukrqj4vsg5jnqn617eonl7mf2hb5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBNVH30B93NNSr7_wTOnRUj3P_QoqVT4vs"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:386843608193:android:1a45c10af8ef5cf9",
+        "android_client_info": {
+          "package_name": "com.duqhan.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "386843608193-22f6ukrqj4vsg5jnqn617eonl7mf2hb5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBNVH30B93NNSr7_wTOnRUj3P_QoqVT4vs"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

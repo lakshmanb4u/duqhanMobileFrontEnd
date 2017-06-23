@@ -5,34 +5,37 @@
     <!-- content goes here -->
     <div class="list summary">
 
-      <a class="item" href="#">
+      <a class="item">
         Item Total
         <span class="item-note">
-          Rs.{{ctrl.cart.itemTotal || 0.00}}
+          Rs.{{ctrl.getCartItemTotal() || 0}}
         </span>
       </a>
 
-      <a class="item" href="#">
+      <!--<a class="item">
         Estimated Shipping
         <span class="item-note">
-          Rs.0
+          Rs.{{ctrl.getShippingTotal() || 0}}
         </span>
-      </a>
+      </a>-->
 
-      <a class="item positive" href="#">
-        Discount {{ctrl.cart.discountPctTotal| number : 0 || 0}}%
+      <a class="item positive">
+        Discount {{ctrl.getDiscountPctTotal()| number : 0 || 0}}%
         <span class="item-note">
-          - Rs.{{ctrl.cart.discountTotal || 0.00}}
+          - Rs.{{ctrl.getDiscountTotal() || 0}}
         </span>
       </a>
 
-      <a class="item" href="#">
+      <a class="item">
         Order Total
         <span class="item-note">
-          Rs.{{ctrl.cart.orderTotal || 0.00}}
+          Rs.{{ctrl.getOrderTotal() || 0}}
         </span>
       </a>
 
+      <a class="item item-divider">
+        Free Shipping
+      </a>
     </div>
     <div class="card" ng-hide="ctrl.cart.products">
       <div class="item item-text-wrap">
@@ -47,12 +50,11 @@
             <span ng-if="p.size">Size: {{p.size}}, </span>
             <span ng-if="p.color">Color: {{p.color}}</span>
           </p>
-          <p>Shipping: <span>$4 (Jan 26 - Feb 5)</span></p>
-
+          <!--<p>Shipping: <span>Rs.{{p.shippingRate}} ({{p.shippingTime}} days)</span></p>-->
+          <p>Free Shipping <span>(estimated {{p.shippingTime}} days)</span></p>
         </div>
-        <div class="col col-25 text-right">
-          <img src="{{p.imgurl}}">
-          
+        <div class="col col-25 text-center">
+          <img src="{{p.imgurl || 'store/assets/images/default.jpg'}}">
         </div>
       </div>
       <div class="row product m-b-xs">
@@ -62,7 +64,7 @@
               <div class="input-label">
                 Qty
               </div>
-              <select>
+              <select ng-model="p.qty">
                 <option ng-repeat="i in ctrl.getAvailability(p.available) track by $index">{{$index+1}}</option>
               </select>
             </label>
@@ -72,22 +74,29 @@
           <h3><span>Rs.{{p.price}}</span> Rs.{{p.discountedPrice}}</h3>
         </div>
       </div>
-      <button class="button button-full button-stable m-none">
+      <button class="button button-full button-stable m-none" ng-click="ctrl.removeFromCart(p)">
         <i class="ion-close-circled m-r-xs"></i> Remove
       </button>
     </div>
+    <div class="duqhan-guarantee">
+      <div class="stamp-wraper">
+        <p>We guarantee a safe and secure shopping experience so you never have to worry.</p>
+      </div>
+    </div>
+    <div class="p-xs"></div>
   </ion-content>
   <ion-footer-bar class="cart-footer">
     <div class="row m-none p-none">
       <div class="col text-center">
-        <h3>Rs.{{ctrl.cart.orderTotal || 0}}</h3>
+        <h3>Rs.{{ctrl.getOrderTotal() || 0}}</h3>
         <button class="button button-clear button-small button-light return-policy-button" ui-sref="store.returnpolicy">
           Return Policy
         </button>
       </div>
       <div class="col text-right">
         <div class="button-bar">
-          <button class="button button-positive add-cart-button">Checkout</button>
+          <!-- <button class="button button-positive add-cart-button" ng-click="ctrl.testBrowser()">Checkout</button> -->
+          <button class="button button-positive add-cart-button" ui-sref="store.checkout({cart: ctrl.cart})">Checkout</button>
         </div>
       </div>
     </div>

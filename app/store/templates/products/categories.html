@@ -1,0 +1,20 @@
+<ion-view view-title="Duqhan">
+  <!-- do you want padding? -->
+  <ion-content>
+
+    <!-- content goes here -->
+    <ion-list>
+      <ion-item ng-repeat="c in ctrl.categories" class="item item-button-right">
+        <div ui-sref="store.productsByCategory({categoryId: c.categoryId})" style="text-decoration: underline;">{{c.categoryName}}</div>
+        <button class="button button-positive" ui-sref="store.categories({categoryId: c.categoryId})" ng-if="!c.isLeaf">
+          <i class="icon ion-arrow-right-c"></i>
+        </button>
+      </ion-item>
+    </ion-list>
+    <div class="card" ng-hide="ctrl.categories">
+      <div class="item item-text-wrap">
+        No more subcategory available.
+      </div>
+    </div>
+  </ion-content>
+</ion-view>

@@ -320,10 +320,29 @@ $font-family-base:                "Facit Light" !default;
 .text-italic {
   font-style: italic;
 }
+.text-capitalize {
+  text-transform: capitalize;
+}
 .has-footer.has-tabs {
   bottom: 89px;
 }
 
+.pull-right {
+  float: right;
+}
+
+.hidden {
+  display: none;
+}
+
+.b-t-n {
+  border-top-width: 0px !important;
+}
+
+.item h2.tagline {
+  margin-top: 40px;
+  font-size: 20px;
+}
 
 // Buttons
 // -------------------------------
@@ -362,6 +381,13 @@ $button-bar-button-height:        32px !default;
       margin-right: -10px;
     }
   }
+
+  &.button-email {
+    &:before {
+      margin-left: 10px;
+      margin-right: -10px;
+    }
+  }
 }
 
 
@@ -384,6 +410,12 @@ $bar-title-font-size:             17px !default;
         &.icon-right:before {
           vertical-align: top;
           font-size: $button-icon-size;
+          line-height: $button-bar-button-height;
+        }
+
+        &.larger-icon:before {
+          vertical-align: top;
+          font-size: $button-icon-size + 5;
           line-height: $button-bar-button-height;
         }
 

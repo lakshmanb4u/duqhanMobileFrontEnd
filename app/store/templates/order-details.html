@@ -1,0 +1,88 @@
+<ion-view view-title="Order Details">
+  <!-- do you want padding? -->
+  <ion-content class="padding order-detail">
+
+    <!-- content goes here -->
+    <div class="card">
+      <div class="item item-divider">
+        <div class="row p-none">
+          <div class="col p-none">
+            <p class="m-n">{{ctrl.order.orderId}}</p>
+          </div>
+          <div class="col p-none">
+            <p class="text-right m-n">{{ctrl.order.orderDate | dateFilter1}}</p>
+          </div>
+        </div>
+      </div>
+      <div class="item item-text-wrap">
+        <h2>{{ctrl.order.productName}}</h2>
+        <p>
+          <span ng-if="ctrl.order.size">Size: {{ctrl.order.size}}, </span>
+          <span ng-if="ctrl.order.color">Color: {{ctrl.order.color}}</span>
+        </p>
+      </div>
+      <div class="item item-image">
+        <img src="{{ctrl.order.prodImg}}">
+      </div>
+      <div class="item item-text-wrap">
+        <div class="row">
+<!--           <div class="col" ng-if="ctrl.order.trackerBean">
+            <p ng-if="ctrl.order.trackerBean.status == 'delivered'">Delivered On</p>
+            <p ng-if="!(ctrl.order.trackerBean.status == 'delivered')">Estimated Delivery</p>
+            <h3>{{ctrl.order.trackerBean.estDeliveryDate | dateFilter2}}</h3>
+          </div> -->
+          <div class="col" ng-if="ctrl.order.status === 'approved'">
+            <p>Estimated Delivery</p>
+            <h3>{{ctrl.order.orderDate | dateFilter4}}</h3>
+          </div>
+          <div class="col">
+            <p>Quantity</p>
+            <h3>{{ctrl.order.quty}}</h3>
+          </div>
+          <div class="col">
+            <p>Price</p>
+            <h3>Rs. {{ctrl.order.paymentAmount}}</h3>
+          </div>
+        </div>
+      </div>
+      <div class="item item-text-wrap">
+        <p class="text-italic balanced">Offer: You have saved Rs. {{ctrl.order.price - ctrl.order.paymentAmount}} with this purchase.</p>
+      </div>
+      <div class="item item-text-wrap backdrop-layer text-capitalize">
+        {{ctrl.order | orderStatusFilter}}
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="item item-divider">
+        <div class="row p-none">
+          <div class="col p-none">
+            <p class="m-n">Delivery Address</p>
+          </div>
+        </div>
+      </div>
+      <div class="item item-text-wrap">
+        <h2>{{ctrl.order.addressDto.contactName}}</h2>
+      </div>
+      <div class="item item-icon-left item-text-wrap">
+        <i class="icon ion-ios-telephone"></i>
+        <p>{{ctrl.order.addressDto.phone}}</p>
+      </div>
+      <div class="item item-icon-left item-text-wrap">
+        <i class="icon ion-ios-location"></i>
+        <p>{{ctrl.order.addressDto.streetOne}}, {{ctrl.order.addressDto.streetTwo}}, {{ctrl.order.addressDto.city}}, {{ctrl.order.addressDto.state}} - {{ctrl.order.addressDto.zipCode}}</p>
+      </div>
+    </div>
+    <button class="button button-block button-positive" ng-if="ctrl.order.status === 'approved'" ng-click="ctrl.cancelOrder(ctrl.order.orderId)">
+       Return Item
+    </button>
+    <button class="button button-block button-stable" ng-if="(ctrl.order.status === 'approved') && (ctrl.order.returnStatus === 'requested')">
+       Return Request Submitted
+    </button>
+    <div class="duqhan-guarantee">
+      <div class="stamp-wraper">
+        <p>We guarantee a safe and secure shopping experience so you never have to worry.</p>
+      </div>
+    </div>
+  </ion-content>
+</ion-view>

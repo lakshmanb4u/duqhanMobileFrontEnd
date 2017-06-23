@@ -2,21 +2,22 @@
   <ion-header-bar>
     <h1 class="title">Thank You</h1>
   </ion-header-bar>
-  <ion-content class="padding">
+  <ion-content scroll="false">
     <ion-list>
       <ion-item class="item item-thumbnail-left item-text-wrap">
-        <img src="{{ctrl.product.images[0].imgUrl}}">
+        <img src="{{ctrl.product.productImg}}">
         <h3 class="balanced">{{ctrl.productSelected.response}}</h3>
         <h3>{{ctrl.product.name}}</h3>
         <p>
           <span ng-if="ctrl.productSelected.size.sizeText">Size: {{ctrl.productSelected.size.sizeText}}, </span>
           <span ng-if="ctrl.productSelected.size.sizeColor.colorText">Color: {{ctrl.productSelected.size.sizeColor.colorText}}</span>
         </p>
-        <h4 class="positive text-italic">You have saved Rs.{{ctrl.productSelected.size.sizeColor.orginalPrice - ctrl.productSelected.size.sizeColor.salesPrice}}</h4>
+        <h4 class="positive text-italic" ng-if="ctrl.productSelected.size">You have saved Rs.{{ctrl.productSelected.size.sizeColor.orginalPrice - ctrl.productSelected.size.sizeColor.salesPrice}}</h4>
+        <h4 class="positive text-italic" ng-if="!ctrl.productSelected.size">You have saved Rs.{{ctrl.product.orginalPrice - ctrl.product.salesPrice}}</h4>
       </ion-item>
     </ion-list>
-    <div class="button-bar bar-energized m-t-xs">
-      <a class="button" ng-click="ctrl.closeModal()">Continue</a>
+    <div class="button-bar bar-energized">
+      <a class="button" ng-click="ctrl.closeModal()" ui-sref="store.products.latest">Continue</a>
       <a class="button" ng-click="ctrl.closeModal()" ui-sref="store.cart">Checkout</a>
     </div>
   </ion-content>

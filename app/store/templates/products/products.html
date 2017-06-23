@@ -2,23 +2,28 @@
   <ion-content class="padding products-tab-content">
 
     <!-- content goes here -->
+    <!-- <div class="row p-l-n p-r-n products-row" masonry item-selector=".m-product" load-images="false" >
+      <div class="col col-50 m-product" ng-repeat="p in ctrl.products" masonry-brick ui-sref="store.product.overview({productId: p.productId})"> -->
     <div class="row p-l-n p-r-n products-row">
-      <div class="col col-50" ng-repeat="p in ctrl.products">
-        <div class="product-preview" ui-sref="store.product.overview({productId: p.productId})">
+      <div class="col col-50 m-product" ng-repeat="p in ctrl.products" ui-sref="store.product.overview({productId: p.productId})">
+        <div class="product-preview">
           <span class="discount">{{p.discountPCT| number : 0}}%</span>
           <div class="item-image">
-            <img src="{{p.imgurl}}">
+            <img src="{{p.imgurl || 'store/assets/images/default.jpg' | cloudinaryThumbTransformation}}">
           </div>
-          <div class="item item-text-wrap text-center p-xs">
+          <div class="item text-center p-xs b-t-n">
             {{p.name}}
           </div>
           <div class="item item-divider">
-            <div class="row p-none">
+            <div class="row p-none price-wraper">
               <div class="col col-50 p-none old-price">Rs.{{p.price}}</div>
               <div class="col col-50 p-none price text-right">Rs.{{p.discountedPrice}}</div>
+            </div>
           </div>
         </div>
       </div>
     </div>
+    <div class="p-lg"></div>
+    <ion-infinite-scroll ng-if="!ctrl.noMoreItemsAvailable" on-infinite="ctrl.loadMore()" distance="50%" immediate-check="false"></ion-infinite-scroll>
   </ion-content>
 </ion-view>

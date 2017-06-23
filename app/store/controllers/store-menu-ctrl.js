@@ -7,9 +7,12 @@ angular.module('store')
   $localStorage,
 	$ionicFacebookAuth,
   $rootScope,
+  $timeout,
+  $state,
   Config,
   Auth,
-  Store
+  Store,
+  Product
 ) {
 
   /* Storing contextual this in a variable for easy access */
@@ -55,12 +58,10 @@ angular.module('store')
   ==============================================================*/
 
   ctrl.getCartTotalNumber = function () {
-    Store.getCart()
+    Store.getCartTotalNumber()
     .then(function (response) {
       $log.log(response.data);
-      if (response.data.products) {
-        ctrl.cartTotalNumber = response.data.products.length;
-      }
+      ctrl.cartTotalNumber = response.data.cartCount;
     })
     .catch(function (response) {
       $log.log(response);
@@ -85,11 +86,83 @@ angular.module('store')
 
 
   /*==========================================================================
-  =            Include user's name in scope to display in sidebar            =
+  =            Include user's name and image in scope to display in sidebar            =
   ==========================================================================*/
 
-  ctrl.username = Config.ENV.USER.NAME;
+  ctrl.setUserDetailForMenu = function () {
+    ctrl.username = Config.ENV.USER.NAME;
+    ctrl.profileImage = Config.ENV.USER.PROFILE_IMG;
+  };
 
-  /*=====  End of Include user's name in scope to display in sidebar  ======*/
+  ctrl.setUserDetailForMenu();
 
+  $rootScope.$on('setUserDetailForMenu', function (event) {
+    $log.log(event);
+    ctrl.setUserDetailForMenu();
+  });
+
+  /*=====  End of Include user's name and image in scope to display in sidebar  ======*/
+
+  /*================================================================
+  =            Showing server side notification message            =
+  ================================================================*/
+
+  ctrl.notification = {};
+
+  ctrl.setNotification = function (notification) {
+    ctrl.notification.type = notification.type;
+    ctrl.notification.text = notification.text;
+    $timeout(function () {
+      ctrl.notification = {};
+    }, 5000);
+  };
+
+  /*----------  catching calls from outside of this controller  ----------*/
+
+  $rootScope.$on('setNotification', function (event, notification) {
+    $log.log(event);
+    ctrl.setNotification(notification);
+  });
+
+  /*=====  End of Showing server side notification message  ======*/
+
+  /*================================================
+  =            Getting top level menu            =
+  ================================================*/
+
+  ctrl.getTopLevelMenu = function () {
+    Product.getChildCategories(0)
+    .then(function (response) {
+      $log.log(response.data);
+      ctrl.topLevelMenu = response;
+    })
+    .catch(function (response) {
+      $log.log(response);
+    });
+  };
+
+  ctrl.getTopLevelMenu();
+
+  /*=====  End of Getting top level menu  ======*/
+
+  /*============================================
+  =            Show hide search bar            =
+  ============================================*/
+
+  $rootScope.searcBarActive = false;
+  ctrl.toggleSearchBar = function () {
+    $rootScope.searcBarActive = !$rootScope.searcBarActive;
+  };
+
+  ctrl.searchProduct = function () {
+    ctrl.toggleSearchBar();
+    $log.log(ctrl.searchText);
+    $state.go('store.productsSearch', {searchText: ctrl.searchText});
+  };
+
+  /*=====  End of Show hide search bar  ======*/
+
+  $rootScope.$on('$ionicView.beforeEnter', function (event, viewData) {
+    viewData.enableBack = true;
+  });
 });

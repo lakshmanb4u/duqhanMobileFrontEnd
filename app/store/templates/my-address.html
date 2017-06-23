@@ -1,0 +1,67 @@
+<ion-view view-title="My Address">
+  <!-- do you want padding? -->
+  <ion-content class="padding my-address">
+    <div class="row">
+      <div class="col col-60">
+        <h5 class="m-none">{{ctrl.addresses.length}} saved addresses</h5>
+      </div>
+      <div class="col col-40 text-right">
+        <h5 class="positive m-none" ng-click="ctrl.addAddress()">Add address</h5>
+      </div>
+    </div>
+    <ion-list>
+      <div class="card" ng-repeat="address in ctrl.addresses" ng-class="{'active-address': address.status == 1}">
+<!--         <div class="badge-wrapper" ng-show="address.status == 1">
+          <span class="badge badge-balanced">Default</span>
+        </div> -->
+        <div class="item item item-icon-left item-icon-right item-text-wrap">
+          <i class="icon ion-checkmark-circled balanced" ng-show="address.status == 1"></i>
+          <h2>{{address.contactName}}</h2>
+          <i class="icon ion-android-more-vertical" ng-click="ctrl.openAddressOptions($event, address)"></i>
+        </div>
+        <div class="item item-icon-left item-text-wrap">
+          <i class="icon ion-ios-telephone"></i>
+          <p>{{address.phone}}</p>
+        </div>
+        <div class="item item-icon-left item-text-wrap">
+          <i class="icon ion-ios-location"></i>
+          <p>{{address.streetOne}}, {{address.streetTwo}}, {{address.city}}, {{address.state}} - {{address.zipCode}}</p>
+        </div>
+      </div>
+
+    </ion-list>
+  </ion-content>
+</ion-view>
+
+<script id="address-options-popover.html" type="text/ng-template">
+  <ion-popover-view class="address-options-popover">
+    <ion-content>
+      <div class="list">
+        <a class="item" ng-hide="address.status == 1" ng-click="ctrl.setDefaultAddress()">
+          Make default
+        </a>
+        <a class="item" ng-click="ctrl.openEditAddressModal()">
+          Edit
+        </a>
+        <a class="item" ng-click="ctrl.removeAddress()">
+          Remove
+        </a>
+      </div>
+    </ion-content>
+  </ion-popover-view>
+</script>
+
+<script id="error-list.html" type="text/ng-template">  
+  <div class="error" ng-message="required">
+    <i class="ion-information-circled"></i> 
+    This field is required!
+  </div>
+  <div class="error" ng-message="number">
+    <i class="ion-information-circled"></i> 
+    This is not a valid mobile number!
+  </div>
+  <div class="error" ng-message="minlength maxlength">
+    <i class="ion-information-circled"></i> 
+    Mobile number should be 10 digits!
+  </div>
+</script>
