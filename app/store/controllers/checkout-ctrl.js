@@ -35,8 +35,8 @@ angular
       ctrl.cart.orderTotal + ctrl.cart.shippingTotal;
 
     /*===========================================
-  =            Get default address            =
-  ===========================================*/
+    =            Get default address            =
+    ===========================================*/
 
     ctrl.getDefaultAddress = function () {
       Store.getDefaultAddress()
@@ -60,8 +60,8 @@ angular
     /*=====  End of Get default address  ======*/
 
     /*======================================================
-  =            Get the shipping cost and time            =
-  ======================================================*/
+    =            Get the shipping cost and time            =
+    ======================================================*/
 
     ctrl.getShippingDetails = function (cart) {
       $log.log(cart);
@@ -102,8 +102,8 @@ angular
     });
 
     /*===============================================
-  =            Change delivery address            =
-  ===============================================*/
+    =            Change delivery address            =
+    ===============================================*/
 
     ctrl.addressSelectionError = true;
 
@@ -154,12 +154,18 @@ angular
     /*=====  End of Change delivery address  ======*/
 
     /*=======================================
-  =            Payment section            =
-  =======================================*/
+    =            Payment section            =
+    =======================================*/
+
+    ctrl.selectPaymentGateway = function () {
+      ctrl.cart.paymentGateway = 1;
+      ctrl.paymentGatewayModal.show();
+    };
 
     ctrl.pay = function () {
       $log.log(ctrl.cart);
       $log.log(ctrl.address);
+      ctrl.closePaymentGatewayModal();
       if (!ctrl.address) {
         var notification = {};
         notification.type = 'failure';
@@ -175,33 +181,58 @@ angular
           $log.log('response ==');
           $log.log(response.data.status);
           ctrl.payKey = response.data.statusCode;
-          var options = {
+          var browserOptions = {
             EnableViewPortScale: 'yes',
             transitionstyle: 'fliphorizontal',
             toolbarposition: 'top',
             closebuttoncaption: 'BACK',
             location: 'no'
           };
-          return $cordovaInAppBrowser.open(
-            response.data.status,
+          $cordovaInAppBrowser.open(
+            response.data.paymentUrl,
             '_blank',
-            options
+            browserOptions
           );
-        })
-        .then(function (event) {
-          $log.log(event);
+          if (ctrl.cart.paymentGateway === 2) {
+            var script = '';
+            var options = response.data.parameters;
+            for (var key in options) {
+              if (options.hasOwnProperty(key)) {
+                $log.log(key + ' -> ' + options[key]);
+                script +=
+                  'document.getElementById("' +
+                  key +
+                  '").value="' +
+                  options[key] +
+                  '";';
+              }
+            }
+            script += 'document.getElementById("paytmForm").submit();';
+
+            $rootScope.$on('$cordovaInAppBrowser:loadstop', function (e, event) {
+              $log.log('loadstop');
+              $log.log(script);
+              if (event.url.indexOf(response.data.paymentUrl) === 0) {
+                // insert Javascript via code / file
+                $cordovaInAppBrowser.executeScript({
+                  code: script
+                });
+              }
+            });
+          }
         })
         .catch(function (error) {
           $log.log(error);
         });
     };
 
-    $rootScope.$on('$cordovaInAppBrowser:loadstart', function (e, event) {
+    $rootScope.$on('$cordovaInAppBrowser:loadstop', function (e, event) {
       $log.log('Current url=============================');
       $log.log(event.url);
       if (
         event.url.indexOf('/to-be-redirected') > 0 ||
-        event.url.indexOf('/to-be-canceled') > 0
+        event.url.indexOf('/to-be-canceled') > 0 ||
+        event.url.indexOf('/paytm-call-back') > 0
       ) {
         $cordovaInAppBrowser.close();
       }
@@ -247,8 +278,8 @@ angular
     /*=====  End of Payment section  ======*/
 
     /*===============================================
-  =            Modal related functions            =
-  ===============================================*/
+    =            Modal related functions            =
+    ===============================================*/
 
     $ionicModal
       .fromTemplateUrl('select-address-modal.html', {
@@ -263,9 +294,27 @@ angular
       ctrl.modal.hide();
     };
 
+    $ionicModal
+      .fromTemplateUrl('store/templates/select-payment-gateway.html', {
+        scope: $scope,
+        animation: 'slide-in-up'
+      })
+      .then(function (modal) {
+        ctrl.paymentGatewayModal = modal;
+      });
+
+    ctrl.closePaymentGatewayModal = function () {
+      ctrl.paymentGatewayModal.hide();
+    };
+
+    ctrl.closeModal = function () {
+      ctrl.modal.hide();
+    };
+
     // Cleanup the modal when we're done with it!
     $scope.$on('$destroy', function () {
       ctrl.modal.remove();
+      ctrl.paymentGatewayModal.remove();
     });
 
     /*=====  End of Modal related functions  ======*/

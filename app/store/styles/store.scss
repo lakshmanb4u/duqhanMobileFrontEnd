@@ -178,7 +178,7 @@ $assertive: #ef473a !default;
 .add-to-bag {
   height: auto;
   bottom: 0;
-  min-height: auto;
+  min-height: inherit;
   top: inherit;
   .bar {
     &.bar-header {
@@ -288,6 +288,61 @@ $assertive: #ef473a !default;
     .item {
       padding-top: 10px;
       padding-bottom: 10px;
+    }
+  }
+}
+
+.select-payment-gateway-modal {
+  height: auto;
+  bottom: 0;
+  min-height: inherit;
+  top: inherit;
+  .bar {
+    &.bar-header {
+      position: relative;
+    }
+  }
+  ion-content {
+    position: relative;
+    top: 0;
+    .list {
+      .item-radio {
+        .radio-content {
+          .item-content {
+            img {
+              width: 50px;
+              vertical-align: middle;
+            }
+            span {
+              display: inline-block;
+              font-size: 20px;
+              line-height: 50px;
+              vertical-align: middle;
+              margin-left: 10px;
+            }
+          }
+          .radio-icon {
+            position: absolute;
+            top: 0;
+            right: 15px;
+            z-index: 3;
+            font-size: 24px;
+            margin-top: 45px;
+            height: auto;
+            padding: 0;
+            transform: translateY(-60%);
+            -webkit-transform: translateY(-60%);
+          }
+        }
+      }
+    }
+  }
+  ion-footer-bar {
+    position: relative;
+    &.bar {
+      &.bar-footer {
+        bottom: 0;
+      }
     }
   }
 }

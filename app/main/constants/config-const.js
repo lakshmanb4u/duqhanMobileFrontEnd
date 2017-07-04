@@ -6,7 +6,7 @@ angular.module('main')
   ENV: {
     /*inject-env*/
     'SERVER_URL': 'http://duqhan-api.aq3cm3hjga.us-east-1.elasticbeanstalk.com/',
-    'SOME_OTHER_URL': 'http://custom-env.qtbvngb2iz.us-west-2.elasticbeanstalk.com/',
+    'SOME_OTHER_URL': 'http://192.168.1.95:8084/',
     'USER': {
       'AUTH_TOKEN': null,
       'NAME': '',
