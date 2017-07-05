@@ -62,49 +62,49 @@
 
           <h2>{{menu.username}}</h2>
         </ion-item>
-        <ion-item menu-close ui-sref="store.products.latest">
+        <ion-item menu-close ui-sref="store.products.latest" ng-class="{'active': $state.includes('store.products.latest')}">
           Latest
         </ion-item>
-        <!--         <ion-item menu-close ui-sref="store.products.recent">
+        <!--<ion-item menu-close ui-sref="store.products.recent">
           Recent
-        </ion-item> -->
-        <ion-item menu-close ng-repeat="m in menu.topLevelMenu" ui-sref="store.productsByCategory({categoryId: m.categoryId})">
+        </ion-item>-->
+        <ion-item menu-close ng-repeat="m in menu.topLevelMenu" ui-sref="store.productsByCategory({categoryId: m.categoryId})" ng-class="{'active': $state.includes('store.productsByCategory')}">
           {{m.categoryName}}
         </ion-item>
-        <ion-item class="item-divider">
+        <!--<ion-item class="item-divider">
           Settings
-        </ion-item>
-        <ion-item menu-close ui-sref="store.profile">
+        </ion-item>-->
+        <ion-item menu-close ui-sref="store.profile" ng-class="{'active': $state.includes('store.profile')}">
           My Profile
         </ion-item>
-        <ion-item menu-close ui-sref="store.changepassword">
+        <ion-item menu-close ui-sref="store.changepassword" ng-class="{'active': $state.includes('store.changepassword')}">
           My Password
         </ion-item>
-        <ion-item menu-close ui-sref="store.myaddress">
+        <ion-item menu-close ui-sref="store.myaddress" ng-class="{'active': $state.includes('store.myaddress')}">
           My Addresses
         </ion-item>
-        <ion-item menu-close ui-sref="store.cart">
+        <ion-item menu-close ui-sref="store.cart" ng-class="{'active': $state.includes('store.cart')}">
           My Cart
         </ion-item>
-        <ion-item menu-close ui-sref="store.orderhistory">
+        <ion-item menu-close ui-sref="store.orderhistory" ng-class="{'active': $state.includes('store.orderhistory')}">
           My Orders
         </ion-item>
-        <ion-item menu-close ui-sref="store.customersupport">
+        <ion-item menu-close ui-sref="store.customersupport" ng-class="{'active': $state.includes('store.customersupport')}">
           Customer Support
         </ion-item>
-        <ion-item menu-close ui-sref="store.aboutus">
+        <ion-item menu-close ui-sref="store.aboutus" ng-class="{'active': $state.includes('store.aboutus')}">
           About Us
         </ion-item>
-        <ion-item menu-close ui-sref="store.contactus">
+        <ion-item menu-close ui-sref="store.contactus" ng-class="{'active': $state.includes('store.contactus')}">
           Contact Us
         </ion-item>
-        <ion-item menu-close ui-sref="store.returnpolicy">
+        <ion-item menu-close ui-sref="store.returnpolicy" ng-class="{'active': $state.includes('store.returnpolicy')}">
           Return Policy
         </ion-item>
-        <ion-item menu-close ui-sref="store.privacyPolicy">
+        <ion-item menu-close ui-sref="store.privacyPolicy" ng-class="{'active': $state.includes('store.privacyPolicy')}">
           Privacy Policy
         </ion-item>
-        <ion-item menu-close ui-sref="store.termsConditions">
+        <ion-item menu-close ui-sref="store.termsConditions" ng-class="{'active': $state.includes('store.termsConditions')}">
           Terms & Conditions
         </ion-item>
         <ion-item menu-close ng-click="menu.logout()">

@@ -1,122 +1,129 @@
 <!doctype html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="description" content="">
-    <!-- ionic meta tags -->
-    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
-    <!-- custom meta tags -->
-    <meta name="format-detection" content="telephone=no"> <!-- no auto telephone linking -->
 
-    <meta name="apple-mobile-web-app-capable" content="yes"> <!-- can be saved to home screen on ios -->
-    <title>Duqhan</title>
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="">
+  <!-- ionic meta tags -->
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+  <!-- custom meta tags -->
+  <meta name="format-detection" content="telephone=no">
+  <!-- no auto telephone linking -->
 
-    <!-- build:css styles/vendor.css -->
-    <!-- bower:css -->
-    <link rel="stylesheet" href="bower_components/animate.css/animate.css" />
-    <!-- endbower -->
-    <!-- endbuild -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <!-- can be saved to home screen on ios -->
+  <title>Duqhan</title>
 
-    <!-- build:css main/styles/app.css -->
-    <!-- inject:css -->
-    <link rel="stylesheet" href="auth/styles/auth.css">
-    <link rel="stylesheet" href="main/styles/main.css">
-    <link rel="stylesheet" href="store/styles/store.css">
-    <!-- endinject -->
-    <!-- endbuild -->
-  </head>
-  <body>
+  <!-- build:css styles/vendor.css -->
+  <!-- bower:css -->
+  <link rel="stylesheet" href="bower_components/animate.css/animate.css" />
+  <!-- endbower -->
+  <!-- endbuild -->
 
-    <!-- the nav bar will be updated as we navigate between views -->
-    <!-- <ion-nav-bar> can be removed when using sidemenu (contained in menu.html) -->
-    <ion-nav-bar class="bar-energized">
-      <!-- <ion-nav-back-button></ion-nav-back-button> -->
-    </ion-nav-bar>
-    <!-- the current view will be rendered in the <ion-nav-view> directive -->
-    <ion-nav-view></ion-nav-view>
+  <!-- build:css main/styles/app.css -->
+  <!-- inject:css -->
+  <link rel="stylesheet" href="auth/styles/auth.css">
+  <link rel="stylesheet" href="main/styles/main.css">
+  <link rel="stylesheet" href="store/styles/store.css">
+  <!-- endinject -->
+  <link rel="stylesheet" href="bower_components/ionic-ion-horizontal-scroll-cards/example/www/css/hscrollcards.css" />
+  <!-- endbuild -->
+</head>
 
-    <!-- will be a 404 during development -->
-    <script src="cordova.js"></script>
+<body>
 
-    <!-- build:js scripts/vendor.js -->
-    <!-- bower:js -->
-    <script src="bower_components/angular/angular.js"></script>
-    <script src="bower_components/angular-animate/angular-animate.js"></script>
-    <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
-    <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
-    <script src="bower_components/ionic/release/js/ionic.js"></script>
-    <script src="bower_components/ionic/release/js/ionic-angular.js"></script>
-    <script src="bower_components/ngCordova/dist/ng-cordova.js"></script>
-    <script src="bower_components/angular-messages/angular-messages.js"></script>
-    <script src="bower_components/ngstorage/ngStorage.js"></script>
-    <script src="bower_components/moment/moment.js"></script>
-    <script src="bower_components/angular-moment/angular-moment.js"></script>
-    <script src="bower_components/ionic-datepicker/dist/ionic-datepicker.bundle.min.js"></script>
-    <script src="bower_components/ionic-close-popup/ionic-close-popup.js"></script>
-    <!-- endbower -->
-    <script src="bower_components/ionic-ion-imageCacheFactory/ionic.ion.imagecachefactory.js"></script>
-    <script src="bower_components/ionic-cloud/ionic.cloud.min.js"></script>
-    <!-- endbuild -->
+  <!-- the nav bar will be updated as we navigate between views -->
+  <!-- <ion-nav-bar> can be removed when using sidemenu (contained in menu.html) -->
+  <ion-nav-bar class="bar-energized">
+    <!-- <ion-nav-back-button></ion-nav-back-button> -->
+  </ion-nav-bar>
+  <!-- the current view will be rendered in the <ion-nav-view> directive -->
+  <ion-nav-view></ion-nav-view>
 
-    <!-- build:js scripts/app.js -->
-    <!-- inject:js -->
-    <script src="store/store.js"></script>
-    <script src="store/services/store-serv.js"></script>
-    <script src="store/services/product-serv.js"></script>
-    <script src="store/services/image-upload-serv.js"></script>
-    <script src="store/services/common-serv.js"></script>
-    <script src="store/filters/order-status-fil.js"></script>
-    <script src="store/filters/date-fil.js"></script>
-    <script src="store/filters/cloudinary-transformation-fil.js"></script>
-    <script src="store/controllers/store-menu-ctrl.js"></script>
-    <script src="store/controllers/store-debug-ctrl.js"></script>
-    <script src="store/controllers/size-chart-ctrl.js"></script>
-    <script src="store/controllers/shipping-ctrl.js"></script>
-    <script src="store/controllers/search-ctrl.js"></script>
-    <script src="store/controllers/return-policy-ctrl.js"></script>
-    <script src="store/controllers/profile-ctrl.js"></script>
-    <script src="store/controllers/products-ctrl.js"></script>
-    <script src="store/controllers/products-by-category-ctrl.js"></script>
-    <script src="store/controllers/product-ctrl.js"></script>
-    <script src="store/controllers/order-history-ctrl.js"></script>
-    <script src="store/controllers/misc/terms-conditions-ctrl.js"></script>
-    <script src="store/controllers/misc/privacy-policy-ctrl.js"></script>
-    <script src="store/controllers/misc/about-ctrl.js"></script>
-    <script src="store/controllers/customer-support-ctrl.js"></script>
-    <script src="store/controllers/contactus-ctrl.js"></script>
-    <script src="store/controllers/checkout-ctrl.js"></script>
-    <script src="store/controllers/cart-ctrl.js"></script>
-    <script src="store/controllers/address-ctrl.js"></script>
-    <script src="store/constants/store-config-const.js"></script>
-    <script src="main/main.js"></script>
-    <script src="main/services/httpInterceptor-serv.js"></script>
-    <script src="main/services/firebase-serv.js"></script>
-    <script src="main/services/busyLoader-serv.js"></script>
-    <script src="main/constants/config-const.js"></script>
-    <script src="auth/auth.js"></script>
-    <script src="auth/services/auth-api-serv.js"></script>
-    <script src="auth/controllers/user-ctrl.js"></script>
-    <script src="auth/controllers/signup-ctrl.js"></script>
-    <script src="auth/controllers/login-ctrl.js"></script>
-    <script src="auth/controllers/forgot-password-ctrl.js"></script>
-    <script src="auth/constants/auth-config-const.js"></script>
-    <script src="app.js"></script>
-    <!-- endinject -->
-    <!-- endbuild -->
+  <!-- will be a 404 during development -->
+  <script src="cordova.js"></script>
 
-    <script type="text/javascript">
-        angular.element(document).ready(function () {
-        if (window.cordova) {
-          console.log("Running in Cordova, will bootstrap AngularJS once 'deviceready' event fires.");
-          document.addEventListener('deviceready', function () {
-            console.log("Deviceready event has fired, bootstrapping AngularJS.");
-            angular.bootstrap(document.body, ['Duqhan']);
-          }, false);
-        } else {
-          console.log("Running in browser, bootstrapping AngularJS now.");
+  <!-- build:js scripts/vendor.js -->
+  <!-- bower:js -->
+  <script src="bower_components/angular/angular.js"></script>
+  <script src="bower_components/angular-animate/angular-animate.js"></script>
+  <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+  <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+  <script src="bower_components/ionic/release/js/ionic.js"></script>
+  <script src="bower_components/ionic/release/js/ionic-angular.js"></script>
+  <script src="bower_components/ngCordova/dist/ng-cordova.js"></script>
+  <script src="bower_components/angular-messages/angular-messages.js"></script>
+  <script src="bower_components/ngstorage/ngStorage.js"></script>
+  <script src="bower_components/moment/moment.js"></script>
+  <script src="bower_components/angular-moment/angular-moment.js"></script>
+  <script src="bower_components/ionic-datepicker/dist/ionic-datepicker.bundle.min.js"></script>
+  <script src="bower_components/ionic-close-popup/ionic-close-popup.js"></script>
+  <script src="bower_components/ionic-ion-horizontal-scroll-cards/ionic.hscrollcards.js"></script>
+  <!-- endbower -->
+  <script src="bower_components/ionic-ion-imageCacheFactory/ionic.ion.imagecachefactory.js"></script>
+  <script src="bower_components/ionic-cloud/ionic.cloud.min.js"></script>
+  <!-- endbuild -->
+
+  <!-- build:js scripts/app.js -->
+  <!-- inject:js -->
+  <script src="store/store.js"></script>
+  <script src="store/services/store-serv.js"></script>
+  <script src="store/services/product-serv.js"></script>
+  <script src="store/services/image-upload-serv.js"></script>
+  <script src="store/services/common-serv.js"></script>
+  <script src="store/filters/order-status-fil.js"></script>
+  <script src="store/filters/date-fil.js"></script>
+  <script src="store/filters/cloudinary-transformation-fil.js"></script>
+  <script src="store/controllers/store-menu-ctrl.js"></script>
+  <script src="store/controllers/store-debug-ctrl.js"></script>
+  <script src="store/controllers/size-chart-ctrl.js"></script>
+  <script src="store/controllers/shipping-ctrl.js"></script>
+  <script src="store/controllers/search-ctrl.js"></script>
+  <script src="store/controllers/return-policy-ctrl.js"></script>
+  <script src="store/controllers/profile-ctrl.js"></script>
+  <script src="store/controllers/products-ctrl.js"></script>
+  <script src="store/controllers/products-by-category-ctrl.js"></script>
+  <script src="store/controllers/product-ctrl.js"></script>
+  <script src="store/controllers/order-history-ctrl.js"></script>
+  <script src="store/controllers/misc/terms-conditions-ctrl.js"></script>
+  <script src="store/controllers/misc/privacy-policy-ctrl.js"></script>
+  <script src="store/controllers/misc/about-ctrl.js"></script>
+  <script src="store/controllers/customer-support-ctrl.js"></script>
+  <script src="store/controllers/contactus-ctrl.js"></script>
+  <script src="store/controllers/checkout-ctrl.js"></script>
+  <script src="store/controllers/cart-ctrl.js"></script>
+  <script src="store/controllers/address-ctrl.js"></script>
+  <script src="store/constants/store-config-const.js"></script>
+  <script src="main/main.js"></script>
+  <script src="main/services/httpInterceptor-serv.js"></script>
+  <script src="main/services/firebase-serv.js"></script>
+  <script src="main/services/busyLoader-serv.js"></script>
+  <script src="main/constants/config-const.js"></script>
+  <script src="auth/auth.js"></script>
+  <script src="auth/services/auth-api-serv.js"></script>
+  <script src="auth/controllers/user-ctrl.js"></script>
+  <script src="auth/controllers/signup-ctrl.js"></script>
+  <script src="auth/controllers/login-ctrl.js"></script>
+  <script src="auth/controllers/forgot-password-ctrl.js"></script>
+  <script src="auth/constants/auth-config-const.js"></script>
+  <script src="app.js"></script>
+  <!-- endinject -->
+  <!-- endbuild -->
+
+  <script type="text/javascript">
+    angular.element(document).ready(function() {
+      if (window.cordova) {
+        console.log("Running in Cordova, will bootstrap AngularJS once 'deviceready' event fires.");
+        document.addEventListener('deviceready', function() {
+          console.log("Deviceready event has fired, bootstrapping AngularJS.");
           angular.bootstrap(document.body, ['Duqhan']);
-        }
-      });
-    </script>
-  </body>
+        }, false);
+      } else {
+        console.log("Running in browser, bootstrapping AngularJS now.");
+        angular.bootstrap(document.body, ['Duqhan']);
+      }
+    });
+  </script>
+</body>
+
 </html>

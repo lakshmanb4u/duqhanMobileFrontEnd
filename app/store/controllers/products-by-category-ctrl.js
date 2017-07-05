@@ -8,6 +8,7 @@ angular
     $rootScope,
     $scope,
     $ionicScrollDelegate,
+    $ionicSideMenuDelegate,
     Product,
     Config,
     BusyLoader
@@ -21,6 +22,8 @@ angular
 
     var ctrl = this;
 
+    $ionicSideMenuDelegate.canDragContent(false);
+
     /*----------  Storing url parameter (product id) in scope ----------*/
 
     ctrl.categoryId = $stateParams.categoryId;
@@ -32,6 +35,31 @@ angular
     ctrl.page = 0;
     ctrl.noMoreItemsAvailable = false;
     ctrl.initialize = false;
+
+    /*===============================================
+    =            Show category list page            =
+    ===============================================*/
+
+    ctrl.loadChildCategories = function () {
+      Product.getChildCategories(ctrl.categoryId)
+        .then(function (categories) {
+          ctrl.categories = categories;
+          $log.log('====================================================');
+          $log.log(ctrl.categories);
+          $log.log('====================================================');
+        })
+        .catch(function (response) {
+          $log.log(response);
+        });
+    };
+
+    /*----------  call the function at the time of initialization  ----------*/
+
+    if ($state.current.name === 'store.categories') {
+      ctrl.loadChildCategories();
+    }
+
+    /*=====  End of Show category list page  ======*/
 
     /*=================================================
     =            Show products by category            =
@@ -86,6 +114,7 @@ angular
       if (!ctrl.initialize) {
         ctrl.initialize = true;
         ctrl.loadProductListByCategory();
+        ctrl.loadChildCategories();
       }
     }
 
@@ -100,30 +129,9 @@ angular
       if (toState.name === 'store.productsByCategory') {
         ctrl.initialize = true;
         ctrl.loadProductListByCategory();
+        ctrl.loadChildCategories();
       }
     });
 
     /*=====  End of Show products by category  ======*/
-
-    /*===============================================
-    =            Show category list page            =
-    ===============================================*/
-
-    ctrl.loadChildCategories = function () {
-      Product.getChildCategories(ctrl.categoryId)
-        .then(function (categories) {
-          ctrl.categories = categories;
-        })
-        .catch(function (response) {
-          $log.log(response);
-        });
-    };
-
-    /*----------  call the function at the time of initialization  ----------*/
-
-    if ($state.current.name === 'store.categories') {
-      ctrl.loadChildCategories();
-    }
-
-    /*=====  End of Show category list page  ======*/
   });

@@ -5,12 +5,20 @@
       <!-- content goes here -->
       <div class="card category-card">
         <div class="item item-text-wrap">
-          {{ctrl.productCategory}}
-          <div class="category-link" ui-sref="store.categories({categoryId: ctrl.categoryId})">Other categories</div>
+          {{ctrl.productCategory || 'Category'}}
+          <!--<div class="category-link" ui-sref="store.categories({categoryId: ctrl.categoryId})">Other Categories</div>-->
         </div>
       </div>
-      <!-- <div class="row p-l-n p-r-n products-row" masonry item-selector=".m-product" load-images="false" >
-        <div class="col col-50 m-product" ng-repeat="p in ctrl.products" masonry-brick> -->
+
+      <ion-scroll direction="x" overflow-scroll="false" ng-if="ctrl.categories">
+        <div class="category-tab-wrapper">
+          <div class="category-tab" ng-repeat="c in ctrl.categories" ui-sref="store.productsByCategory({categoryId: c.categoryId})">
+            {{c.categoryName}}
+          </div>
+        </div>
+      </ion-scroll>
+
+
       <div class="row p-l-n p-r-n products-row">
         <div class="col col-50 m-product" ng-repeat="p in ctrl.products">
           <div class="product-preview" ui-sref="store.product.overview({productId: p.productId})">
@@ -30,9 +38,14 @@
           </div>
         </div>
       </div>
+      <div class="card" ng-show="ctrl.products.length === 0">
+        <div class="item item-text-wrap">
+          No products available.
+        </div>
+      </div>
       <div class="card" ng-hide="ctrl.products">
         <div class="item item-text-wrap">
-          No more subcategory available. 
+          No more subcategory available.
         </div>
       </div>
       <div class="p-lg"></div>

@@ -7,10 +7,14 @@
     </ion-tab>
 
     <!-- recent Tab -->
-    <ion-tab title="Recently viewed" ui-sref="store.products.recent">
+    <ion-tab title="Recent" ui-sref="store.products.recent">
       <ion-nav-view name="recentProductsContent"></ion-nav-view>
+    </ion-tab>
+
+    <!-- recent Tab -->
+    <ion-tab title="Jewellery" ui-sref="store.productsByCategory({categoryId: 2})">
+      <ion-nav-view name="categoryProductsContent"></ion-nav-view>
     </ion-tab>
 
   </ion-tabs>
 </ion-pane>
-
