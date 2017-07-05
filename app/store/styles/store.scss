@@ -640,3 +640,166 @@ $assertive: #ef473a !default;
     }
   }
 }
+
+div.hscroller {
+  // position: relative;
+  // top: 50%;
+  // -webkit-transform: translateY(-50%);
+  // -ms-transform: translateY(-50%);
+  // transform: translateY(-50%);
+}
+
+div.hscroller {
+  white-space: nowrap;
+  overflow-y: hidden;
+  overflow-x: scroll;
+  -webkit-overflow-scrolling: touch;
+  -webkit-tap-highlight-color: transparent;
+  padding: 10px 0;
+  margin-bottom: 5px;
+}
+
+div.hscroller::-webkit-scrollbar {
+  display: none;
+}
+
+div.hscroller-card {
+  margin: 0 5px;
+  -webkit-box-shadow: 2px 2px 10px 0px rgba(0, 0, 0, 0.5);
+  -moz-box-shadow: 2px 2px 10px 0px rgba(0, 0, 0, 0.5);
+  box-shadow: 2px 2px 10px 0px rgba(0, 0, 0, 0.5);
+  border-radius: 4px 4px 4px 4px;
+  -moz-border-radius: 4px 4px 4px 4px;
+  -webkit-border-radius: 4px 4px 4px 4px;
+  border: 0px solid #000000;
+  display: inline-block;
+  padding: 10px;
+  background-color: darken( $energized, 15%);
+  color: #fff;
+}
+
+div.hscroller-card:last-child {
+  // margin-right: 10px;
+}
+
+@media screen and (min-width: 1025px) {
+  div.hscroller {
+    overflow-x: hidden;
+  }
+}
+
+div.hscroller-card-animated-1 {
+  animation: fadein 0.4s;
+  -moz-animation: fadein 0.4s;
+  -webkit-animation: fadein 0.4s;
+  -o-animation: fadein 0.4s;
+}
+
+div.hscroller-card-animated-2 {
+  animation: fadein 0.8s;
+  -moz-animation: fadein 0.8s;
+  -webkit-animation: fadein 0.8s;
+  -o-animation: fadein 0.8s;
+}
+
+div.hscroller-card-animated-3 {
+  animation: fadein 1.2s;
+  -moz-animation: fadein 1.2s;
+  -webkit-animation: fadein 1.2s;
+  -o-animation: fadein 1.2s;
+}
+
+div.hscroller-card-animated-4 {
+  animation: fadein 1.6s;
+  -moz-animation: fadein 1.6s;
+  -webkit-animation: fadein 1.6s;
+  -o-animation: fadein 1.6s;
+}
+
+div.hscroller-card-animated-5 {
+  animation: fadein 2s;
+  -moz-animation: fadein 2s;
+  -webkit-animation: fadein 2s;
+  -o-animation: fadein 2s;
+}
+
+div.hscroller-card-animated-6 {
+  animation: fadein 2.4s;
+  -moz-animation: fadein 2.4s;
+  -webkit-animation: fadein 2.4s;
+  -o-animation: fadein 2.4s;
+}
+
+div.hscroller-card-animated-7 {
+  animation: fadein 2.8s;
+  -moz-animation: fadein 2.8s;
+  -webkit-animation: fadein 2.8s;
+  -o-animation: fadein 2.8s;
+}
+
+div.hscroller-card-animated-8 {
+  animation: fadein 3.2s;
+  -moz-animation: fadein 3.2s;
+  -webkit-animation: fadein 3.2s;
+  -o-animation: fadein 3.2s;
+}
+
+div.hscroller-card-animated-9 {
+  animation: fadein 3.6s;
+  -moz-animation: fadein 3.6s;
+  -webkit-animation: fadein 3.6s;
+  -o-animation: fadein 3.6s;
+}
+
+div.hscroller-card-animated-10 {
+  animation: fadein 4s;
+  -moz-animation: fadein 4s;
+  -webkit-animation: fadein 4s;
+  -o-animation: fadein 4s;
+}
+
+div.hscroller-card-animated-11 {
+  animation: fadein 4.4s;
+  -moz-animation: fadein 4.4s;
+  -webkit-animation: fadein 4.4s;
+  -o-animation: fadein 4.4s;
+}
+
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@-moz-keyframes fadein {
+  /* Firefox */
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes fadein {
+  /* Safari and Chrome */
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@-o-keyframes fadein {
+  /* Opera */
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

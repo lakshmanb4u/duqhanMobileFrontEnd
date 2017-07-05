@@ -10,13 +10,17 @@
         </div>
       </div>
 
-      <ion-scroll direction="x" overflow-scroll="false" ng-if="ctrl.categories">
+      <!--<ion-scroll direction="x" overflow-scroll="false" ng-if="ctrl.categories">
         <div class="category-tab-wrapper">
           <div class="category-tab" ng-repeat="c in ctrl.categories" ui-sref="store.productsByCategory({categoryId: c.categoryId})">
             {{c.categoryName}}
           </div>
         </div>
-      </ion-scroll>
+      </ion-scroll>-->
+
+      <horizontal-tab ng-if="ctrl.categories">
+        <hcard ng-repeat="c in ctrl.categories" index="{{$index}}" desc="{{c.categoryName}}" ui-sref="store.productsByCategory({categoryId: c.categoryId})"></hcard>
+      </horizontal-tab>
 
 
       <div class="row p-l-n p-r-n products-row">

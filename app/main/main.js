@@ -1,6 +1,6 @@
 'use strict';
 angular
-  .module('main', [
+  .module( 'main', [
     'ionic',
     'ionic.cloud',
     'ngCordova',
@@ -8,34 +8,34 @@ angular
     'ngStorage',
     'auth',
     'store'
-  ])
-  .config(function ($stateProvider, $urlRouterProvider) {
+  ] )
+  .config( function ( $stateProvider, $urlRouterProvider ) {
     // $httpProvider.interceptors.push('HttpInterceptor');
     // ROUTING with ui.router
-    $urlRouterProvider.otherwise('/landing');
-  })
+    $urlRouterProvider.otherwise( '/landing' );
+  } )
   // ADD: initialize $ionicCloudProvider with app_id
-  .config(function ($ionicCloudProvider) {
-    $ionicCloudProvider.init({
+  .config( function ( $ionicCloudProvider ) {
+    $ionicCloudProvider.init( {
       core: {
         // eslint-disable-next-line camelcase
         app_id: 'ad64e5e2'
       },
       auth: {
         facebook: {
-          scope: ['email', 'public_profile']
+          scope: [ 'email', 'public_profile' ]
         }
       }
-    });
-  })
-  .config(function ($ionicConfigProvider) {
-    $ionicConfigProvider.scrolling.jsScrolling(false);
-  })
-  .run(function ($ionicPlatform, $log, $rootScope, $state) {
+    } );
+  } )
+  .config( function ( $ionicConfigProvider ) {
+    $ionicConfigProvider.scrolling.jsScrolling( false );
+  } )
+  .run( function ( $ionicPlatform, $log, $rootScope, $state ) {
     $rootScope.$state = $state;
-    $ionicPlatform.ready(function () {
+    $ionicPlatform.ready( function () {
       /* eslint-disable no-undef */
-      if (window.cordova) {
+      if ( window.cordova ) {
         try {
           // then override any default you want
           window.plugins.nativepagetransitions.globalOptions.duration = 700;
@@ -46,11 +46,11 @@ angular
           // these are used for slide left/right only
           window.plugins.nativepagetransitions.globalOptions.fixedPixelsTop = 64;
           window.plugins.nativepagetransitions.globalOptions.fixedPixelsBottom = 48;
-        } catch (e) {
-          $log.log(e);
+        } catch ( e ) {
+          $log.log( e );
         }
       }
 
       /* eslint-enable no-undef */
-    });
-  });
+    } );
+  } );
