@@ -43,7 +43,7 @@
       </div>
     </div>
     <div class="cart-items" ng-repeat="p in ctrl.cart.products">
-      <div class="row product">
+      <div class="row product" ng-class="{'out-of-stack': p.available === 0}">
         <div class="col col-75">
           <h2>{{p.name}}</h2>
           <p>
@@ -57,9 +57,9 @@
           <img src="{{p.imgurl || 'store/assets/images/default.jpg'}}">
         </div>
       </div>
-      <div class="row product m-b-xs">
+      <div class="row product m-b-xs" ng-class="{'out-of-stack': p.available === 0}">
         <div class="col">
-          <div class="list">
+          <div class="list" ng-show="p.available > 0">
             <label class="item item-input item-select">
               <div class="input-label">
                 Qty
@@ -69,6 +69,7 @@
               </select>
             </label>
           </div>
+          <h3 ng-hide="p.available > 0">OUT OF STOCK</h3>
         </div>
         <div class="col text-right">
           <h3><span>Rs.{{p.price}}</span> Rs.{{p.discountedPrice}}</h3>

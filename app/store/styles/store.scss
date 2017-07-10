@@ -297,6 +297,9 @@ $assertive: #ef473a !default;
           padding: 5px 5px 5px 0px;
         }
       }
+      &.out-of-stack {
+        opacity: 0.5;
+      }
     }
   }
 }
