@@ -1,32 +1,33 @@
 'use strict';
 angular
-  .module('store', [
+  .module( 'store', [
     'ionic',
     'ngCordova',
     'ui.router',
     'ionic-datepicker',
     'ionic.ion.imageCacheFactory',
     'angularMoment',
-    'ionic.closePopup'
+    'ionic.closePopup',
+    'ksSwiper'
 
     // TODO: load other modules selected during generation
-  ])
-  .config(function ($stateProvider, $ionicConfigProvider) {
+  ] )
+  .config( function ( $stateProvider, $ionicConfigProvider ) {
     // $ionicConfigProvider.tabs.style('striped');
-    $ionicConfigProvider.tabs.position('top');
-    $ionicConfigProvider.backButton.text('');
-    $ionicConfigProvider.backButton.previousTitleText(false);
+    $ionicConfigProvider.tabs.position( 'top' );
+    $ionicConfigProvider.backButton.text( '' );
+    $ionicConfigProvider.backButton.previousTitleText( false );
 
     // ROUTING with ui.router
     $stateProvider
-      // this state is placed in the <ion-nav-view> in the index.html
-      .state('store', {
+    // this state is placed in the <ion-nav-view> in the index.html
+      .state( 'store', {
         url: '/store',
         abstract: true,
         templateUrl: 'store/templates/menu.html',
         controller: 'StoreMenuCtrl as menu'
-      })
-      .state('store.products', {
+      } )
+      .state( 'store.products', {
         url: '/products',
         abstract: true,
         views: {
@@ -35,8 +36,8 @@ angular
             controller: 'ProductsCtrl as ctrl'
           }
         }
-      })
-      .state('store.products.latest', {
+      } )
+      .state( 'store.products.latest', {
         url: '/latest',
         cache: true,
         views: {
@@ -46,8 +47,8 @@ angular
             // controller: 'ProductsCtrl as ctrl'
           }
         }
-      })
-      .state('store.products.recent', {
+      } )
+      .state( 'store.products.recent', {
         url: '/recent',
         // cache: false,
         views: {
@@ -57,8 +58,8 @@ angular
             // controller: 'ProductsCtrl as ctrl'
           }
         }
-      })
-      .state('store.productsSearch', {
+      } )
+      .state( 'store.productsSearch', {
         url: '/products-search/:searchText',
         // cache: false,
         views: {
@@ -67,8 +68,8 @@ angular
             controller: 'SearchCtrl as ctrl'
           }
         }
-      })
-      .state('store.productsByCategory', {
+      } )
+      .state( 'store.productsByCategory', {
         url: '/products-by-category/:categoryId',
         // cache: false,
         views: {
@@ -77,8 +78,8 @@ angular
             controller: 'ProductsByCategoryCtrl as ctrl'
           }
         }
-      })
-      .state('store.categories', {
+      } )
+      .state( 'store.categories', {
         url: '/categories/:categoryId',
         // cache: false,
         views: {
@@ -87,8 +88,8 @@ angular
             controller: 'ProductsByCategoryCtrl as ctrl'
           }
         }
-      })
-      .state('store.product', {
+      } )
+      .state( 'store.product', {
         url: '/product/:productId',
         abstract: true,
         cache: false,
@@ -98,8 +99,8 @@ angular
             controller: 'ProductCtrl as ctrl'
           }
         }
-      })
-      .state('store.product.overview', {
+      } )
+      .state( 'store.product.overview', {
         url: '/overview',
         views: {
           overviewProductContent: {
@@ -108,8 +109,8 @@ angular
             // controller: 'ProductCtrl as ctrl'
           }
         }
-      })
-      .state('store.product.related', {
+      } )
+      .state( 'store.product.related', {
         url: '/related',
         views: {
           relatedProductContent: {
@@ -118,8 +119,8 @@ angular
             // controller: 'ProductCtrl as ctrl'
           }
         }
-      })
-      .state('store.product.description', {
+      } )
+      .state( 'store.product.description', {
         url: '/description',
         views: {
           descriptionProductContent: {
@@ -128,8 +129,8 @@ angular
             // controller: 'ProductCtrl as ctrl'
           }
         }
-      })
-      .state('store.cart', {
+      } )
+      .state( 'store.cart', {
         url: '/cart',
         views: {
           storeContent: {
@@ -137,8 +138,8 @@ angular
             controller: 'CartCtrl as ctrl'
           }
         }
-      })
-      .state('store.checkout', {
+      } )
+      .state( 'store.checkout', {
         url: '/checkout',
         params: {
           cart: null
@@ -149,8 +150,8 @@ angular
             controller: 'CheckoutCtrl as ctrl'
           }
         }
-      })
-      .state('store.profile', {
+      } )
+      .state( 'store.profile', {
         url: '/profile',
         views: {
           storeContent: {
@@ -158,8 +159,8 @@ angular
             controller: 'ProfileCtrl as ctrl'
           }
         }
-      })
-      .state('store.changepassword', {
+      } )
+      .state( 'store.changepassword', {
         url: '/change-password',
         views: {
           storeContent: {
@@ -168,8 +169,8 @@ angular
             // controller: '<someCtrl> as ctrl'
           }
         }
-      })
-      .state('store.myaddress', {
+      } )
+      .state( 'store.myaddress', {
         url: '/my-address',
         views: {
           storeContent: {
@@ -177,8 +178,8 @@ angular
             controller: 'AddressCtrl as ctrl'
           }
         }
-      })
-      .state('store.orderhistory', {
+      } )
+      .state( 'store.orderhistory', {
         url: '/order-history',
         views: {
           storeContent: {
@@ -186,8 +187,8 @@ angular
             controller: 'OrderHistoryCtrl as ctrl'
           }
         }
-      })
-      .state('store.orderdetails', {
+      } )
+      .state( 'store.orderdetails', {
         url: '/order-details',
         params: {
           order: null
@@ -198,8 +199,8 @@ angular
             controller: 'OrderHistoryCtrl as ctrl'
           }
         }
-      })
-      .state('store.customersupport', {
+      } )
+      .state( 'store.customersupport', {
         url: '/customer-support/:p',
         views: {
           storeContent: {
@@ -207,8 +208,8 @@ angular
             controller: 'CustomerSupportCtrl as ctrl'
           }
         }
-      })
-      .state('store.sizes', {
+      } )
+      .state( 'store.sizes', {
         url: '/sizes',
         views: {
           storeContent: {
@@ -216,8 +217,8 @@ angular
             controller: 'SizeChartCtrl as ctrl'
           }
         }
-      })
-      .state('store.shipping', {
+      } )
+      .state( 'store.shipping', {
         url: '/shipping',
         views: {
           storeContent: {
@@ -225,8 +226,8 @@ angular
             controller: 'ShippingCtrl as ctrl'
           }
         }
-      })
-      .state('store.returnpolicy', {
+      } )
+      .state( 'store.returnpolicy', {
         url: '/return-policy',
         views: {
           storeContent: {
@@ -234,8 +235,8 @@ angular
             controller: 'ReturnPolicyCtrl as ctrl'
           }
         }
-      })
-      .state('store.aboutus', {
+      } )
+      .state( 'store.aboutus', {
         url: '/aboutus',
         views: {
           storeContent: {
@@ -243,8 +244,8 @@ angular
             controller: 'AboutCtrl as ctrl'
           }
         }
-      })
-      .state('store.contactus', {
+      } )
+      .state( 'store.contactus', {
         url: '/contactus',
         views: {
           storeContent: {
@@ -252,8 +253,8 @@ angular
             controller: 'ContactusCtrl as ctrl'
           }
         }
-      })
-      .state('store.privacyPolicy', {
+      } )
+      .state( 'store.privacyPolicy', {
         url: '/privacy-policy',
         views: {
           storeContent: {
@@ -261,8 +262,8 @@ angular
             controller: 'PrivacyPolicyCtrl as ctrl'
           }
         }
-      })
-      .state('store.termsConditions', {
+      } )
+      .state( 'store.termsConditions', {
         url: '/terms-conditions',
         views: {
           storeContent: {
@@ -270,5 +271,5 @@ angular
             controller: 'TermsConditionsCtrl as ctrl'
           }
         }
-      });
-  });
+      } );
+  } );
