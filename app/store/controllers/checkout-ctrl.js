@@ -163,7 +163,7 @@ angular
     =======================================*/
 
     ctrl.selectPaymentGateway = function () {
-      ctrl.cart.paymentGateway = 2;
+      ctrl.cart.paymentGateway = 1;
       ctrl.paymentGatewayModal.show();
     };
 

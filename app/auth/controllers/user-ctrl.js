@@ -11,6 +11,7 @@ angular
     $ionicFacebookAuth,
     $ionicUser,
     $cordovaGeolocation,
+    $timeout,
     Config,
     Auth,
     Firebase
@@ -91,6 +92,11 @@ angular
           $rootScope.$emit( 'setUserDetailForMenu' );
           $localStorage.savedUser = JSON.stringify( ctrl.savedUser );
           $state.go( 'store.products.latest' );
+          if ( Config.ENV.DEEP_LINK ) {
+            $timeout( function () {
+              $location.path( Config.ENV.DEEP_LINK );
+            }, 1000 );
+          }
 
           //$location.path('/store/products/latest');
         } )
@@ -161,6 +167,11 @@ angular
           $log.log( img );
           $localStorage.savedUser = JSON.stringify( ctrl.savedUser );
           $state.go( 'store.products.latest' );
+          if ( Config.ENV.DEEP_LINK ) {
+            $timeout( function () {
+              $location.path( Config.ENV.DEEP_LINK );
+            }, 1000 );
+          }
         } )
         .catch( function ( error ) {
           $log.log( error );
@@ -208,6 +219,11 @@ angular
               $log.log( img );
               $localStorage.savedUser = JSON.stringify( ctrl.savedUser );
               $state.go( 'store.products.latest' );
+              if ( Config.ENV.DEEP_LINK ) {
+                $timeout( function () {
+                  $location.path( Config.ENV.DEEP_LINK );
+                }, 1000 );
+              }
             } )
             .catch( function ( error ) {
               $log.log( error );

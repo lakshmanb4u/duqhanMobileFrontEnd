@@ -170,6 +170,7 @@ $assertive: #ef473a !default;
     position: relative;
     .item-image {
       position: relative;
+      overflow: hidden;
       &:before {
         content: "";
         display: block;
@@ -197,6 +198,9 @@ $assertive: #ef473a !default;
       .old-price {
         text-decoration: line-through;
         color: #a1a1a1;
+      }
+      .price {
+        font-weight: bold;
       }
     }
   }

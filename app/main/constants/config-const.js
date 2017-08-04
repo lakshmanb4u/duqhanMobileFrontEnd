@@ -5,7 +5,7 @@ angular.module('main')
   // gulp environment: injects environment vars
   ENV: {
     /*inject-env*/
-    'SERVER_URL': 'https://www.prameelarice.com/',
+    'SERVER_URL': 'http://www.prameelarice.com/',
     'SOME_OTHER_URL': 'http://192.168.1.95:8084/',
     'USER': {
       'AUTH_TOKEN': null,
@@ -20,7 +20,8 @@ angular.module('main')
       'API_KEY': '211572778157664',
       'API_SECRET': 'BjqvouftX41P4NHFbAEPFaBWFog'
     },
-    'PRODUCTS_PER_PAGE': 20
+    'PRODUCTS_PER_PAGE': 20,
+    'DEEP_LINK': null
     /*endinject*/
   },
 
