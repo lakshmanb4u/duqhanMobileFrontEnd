@@ -84,7 +84,7 @@ jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore duqhan-release-
 Go to
 C:\Users\CLB\AppData\Local\Android\sdk\build-tools\23.0.3
 ```sh
-zipalign -v 4 duqhan-release-unsigned.apk duqhan-release-signed-1.0.11.apk
+zipalign -v 4 duqhan-release-unsigned.apk duqhan-release-signed-1.0.13.apk
 ```
 
 ### Setup deep linking

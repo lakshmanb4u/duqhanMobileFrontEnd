@@ -189,9 +189,10 @@ $assertive: #ef473a !default;
       color: #ffffff;
       padding: 2px 5px;
       position: absolute;
-      top: 15px;
+      top: 38px;
       font-size: 12px;
       opacity: .8;
+      z-index: 99;
     }
     .price-wraper {
       font-size: 12px;
@@ -201,6 +202,16 @@ $assertive: #ef473a !default;
       }
       .price {
         font-weight: bold;
+      }
+    }
+    .item-divider {
+      &.thumb-header-footer {
+        padding: 8px;
+        .shipping-wraper {
+          font-size: 12px;
+          margin-top: 0px;
+          color: #6d6d6d;
+        }
       }
     }
   }
@@ -256,6 +267,28 @@ $assertive: #ef473a !default;
       border: 0px solid #000000;
       display: inline-block;
       padding: 15px 10px;
+    }
+    &.has-subheader {
+      top: 70px;
+    }
+  }
+}
+
+.tab-content .bar-subheader {
+  top: 35px;
+  height: 34px;
+  .title {
+    font-size: 14px;
+    height: 34px;
+    line-height: 34px;
+    span {
+      background: white;
+      display: inline-block;
+      height: 100%;
+      img {
+        height: 50%;
+        vertical-align: middle;
+      }
     }
   }
 }

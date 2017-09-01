@@ -22,7 +22,7 @@
 
     <h4 class="m-b-md m-t-xs">Review products</h4>
     <ion-list class="checkout-review-items">
-      <div class="item item-thumbnail-left item-text-wrap" ng-repeat="p in ctrl.cart.products">
+      <div class="item item-thumbnail-left item-text-wrap" ng-repeat="p in ctrl.cart.products" ui-sref="store.product.overview({productId: p.productId})">
         <img src="{{p.imgurl || 'store/assets/images/default.jpg'}}">
         <h2>{{p.name}}</h2>
         <p>
@@ -58,10 +58,19 @@
       </a>
     </div>
 
-    <div class="m-lg">
-      <!-- PayPal Logo -->
-      <img src="https://www.paypalobjects.com/webstatic/mktg/logo-center/Security_Banner_234x60_4a.gif" border="0" alt="PayPal Logo" width="100%">
-      <!-- PayPal Logo -->
+    <div class="">
+      <div class="row">
+        <div class="col col-40 text-left">
+          <!-- Paytm Logo -->
+          <img src="store/assets/images/paytm_logo.png" border="0" alt="Paytm Logo" style="max-width: 100%; margin-top: 13px;">
+          <!-- Paytm Logo -->
+        </div>
+        <div class="col col-60 text-right">
+          <!-- PayPal Logo -->
+          <img src="https://www.paypalobjects.com/webstatic/mktg/logo/AM_mc_vs_dc_ae.jpg" border="0" alt="PayPal Logo" style="max-width: 100%;">
+          <!-- PayPal Logo -->
+        </div>
+      </div>
     </div>
     <div class="m-md"></div>
   </ion-content>

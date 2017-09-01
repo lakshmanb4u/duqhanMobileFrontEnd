@@ -6,9 +6,10 @@ $light: #ffffff !default;
 // Landing Page
 // -------------------------------
 .landing {
-  background-image: url("../assets/images/landing-background.png");
+  background-image: url("../assets/images/bkg.jpg");
   background-repeat: no-repeat;
   background-size: cover;
+  background-position-y: -222px;
   display: -webkit-box;
   display: -moz-box;
   display: -ms-flexbox;

@@ -28,6 +28,26 @@
   <link rel="stylesheet" href="store/styles/store.css">
   <!-- endinject -->
   <!-- endbuild -->
+
+  <!-- Facebook Pixel Code -->
+  <script>
+    !function (f, b, e, v, n, t, s) {
+      if (f.fbq) return; n = f.fbq = function () {
+        n.callMethod ?
+          n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+      };
+      if (!f._fbq) f._fbq = n; n.push = n; n.loaded = !0; n.version = '2.0';
+      n.queue = []; t = b.createElement(e); t.async = !0;
+      t.src = v; s = b.getElementsByTagName(e)[0];
+      s.parentNode.insertBefore(t, s)
+    }(window, document, 'script',
+      'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '1612756512132293');
+      // fbq('track', 'PageView');
+  </script>
+  <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1612756512132293&ev=PageView&noscript=1"
+    /></noscript>
+  <!-- End Facebook Pixel Code -->
 </head>
 
 <body>
@@ -60,10 +80,15 @@
   <script src="bower_components/ionic-close-popup/ionic-close-popup.js"></script>
   <script src="bower_components/swiper/dist/js/swiper.js"></script>
   <script src="bower_components/angular-swiper/dist/angular-swiper.js"></script>
+  <script src="bower_components/SHA-1/sha1.js"></script>
+  <script src="bower_components/angulartics/src/angulartics.js"></script>
+  <script src="bower_components/angulartics-facebook-pixel/dist/angulartics-facebook-pixel.min.js"></script>
   <!-- endbower -->
   <script src="bower_components/ionic-ion-imageCacheFactory/ionic.ion.imagecachefactory.js"></script>
   <script src="bower_components/ionic-cloud/ionic.cloud.min.js"></script>
   <!-- endbuild -->
+
+
 
   <!-- build:js scripts/app.js -->
   <!-- inject:js -->
@@ -113,18 +138,18 @@
   <!-- endbuild -->
 
   <script type="text/javascript">
-    angular.element(document).ready(function() {
-      if (window.cordova) {
-        console.log("Running in Cordova, will bootstrap AngularJS once 'deviceready' event fires.");
-        document.addEventListener('deviceready', function() {
-          console.log("Deviceready event has fired, bootstrapping AngularJS.");
+      angular.element(document).ready(function () {
+        if (window.cordova) {
+          console.log("Running in Cordova, will bootstrap AngularJS once 'deviceready' event fires.");
+          document.addEventListener('deviceready', function () {
+            console.log("Deviceready event has fired, bootstrapping AngularJS.");
+            angular.bootstrap(document.body, ['Duqhan']);
+          }, false);
+        } else {
+          console.log("Running in browser, bootstrapping AngularJS now.");
           angular.bootstrap(document.body, ['Duqhan']);
-        }, false);
-      } else {
-        console.log("Running in browser, bootstrapping AngularJS now.");
-        angular.bootstrap(document.body, ['Duqhan']);
-      }
-    });
+        }
+      });
   </script>
 </body>
 
