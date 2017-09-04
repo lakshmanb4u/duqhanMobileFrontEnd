@@ -166,11 +166,18 @@ angular
           $log.log('FB picture ================');
           $log.log(img);
           $localStorage.savedUser = JSON.stringify(ctrl.savedUser);
-          // eslint-disable-next-line no-undef
-          intercom.reset();
-          // eslint-disable-next-line no-undef
-          intercom.registerIdentifiedUser({ userId: ctrl.savedUser.userId });
           $state.go('store.products.latest');
+          /* eslint-disable no-undef */
+          intercom.reset();
+          intercom.registerIdentifiedUser({ userId: ctrl.savedUser.userId });
+          intercom.updateUser({
+            custom_attributes: {
+              customer_email: ctrl.savedUser.email,
+              customer_name: ctrl.savedUser.name
+            }
+          });
+          intercom.setLauncherVisibility('VISIBLE');
+          /* eslint-enable no-undef */
           if (Config.ENV.DEEP_LINK) {
             $timeout(function () {
               $location.path(Config.ENV.DEEP_LINK);
@@ -185,8 +192,6 @@ angular
     };
 
     ctrl.autoLogin = function () {
-      // eslint-disable-next-line no-undef
-      intercom.registerUnidentifiedUser();
       var savedUser = $localStorage.savedUser;
       $log.log(savedUser);
       if (!savedUser) {
