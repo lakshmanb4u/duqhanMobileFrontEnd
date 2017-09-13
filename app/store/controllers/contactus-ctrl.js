@@ -1,7 +1,7 @@
 'use strict';
 angular
   .module('store')
-  .controller('ContactusCtrl', function ($log, $rootScope, Store) {
+  .controller('ContactusCtrl', function ($log, $rootScope, $localStorage, Store) {
     $log.log(
       'Hello from your Controller: ContactusCtrl in module store:. This is your controller:',
       this
@@ -18,12 +18,22 @@ angular
     ];
     ctrl.Subjects = ctrl.countList[0].id;
 
+    var savedUser = $localStorage.savedUser;
+    var parsedUser = JSON.parse(savedUser);
+
+    ctrl.ContactForm = {
+      submitted: false
+    };
+
     ctrl.Contact = {
       statusCode: '',
-      status: ''
+      status: '',
+      email: parsedUser.email,
+      mobile: parsedUser.mobile
     };
 
     ctrl.ContactUs = function () {
+      ctrl.ContactForm.submitted = true;
       if (ctrl.ContactForm.$valid) {
         ctrl.Contact.statusCode = ctrl.statusCode;
         Store.contactUs(ctrl.Contact)
@@ -38,6 +48,7 @@ angular
               statusCode: '',
               status: ''
             };
+            ctrl.ContactForm.submitted = false;
           })
           .catch(function (response) {
             $log.log(response);

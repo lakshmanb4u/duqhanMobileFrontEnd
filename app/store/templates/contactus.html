@@ -1,7 +1,8 @@
 <ion-view view-title="Contact Us">
   <!-- do you want padding? -->
   <ion-content class="padding">
-    <p>We would love to hear from you. Please provide us your valuable feedback. You can also contact us if you are facing problem accessing the site. Please select appropriate subject and send it to us.</p>
+    <p>We would love to hear from you. Please provide us your valuable feedback. You can also contact us if you are facing problem
+      accessing the site. Please select appropriate subject and send it to us.</p>
     <form name="ctrl.ContactForm" ng-submit="ctrl.ContactUs()" novalidate="">
       <label class="item item-input item-select">
        <div class = "input-label">
@@ -12,7 +13,17 @@
         </select>
       </label>
       <label class="item item-input">
-        <textarea placeholder="Messege" ng-model="ctrl.Contact.status" style="height: 73px;"></textarea>
+        <input type="email" name="email" placeholder="Email Id" ng-model="ctrl.Contact.email" required/>
+        <em ng-show="ctrl.ContactForm.email.$error.required && ctrl.ContactForm.submitted" style="padding: 0 5px; font-size: 12px; color: red;">* Email is required</em>
+        <em ng-show="!ctrl.ContactForm.email.$error.required && ctrl.ContactForm.email.$invalid && ctrl.ContactForm.submitted" style="padding: 0 5px; font-size: 12px; color: red;">* Email is invalid</em>
+      </label>
+      <label class="item item-input">
+        <input type="text" name="mobile" placeholder="Phone Number" ng-model="ctrl.Contact.mobile" required/>
+        <em ng-show="ctrl.ContactForm.mobile.$error.required && ctrl.ContactForm.submitted" style="padding: 0 5px; font-size: 12px; color: red;">* Mobile is required</em>
+      </label>
+      <label class="item item-input">
+        <textarea placeholder="Messege" ng-model="ctrl.Contact.status" style="height: 73px;" name="status" required></textarea>
+        <em ng-show="ctrl.ContactForm.status.$error.required && ctrl.ContactForm.submitted" style="padding: 0 5px; font-size: 12px; color: red;">* Messege is required</em>
       </label>
       <button class="button button-full button-positive">
         Contact Us

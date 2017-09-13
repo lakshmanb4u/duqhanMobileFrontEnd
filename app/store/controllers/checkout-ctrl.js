@@ -59,12 +59,13 @@ angular
           } else {
             ctrl.address = null;
           }
-          return Store.getUserEmail();
+          return Store.getUserEmailAndPhone();
         })
         .then(function (response) {
           $log.log('getUserEmail');
-          $log.log(response.data.email);
+          $log.log(response.data);
           ctrl.userEmail = response.data.email;
+          ctrl.mobile = response.data.mobile;
         })
         .catch(function (error) {
           $log.log(error);
@@ -171,12 +172,23 @@ angular
     =            Set Email Address            =
     =======================================*/
 
-    ctrl.setEmailAddress = function () {
+    ctrl.setUserEmailAndPhone = function (email, phone) {
       ctrl.data = {};
+      ctrl.data.email = email;
+      ctrl.data.mobile = phone;
+      $log.log(ctrl.data);
+      var template = [];
+      if (!email) {
+        template.push('<input type="email" ng-model="ctrl.data.email" placeholder="Email Id" style="padding: 2px 5px; margin-bottom: 10px;">');
+      }
+      if (!phone) {
+        template.push('<input type="text" ng-model="ctrl.data.mobile" placeholder="Phone Number" style="padding: 2px 5px;">');
+      }
+      var str = template.join('');
       $ionicPopup.show({
-        template: '<input type="email" ng-model="ctrl.data.email">',
-        title: 'Email',
-        subTitle: 'Please enter email to continue',
+        template: str,
+        title: 'Contact',
+        subTitle: 'Please enter contact details to continue',
         scope: $scope,
         buttons: [
           { text: 'Cancel' },
@@ -184,16 +196,17 @@ angular
             text: 'Save',
             type: 'button-positive',
             onTap: function (e) {
-              if (!ctrl.data.email) {
+              if (!ctrl.data.email || !ctrl.data.mobile) {
                 //don't allow the user to close unless he enters wifi password
                 e.preventDefault();
               } else {
-                $log.log(ctrl.data.email);
-                Store.setUserEmail(ctrl.data)
+                $log.log(ctrl.data);
+                Store.setUserEmailAndPhone(ctrl.data)
                   .then(function (response) {
                     $log.log('setUserEmail');
-                    if (response && response.data && response.data.email) {
+                    if (response && response.data && response.data.email && response.data.mobile) {
                       ctrl.userEmail = response.data.email;
+                      ctrl.mobile = response.data.mobile;
                       ctrl.pay();
                     } else {
                       var notification = {};
@@ -235,9 +248,9 @@ angular
         $rootScope.$emit('setNotification', notification);
         return;
       }
-      if (!ctrl.userEmail) {
+      if (!ctrl.userEmail || !ctrl.mobile) {
         $log.log('email not found');
-        ctrl.setEmailAddress();
+        ctrl.setUserEmailAndPhone(ctrl.userEmail, ctrl.mobile);
         return;
       }
       ctrl.cart.deliveryAddressId = ctrl.address.addressId;

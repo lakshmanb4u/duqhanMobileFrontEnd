@@ -20,6 +20,14 @@ angular.module('store')
           }
         });
       },
+      getFreeProducts: function () {
+        return $http.post(Config.ENV.SERVER_URL + 'user/get-free-product', {
+          transformResponse: function (response) {
+            var data = JSON.parse(response);
+            return data;
+          }
+        });
+      },
       searchProduct: function (param) {
         // return $http.get('dummy/products.json');
         return $http.post(Config.ENV.SERVER_URL + 'user/search-product', param, {
@@ -160,16 +168,16 @@ angular.module('store')
           }
         });
       },
-      getUserEmail: function () {
-        return $http.post(Config.ENV.SERVER_URL + 'user/get-user-email', {
+      getUserEmailAndPhone: function () {
+        return $http.post(Config.ENV.SERVER_URL + 'user/get-user-email-phone', {
           transformResponse: function (response) {
             var data = JSON.parse(response);
             return data;
           }
         });
       },
-      setUserEmail: function (email) {
-        return $http.post(Config.ENV.SERVER_URL + 'user/set-user-email', email, {
+      setUserEmailAndPhone: function (email) {
+        return $http.post(Config.ENV.SERVER_URL + 'user/set-user-email-phone', email, {
           transformResponse: function (response) {
             var data = JSON.parse(response);
             return data;
@@ -223,6 +231,14 @@ angular.module('store')
       },
       contactUs: function (details) {
         return $http.post(Config.ENV.SERVER_URL + 'user/contact-us', details);
+      },
+      purchaseFreeProduct: function (cart) {
+        return $http.post(Config.ENV.SERVER_URL + 'user/accept-free-product-offer', cart, {
+          transformResponse: function (response) {
+            var data = JSON.parse(response);
+            return data;
+          }
+        });
       }
     };
   });

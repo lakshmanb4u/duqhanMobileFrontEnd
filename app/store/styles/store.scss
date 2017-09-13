@@ -80,7 +80,9 @@ $assertive: #ef473a !default;
 // -------------------------------
 .products-tab-pane.pane,
 .product-tab-pane.pane,
-.product-by-category-pane.pane {
+.product-by-category-pane.pane,
+.free-products.pane,
+.free-product {
   top: 44px;
   .products-tab-content,
   .product-tab-content {
@@ -270,6 +272,26 @@ $assertive: #ef473a !default;
     }
     &.has-subheader {
       top: 70px;
+    }
+  }
+}
+
+.free-products.pane {
+  top: 0;
+  .button {
+    &.p-none {
+      margin: 0;
+    }
+  }
+}
+
+.free-product {
+  top: 0;
+  .bar.bar-footer {
+    bottom: 0;
+    .button {
+      margin: 0;
+      line-height: 44px;
     }
   }
 }
@@ -912,3 +934,11 @@ div.hscroller-card-animated-11 {
     opacity: 1;
   }
 }
+
+.tab-item {
+  span {
+    font-size: 90%;
+    text-transform: capitalize;
+  }
+}
+ 

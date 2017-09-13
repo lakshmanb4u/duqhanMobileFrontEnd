@@ -26,8 +26,10 @@ angular.module('store')
     ==============================*/
 
     ctrl.logout = function () {
-      // eslint-disable-next-line no-undef
-      intercom.reset();
+      if (window.cordova) {
+        // eslint-disable-next-line no-undef
+        intercom.reset();
+      }
       if ($localStorage.savedUser) {
         var savedUser = JSON.parse($localStorage.savedUser);
         if (savedUser.socialLogin) {

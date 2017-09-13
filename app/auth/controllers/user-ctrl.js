@@ -86,12 +86,35 @@ angular
           ctrl.savedUser.name = response.data.name;
           ctrl.savedUser.authtoken = response.data.authtoken;
           ctrl.savedUser.profileImage = response.data.profileImg;
+          ctrl.savedUser.freeProductEligibility = response.data.freeProductEligibility;
           Config.ENV.USER.AUTH_TOKEN = response.data.authtoken;
           Config.ENV.USER.NAME = response.data.name;
           Config.ENV.USER.PROFILE_IMG = response.data.profileImg;
           $rootScope.$emit('setUserDetailForMenu');
           $localStorage.savedUser = JSON.stringify(ctrl.savedUser);
-          $state.go('store.products.latest');
+          if (ctrl.savedUser.freeProductEligibility) {
+            $state.go('store.freeProducts');
+          } else {
+            $state.go('store.products.latest');
+          }
+          if (window.cordova) {
+            /* eslint-disable no-undef */
+            intercom.reset();
+            intercom.registerIdentifiedUser(
+              {
+                userId: ctrl.savedUser.userId,
+                email: ctrl.savedUser.email
+              }
+            );
+            intercom.updateUser({
+              /* eslint-disable camelcase */
+              custom_attributes: {
+                customer_name: ctrl.savedUser.name
+              }
+              /* eslint-enable camelcase */
+            });
+          }
+          /* eslint-enable no-undef */
           if (Config.ENV.DEEP_LINK) {
             $timeout(function () {
               $location.path(Config.ENV.DEEP_LINK);
@@ -158,6 +181,7 @@ angular
           ctrl.savedUser.userId = $ionicUser.social.facebook.userId;
           ctrl.savedUser.authtoken = response.data.authtoken;
           ctrl.savedUser.profileImage = response.data.profileImg ? response.data.profileImg : img;
+          ctrl.savedUser.freeProductEligibility = response.data.freeProductEligibility;
           ctrl.savedUser.socialLogin = true;
           Config.ENV.USER.AUTH_TOKEN = response.data.authtoken;
           Config.ENV.USER.NAME = response.data.name;
@@ -166,17 +190,28 @@ angular
           $log.log('FB picture ================');
           $log.log(img);
           $localStorage.savedUser = JSON.stringify(ctrl.savedUser);
-          $state.go('store.products.latest');
-          /* eslint-disable no-undef */
-          intercom.reset();
-          intercom.registerIdentifiedUser({ userId: ctrl.savedUser.userId });
-          intercom.updateUser({
-            custom_attributes: {
-              customer_email: ctrl.savedUser.email,
-              customer_name: ctrl.savedUser.name
-            }
-          });
-          intercom.setLauncherVisibility('VISIBLE');
+          if (ctrl.savedUser.freeProductEligibility) {
+            $state.go('store.freeProducts');
+          } else {
+            $state.go('store.products.latest');
+          }
+          if (window.cordova) {
+            /* eslint-disable no-undef */
+            intercom.reset();
+            intercom.registerIdentifiedUser(
+              {
+                userId: ctrl.savedUser.userId,
+                email: ctrl.savedUser.email
+              }
+            );
+            intercom.updateUser({
+              /* eslint-disable camelcase */
+              custom_attributes: {
+                customer_name: ctrl.savedUser.name
+              }
+              /* eslint-enable camelcase */
+            });
+          }
           /* eslint-enable no-undef */
           if (Config.ENV.DEEP_LINK) {
             $timeout(function () {
@@ -220,6 +255,7 @@ angular
               ctrl.savedUser.name = $ionicUser.social.facebook.data.full_name;
               ctrl.savedUser.userId = $ionicUser.social.facebook.userId;
               ctrl.savedUser.profileImage = response.data.profileImg ? response.data.profileImg : img;
+              ctrl.savedUser.freeProductEligibility = response.data.freeProductEligibility;
               ctrl.savedUser.authtoken = response.data.authtoken;
               ctrl.savedUser.socialLogin = true;
               Config.ENV.USER.AUTH_TOKEN = response.data.authtoken;
@@ -229,7 +265,29 @@ angular
               $log.log('FB picture ================');
               $log.log(img);
               $localStorage.savedUser = JSON.stringify(ctrl.savedUser);
-              $state.go('store.products.latest');
+              if (ctrl.savedUser.freeProductEligibility) {
+                $state.go('store.freeProducts');
+              } else {
+                $state.go('store.products.latest');
+              }
+              if (window.cordova) {
+                /* eslint-disable no-undef */
+                intercom.reset();
+                intercom.registerIdentifiedUser(
+                  {
+                    userId: ctrl.savedUser.userId,
+                    email: ctrl.savedUser.email
+                  }
+                );
+                intercom.updateUser({
+                  /* eslint-disable camelcase */
+                  custom_attributes: {
+                    customer_name: ctrl.savedUser.name
+                  }
+                  /* eslint-enable camelcase */
+                });
+              }
+              /* eslint-enable no-undef */
               if (Config.ENV.DEEP_LINK) {
                 $timeout(function () {
                   $location.path(Config.ENV.DEEP_LINK);
@@ -255,6 +313,12 @@ angular
     // Call autologin
     ctrl.autoLogin();
 
+    if (window.cordova) {
+      // eslint-disable-next-line no-undef
+      intercom.registerUnidentifiedUser();
+      // eslint-disable-next-line no-undef
+      intercom.setLauncherVisibility('VISIBLE');
+    }
     // Catching calls from outside this controller
     $rootScope.$on('internalLogin', function (event, user) {
       $log.log(event);

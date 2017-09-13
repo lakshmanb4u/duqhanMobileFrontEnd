@@ -145,3 +145,17 @@ $light: #ffffff !default;
     }
   }
 }
+
+body {
+  #intercom-container {
+    .intercom-app {
+      .intercom-launcher-frame {
+        bottom: 50px !important;
+      }
+    
+      .intercom-messenger-frame {
+          bottom: 50px !important;
+      }
+    }
+  }
+}
