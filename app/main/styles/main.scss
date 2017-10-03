@@ -574,6 +574,10 @@ $tabs-height:                     35px !default;
     line-height: 14px;
   }
 }
+.slider{
+    border: 1px solid #cec9c5;
+    box-shadow: 0px 2px 7px 2px rgba(0,0,0,0.4);
+}
 
 
 // The path for our ionicons font files, relative to the built & temporary main.css

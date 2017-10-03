@@ -1,4 +1,4 @@
-<ion-view view-title="Duqhan">
+<ion-view>
   <ion-pane class="product-by-category-pane">
     <ion-content class="padding products-tab-content">
 
@@ -58,19 +58,24 @@
       <div class="row p-l-n p-r-n products-row">
         <div class="col col-50 m-product" ng-repeat="p in ctrl.products">
           <div class="product-preview" ui-sref="store.product.overview({productId: p.productId})">
-            <span class="discount">{{p.discountPCT| number : 0}}%</span>
+            <!-- <span class="discount">{{p.discountPCT| number : 0}}%</span> -->
             <div class="item-image">
               <img src="{{p.imgurl || 'store/assets/images/default.jpg' | cloudinaryThumbTransformation}}">
             </div>
-            <div class="item text-center p-xs">
-              {{p.name}}
+
+            <div class="item p-xs b-t-n" style="font-family: 'Lato', sans-serif;color:#080809;">
+              <span style="font-size: 0.9em;">{{p.name}}</span>
+              <br/>
+              <span style="font-size: 0.7em;">&#2352;  <span style="color: #ff771c;font-family: 'Lato', sans-serif;">{{p.discountedPrice}}</span>              &nbsp; <span style="color: #ff771c;text-decoration: line-through;font-family: 'Lato', sans-serif;">{{p.price}}</span>
+              </span>
             </div>
-            <div class="item item-divider">
+
+            <!-- <div class="item item-divider">
               <div class="row p-none price-wraper">
                 <div class="col col-50 p-none old-price">Rs.{{p.price}}</div>
                 <div class="col col-50 p-none price text-right">Rs.{{p.discountedPrice}}</div>
               </div>
-            </div>
+            </div> -->
           </div>
         </div>
       </div>

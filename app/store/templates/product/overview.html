@@ -1,4 +1,4 @@
-<ion-view view-title="Detail">
+<ion-view>
   <!-- do you want padding? -->
   <ion-content class="product-tab-content has-footer has-tabs">
 
@@ -8,22 +8,28 @@
         <img src="{{i.imgUrl || 'store/assets/images/default.jpg' | cloudinaryImageTransformation}}">
       </ion-slide>
     </ion-slide-box>
-    <div class="product-brief p-sm">
+    <div class="product-brief p-sm" style="border:none;">
       <h1 class="product-name">{{ctrl.product.name}}</h1>
-      <p class="product-price m-b-none"><span>Rs.{{ctrl.product.orginalPrice}}</span> Rs.{{ctrl.product.salesPrice}}</p>
+      <p style="color: #ff771c;"><span>&#2352; {{ctrl.product.salesPrice}}</p>
+        
+      <div style="border-bottom: 1px solid #cdcdcd;height:1px;"></div>  
+      <!-- <p class="product-price m-b-none"><span>Rs.{{ctrl.product.orginalPrice}}</span> Rs.{{ctrl.product.salesPrice}}</p>
+      -->
     </div>
-    <div class="product-detail p-sm">
+    <div class="product-detail p-sm" style="margin-top:-15px !important;">
       <div class="size-wrapper m-b-md" ng-show="ctrl.product.description">
         <div class="values">Description</div>
-        <div class="">{{ctrl.product.description}}</div>
+        <div style="font-family: 'Lato';color: black;">{{ctrl.product.description}}</div>
       </div>
+
+      <div style="border-bottom: 1px solid #cdcdcd;height:1px;margin-bottom:10px;"></div>
+
+      <div class="values" style="margin-bottom:10px;">Specification</div>
+
       <div class="size-wrapper m-b-md" ng-show="ctrl.product.specifications">
         <!--<div class="values">Specification</div>-->
         <ion-list class="product-specification">
-          <ion-item class="item-divider">
-            Specification
-          </ion-item>
-          <ion-item ng-repeat="(key, value) in ctrl.product.specifications">
+          <ion-item ng-repeat="(key, value) in ctrl.product.specifications" style="background: #ebebeb;margin-bottom:5px;font-family: 'tahoma'">
             {{key.replace('-', ' ')}}
             <span class="item-note">{{value}}</span>
           </ion-item>
@@ -46,32 +52,47 @@
         </div>
         <div class="values">{{ctrl.product.colorArr}}</div>
       </div>
-      <div class="shipping-time-wrapper m-b-md">
+      <!-- <div class="shipping-time-wrapper m-b-md">
         <div class="row m-b-xs">
           <div class="col title">Estimated Arrival</div>
-          <!-- <div class="col link text-right" ui-sref="store.shipping">Details</div> -->
         </div>
         <div class="values">3-4 Weeks</div>
+      </div> -->
+
+      <div class="shipping-time-wrapper m-b-md" style="font-family: 'tahoma';font-size: 17px;">
+        We guarantee a safe and secure shopping experience so you never have to worry.
       </div>
       <div class="shipping-cost-wrapper m-b-md hidden">
         <div class="row m-b-xs">
           <div class="col title">Estimated Shipping</div>
-          <!-- <div class="col link text-right" ui-sref="store.shipping">Details</div> -->
+        
         </div>
         <div class="values">Rs. 0</div>
       </div>
     </div>
-    <div class="duqhan-guarantee">
+    <!-- <div class="duqhan-guarantee">
       <div class="stamp-wraper">
         <p>We guarantee a safe and secure shopping experience so you never have to worry.</p>
       </div>
+    </div> -->
+
+
+    <div class="row">
+      <div class="col col-60 text-center addToCart" ng-click="ctrl.addToBag(ctrl.product)" >
+        Add to Cart
+      </div>
+      <div class="col col-40 stamp-wraper" >
+      
+      </div>
     </div>
+
   </ion-content>
-  <ion-footer-bar class="">
-    <div class="button-bar">
+
+
+  <!-- <ion-footer-bar class="">
+    <div class="button-bar row">
       <button class="button button-dark purchase-price-button">Rs.{{ctrl.product.salesPrice || 0}} <span> Rs.{{ctrl.product.orginalPrice || 0}}</span></button>
-      <button class="button button-positive add-cart-button" ng-click="ctrl.addToBag(ctrl.product)">Add to Bag</button>
-      <!-- <button class="button button-positive add-cart-button" ng-click="ctrl.openModal()">Add to Bag</button> -->
+      <button class="button button-positive add-cart-button" ng-click="ctrl.addToBag(ctrl.product)">Add to Bag</button> 
     </div>
-  </ion-footer-bar>
+  </ion-footer-bar> -->
 </ion-view>

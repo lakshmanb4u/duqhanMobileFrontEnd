@@ -1,4 +1,4 @@
-<ion-view view-title="Duqhan">
+<ion-view view-title="Duqhan" hide-nav-bar="true">
   <!-- do you want padding? -->
   <ion-content class="padding landing">
 
@@ -6,40 +6,31 @@
     <ion-list class="list-inset">
       <ion-item class="item">
         <div class="text-center">
-          <img class="logo" src="main/assets/images/logo.png" style="width: 56px; height: 55px">
-          <p class="logo-text">Duqhan</p>
+          <img class="logo" src="main/assets/images/logo.png" style="width: 100px;">
         </div>
       </ion-item>
       <ion-item class="text-center sub-text">
-        <h2>Sign in to browse products!</h2>
+        <p>Sign in to Browse the <br/> Products !</p>
       </ion-item>
       <ion-item class="item item-button">
         <button class="button icon-left ion-social-facebook button-block button-facebook" ng-click="ctrl.internalFacebookLogin()">
           Sign in with Facebook
         </button>
+
+        <div class="text-center bottom-text">
+          We also accept payments from
+        </div>
       </ion-item>
-      <!-- <ion-item class="item item-divider">
-        <div class="separator"></div>
-        <div class="separator-text">or</div>
-        <div class="separator"></div>
-      </ion-item>
+
       <ion-item class="item">
-        <button class="button button-block button-energized" ui-sref="signup">
-          Sign Up
-        </button>
-      </ion-item>
-      <ion-item class="item item-divider">
-        <div class="separator"></div>
-        <div class="separator-text">or</div>
-        <div class="separator"></div>
-      </ion-item>-->
-      <!-- <ion-item class="item">
-        <button class="button button-block button-positive" ui-sref="login">
-          Login
-        </button>
-      </ion-item> -->
-      <ion-item class="item text-center">
-        <img src="auth/assets/images/pp.png" style="width: 45%;" />
+        <div class="row">
+          <div class="col col-50 text-center paytm">
+            <img src="auth/assets/images/paytm.png"/>
+          </div>
+          <div class="col col-50 text-center paypal">
+            <img src="auth/assets/images/paypal.png"/>
+          </div>
+        </div>
       </ion-item>
     </ion-list>
 

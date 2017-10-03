@@ -8,23 +8,26 @@
         <img src="{{i.imgUrl || 'store/assets/images/default.jpg' | cloudinaryImageTransformation}}">
       </ion-slide>
     </ion-slide-box>
-    <div class="product-brief p-sm">
+    <div class="product-brief p-sm" style="border:none;">
       <h1 class="product-name">{{ctrl.product.name}}</h1>
-      <p class="product-price m-b-none"><span>Rs.{{ctrl.product.orginalPrice}}</span> Free </p>
+      <p style="color: #ff771c;"><span>&#2352; {{ctrl.product.salesPrice}}</p>
+        <div style="border-bottom: 1px solid #cdcdcd;height:1px;"></div>  
+      <!-- <p class="product-price m-b-none"><span>Rs.{{ctrl.product.orginalPrice}}</span> Free </p> -->
     </div>
-    <div class="product-detail p-sm">
+    <div class="product-detail p-sm" style="margin-top:-15px !important;">
       <div class="size-wrapper m-b-md" ng-show="ctrl.product.description">
         <div class="values">Description</div>
-        <div class="">{{ctrl.product.description}}</div>
+        <div style="font-family: 'Lato';color: black;">{{ctrl.product.description}}</div>
       </div>
+
+      <div style="border-bottom: 1px solid #cdcdcd;height:1px;margin-bottom:10px;"></div>
+
+      <div class="values" style="margin-bottom:10px;">Specification</div>
+
       <div class="size-wrapper m-b-md" ng-show="ctrl.product.specifications">
         <!--<div class="values">Specification</div>-->
         <ion-list class="product-specification">
-          <ion-item class="item-divider">
-            Specification
-          </ion-item>
-          <ion-item ng-repeat="(key, value) in ctrl.product.specifications">
-            {{key.replace('-', ' ')}}
+          <ion-item ng-repeat="(key, value) in ctrl.product.specifications" style="background: #ebebeb;margin-bottom:5px;font-family: 'tahoma'"> {{key.replace('-', ' ')}}
             <span class="item-note">{{value}}</span>
           </ion-item>
         </ion-list>
@@ -41,12 +44,17 @@
         </div>
         <div class="values">{{ctrl.product.colorArr}}</div>
       </div>
-      <div class="shipping-time-wrapper m-b-md">
+      <!-- <div class="shipping-time-wrapper m-b-md">
         <div class="row m-b-xs">
           <div class="col title">Estimated Arrival</div>
         </div>
         <div class="values">3-4 Weeks</div>
+      </div> -->
+
+      <div class="shipping-time-wrapper m-b-md" style="font-family: 'tahoma';font-size: 17px;">
+        We guarantee a safe and secure shopping experience so you never have to worry.
       </div>
+
       <div class="shipping-cost-wrapper m-b-md hidden">
         <div class="row m-b-xs">
           <div class="col title">Estimated Shipping</div>
@@ -54,16 +62,18 @@
         <div class="values">Rs. 0</div>
       </div>
     </div>
-    <div class="duqhan-guarantee">
+    <!-- <div class="duqhan-guarantee">
       <div class="stamp-wraper">
         <p>We guarantee a safe and secure shopping experience so you never have to worry.</p>
       </div>
-    </div>
+    </div> -->
+
+
 
   </ion-content>
-  <ion-footer-bar class="bar-dark">
+   <ion-footer-bar class="bar-dark">
     <button class="button button-clear button-light button-block p-none" ng-click="ctrl.prepareCart(ctrl.product)">GET IT FREE NOW</button>
-  </ion-footer-bar>
+  </ion-footer-bar> 
 </ion-view>
 
 <script id="select-address-modal.html" type="text/ng-template">

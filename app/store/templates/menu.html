@@ -11,18 +11,20 @@
       </ion-nav-back-button>
       <!-- nav button, shown if applicable -->
       <ion-nav-buttons side="left">
-        <button class="button button-icon button-clear ion-navicon" menu-toggle="primary">
-        </button>
+        <button class="ion-custom-navicon" menu-toggle="primary"></button>
+
+         <button class="ion-custom-icon" ></button> 
+
       </ion-nav-buttons>
       <ion-nav-buttons side="right">
-        <button class="button button-small button-icon button-clear ion-ios-home-outline larger-icon" ui-sref="store.products.latest">
+        <button class="ion-custom-home" ui-sref="store.products.latest">
         </button>
-        <button class="button button-small button-icon button-clear ion-bag" ui-sref="store.cart">
+        <button class="ion-custom-search" ng-click="menu.toggleSearchBar()" >
           <span class="badge badge-assertive header-badge" ng-show="menu.cartTotalNumber>0">{{menu.cartTotalNumber}}</span>
         </button>
         <!--         <button class="button button-small button-icon button-clear ion-levels">
         </button> -->
-        <button class="button button-small button-icon button-clear ion-ios-search larger-icon" ng-click="menu.toggleSearchBar()">
+        <button class="ion-custom-cart" ui-sref="store.cart">
         </button>
       </ion-nav-buttons>
     </ion-nav-bar>
