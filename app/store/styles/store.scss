@@ -779,8 +779,8 @@ $assertive: #ef473a !default;
   background-image: url(../assets/images/duqhan-guarantee.png);
   background-size: contain;
   background-repeat: no-repeat;
-  padding: 5px 5px 5px 90px;
   background-position: center;
+	background-size: auto 30px;
 }
 
 .return-policy {
@@ -1034,13 +1034,17 @@ div.hscroller-card-animated-11 {
 .addToCart {
   background: #12b46a !important;
   color: #fff !important;
-  height: 80px !important;
+  height: 44px !important;
   font-size: 16px !important;
   vertical-align: middle !important;
-  line-height: 75px !important;
+  line-height: 35px !important;
   font-family: "Lato";
 }
 
 .slider-pager-page.active {
   color: #ff771c !important;
+}
+.button-bar .row {
+	background: #ccc;
+	padding: 0;
 }
