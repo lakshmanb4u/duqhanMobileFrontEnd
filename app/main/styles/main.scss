@@ -578,6 +578,32 @@ $tabs-height:                     35px !default;
     border: 1px solid #cec9c5;
     box-shadow: 0px 2px 7px 2px rgba(0,0,0,0.4);
 }
+.bar.bar-energized {
+    box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.2);
+}
+.latest-box {
+	background: #ff771c;
+	color: #fff;
+    display: block;
+    font-size: 14px;
+    left: -5px;
+    line-height: normal;
+    padding: 5px 10px;
+    position: absolute;
+    top: 10px;
+    z-index: 9;
+}
+.latest-box:after {
+	width: 0;
+	height: 0;
+	border-style: solid;
+	border-width: 0 5px 5px 0;
+	border-color: transparent #000000 transparent;
+	bottom: -5px;
+    content: "";
+    left: 0;
+    position: absolute;	
+}
 
 
 // The path for our ionicons font files, relative to the built & temporary main.css

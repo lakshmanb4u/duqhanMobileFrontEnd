@@ -80,6 +80,14 @@ $assertive: #ef473a !default;
 
 // Products Page and Product Page
 // -------------------------------
+
+
+.products-tab-pane.pane .pane,
+.product-tab-pane.pane .pane {
+	background: #f9f5f2;
+}
+
+
 .products-tab-pane.pane,
 .product-tab-pane.pane,
 .product-by-category-pane.pane,
