@@ -93,7 +93,8 @@ angular
           $rootScope.$emit('setUserDetailForMenu');
           $localStorage.savedUser = JSON.stringify(ctrl.savedUser);
           if (ctrl.savedUser.freeProductEligibility) {
-            $state.go('store.freeProducts');
+            // $state.go('store.freeProducts');
+            $state.go('store.products.latest');
           } else {
             $state.go('store.products.latest');
           }
@@ -191,7 +192,8 @@ angular
           $log.log(img);
           $localStorage.savedUser = JSON.stringify(ctrl.savedUser);
           if (ctrl.savedUser.freeProductEligibility) {
-            $state.go('store.freeProducts');
+            // $state.go('store.freeProducts');
+            $state.go('store.products.latest');
           } else {
             $state.go('store.products.latest');
           }
@@ -266,7 +268,8 @@ angular
               $log.log(img);
               $localStorage.savedUser = JSON.stringify(ctrl.savedUser);
               if (ctrl.savedUser.freeProductEligibility) {
-                $state.go('store.freeProducts');
+                // $state.go('store.freeProducts');
+                $state.go('store.products.latest');
               } else {
                 $state.go('store.products.latest');
               }
