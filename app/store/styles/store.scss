@@ -941,4 +941,15 @@ div.hscroller-card-animated-11 {
     text-transform: capitalize;
   }
 }
- 
+
+// Property List Modal
+// -------------------------------
+.property-list-modal {
+  .bar.bar-footer {
+    bottom: 0;
+    .button {
+      margin-top: 0; 
+      margin-bottom: 0;
+    }
+  }
+}

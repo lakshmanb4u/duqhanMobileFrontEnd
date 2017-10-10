@@ -10,12 +10,24 @@
     </ion-slide-box>
     <div class="product-brief p-sm">
       <h1 class="product-name">{{ctrl.product.name}}</h1>
-      <p class="product-price m-b-none"><span>Rs.{{ctrl.product.orginalPrice}}</span> Rs.{{ctrl.product.salesPrice}}</p>
+      <p class="product-price m-b-none">
+        <span>Rs.{{ctrl.product.orginalPrice}}</span> Rs.{{ctrl.product.salesPrice}}</p>
     </div>
+
     <div class="product-detail p-sm">
       <div class="size-wrapper m-b-md" ng-show="ctrl.product.description">
         <div class="values">Description</div>
         <div class="">{{ctrl.product.description}}</div>
+      </div>
+      <div class="m-b-md">
+        <ion-list class="product-properties">
+          <ion-item class="item-icon-right" ng-repeat="pp in ctrl.product.properties" ng-click="ctrl.openPropertyList(pp)">
+              <em ng-if="!pp.selectedProperty">Select</em>
+            <em ng-if="pp.selectedProperty">Selected</em> {{pp.property}}
+            <p data-ng-bind-html="ctrl.trustAsHtml(pp.selectedProperty)"></p>
+            <i class="icon ion-arrow-right-c"></i>
+          </ion-item>
+        </ion-list>
       </div>
       <div class="size-wrapper m-b-md" ng-show="ctrl.product.specifications">
         <!--<div class="values">Specification</div>-->
@@ -69,7 +81,9 @@
   </ion-content>
   <ion-footer-bar class="">
     <div class="button-bar">
-      <button class="button button-dark purchase-price-button">Rs.{{ctrl.product.salesPrice || 0}} <span> Rs.{{ctrl.product.orginalPrice || 0}}</span></button>
+      <button class="button button-dark purchase-price-button">Rs.{{ctrl.product.salesPrice || 0}}
+        <span> Rs.{{ctrl.product.orginalPrice || 0}}</span>
+      </button>
       <button class="button button-positive add-cart-button" ng-click="ctrl.addToBag(ctrl.product)">Add to Bag</button>
       <!-- <button class="button button-positive add-cart-button" ng-click="ctrl.openModal()">Add to Bag</button> -->
     </div>
