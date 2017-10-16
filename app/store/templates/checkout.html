@@ -1,10 +1,10 @@
 <ion-view view-title="Delivery">
   <!-- do you want padding? -->
-  <ion-content class="padding has-footer checkout">
+  <ion-content class="cart has-footer checkout">
 
     <!-- content goes here -->
-    <h4 class="m-none">Delivery address</h4>
-    <ion-list>
+    <h5 class="delivery-address">Delivery address</h5>
+    <ion-list class="address-box">
       <div class="card m-t-none">
         <div class="item item-text-wrap" ng-show="ctrl.address">
           <h2>{{ctrl.address.contactName}}</h2>
@@ -20,10 +20,19 @@
       </div>
     </ion-list>
 
-    <h4 class="m-b-md m-t-xs">Review products</h4>
+    <h5 class="review-products">Review products</h5>
     <ion-list class="checkout-review-items">
-      <div class="item item-thumbnail-left item-text-wrap" ng-repeat="p in ctrl.cart.products" ui-sref="store.product.overview({productId: p.productId})">
-        <img src="{{p.imgurl || 'store/assets/images/default.jpg'}}">
+      <div class="cart-items cart-list" ng-repeat="p in ctrl.cart.products" ui-sref="store.product.overview({productId: p.productId})">
+          <div class="row product">
+
+          <div class="col col-40 text-center">
+              <div class="cart-list-img"><img src="{{p.imgurl || 'store/assets/images/default.jpg'}}"></div>
+            </div>
+
+
+
+            <div class="col col-60">
+        
         <h2>{{p.name}}</h2>
         <p>
           <span ng-if="p.size">Size: {{p.size}}, </span>
@@ -34,10 +43,14 @@
         <!--<p>Delivery: <span>Rs.{{p.shippingRate | number : 0}} ({{p.shippingTime}} days)</span></p>-->
         <p>Free Shipping <span>(estimated {{p.shippingTime}} days)</span></p>
       </div>
+    </div>
+  </div>
+
+
     </ion-list>
 
-    <h4 class="m-b-md m-t-xs">Price details</h4>
-    <div class="list summary">
+    <h5 class="price-details">Price details</h5>
+    <div class="list summary cart-pay">
       <a class="item">
         Total price ({{ctrl.cart.products.length}} items)
         <span class="item-note">
@@ -58,31 +71,27 @@
       </a>
     </div>
 
-    <div class="">
+    <!--<div>
       <div class="row">
         <div class="col col-40 text-left">
-          <!-- Paytm Logo -->
           <img src="store/assets/images/paytm_logo.png" border="0" alt="Paytm Logo" style="max-width: 100%; margin-top: 13px;">
-          <!-- Paytm Logo -->
         </div>
         <div class="col col-60 text-right">
-          <!-- PayPal Logo -->
           <img src="https://www.paypalobjects.com/webstatic/mktg/logo/AM_mc_vs_dc_ae.jpg" border="0" alt="PayPal Logo" style="max-width: 100%;">
-          <!-- PayPal Logo -->
         </div>
       </div>
-    </div>
+    </div>-->
     <div class="m-md"></div>
   </ion-content>
   <ion-footer-bar class="cart-footer">
     <div class="row m-none p-none">
-      <div class="col text-center">
+      <div class="col col-40 text-center">
         <h3>Rs.{{ctrl.cart.orderTotalWithShipping | number : 0}}</h3>
-        <button class="button button-clear button-small button-light return-policy-button" ui-sref="store.returnpolicy">
+        <button class="button-clear button-small button-light return-policy-button" ui-sref="store.returnpolicy">
           Return Policy
         </button>
       </div>
-      <div class="col text-right">
+      <div class="col col-60 text-right">
         <div class="button-bar">
           <button class="button button-positive add-cart-button" ng-click="ctrl.selectPaymentGateway()">Pay</button>
         </div>

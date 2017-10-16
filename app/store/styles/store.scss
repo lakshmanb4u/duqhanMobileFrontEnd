@@ -383,7 +383,7 @@ $assertive: #ef473a !default;
 // Cart Page
 // -------------------------------
 .cart {
-  background: #e8e8e8;
+  background: #f9f5f2;
   .list.summary {
     padding: 10px 0 0;
     margin-bottom: 10px;
@@ -455,6 +455,247 @@ $assertive: #ef473a !default;
   }
 }
 
+.cart-box {
+  background: url(../assets/images/cart-bg.jpg) no-repeat left top;
+  padding: 260px 0 0 0;
+  background-size: 100% auto;
+  text-align: center;
+  font-family: "Lato";
+  h2 {
+    font-size: 26px;
+    font-weight: 400;
+    margin: 0;
+  }
+  p {
+    font-size: 18px;
+    font-weight: 300;
+    line-height: 28px;
+    margin: 15px 20%;
+  }
+  a {
+    background: #12b46a;
+    display: block;
+    margin: 0 25%;
+    padding: 22px 0;
+    color: #fff;
+    text-decoration: none;
+    font-size: 20px;
+    font-weight: 400;
+  }
+  span {
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 26px;
+    margin: 20px 20% 0 20%;
+    display: block;
+  }
+}
+.bar.cart-footer {
+  background-color: #2e302f;
+  font-family: "Lato";
+  border: none;
+  .col {    
+    padding:0;
+    h3 {
+      color: #fff;
+      line-height: normal;
+      font-family: "Lato";
+      font-size: 20px;
+      margin: 8px 0 0 0;
+    }
+    button.return-policy-button {
+      padding: 0;      
+      color: #fff;      
+      font-size: 14px;      
+      line-height: normal;      
+      min-height: auto;      
+      border: none;      
+      font-weight: 400;
+    }
+    button.add-cart-button {
+      background-color: #12b46a;
+      border: none;      
+      height: auto;      
+      line-height: normal;      
+      font-family: "Lato";      
+      min-height: auto;      
+      text-transform: none;      
+      font-size: 22px;
+      box-shadow: none;
+    }
+  }
+}
+.cart .list.summary.cart-pay {
+  padding:10px;
+  margin: 10px 20px 30px 20px;
+  background: #fff;
+  border: 1px solid #edeae7;
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2);
+  a.item {
+    color: #000;
+    display: block;
+    span {
+      float: left;
+      font-size: 16px;
+      color: #000;
+      font-weight: 300;
+      font-family: "Lato";
+    }
+    .item-note {
+      float: right;
+      font-weight: 400;
+    }
+  }
+}
+.cart .cart-items.cart-list {
+  background: none;
+  border: none;
+  box-shadow: none;
+  margin: 0 20px;
+  border-bottom: 1px solid #cfccca;
+  .cart-list-img {
+    background: #fff;
+    border: 1px solid #edeae7;
+    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2);
+  }
+  h2 {
+    color: #000;
+    margin: 0 0 10px 0;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: normal;
+    font-family: "Lato";
+  }
+  p {
+    margin: 0 0 10px 0;
+    font-family: "Lato";
+    span {
+      color: #000;
+      font-size: 14px;
+      font-weight: 300;
+
+    }
+  }
+  h3 {
+    font-family: "Lato";
+    color: #000;
+    font-size: 18px;
+    font-weight: 400;
+    margin: 0 0 10px 0;
+    span {
+      font-size: 18px;
+      font-weight: 400;
+      color: #ff771c;
+      margin: 0 0 0 5px;
+    }
+    strong {
+      font-size: 18px;
+      font-weight: 300;
+      display: inline-block;
+    }
+    em {
+      display: inline-block;
+      margin: 0 0 0 5px;
+    }
+  }
+  .item-input {
+    background: none;
+    border: none;
+    padding: 0 !important;
+  }
+  button.button-full {
+    background:#f3f0ed url(../assets/images/delete-icon.png) no-repeat center center;
+    border: 1px solid #ccc;
+    padding: 0;
+    height: 32px;
+    width: 32px;
+    border-radius: 50%;
+    background-size: 14px auto;
+  }
+  .item-select {
+    select {
+      background: #eee9e5;
+    }
+  }
+}
+.price-details {
+  font-family: "Lato";
+  color: #000;
+  font-size: 14px;
+  font-weight: 400;
+  margin: 10px 0 10px 20px;
+}
+.review-products {
+  font-family: "Lato";
+  color: #000;
+  font-size: 14px;
+  font-weight: 400;
+  margin: 10px 20px;
+  border-bottom: 1px solid #cfccca;
+  padding: 12px 0;
+}
+.delivery-address {
+  font-family: "Lato";
+  color: #000;
+  font-size: 14px;
+  font-weight: 400;
+  margin: 30px 20px 0 20px;
+  border-bottom: 1px solid #cfccca;
+  padding: 0 0 12px 0;
+}
+.address-box {
+  .card{
+    margin: 20px 20px 0 20px;
+    border-radius: 0;
+    background: none;
+    box-shadow: none;
+    padding: 0;
+    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2);
+    .item {
+      border-radius: 0;
+      border: 1px solid #edeae7;
+      h2 {
+        font-family: "Lato";
+        color: #000;
+        font-size: 20px;
+      }
+      p {
+        font-family: "Lato";
+      }
+    }
+    .button {
+      background: #ff771c;
+      font-family: "Lato";
+      font-size: 16px;
+      color: #fff;
+      text-transform: uppercase;
+      font-weight: 300;
+    }
+  }
+}
+.choose-payment {
+    border: none;
+    height: 60px;
+    .col {
+      padding: 0;
+      button {
+        background: #2e302f;
+        border: none;
+        width: 100%;
+        padding: 0;
+        line-height: 60px;
+        min-height: auto;
+        font-family: "Lato";
+        text-transform: none;
+        font-size: 22px;
+        box-shadow: none;
+        color: #fff;
+      }
+      button.button-positive {
+        background: #12b46a;
+      }
+    }
+}
 // Checkout Page
 // -------------------------------
 .checkout {
