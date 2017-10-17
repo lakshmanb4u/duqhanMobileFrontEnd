@@ -14,19 +14,16 @@ $assertive: #ef473a !default;
   .scroll-content,
   .item,
   .item-complex .item-content {
-    background-color: #fafafa;
+    background-color: #090a07;
+    border: none;
     &.active {
       border-color: transparent;
       border-width: 0px;
       a {
         &.item-content {
-          // background-color: #737373;
-          // background-color: lighten( $energized, 10%);
-          background-color: darken($energized, 10%);
+          background-color: #11120e;
           color: white;
-          -webkit-box-shadow: inset 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
-          -moz-box-shadow: inset 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
-          box-shadow: inset 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
+          border-right: 5px solid #ff781e;
         }
       }
     }
@@ -44,12 +41,15 @@ $assertive: #ef473a !default;
     padding-top: 0px;
   }
   .menu-image {
-    background-image: url("../assets/images/user-background.png");
+    background-color: #040502;
+    border-bottom: 2px solid #1e1f1b;
     img {
       max-width: 100px !important;
       max-height: 100px !important;
       width: 40% !important;
       margin: 20px 0 10px;
+      border: 2px solid #ff771c;
+      border-radius: 50%;
     }
     h2 {
       margin-bottom: 20px !important;
@@ -57,6 +57,26 @@ $assertive: #ef473a !default;
     }
   }
   .menu-footer {
+  }
+}
+.menu-left {
+  .item {
+    span {
+      display: inline-block;
+      vertical-align: middle;
+      margin-right: 10px;
+      img {
+        width: 30px;
+        vertical-align: middle;
+      }
+    }
+    strong {
+      display: inline-block;
+      vertical-align: middle;
+      font-weight: 400;
+      color: #fff;      
+      font-family: "Lato";
+    }
   }
 }
 
@@ -783,10 +803,11 @@ $assertive: #ef473a !default;
 // Profile Page
 // -------------------------------
 .profile {
-  background-image: url("../assets/images/login-background.png");
-  background-repeat: no-repeat;
-  background-size: cover;
-  font-family: "Facit Light";
+  .list-inset {
+    margin: 0;
+  }
+  background: #f9f5f2;
+  font-family: "Lato";
   .list {
     min-width: 220px;
     background: transparent;
@@ -830,22 +851,54 @@ $assertive: #ef473a !default;
         padding-left: 0;
         padding-right: 0;
       }
-      &.item-image {
-        img {
-          max-width: 100px !important;
-          max-height: 100px !important;
-          width: 40% !important;
-          margin: 20px 0 10px;
-        }
-        em {
-          display: block;
-          color: #aaa;
-          font-size: 12px;
-          font-style: italic;
-        }
-      }
       .placeholder-icon:first-child {
         padding-right: 10px;
+      }
+    }    
+    .profile-image {
+      background: url(../assets/images/profile-bg.jpg) no-repeat center center;
+      padding: 20px 0;
+      position: relative;
+      background-size: cover;
+      &:after {
+        background: #f9f5f2;
+        width: 100%;
+        height: 30%;
+        position: absolute;
+        left: 0;
+        content: "";
+        bottom: 0;
+      }
+      .profile-pic-view {
+        position: relative;
+        z-index: 3;
+        .profile-pic-change {
+          border: 2px solid #ff771c;
+          border-radius: 50%;
+          width: 200px;
+          height: 200px;
+          margin: 0 auto;
+          overflow: hidden;
+          position: relative;
+          img {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%,-50%);
+            min-width: 100%;
+            min-height: 100%;
+            max-width: none;
+            width: auto;
+          }
+        }
+        h2 {
+          font-size: 20px;
+          color: #15173b;
+          margin: 10px 0;
+          clear: both;
+          font-weight: 400;
+          font-family: "Lato";
+        }
       }
     }
   }
@@ -854,8 +907,35 @@ $assertive: #ef473a !default;
 // Addresses
 // -------------------------------
 .my-address {
-  background-color: #e5e5e5;
+  background-color: #f9f5f2;
+  h5 {
+    background: #fff;
+    margin: 0;
+    border: 1px solid #cac6c3;
+    padding: 15px;
+    color: #ff771c;
+    font-weight: 400;
+    font-family: "Lato";
+    position: relative;
+    &:before {
+      background: #464646;
+      position: absolute;
+      right: 0;
+      top: 0;
+      content: "+";
+      width: 50px;
+      height: 100%;
+      text-align: center;
+      color: #fff;
+      font-size: 34px;
+      pointer-events: none;
+    }
+  }
   .card {
+    background: none;
+    box-shadow: none;
+    border-bottom: 1px solid #ccc;
+    margin: 0 20px;
     .badge-wrapper {
       text-align: right;
       padding: 10px 16px 2px 0;
@@ -866,24 +946,123 @@ $assertive: #ef473a !default;
     }
     .item {
       border-width: 0;
-      padding-top: 7px;
-      padding-bottom: 7px;
+      background: none;
+      padding: 30px 30px 30px 40px;
+      font-family: "Lato";
+      .radio-box { 
+        display: block; 
+        height: 30px; 
+        width: 30px;
+        position: absolute;
+        left: 0;
+        top: 28px;
+        input[type="radio"] { 
+          opacity: 0;
+          margin:0;
+          position: absolute;
+          left: 0;
+          top: 0;
+          width: 100%;
+          height: 100%;
+        }
+      }      
+      .radio-box input[type="radio"] + label { 
+        display:inline-block; 
+        width: 30px; 
+        vertical-align: middle; 
+        background:url(../assets/images/radio-off.png) no-repeat left top; 
+        cursor:pointer; 
+        margin: 0;
+        height: 30px;
+        background-size: cover;
+      }
+      .radio-box input[type="radio"]:checked + label {
+        background-image: url(../assets/images/radio-on.png);
+      }
       h2 {
         font-size: 20px;
+        color: #15173b;
+        span {
+          background: #c7c4c2;
+          font-size: 13px;
+          color: #fff;
+          padding: 5px 14px;
+          display: inline-block;
+          border-radius: 30px;
+          font-weight: 300;
+        }
       }
-      i.icon {
-        font-size: 16px;
+      p {
+        font-size:18px;
       }
-    }
-    &.active-address {
-      .item {
-        background-color: lighten($balanced, 40%);
+      strong {
+        color: #ff771c;
+        position: absolute;
+        right: 0;
+        font-weight: 400;
       }
     }
   }
 }
 
 .new-address-modal {
+  background:#f9f5f2; 
+  font-family: "Lato";
+  .default-address {
+    margin:  20px 20px 50px 20px;
+    border: 1px solid #d4d3cf;
+    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2);
+    .item-input {
+      margin: 0;
+      background: #fff;
+      &:first-child {
+        border-bottom: 1px solid #d4d3cf;
+      }
+      .checkbox input:checked + .checkbox-icon:before {
+        background: #12b46a;
+        border-color: #12b46a;
+      }
+    }
+  }
+  .item-input {
+    background: none;
+    border: none;
+    padding: 0;
+    margin:0 20px;
+    .input-label {
+      font-weight: 400;
+      color: #a8a6ac;
+      margin: 10px 0;
+      display: block;
+    }
+    input {
+      background: none;
+      border-bottom: 1px solid #ccc;
+      color: #15173b;
+      padding: 6px 0 14px 0;
+      font-size: 20px;
+      height: auto;
+      line-height: normal;
+      &::-webkit-input-placeholder {
+        color: #15173b;
+      }
+      &::-moz-placeholder {
+        color: #15173b;
+      }
+      &:-ms-input-placeholder {
+        color: #15173b;
+      }
+      &:-moz-placeholder {
+        color: #15173b;
+      }
+      &:placeholder {
+        color: #15173b;
+      }
+    }
+  }
+  .has-errors {
+    border-bottom: none !important;
+}
   label.item.item-checkbox {
     border-width: 0px;
   }
@@ -1288,4 +1467,15 @@ div.hscroller-card-animated-11 {
 .button-bar .row {
 	background: #ccc;
 	padding: 0;
+}
+// Property List Modal
+// -------------------------------
+.property-list-modal {
+  .bar.bar-footer {
+    bottom: 0;
+    .button {
+      margin-top: 0; 
+      margin-bottom: 0;
+    }
+  }
 }

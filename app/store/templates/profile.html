@@ -1,10 +1,12 @@
 <ion-view view-title="Profile" class="profile">
   <!-- do you want padding? -->
-  <ion-content class="padding">
+  <ion-content>
     <ion-list class="list-inset">
       <ion-item class="item-image profile-image" menu-close>
-        <img src="{{ctrl.user.profileImg || 'store/assets/images/user.png'}}" ng-click="ctrl.openImageSourceSelector()">
-        <em>Tap the image to change</em>
+        <div class="profile-pic-view">
+            <div class="profile-pic-change"><img src="{{ctrl.user.profileImg || 'store/assets/images/profile-img.jpg'}}" ng-click="ctrl.openImageSourceSelector()"></div>
+          <h2>kathy Perry</h2>
+      </div>
       </ion-item>
       <form name="ctrl.updateUserProfileForm" ng-submit="ctrl.updateProfileDetails()" novalidate="" >
 
