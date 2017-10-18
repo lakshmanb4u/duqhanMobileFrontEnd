@@ -809,42 +809,72 @@ $assertive: #ef473a !default;
   background: #f9f5f2;
   font-family: "Lato";
   .list {
-    min-width: 220px;
     background: transparent;
+    padding-bottom:50px; 
     .item {
       background: transparent;
       border-width: 0;
       &.item-input {
-        border-bottom: 1px solid #9b9b9b;
-        padding-bottom: 0;
+        border-bottom: none !important;
+        margin: 0 30px;
+        padding: 0;
+        .input-label {
+          font-weight: 400;
+          color: #a8a6ac;
+          margin: 10px 0;
+          display: block;
+        }
         .icon {
           color: $energized;
-          font-size: 20px;
+          font-size: 30px;
+          padding: 0;
+          position: absolute;
+          right: 0;
         }
         input {
-          font-size: 12px;
-        }
-        &.item-datepicker {
-          height: 41px;
-          font-size: 12px;
+          background: none;
+          border-bottom: 1px solid #ccc;
+          color: #15173b;
+          padding: 6px 0 14px 0;
+          font-size: 20px;
+          height: auto;
+          line-height: normal;          
+          &::-webkit-input-placeholder {
+            color: #15173b;
+          }
+          &::-moz-placeholder {
+            color: #15173b;
+          }
+          &:-ms-input-placeholder {
+            color: #15173b;
+          }
+          &:-moz-placeholder {
+            color: #15173b;
+          }
+          &:placeholder {
+            color: #15173b;
+          }
         }
       }
       &.item-radio {
-        font-size: 12px;
+        font-size: 20px;
+        display: inline-block;
+        margin: 0;
+        color: #15173b;
+        height: 32px;
         .item-content {
-          background-color: transparent;
+          background:url(../assets/images/radio-off.png) no-repeat 82% center;
+          padding: 0 50px 0 0;
+          background-size:26px auto; 
+
         }
         input:checked + .radio-content {
           .item-content {
-            background: transparent;
-          }
-          .radio-icon {
-            color: #ff771c;
+            background-image:url(../assets/images/radio-on.png); 
           }
         }
         .icon {
-          visibility: visible;
-          color: #ccc;
+          visibility: hidden;
         }
       }
       &.item-button {
@@ -853,6 +883,19 @@ $assertive: #ef473a !default;
       }
       .placeholder-icon:first-child {
         padding-right: 10px;
+      }
+        span.placeholder-icon {
+          border-bottom: 1px solid #ccc;
+          color: #15173b;
+          padding: 6px 0 14px 0;
+          font-size: 20px;
+          height: auto;
+          line-height: normal; 
+          display: block;
+      }
+      .gender-radio {
+        border-bottom: 1px solid #ccc;
+        padding: 6px 0 14px 0;
       }
     }    
     .profile-image {
@@ -1400,7 +1443,7 @@ div.hscroller-card-animated-11 {
   padding: 0;
   width: 60px;
   height: 44px;
-  background-size: 30px auto;
+  background-size: 22px auto;
   position: absolute;
   left: 0;
   top: 0;
@@ -1412,7 +1455,7 @@ div.hscroller-card-animated-11 {
 	padding: 0;
 	width: 42px;
 	height: 43px;
-	background-size: 30px auto;
+	background-size: 22px auto;
 	position: relative;
 	top: -5px;
 }
@@ -1434,7 +1477,7 @@ div.hscroller-card-animated-11 {
 	padding: 0;
 	width: 32px;
 	height: 43px;
-	background-size: 22px auto;
+	background-size: 18px auto;
 	position: relative;
 	top: -6px;
 }
