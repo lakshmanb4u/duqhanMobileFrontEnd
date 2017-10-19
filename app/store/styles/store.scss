@@ -1123,6 +1123,197 @@ $assertive: #ef473a !default;
   height: 170px;
 }
 
+
+.about-us {
+  background: #f9f5f2 url(../assets/images/about-bg.png) no-repeat center bottom;
+  background-size: 70% auto;
+  .list {
+    padding: 0 20px;
+    .item {
+      background: none;
+      border: none;
+      padding: 0;
+      p {
+        font-family: "Lato";
+        font-size: 16px;
+        line-height: 28px;
+        color: #15173b;
+        margin-bottom: 20px;
+      }
+      h2 {
+        font-family: "Lato";
+        font-size: 20px;
+        line-height: 28px;
+        color: #15173b;
+        border-bottom: 1px solid #ccc;
+        padding: 15px 0;
+      }
+      .item-content {
+        background: none;
+        border: none;
+        padding: 0;
+      }
+    }
+  }
+}
+.faq {
+  background: #f9f5f2;
+}
+.contact-us {
+  background: #f9f5f2;
+  .padding {
+    padding: 30px 0;
+    p {
+      font-family: "Lato";
+      font-size: 16px;
+      line-height: 28px;
+      color: #15173b;
+      margin: 0 30px 20px 30px;
+    }
+    .contact-form {
+      .item {
+        background: none;
+        border: none;
+        &.item-select {
+          margin: 0 30px;
+          background: #f4f0ed;
+          border: 1px solid #e5e2df;
+          padding: 10px 16px;
+          font-family: "Lato";
+          .input-label {
+            color: #ff771c;
+          }
+          select {
+            background: none;
+          }
+          &:after {
+            color: #ff771c;
+          }
+        }
+        &.item-input {
+          padding: 0;
+          margin: 0 30px;
+          .input-label {
+            font-weight: 400;
+            color: #a8a6ac;
+            margin: 10px 0;
+            display: block;
+            font-family: "Lato";
+          }
+          .icon {
+            color: #ff771c;
+            font-size: 30px;
+            padding: 0;
+            position: absolute;
+            right: 0;
+          }
+          input {
+            background: none;
+            border-bottom: 1px solid #ccc;
+            color: #15173b;
+            padding: 6px 0 14px 0;
+            font-size: 20px;
+            height: auto;
+            line-height: normal;
+            font-family: "Lato";
+            &::-webkit-input-placeholder {
+              color: #15173b;
+            }
+            &::-moz-placeholder {
+              color: #15173b;
+            }
+            &:-ms-input-placeholder {
+              color: #15173b;
+            }
+            &:-moz-placeholder {
+              color: #15173b;
+            }
+            &:placeholder {
+              color: #15173b;
+            }
+          }
+          textarea {
+            font-family: "Lato";
+            background: none;
+            border-bottom: 1px solid #ccc;
+            color: #15173b;
+            padding: 6px 0 14px 0;
+            font-size: 20px;
+            height: auto;
+            line-height: normal;
+            resize: none;
+            &::-webkit-input-placeholder {
+              color: #15173b;
+            }
+            &::-moz-placeholder {
+              color: #15173b;
+            }
+            &:-ms-input-placeholder {
+              color: #15173b;
+            }
+            &:-moz-placeholder {
+              color: #15173b;
+            }
+            &:placeholder {
+              color: #15173b;
+            }
+          }
+        }
+      }
+    }
+    button {
+      background-color: #12b46a;
+      border: none;
+      height: auto;
+      line-height: normal;
+      font-family: "Lato";
+      min-height: auto;
+      text-transform: none;
+      font-size: 22px;
+      box-shadow: none;
+      padding: 15px 0;
+      margin: 25px 0;
+    }
+  }
+}
+
+.contact-info {
+  font-family: "Lato";
+  .list {
+    margin-bottom: 30px;
+    .item {
+      background: none;
+      border: none;
+      margin: 0 30px;
+      &.item-divider {
+        font-size: 20px;
+        color: #15173b;
+        background: #f4f0ed;
+        border: 1px solid #e5e2df;
+        padding: 18px;
+        line-height: normal;
+      }
+      &.item-icon-left {
+        border-bottom: 1px dashed #ccc;
+        h2 {
+          font-size: 18px;
+          color: #15173b;
+        }
+        p {
+          margin: 0;
+          color: #666;
+          font-weight: 300;
+        }
+        .icon {
+          color: #ff771c;
+          font-size: 30px;
+        }
+      }
+    }
+  }
+}
+
+
 // Orders Page
 // -------------------------------
 .order-history {
