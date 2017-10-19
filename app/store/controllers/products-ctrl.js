@@ -47,11 +47,11 @@ angular.module('store')
     })
     .then(function () {
       /* Randoize items */
-      if (!productsParam.isRecent) {
-        products.sort(function () {
-          return .5 - Math.random();
-        });
-      }
+      // if (!productsParam.isRecent) {
+      //   products.sort(function () {
+      //     return .5 - Math.random();
+      //   });
+      // }
       ctrl.products = ctrl.products.concat(products);
       ctrl.page++;
       if (products.length > 0) {

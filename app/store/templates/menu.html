@@ -17,14 +17,12 @@
 
       </ion-nav-buttons>
       <ion-nav-buttons side="right">
-        <button class="ion-custom-home" ui-sref="store.products.latest">
-        </button>
-        <button class="ion-custom-search" ng-click="menu.toggleSearchBar()" >
-          <span class="badge badge-assertive header-badge" ng-show="menu.cartTotalNumber>0">{{menu.cartTotalNumber}}</span>
-        </button>
+        <button class="ion-custom-home" ui-sref="store.products.latest"></button>
+        <button class="ion-custom-search" ng-click="menu.toggleSearchBar()" ></button>
         <!--         <button class="button button-small button-icon button-clear ion-levels">
         </button> -->
         <button class="ion-custom-cart" ui-sref="store.cart">
+            <span class="badge badge-dark header-badge" ng-show="menu.cartTotalNumber>0">{{menu.cartTotalNumber}}</span>
         </button>
       </ion-nav-buttons>
     </ion-nav-bar>

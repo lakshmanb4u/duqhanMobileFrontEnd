@@ -1,4 +1,4 @@
-<ion-view view-title="Duqhan">
+<ion-view view-title="">
   <!-- do you want padding? -->
   <ion-content class="cart has-footer">
 
@@ -6,45 +6,55 @@
     <div ng-hide="ctrl.cart.products">
       <div class="cart-box">
         <h2>Empty Cart</h2>
-        <p>Looks like you haven't made  your choice yet...</p>
-        <a href="#">Back to Menu</a>
+        <p>Looks like you haven't made your choice yet...</p>
+        <a ui-sref="store.products.latest">Back to Home</a>
         <span>Check what we've got for you and get it swished!</span>
       </div>
     </div>
     <div class="cart-items cart-list" ng-repeat="p in ctrl.cart.products">
-      <div class="row product" ng-class="{'out-of-stack': p.available === 0}" ui-sref="store.product.overview({productId: p.productId})">
-        <div class="col col-40 text-center">
-          <div class="cart-list-img"><img src="{{p.imgurl || 'store/assets/images/default.jpg'}}"></div>
+      <div class="row product" ng-class="{'out-of-stack': p.available === 0}">
+        <div class="col col-40 text-center" ui-sref="store.product.overview({productId: p.productId})">
+          <div class="cart-list-img">
+            <img src="{{p.imgurl || 'store/assets/images/default.jpg'}}">
+          </div>
         </div>
         <div class="col col-60">
-          <h2>{{p.name}}</h2>
-          <p>
+          <h2 ui-sref="store.product.overview({productId: p.productId})">{{p.name}}</h2>
+          <p class="property" data-ng-bind-html="ctrl.trustAsHtml(key + value)" ng-repeat="(key, value) in p.propertyMap"></p>
+          <!-- <p>
             <span ng-if="p.size">Size: {{p.size}}, </span>
             <span ng-if="p.color">Color: {{p.color}}</span>
+          </p> -->
+          <h3>
+            <strong>र</strong>
+            <em>{{p.discountedPrice}}</em>
+            <span>{{p.price}}</span>
+          </h3>
+          <p>
+            <span>Free Shipping</span>
+            <span>(estimated {{p.shippingTime}} days)</span>
           </p>
-          <h3><strong>र</strong><em>{{p.price}}</em><span>{{p.discountedPrice}}</span></h3>
-          <p><span>Free Shipping</span> <span>(estimated {{p.shippingTime}} days)</span></p>
           <!--<p>Shipping: <span>Rs.{{p.shippingRate}} ({{p.shippingTime}} days)</span></p>-->
 
           <div class="row">
-           <div class="col col-80">
-          <div class="list" ng-show="p.available > 0">
-            <label class="item item-input item-select">
-              <div class="input-label">
-                Qty
+            <div class="col col-80">
+              <div class="list" ng-show="p.available > 0">
+                <label class="item item-input item-select">
+                  <div class="input-label">
+                    Qty
+                  </div>
+                  <select ng-model="p.qty">
+                    <option ng-repeat="i in ctrl.getAvailability(p.available) track by $index">{{$index+1}}</option>
+                  </select>
+                </label>
               </div>
-              <select ng-model="p.qty">
-                <option ng-repeat="i in ctrl.getAvailability(p.available) track by $index">{{$index+1}}</option>
-              </select>
-            </label>
+
+            </div>
+            <div class="col col-20">
+              <button class="button-full m-none" ng-click="ctrl.removeFromCart(p)"></button>
+            </div>
+
           </div>
-
-        </div> 
-        <div class="col col-20">
-          <button class="button-full m-none" ng-click="ctrl.removeFromCart(p)"></button>
-        </div> 
-
-        </div>
 
 
           <div class="row product m-b-xs" ng-class="{'out-of-stack': p.available === 0}">
@@ -52,17 +62,17 @@
           </div>
         </div>
       </div>
-      
-      
+
+
     </div>
 
 
 
 
-    <h5 class="price-details">Price Details</h5>
-    
+    <h5 class="price-details" ng-show="ctrl.cart.products">Price Details</h5>
+
     <div class="list summary cart-pay" ng-show="ctrl.cart.products">
-        <h5 class="price-details"></h5>
+      <h5 class="price-details"></h5>
       <a class="item">
         <span>Item Total</span>
         <span class="item-note">
@@ -88,10 +98,10 @@
       </a>-->
     </div>
 
-  
+
     <div class="p-xs"></div>
   </ion-content>
-  <ion-footer-bar class="cart-footer">
+  <ion-footer-bar class="cart-footer" ng-show="ctrl.cart.products">
     <div class="row m-none p-none">
       <div class="col col-40 text-center">
         <h3>Rs.{{ctrl.getOrderTotal() || 0}}</h3>

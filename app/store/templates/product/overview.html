@@ -10,9 +10,12 @@
     </ion-slide-box>
     <div class="product-brief p-sm" style="border:none;">
       <h1 class="product-name">{{ctrl.product.name}}</h1>
-      <p style="color: #ff771c;"><span>&#2352; {{ctrl.product.salesPrice}}</p>
-        
-      <div style="border-bottom: 1px solid #cdcdcd;height:1px;"></div>  
+      <p style="color: #ff771c;">
+        <span>&#2352; {{ctrl.product.salesPrice}}</span>
+        <span ng-if="!ctrl.allSelected"> onward</span>
+      </p>
+
+      <div style="border-bottom: 1px solid #cdcdcd;height:1px;"></div>
       <!-- <p class="product-price m-b-none"><span>Rs.{{ctrl.product.orginalPrice}}</span> Rs.{{ctrl.product.salesPrice}}</p>
       -->
     </div>
@@ -21,7 +24,16 @@
         <div class="values">Description</div>
         <div style="font-family: 'Lato';color: black;">{{ctrl.product.description}}</div>
       </div>
-
+      <div class="m-b-md">
+        <ion-list class="product-properties">
+          <ion-item class="item-icon-right" ng-repeat="pp in ctrl.product.properties" ng-click="ctrl.openPropertyList(pp)">
+            <em ng-if="!pp.selectedProperty">Select</em>
+            <em ng-if="pp.selectedProperty">Selected</em> {{pp.property}}
+            <p data-ng-bind-html="ctrl.trustAsHtml(pp.selectedProperty)"></p>
+            <i class="icon ion-arrow-right-c"></i>
+          </ion-item>
+        </ion-list>
+      </div>
       <div style="border-bottom: 1px solid #cdcdcd;height:1px;margin-bottom:10px;"></div>
 
       <div class="values" style="margin-bottom:10px;">Specification</div>
@@ -65,7 +77,7 @@
       <div class="shipping-cost-wrapper m-b-md hidden">
         <div class="row m-b-xs">
           <div class="col title">Estimated Shipping</div>
-        
+
         </div>
         <div class="values">Rs. 0</div>
       </div>
@@ -77,22 +89,22 @@
     </div> -->
 
 
-    
+
 
   </ion-content>
-  
-    <ion-footer-bar>
-      <div class="button-bar">
+
+  <ion-footer-bar>
+    <div class="button-bar">
       <div class="row">
-      <div class="col col-50 text-center addToCart" ng-click="ctrl.addToBag(ctrl.product)" >
-        Add to Cart
-      </div>
-      <div class="col col-50 stamp-wraper" >
-      
+        <div class="col col-50 text-center addToCart" ng-click="ctrl.addToBagNew(ctrl.product)">
+          Add to Cart
+        </div>
+        <div class="col col-50 stamp-wraper">
+
+        </div>
       </div>
     </div>
-		</div>
-    </ion-footer-bar>
+  </ion-footer-bar>
 
 
   <!-- <ion-footer-bar class="">

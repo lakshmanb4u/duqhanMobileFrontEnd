@@ -1,4 +1,4 @@
-<ion-view >
+<ion-view>
   <!-- <ion-header-bar align-title="center" class="bar-subheader bar-balanced">
     <h1 class="title">You can now pay with Paytm and PayPal </h1>
   </ion-header-bar> -->
@@ -13,17 +13,19 @@
           <div class="item item-divider thumb-header-footer">
             <div class="energized"><i class="icon ion-bookmark"></i> Free Shipping</div>
           </div> -->
-          <span class="latest-box">Latest</span>
+          <span class="latest-box">{{p.discountPCT| number : 0}}%</span>
           <div class="item-image">
             <img src="{{p.imgurl || 'store/assets/images/default.jpg' | cloudinaryThumbTransformation}}">
           </div>
           <div class="item p-xs b-t-n" style="font-family: 'Lato', sans-serif;color:#080809;">
             <span style="font-size: 0.9em;">{{p.name}}</span>
             <p>Free Shipping | 3-4 Weeks Delivery</p>
-             <span style="font-size: 0.7em;">&#2352;  <span style="color: #ff771c;font-family: 'Lato', sans-serif;">{{p.discountedPrice}}</span> &nbsp; <span style="color: #ff771c;text-decoration: line-through;font-family: 'Lato', sans-serif;">{{p.price}}</span>
-             </span>
+            <span style="font-size: 0.7em;">&#2352;
+              <span style="color: #ff771c;font-family: 'Lato', sans-serif;">{{p.discountedPrice}}</span> &nbsp;
+              <span style="color: #ff771c;text-decoration: line-through;font-family: 'Lato', sans-serif;">{{p.price}}</span>
+            </span>
           </div>
-          
+
           <!-- <div class="item item-divider thumb-header-footer">
             <div class="row p-none price-wraper">
               <div class="col col-50 p-none old-price">Rs.{{p.price}}</div>

@@ -1,20 +1,22 @@
-<ion-view view-title="Profile" class="profile">
+<ion-view view-title="" class="profile">
   <!-- do you want padding? -->
   <ion-content>
     <ion-list>
       <ion-item class="item-image profile-image" menu-close>
         <div class="profile-pic-view">
-            <div class="profile-pic-change"><img src="{{ctrl.user.profileImg || 'store/assets/images/profile-img.jpg'}}" ng-click="ctrl.openImageSourceSelector()"></div>
+          <div class="profile-pic-change">
+            <img src="{{ctrl.user.profileImg || 'store/assets/images/profile-img.jpg'}}" ng-click="ctrl.openImageSourceSelector()">
+          </div>
           <h2>kathy Perry</h2>
-      </div>
+        </div>
       </ion-item>
-      <form name="ctrl.updateUserProfileForm" ng-submit="ctrl.updateProfileDetails()" novalidate="" >
+      <form name="ctrl.updateUserProfileForm" ng-submit="ctrl.updateProfileDetails()" novalidate="">
 
         <ion-item class="item item-input item-stacked-label" ng-class="{ 'has-errors' : ctrl.updateUserProfileForm.name.$invalid, 'no-errors' : ctrl.updateUserProfileForm.name.$valid}">
-          
+
           <span class="input-label">Your Name</span>
           <i class="icon ion-ios-person-outline placeholder-icon"></i>
-          <input name="name" type="text" placeholder="Name" ng-model="ctrl.user.name" required="" >
+          <input name="name" type="text" placeholder="Name" ng-model="ctrl.user.name" required="">
         </ion-item>
         <div class="error-container" ng-show="ctrl.updateUserProfileForm.name.$error && ctrl.updateUserProfileForm.$submitted" ng-messages="ctrl.updateUserProfileForm.name.$error">
           <div ng-messages-include="error-list.html"></div>
@@ -23,7 +25,7 @@
         <ion-item class="item item-input item-stacked-label" ng-class="{ 'has-errors' : ctrl.updateUserProfileForm.email.$invalid, 'no-errors' : ctrl.updateUserProfileForm.email.$valid}">
           <span class="input-label">Email</span>
           <i class="icon ion-ios-email-outline placeholder-icon"></i>
-          <input name="email" type="email" placeholder="E-Mail" ng-model="ctrl.user.email" required="" >
+          <input name="email" type="email" placeholder="E-Mail" ng-model="ctrl.user.email" required="">
         </ion-item>
         <div class="error-container" ng-show="ctrl.updateUserProfileForm.email.$error && ctrl.updateUserProfileForm.$submitted" ng-messages="ctrl.updateUserProfileForm.email.$error">
           <div ng-messages-include="error-list.html"></div>
@@ -32,21 +34,22 @@
         <ion-item class="item item-input item-stacked-label" ng-class="{ 'has-errors' : ctrl.updateUserProfileForm.mobile.$invalid, 'no-errors' : ctrl.updateUserProfileForm.mobile.$valid}">
           <span class="input-label">Phone</span>
           <i class="icon ion-ios-telephone-outline placeholder-icon"></i>
-          <input name="mobile" type="number" placeholder="Mobile" ng-model="ctrl.user.mobile" ng-minlength="10" ng-maxlength="10" >
+          <input name="mobile" type="number" placeholder="Mobile" ng-model="ctrl.user.mobile" ng-minlength="10" ng-maxlength="10">
         </ion-item>
-        <div class="error-container" ng-show="ctrl.updateUserProfileForm.mobile.$error && ctrl.updateUserProfileForm.$submitted" ng-messages="ctrl.updateUserProfileForm.mobile.$error">
+        <div class="error-container" ng-show="ctrl.updateUserProfileForm.mobile.$error && ctrl.updateUserProfileForm.$submitted"
+          ng-messages="ctrl.updateUserProfileForm.mobile.$error">
           <div ng-messages-include="error-list.html"></div>
         </div>
 
         <ion-item class="item item-input item-stacked-label">
           <div class="gender-radio">
-          <span class="input-label">Gender</span>
-          <ion-radio ng-model="ctrl.user.gender" ng-value="'M'">Male</ion-radio>
-          <ion-radio ng-model="ctrl.user.gender" ng-value="'F'">Female</ion-radio>
-        </div>
+            <span class="input-label">Gender</span>
+            <ion-radio ng-model="ctrl.user.gender" ng-value="'M'">Male</ion-radio>
+            <ion-radio ng-model="ctrl.user.gender" ng-value="'F'">Female</ion-radio>
+          </div>
         </ion-item>
 
-<!--         <div class="item item-input item-datepicker" ion-datetime-picker date ng-model="ctrl.user.dob">
+        <!--         <div class="item item-input item-datepicker" ion-datetime-picker date ng-model="ctrl.user.dob">
           <i class="icon ion-ios-calendar-outline placeholder-icon"></i>
           {{ctrl.user.dob| date: "dd/MM/yyyy"}}
           <span class="input-label placeholder-icon" style="font-size: 12px !important;" ng-hide="ctrl.user.dob">Date of Birth</span>
@@ -57,22 +60,22 @@
           <i class="icon ion-ios-calendar-outline"></i>
           {{ctrl.user.dob| date: "dd/MM/yyyy"}}
           <span class="placeholder-icon" ng-hide="ctrl.user.dob2">Date of Birth</span>
-      </ion-item>
+        </ion-item>
 
 
       </form>
     </ion-list>
   </ion-content>
-  
-      <ion-footer-bar class="cart-footer">
-        <div class="row m-none p-none">
-          <div class="col">
-            <div class="button-bar">
-              <button class="button button-positive add-cart-button">Update</button>
-            </div>
-          </div>
+
+  <ion-footer-bar class="cart-footer">
+    <div class="row m-none p-none">
+      <div class="col">
+        <div class="button-bar">
+          <button class="button button-positive add-cart-button">Update</button>
         </div>
-      </ion-footer-bar>
+      </div>
+    </div>
+  </ion-footer-bar>
 </ion-view>
 
 <script id="error-list.html" type="text/ng-template">  

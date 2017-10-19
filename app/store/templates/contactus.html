@@ -1,15 +1,14 @@
-<ion-view view-title="Contact Us">
+<ion-view view-title="">
   <!-- do you want padding? -->
   <ion-content class="padding">
     <p>We would love to hear from you. Please provide us your valuable feedback. You can also contact us if you are facing problem
       accessing the site. Please select appropriate subject and send it to us.</p>
     <form name="ctrl.ContactForm" ng-submit="ctrl.ContactUs()" novalidate="">
       <label class="item item-input item-select">
-       <div class = "input-label">
+        <div class="input-label">
           Subject
-       </div>
-        <select ng-model="ctrl.statusCode" 
-        ng-options="count.name as count.name for count in ctrl.countList">
+        </div>
+        <select ng-model="ctrl.statusCode" ng-options="count.name as count.name for count in ctrl.countList">
         </select>
       </label>
       <label class="item item-input">

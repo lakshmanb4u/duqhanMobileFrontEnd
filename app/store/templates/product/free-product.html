@@ -1,4 +1,4 @@
-<ion-view view-title="Free" class="free-product">
+<ion-view view-title="" class="free-product">
   <!-- do you want padding? -->
   <ion-content class="padding product-tab-content has-footer">
 
@@ -10,8 +10,9 @@
     </ion-slide-box>
     <div class="product-brief p-sm" style="border:none;">
       <h1 class="product-name">{{ctrl.product.name}}</h1>
-      <p style="color: #ff771c;"><span>&#2352; {{ctrl.product.salesPrice}}</p>
-        <div style="border-bottom: 1px solid #cdcdcd;height:1px;"></div>  
+      <p style="color: #ff771c;">
+        <span>&#2352; {{ctrl.product.salesPrice}}</p>
+      <div style="border-bottom: 1px solid #cdcdcd;height:1px;"></div>
       <!-- <p class="product-price m-b-none"><span>Rs.{{ctrl.product.orginalPrice}}</span> Free </p> -->
     </div>
     <div class="product-detail p-sm" style="margin-top:-15px !important;">
@@ -27,7 +28,8 @@
       <div class="size-wrapper m-b-md" ng-show="ctrl.product.specifications">
         <!--<div class="values">Specification</div>-->
         <ion-list class="product-specification">
-          <ion-item ng-repeat="(key, value) in ctrl.product.specifications" style="background: #ebebeb;margin-bottom:5px;font-family: 'tahoma'"> {{key.replace('-', ' ')}}
+          <ion-item ng-repeat="(key, value) in ctrl.product.specifications" style="background: #ebebeb;margin-bottom:5px;font-family: 'tahoma'">
+          {{key.replace('-', ' ')}}
             <span class="item-note">{{value}}</span>
           </ion-item>
         </ion-list>
@@ -71,9 +73,9 @@
 
 
   </ion-content>
-   <ion-footer-bar class="bar-dark">
+  <ion-footer-bar class="bar-dark">
     <button class="button button-clear button-light button-block p-none" ng-click="ctrl.prepareCart(ctrl.product)">GET IT FREE NOW</button>
-  </ion-footer-bar> 
+  </ion-footer-bar>
 </ion-view>
 
 <script id="select-address-modal.html" type="text/ng-template">

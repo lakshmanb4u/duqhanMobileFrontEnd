@@ -1,6 +1,6 @@
 'use strict';
 angular.module('store')
-  .controller('CartCtrl', function ($log, $rootScope, $cordovaInAppBrowser, $cordovaFacebook, Store, Common) {
+  .controller('CartCtrl', function ($log, $rootScope, $cordovaInAppBrowser, $cordovaFacebook, $sce, Store, Common) {
 
     /* Storing contextual this in a variable for easy access */
 
@@ -129,7 +129,7 @@ angular.module('store')
           if (response) {
             var item = {};
             item.cartId = p.cartId;
-            item.mapId = p.sizeColorMapId;
+            item.mapId = p.productPropertiesMapId;
 
             Store.removeFromCart(item)
               .then(function (response) {
@@ -157,6 +157,10 @@ angular.module('store')
     ctrl.testBrowser = function () {
       $log.log('hello');
       $cordovaFacebook.logPurchase(150, 'INR');
+    };
+
+    ctrl.trustAsHtml = function (string) {
+      return $sce.trustAsHtml(string);
     };
 
   });

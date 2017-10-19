@@ -581,10 +581,14 @@ $assertive: #ef473a !default;
   h2 {
     color: #000;
     margin: 0 0 10px 0;
-    font-size: 20px;
+    font-size: 14px;
     font-weight: 400;
     line-height: normal;
     font-family: "Lato";
+  }
+  p.property {
+    background: #eee9e5;
+    padding: 5px;
   }
   p {
     margin: 0 0 10px 0;
@@ -616,6 +620,7 @@ $assertive: #ef473a !default;
     em {
       display: inline-block;
       margin: 0 0 0 5px;
+      color: #ff771c;
     }
   }
   .item-input {
@@ -1479,7 +1484,24 @@ div.hscroller-card-animated-11 {
 	height: 43px;
 	background-size: 18px auto;
 	position: relative;
-	top: -6px;
+  top: -6px;
+  span {
+    z-index: 1;
+    min-width: 10px;
+    border-radius: 50%;
+    vertical-align: baseline;
+    text-align: center;
+    white-space: nowrap;
+    font-weight: bold;
+    font-size: 8px;
+    line-height: 20px;
+    width: 20px;
+    height: 20px;
+    margin-left: auto;
+    margin-right: -3px;
+    margin-top: -15px;
+    padding: 0 0;
+  }
 }
 
 .bar button.ion-custom-icon {

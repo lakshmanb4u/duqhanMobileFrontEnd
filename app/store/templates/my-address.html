@@ -1,14 +1,19 @@
-<ion-view view-title="My Address">
+<ion-view view-title="">
   <!-- do you want padding? -->
   <ion-content class="padding my-address">
-        <h5 ng-click="ctrl.addAddress()">Add address</h5>
+    <h5 ng-click="ctrl.addAddress()">Add address</h5>
     <ion-list>
       <div class="card" ng-repeat="address in ctrl.addresses" ng-class="{'active-address': address.status == 1}">
 
         <div class="item item item-icon-left item-icon-right item-text-wrap">
-          <div class="radio-box"><input type="radio" name="radio" id="mme" value="mme"><label for="mme"></label></div>
+          <div class="radio-box">
+            <input type="radio" name="radio" id="mme" value="mme">
+            <label for="mme"></label>
+          </div>
           <strong ng-click="ctrl.openAddressOptions($event, address)">Edit</strong>
-          <h2>{{address.contactName}} <span>Default</span></h2>
+          <h2>{{address.contactName}}
+            <span>Default</span>
+          </h2>
           <p>{{address.phone}}</p>
           <p>{{address.streetOne}}, {{address.streetTwo}}, {{address.city}}, {{address.state}} - {{address.zipCode}}</p>
         </div>
@@ -17,14 +22,14 @@
     </ion-list>
   </ion-content>
   <ion-footer-bar class="cart-footer">
-      <div class="row m-none p-none">
-        <div class="col">
-          <div class="button-bar">
-            <button class="button button-positive add-cart-button" ui-sref="store.checkout({cart: ctrl.cart})">Continue</button>
-          </div>
+    <div class="row m-none p-none">
+      <div class="col">
+        <div class="button-bar">
+          <button class="button button-positive add-cart-button" ui-sref="store.checkout({cart: ctrl.cart})">Continue</button>
         </div>
       </div>
-    </ion-footer-bar>
+    </div>
+  </ion-footer-bar>
 </ion-view>
 
 <script id="address-options-popover.html" type="text/ng-template">

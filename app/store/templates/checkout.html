@@ -1,4 +1,4 @@
-<ion-view view-title="Delivery">
+<ion-view view-title="">
   <!-- do you want padding? -->
   <ion-content class="cart has-footer checkout">
 
@@ -23,28 +23,35 @@
     <h5 class="review-products">Review products</h5>
     <ion-list class="checkout-review-items">
       <div class="cart-items cart-list" ng-repeat="p in ctrl.cart.products" ui-sref="store.product.overview({productId: p.productId})">
-          <div class="row product">
+        <div class="row product">
 
           <div class="col col-40 text-center">
-              <div class="cart-list-img"><img src="{{p.imgurl || 'store/assets/images/default.jpg'}}"></div>
+            <div class="cart-list-img">
+              <img src="{{p.imgurl || 'store/assets/images/default.jpg'}}">
             </div>
+          </div>
 
 
 
-            <div class="col col-60">
-        
-        <h2>{{p.name}}</h2>
-        <p>
-          <span ng-if="p.size">Size: {{p.size}}, </span>
-          <span ng-if="p.color">Color: {{p.color}}, </span>
-          <span>Qty: {{p.qty}}</span>
-        </p>
-        <h3>Rs.{{p.discountedPrice * p.qty}} <span class="discounted-price">Rs.{{p.price * p.qty}}</span> <span class="discount-percentage">{{p.discountPCT| number : 0}}% off</span></h3>
-        <!--<p>Delivery: <span>Rs.{{p.shippingRate | number : 0}} ({{p.shippingTime}} days)</span></p>-->
-        <p>Free Shipping <span>(estimated {{p.shippingTime}} days)</span></p>
+          <div class="col col-60">
+
+            <h2>{{p.name}}</h2>
+            <p>
+              <span ng-if="p.size">Size: {{p.size}}, </span>
+              <span ng-if="p.color">Color: {{p.color}}, </span>
+              <span>Qty: {{p.qty}}</span>
+            </p>
+            <h3>Rs.{{p.discountedPrice * p.qty}}
+              <span class="discounted-price">Rs.{{p.price * p.qty}}</span>
+              <span class="discount-percentage">{{p.discountPCT| number : 0}}% off</span>
+            </h3>
+            <!--<p>Delivery: <span>Rs.{{p.shippingRate | number : 0}} ({{p.shippingTime}} days)</span></p>-->
+            <p>Free Shipping
+              <span>(estimated {{p.shippingTime}} days)</span>
+            </p>
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
 
 
     </ion-list>
