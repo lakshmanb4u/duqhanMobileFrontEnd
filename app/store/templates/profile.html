@@ -1,17 +1,16 @@
 <ion-view view-title="" class="profile">
   <!-- do you want padding? -->
-  <ion-content>
-    <ion-list>
-      <ion-item class="item-image profile-image" menu-close>
-        <div class="profile-pic-view">
-          <div class="profile-pic-change">
-            <img src="{{ctrl.user.profileImg || 'store/assets/images/profile-img.jpg'}}" ng-click="ctrl.openImageSourceSelector()">
+  <form name="ctrl.updateUserProfileForm" ng-submit="ctrl.updateProfileDetails()" novalidate="">
+    <ion-content>
+      <ion-list>
+        <ion-item class="item-image profile-image" menu-close>
+          <div class="profile-pic-view">
+            <div class="profile-pic-change">
+              <img src="{{ctrl.user.profileImg || 'store/assets/images/profile-img.jpg'}}" ng-click="ctrl.openImageSourceSelector()">
+            </div>
+            <h2>{{ctrl.user.name}}</h2>
           </div>
-          <h2>kathy Perry</h2>
-        </div>
-      </ion-item>
-      <form name="ctrl.updateUserProfileForm" ng-submit="ctrl.updateProfileDetails()" novalidate="">
-
+        </ion-item>
         <ion-item class="item item-input item-stacked-label" ng-class="{ 'has-errors' : ctrl.updateUserProfileForm.name.$invalid, 'no-errors' : ctrl.updateUserProfileForm.name.$valid}">
 
           <span class="input-label">Your Name</span>
@@ -61,21 +60,19 @@
           {{ctrl.user.dob| date: "dd/MM/yyyy"}}
           <span class="placeholder-icon" ng-hide="ctrl.user.dob2">Date of Birth</span>
         </ion-item>
+      </ion-list>
+    </ion-content>
 
-
-      </form>
-    </ion-list>
-  </ion-content>
-
-  <ion-footer-bar class="cart-footer">
-    <div class="row m-none p-none">
-      <div class="col">
-        <div class="button-bar">
-          <button class="button button-positive add-cart-button">Update</button>
+    <ion-footer-bar class="cart-footer">
+      <div class="row m-none p-none">
+        <div class="col">
+          <div class="button-bar">
+            <button class="button button-positive add-cart-button">Update</button>
+          </div>
         </div>
       </div>
-    </div>
-  </ion-footer-bar>
+    </ion-footer-bar>
+  </form>
 </ion-view>
 
 <script id="error-list.html" type="text/ng-template">  

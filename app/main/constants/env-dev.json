@@ -1,5 +1,5 @@
 {
-  "SERVER_URL": "http://192.168.1.95:8084/",
+  "SERVER_URL": "http://duqhan-staging.aq3cm3hjga.us-east-1.elasticbeanstalk.com/",
   "SOME_OTHER_URL": "https://www.prameelarice.com/",
   "USER": {
     "AUTH_TOKEN": null,

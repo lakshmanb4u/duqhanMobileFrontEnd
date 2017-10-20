@@ -41,9 +41,15 @@
       <div class="size-wrapper m-b-md" ng-show="ctrl.product.specifications">
         <!--<div class="values">Specification</div>-->
         <ion-list class="product-specification">
-          <ion-item ng-repeat="(key, value) in ctrl.product.specifications" style="background: #ebebeb;margin-bottom:5px;font-family: 'tahoma'">
-            {{key.replace('-', ' ')}}
-            <span class="item-note">{{value}}</span>
+          <ion-item class="item-text-wrap" ng-repeat="(key, value) in ctrl.product.specifications" style="background: #ebebeb;margin-bottom:5px;font-family: 'tahoma'">
+            <div class="row">
+              <div class="col" style="text-transform: capitalize;">
+                {{key.replace('-', ' ')}}
+              </div>
+              <div class="col" style="text-transform: capitalize; color: #aaa;">
+                {{value}}
+              </div>
+            </div>
           </ion-item>
         </ion-list>
         <!--<div class="row m-b-xs" ng-repeat="(key, value) in ctrl.product.specifications">
