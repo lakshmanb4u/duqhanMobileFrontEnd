@@ -1,4 +1,4 @@
-<ion-view view-title="Order History">
+<ion-view view-title="">
   <!-- do you want padding? -->
   <ion-content class="padding order-history">
     <!-- content goes here -->
@@ -12,7 +12,7 @@
             <img src="{{order.prodImg}}">
             <h2>{{order.productName}}</h2>
             <h3 class="text-capitalize">{{order | orderStatusFilter}}</h3>
-<!--             <p ng-if="order.trackerBean">
+            <!--             <p ng-if="order.trackerBean">
               <span ng-if="order.trackerBean.status == 'delivered'">Delivered On</span>
               <span ng-if="!(order.trackerBean.status == 'delivered')">Estimated Delivery On</span>
               {{order.trackerBean.estDeliveryDate | dateFilter1}}

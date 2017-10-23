@@ -8,10 +8,12 @@
       <ion-radio ng-model="ctrl.cart.paymentGateway" ng-value="1"><img src="store/assets/images/paypal-logo.png" /><span>Pay with Paypal</span></ion-radio>
     </ion-list>
   </ion-content>
-  <ion-footer-bar>
+  <ion-footer-bar class="choose-payment">
     <div class="button-bar">
-      <button type="button" class="button button-stable" ng-click="ctrl.closePaymentGatewayModal()">Cancel</button>
-      <button class="button button-positive" ng-click="ctrl.pay()">Pay</button>
+        <div class="row">
+        <div class="col"><button type="button" class="button-stable" ng-click="ctrl.closePaymentGatewayModal()">Cancel</button></div>
+        <div class="col"><button class="button-positive" ng-click="ctrl.pay()">Pay</button></div>
     </div>
+  </div>
   </ion-footer-bar>
 </ion-modal-view>

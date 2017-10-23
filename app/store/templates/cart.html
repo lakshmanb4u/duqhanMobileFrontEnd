@@ -1,100 +1,115 @@
-<ion-view view-title="Duqhan">
+<ion-view view-title="">
   <!-- do you want padding? -->
   <ion-content class="cart has-footer">
 
     <!-- content goes here -->
-    <div class="list summary">
+    <div ng-hide="ctrl.cart.products">
+      <div class="cart-box">
+        <h2>Empty Cart</h2>
+        <p>Looks like you haven't made your choice yet...</p>
+        <a ui-sref="store.products.latest">Back to Home</a>
+        <span>Check what we've got for you and get it swished!</span>
+      </div>
+    </div>
+    <div class="cart-items cart-list" ng-repeat="p in ctrl.cart.products">
+      <div class="row product" ng-class="{'out-of-stack': p.available === 0}">
+        <div class="col col-40 text-center" ui-sref="store.product.overview({productId: p.productId})">
+          <div class="cart-list-img">
+            <img src="{{p.imgurl || 'store/assets/images/default.jpg'}}">
+          </div>
+        </div>
+        <div class="col col-60">
+          <h2 ui-sref="store.product.overview({productId: p.productId})">{{p.name}}</h2>
+          <p class="property" data-ng-bind-html="ctrl.trustAsHtml(key + value)" ng-repeat="(key, value) in p.propertyMap"></p>
+          <!-- <p>
+            <span ng-if="p.size">Size: {{p.size}}, </span>
+            <span ng-if="p.color">Color: {{p.color}}</span>
+          </p> -->
+          <h3>
+            <strong>र</strong>
+            <em>{{p.discountedPrice}}</em>
+            <span>{{p.price}}</span>
+          </h3>
+          <p>
+            <span>Free Shipping</span>
+            <span>(estimated {{p.shippingTime}} days)</span>
+          </p>
+          <!--<p>Shipping: <span>Rs.{{p.shippingRate}} ({{p.shippingTime}} days)</span></p>-->
 
+          <div class="row">
+            <div class="col col-80">
+              <div class="list" ng-show="p.available > 0">
+                <label class="item item-input item-select">
+                  <div class="input-label">
+                    Qty
+                  </div>
+                  <select ng-model="p.qty">
+                    <option ng-repeat="i in ctrl.getAvailability(p.available) track by $index">{{$index+1}}</option>
+                  </select>
+                </label>
+              </div>
+
+            </div>
+            <div class="col col-20">
+              <button class="button-full m-none" ng-click="ctrl.removeFromCart(p)"></button>
+            </div>
+
+          </div>
+
+
+          <div class="row product m-b-xs" ng-class="{'out-of-stack': p.available === 0}">
+            <h3 ng-hide="p.available > 0">OUT OF STOCK</h3>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+
+
+
+
+    <h5 class="price-details" ng-show="ctrl.cart.products">Price Details</h5>
+
+    <div class="list summary cart-pay" ng-show="ctrl.cart.products">
+      <h5 class="price-details"></h5>
       <a class="item">
-        Item Total
+        <span>Item Total</span>
         <span class="item-note">
           Rs.{{ctrl.getCartItemTotal() || 0}}
         </span>
       </a>
-
       <!--<a class="item">
         Estimated Shipping
         <span class="item-note">
           Rs.{{ctrl.getShippingTotal() || 0}}
         </span>
       </a>-->
-
-      <a class="item positive">
-        Discount {{ctrl.getDiscountPctTotal()| number : 0 || 0}}%
-        <span class="item-note">
-          - Rs.{{ctrl.getDiscountTotal() || 0}}
-        </span>
-      </a>
-
       <a class="item">
-        Order Total
-        <span class="item-note">
-          Rs.{{ctrl.getOrderTotal() || 0}}
-        </span>
+        <span>Discount {{ctrl.getDiscountPctTotal()| number : 0 || 0}}%</span>
+        <span class="item-note">- Rs.{{ctrl.getDiscountTotal() || 0}}</span>
       </a>
-
-      <a class="item item-divider">
+      <a class="item">
+        <span>Order Total</span>
+        <span class="item-note">Rs.{{ctrl.getOrderTotal() || 0}}</span>
+      </a>
+      <!--<a class="item item-divider">
         Free Shipping
-      </a>
+      </a>-->
     </div>
-    <div class="card" ng-hide="ctrl.cart.products">
-      <div class="item item-text-wrap">
-        You don't have any items in your cart yet. Please add some items to the cart.
-      </div>
-    </div>
-    <div class="cart-items" ng-repeat="p in ctrl.cart.products">
-      <div class="row product" ng-class="{'out-of-stack': p.available === 0}" ui-sref="store.product.overview({productId: p.productId})">
-        <div class="col col-75">
-          <h2>{{p.name}}</h2>
-          <p>
-            <span ng-if="p.size">Size: {{p.size}}, </span>
-            <span ng-if="p.color">Color: {{p.color}}</span>
-          </p>
-          <!--<p>Shipping: <span>Rs.{{p.shippingRate}} ({{p.shippingTime}} days)</span></p>-->
-          <p>Free Shipping <span>(estimated {{p.shippingTime}} days)</span></p>
-        </div>
-        <div class="col col-25 text-center">
-          <img src="{{p.imgurl || 'store/assets/images/default.jpg'}}">
-        </div>
-      </div>
-      <div class="row product m-b-xs" ng-class="{'out-of-stack': p.available === 0}">
-        <div class="col">
-          <div class="list" ng-show="p.available > 0">
-            <label class="item item-input item-select">
-              <div class="input-label">
-                Qty
-              </div>
-              <select ng-model="p.qty">
-                <option ng-repeat="i in ctrl.getAvailability(p.available) track by $index">{{$index+1}}</option>
-              </select>
-            </label>
-          </div>
-          <h3 ng-hide="p.available > 0">OUT OF STOCK</h3>
-        </div>
-        <div class="col text-right">
-          <h3><span>Rs.{{p.price}}</span> Rs.{{p.discountedPrice}}</h3>
-        </div>
-      </div>
-      <button class="button button-full button-stable m-none" ng-click="ctrl.removeFromCart(p)">
-        <i class="ion-close-circled m-r-xs"></i> Remove
-      </button>
-    </div>
-    <div class="duqhan-guarantee">
-      <div class="stamp-wraper">
-        <p>We guarantee a safe and secure shopping experience so you never have to worry.</p>
-      </div>
-    </div>
+
+
     <div class="p-xs"></div>
   </ion-content>
-  <ion-footer-bar class="cart-footer">
+  <ion-footer-bar class="cart-footer" ng-show="ctrl.cart.products">
     <div class="row m-none p-none">
-      <div class="col text-center">
+      <div class="col col-40 text-center">
         <h3>Rs.{{ctrl.getOrderTotal() || 0}}</h3>
-        <button class="button button-clear button-small button-light return-policy-button" ui-sref="store.returnpolicy">
+        <button class="button-clear button-small button-light return-policy-button" ui-sref="store.returnpolicy">
           Return Policy
         </button>
       </div>
-      <div class="col text-right">
+      <div class="col col-60 text-right">
         <div class="button-bar">
           <!-- <button class="button button-positive add-cart-button" ng-click="ctrl.testBrowser()">Checkout</button> -->
           <button class="button button-positive add-cart-button" ui-sref="store.checkout({cart: ctrl.cart})">Checkout</button>
