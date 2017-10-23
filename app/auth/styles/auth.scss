@@ -1,14 +1,18 @@
+@import url('https://fonts.googleapis.com/css?family=Lato:100,300,400,700,900');
+
 // Colors
 // -------------------------------
-$energized : #ff771c !default;
-$positive : #39abf3 !default;
+$energized: #ff771c !default;
+$positive: #39abf3 !default;
 $light: #ffffff !default;
+
 // Landing Page
 // -------------------------------
 .landing {
-  background-image: url("../assets/images/landing-background.png");
+  background-image: url("../assets/images/bkg.jpg");
   background-repeat: no-repeat;
   background-size: cover;
+  background-position-y: -222px;
   display: -webkit-box;
   display: -moz-box;
   display: -ms-flexbox;
@@ -47,9 +51,6 @@ $light: #ffffff !default;
     margin-top: 20%;
     .item {
       background: transparent;
-      border-radius: 4px;
-      -moz-border-radius: 4px;
-      -webkit-border-radius: 4px;
       border-width: 0;
       &.item-divider {
         padding-top: 0;
@@ -73,10 +74,158 @@ $light: #ffffff !default;
         }
       }
       .logo-text {
-        font-size: 18px;
-        color: #505050;
+        font-size: 16px;
+        color: #f28433;
+        margin-top: 5px;
         font-family: "Facit Light";
-        text-transform: uppercase;
+      }
+    }
+    form {
+      padding: 0 16px;
+      margin-bottom: 30px;
+      .item {
+        width: 80%;
+        margin-left: 10%;
+        margin-top: 0;
+        padding: 0;
+        &.item-input {
+          border-bottom: 1px solid rgba(36, 34, 34, .15);
+        }
+        .button-clear {
+          padding: 0;
+          color: #242222;
+          span {
+            color: #f28433;
+          }
+        }
+      }
+    }
+  }
+}
+
+.landing {
+  .list-inset {
+    .list {
+      border-radius: 0px;
+      border-top: 4px solid #f28433;
+      background: white !important;
+    }
+
+    .item:first-child {
+      margin-top: 30px;
+      .logo {
+        width: 60px;
+      }
+      .logo-text {
+        font-size: 14px;
+        color: #f28433;
+        margin-top: 0;
+        font-family: "Facit Semibold";
+      }
+    }
+
+    .item:nth-child(1) {
+      padding: 0;
+    }
+
+    .item:nth-child(3) {
+      padding-top: 0;
+      padding-bottom: 0;
+    }
+
+    .item:last-child {
+      padding: 0;
+      margin-bottom: -2px;
+      .row {
+        padding: 0;
+      }
+    }
+
+    .paytm {
+      background: #042e6f;
+      padding: 12px 0;
+      img {
+        width: 40%;
+      }
+    }
+
+    .paypal {
+      background: #009cde;
+      padding: 12px 0;
+		img {
+			width: 46%;
+		  }
+    }
+
+    .sub-text p {
+      color: #000;
+      font-size: 14px;
+      line-height: 18px;;
+      font-family: "Lato", sans-serif;
+    }
+
+    .bottom-text {
+      font-family: "Lato", sans-serif;
+      padding: 20px 0;
+      font-size: 14px;
+      font-weight: 400;
+      color: #000000;
+    }
+
+    .button-facebook {
+      height: 40px;
+      width: 80%;
+      margin-left: auto;
+      margin-right: auto;
+      font-family: "Lato", sans-serif;
+      font-size: 4.5vw;
+      position: relative;
+      background: #2450af;
+      box-shadow: none;
+      padding: 0 0 0 40px;
+      cursor: pointer;
+      font-weight: 400;
+      text-align: center;
+    }
+    .button-facebook:before {
+      background: #1644a7;
+      margin: 0;
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 40px;
+      text-align: center;
+      line-height: 40px;
+      height: 100%;
+      font-size: 20px;
+      padding: 0;
+      border-right: 1px solid #2955b6;
+      box-shadow: 0px 0px 0px 1px #183b85;
+    }
+    .button-facebook:hover {
+		  color: #fff;
+    }
+    .button-energized {
+      height: 40px;
+      width: 80%;
+      margin-left: auto;
+      margin-right: auto;
+      font-family: "Lato", sans-serif;
+      font-size: 4.5vw;
+      position: relative;
+      // background: #2450af;
+      box-shadow: none;
+      padding: 0;
+      cursor: pointer;
+      font-weight: 400;
+      text-align: center;
+    }
+    .item-button {
+      p {
+        font-family: "Lato", sans-serif;
+        font-size: 14px;
+        text-align: center;
+        color: #242222;
       }
     }
   }
@@ -140,6 +289,20 @@ $light: #ffffff !default;
           color: #505050;
           text-transform: uppercase;
         }
+      }
+    }
+  }
+}
+
+body {
+  #intercom-container {
+    .intercom-app {
+      .intercom-launcher-frame {
+        bottom: 150px !important;
+      }
+
+      .intercom-messenger-frame {
+        bottom: 150px !important;
       }
     }
   }

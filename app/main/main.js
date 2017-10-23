@@ -6,6 +6,8 @@ angular
     'ngCordova',
     'ui.router',
     'ngStorage',
+    'angulartics',
+    'angulartics.facebook.pixel',
     'auth',
     'store'
   ])
@@ -27,56 +29,30 @@ angular
         }
       }
     });
+  })
+  .config(function ($ionicConfigProvider) {
+    $ionicConfigProvider.scrolling.jsScrolling(false);
+  })
+  .run(function ($ionicPlatform, $log, $rootScope, $state) {
+    $rootScope.$state = $state;
+    $ionicPlatform.ready(function () {
+      /* eslint-disable no-undef */
+      if (window.cordova) {
+        try {
+          // then override any default you want
+          window.plugins.nativepagetransitions.globalOptions.duration = 700;
+          window.plugins.nativepagetransitions.globalOptions.iosdelay = 100;
+          window.plugins.nativepagetransitions.globalOptions.androiddelay = 150;
+          window.plugins.nativepagetransitions.globalOptions.winphonedelay = 175;
+          window.plugins.nativepagetransitions.globalOptions.slowdownfactor = 8;
+          // these are used for slide left/right only
+          window.plugins.nativepagetransitions.globalOptions.fixedPixelsTop = 64;
+          window.plugins.nativepagetransitions.globalOptions.fixedPixelsBottom = 48;
+        } catch (e) {
+          $log.log(e);
+        }
+      }
+
+      /* eslint-enable no-undef */
+    });
   });
-
-// .run(function ($ionicPlatform, $log, $rootScope) {
-
-//   $ionicPlatform.ready( function () {
-
-//     $log.log('Device details==================');
-
-//     $log.log(ionic.Platform.platform());
-
-//     $log.log(ionic.Platform.device());
-
-//     $log.log(ionic.Platform.version());
-
-//     $log.log(ionic.Platform.ua);
-
-//     if (window.cordova) {
-
-//       // eslint-disable-next-line no-undef
-
-//       FCMPlugin.onNotification( function (data) {
-
-//         $log.log(data);
-
-//         if (data.wasTapped) {
-
-//           $log.log('Notification was received on device tray and tapped by the user.');
-
-//           $log.log(JSON.stringify(data));
-
-//         } else {
-
-//           $log.log('Notification was received in foreground. Maybe the user needs to be notified.');
-
-//           $log.log(JSON.stringify(data));
-
-//         }
-
-//         if (data.payment && data.payment === 'Done') {
-
-//           $rootScope.$emit('closeCordovaInAppBrowser');
-
-//         }
-
-//       });
-
-//       window.cordova.plugins.firebase.crash.report('BOOM! Testing crash report');
-
-//     }
-
-//   });
-
-// });

@@ -7,10 +7,33 @@ angular
     'ionic-datepicker',
     'ionic.ion.imageCacheFactory',
     'angularMoment',
-    'ionic.closePopup'
+    'ionic.closePopup',
+    'ksSwiper',
+    'ionic.native'
 
     // TODO: load other modules selected during generation
   ])
+
+  .run(function ($ionicPlatform, $cordovaDeeplinks, $state, $timeout, $log, Config) {
+    $ionicPlatform.ready(function () {
+      if (window.cordova) {
+        $cordovaDeeplinks.route({
+          '#/store/product/:productId': {
+            target: 'store.product',
+            parent: 'store.products.latest'
+          }
+        }).subscribe(function (match) {
+          $log.log('Match', match);
+          Config.ENV.DEEP_LINK = match.$link.fragment;
+        }, function (nomatch) {
+          $log.log('No match', nomatch);
+          Config.ENV.DEEP_LINK = nomatch.$link.fragment;
+        });
+      }
+    });
+  })
+
+
   .config(function ($stateProvider, $ionicConfigProvider) {
     // $ionicConfigProvider.tabs.style('striped');
     $ionicConfigProvider.tabs.position('top');
@@ -85,6 +108,24 @@ angular
           storeContent: {
             templateUrl: 'store/templates/products/categories.html',
             controller: 'ProductsByCategoryCtrl as ctrl'
+          }
+        }
+      })
+      .state('store.freeProducts', {
+        url: '/free-products',
+        views: {
+          storeContent: {
+            templateUrl: 'store/templates/products/free-products.html',
+            controller: 'FreeProductsCtrl as ctrl'
+          }
+        }
+      })
+      .state('store.freeProduct', {
+        url: '/free-products/:productId',
+        views: {
+          storeContent: {
+            templateUrl: 'store/templates/product/free-product.html',
+            controller: 'FreeProductCtrl as ctrl'
           }
         }
       })

@@ -51,6 +51,20 @@ gulp --cordova "platform save"
 gulp --cordova "plugin save"
 ```
 
+## Generate Keyhash for debug
+C:\Program Files\Java\jdk1.8.0_66\bin
+
+keytool -exportcert -alias androiddebugkey -keystore "debug.keystore" | "C:\OpenSSL\bin\openssl" sha1 -binary |"C:\OpenSSL\bin\openssl" base64
+
+## Generate Keyhash for release
+keytool -exportcert -alias "duqhan" -keystore "duqhan-release-key.keystore" | "C:\OpenSSL\bin\openssl" sha1 -binary | "C:\OpenSSL\bin\openssl" base64
+
+## Generate Certificate Fingerprint for debug
+keytool -exportcert -list -v -alias androiddebugkey -keystore debug.keystore
+
+## Generate Certificate Fingerprint for release
+keytool -exportcert -list -v -alias duqhan -keystore duqhan-release-key.keystore
+
 ## Release Process
 
 ### Build Release APK
@@ -70,5 +84,8 @@ jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore duqhan-release-
 Go to
 C:\Users\CLB\AppData\Local\Android\sdk\build-tools\23.0.3
 ```sh
-zipalign -v 4 duqhan-release-unsigned.apk duqhan-release-signed-1.0.8.apk
+zipalign -v 4 duqhan-release-unsigned.apk duqhan-release-signed-1.0.18.apk
 ```
+
+### Setup deep linking
+gulp --cordova "plugin add ionic-plugin-deeplinks --variable URL_SCHEME=duqhan --variable DEEPLINK_SCHEME=https --variable DEEPLINK_HOST=duqhan.com --save"

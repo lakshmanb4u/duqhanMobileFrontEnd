@@ -1,0 +1,19 @@
+<ion-modal-view class="select-payment-gateway-modal">
+  <ion-header-bar class="bar-energized">
+    <h1 class="title">Choose Payment Gateway</h1>
+  </ion-header-bar>
+  <ion-content scroll="false">
+    <ion-list>
+      <ion-radio ng-model="ctrl.cart.paymentGateway" ng-value="2"><img src="store/assets/images/paytm-logo.png" /><span>Pay with Paytm</span></ion-radio>
+      <ion-radio ng-model="ctrl.cart.paymentGateway" ng-value="1"><img src="store/assets/images/paypal-logo.png" /><span>Pay with Paypal</span></ion-radio>
+    </ion-list>
+  </ion-content>
+  <ion-footer-bar class="choose-payment">
+    <div class="button-bar">
+        <div class="row">
+        <div class="col"><button type="button" class="button-stable" ng-click="ctrl.closePaymentGatewayModal()">Cancel</button></div>
+        <div class="col"><button class="button-positive" ng-click="ctrl.pay()">Pay</button></div>
+    </div>
+  </div>
+  </ion-footer-bar>
+</ion-modal-view>

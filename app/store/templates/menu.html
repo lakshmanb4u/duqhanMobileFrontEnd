@@ -11,18 +11,18 @@
       </ion-nav-back-button>
       <!-- nav button, shown if applicable -->
       <ion-nav-buttons side="left">
-        <button class="button button-icon button-clear ion-navicon" menu-toggle="primary">
-        </button>
+        <button class="ion-custom-navicon" menu-toggle="primary"></button>
+
+         <button class="ion-custom-icon" ></button> 
+
       </ion-nav-buttons>
       <ion-nav-buttons side="right">
-        <button class="button button-small button-icon button-clear ion-ios-home-outline larger-icon" ui-sref="store.products.latest">
-        </button>
-        <button class="button button-small button-icon button-clear ion-bag" ui-sref="store.cart">
-          <span class="badge badge-assertive header-badge" ng-show="menu.cartTotalNumber>0">{{menu.cartTotalNumber}}</span>
-        </button>
+        <button class="ion-custom-home" ui-sref="store.products.latest"></button>
+        <button class="ion-custom-search" ng-click="menu.toggleSearchBar()" ></button>
         <!--         <button class="button button-small button-icon button-clear ion-levels">
         </button> -->
-        <button class="button button-small button-icon button-clear ion-ios-search larger-icon" ng-click="menu.toggleSearchBar()">
+        <button class="ion-custom-cart" ui-sref="store.cart">
+            <span class="badge badge-dark header-badge" ng-show="menu.cartTotalNumber>0">{{menu.cartTotalNumber}}</span>
         </button>
       </ion-nav-buttons>
     </ion-nav-bar>
@@ -49,9 +49,9 @@
   <ion-side-menu side="left">
 
     <!-- menu header -->
-    <ion-header-bar class="bar-energized">
+    <!--<ion-header-bar class="bar-energized">
       <h1 class="title">Duqhan</h1>
-    </ion-header-bar>
+    </ion-header-bar>-->
 
     <!-- menu content -->
     <ion-content>
@@ -62,58 +62,58 @@
 
           <h2>{{menu.username}}</h2>
         </ion-item>
-        <ion-item menu-close ui-sref="store.products.latest">
-          Latest
+        <ion-item menu-close ui-sref="store.products.latest" ng-class="{'active': $state.includes('store.products.latest')}">
+          <span><img src="store/assets/images/nav-icon1.png" alt="" /></span><strong>Latest</strong>
         </ion-item>
-        <!--         <ion-item menu-close ui-sref="store.products.recent">
+        <!--<ion-item menu-close ui-sref="store.products.recent">
           Recent
-        </ion-item> -->
-        <ion-item menu-close ng-repeat="m in menu.topLevelMenu" ui-sref="store.productsByCategory({categoryId: m.categoryId})">
-          {{m.categoryName}}
+        </ion-item>-->
+        <ion-item menu-close ng-repeat="m in menu.topLevelMenu" ui-sref="store.productsByCategory({categoryId: m.categoryId})" ng-class="{'active': $state.includes('store.productsByCategory')}">
+          <span><img src="store/assets/images/nav-icon2.png" alt="" /></span><strong>{{m.categoryName}}</strong>
         </ion-item>
-        <ion-item class="item-divider">
+        <!--<ion-item class="item-divider">
           Settings
+        </ion-item>-->
+        <ion-item menu-close ui-sref="store.profile" ng-class="{'active': $state.includes('store.profile')}">
+          <span><img src="store/assets/images/nav-icon3.png" alt="" /></span><strong>My Profile</strong>
         </ion-item>
-        <ion-item menu-close ui-sref="store.profile">
-          My Profile
-        </ion-item>
-        <ion-item menu-close ui-sref="store.changepassword">
+        <!--<ion-item menu-close ui-sref="store.changepassword" ng-class="{'active': $state.includes('store.changepassword')}">
           My Password
+        </ion-item>-->
+        <ion-item menu-close ui-sref="store.myaddress" ng-class="{'active': $state.includes('store.myaddress')}">
+          <span><img src="store/assets/images/nav-icon4.png" alt="" /></span><strong>My Addresses</strong>
         </ion-item>
-        <ion-item menu-close ui-sref="store.myaddress">
-          My Addresses
+        <ion-item menu-close ui-sref="store.cart" ng-class="{'active': $state.includes('store.cart')}">
+          <span><img src="store/assets/images/nav-icon5.png" alt="" /></span><strong>My Cart</strong>
         </ion-item>
-        <ion-item menu-close ui-sref="store.cart">
-          My Cart
+        <ion-item menu-close ui-sref="store.orderhistory" ng-class="{'active': $state.includes('store.orderhistory')}">
+          <span><img src="store/assets/images/nav-icon6.png" alt="" /></span><strong>My Orders</strong>
         </ion-item>
-        <ion-item menu-close ui-sref="store.orderhistory">
-          My Orders
+        <ion-item menu-close ui-sref="store.customersupport" ng-class="{'active': $state.includes('store.customersupport')}">
+          <span><img src="store/assets/images/nav-icon7.png" alt="" /></span><strong>Customer Support</strong>
         </ion-item>
-        <ion-item menu-close ui-sref="store.customersupport">
-          Customer Support
+        <ion-item menu-close ui-sref="store.aboutus" ng-class="{'active': $state.includes('store.aboutus')}">
+          <span><img src="store/assets/images/nav-icon8.png" alt="" /></span><strong>About Us</strong>
         </ion-item>
-        <ion-item menu-close ui-sref="store.aboutus">
-          About Us
+        <ion-item menu-close ui-sref="store.contactus" ng-class="{'active': $state.includes('store.contactus')}">
+          <span><img src="store/assets/images/nav-icon9.png" alt="" /></span><strong>Contact Us</strong>
         </ion-item>
-        <ion-item menu-close ui-sref="store.contactus">
-          Contact Us
+        <ion-item menu-close ui-sref="store.returnpolicy" ng-class="{'active': $state.includes('store.returnpolicy')}">
+          <span><img src="store/assets/images/nav-icon10.png" alt="" /></span><strong>Return Policy</strong>
         </ion-item>
-        <ion-item menu-close ui-sref="store.returnpolicy">
-          Return Policy
+        <ion-item menu-close ui-sref="store.privacyPolicy" ng-class="{'active': $state.includes('store.privacyPolicy')}">
+          <span><img src="store/assets/images/nav-icon11.png" alt="" /></span><strong>Privacy Policy</strong>
         </ion-item>
-        <ion-item menu-close ui-sref="store.privacyPolicy">
-          Privacy Policy
-        </ion-item>
-        <ion-item menu-close ui-sref="store.termsConditions">
-          Terms & Conditions
+        <ion-item menu-close ui-sref="store.termsConditions" ng-class="{'active': $state.includes('store.termsConditions')}">
+          <span><img src="store/assets/images/nav-icon12.png" alt="" /></span><strong>Terms & Conditions</strong>
         </ion-item>
         <ion-item menu-close ng-click="menu.logout()">
-          Logout
+          <span><img src="store/assets/images/nav-icon13.png" alt="" /></span><strong>Logout</strong>
         </ion-item>
       </ion-list>
-      <div class="menu-footer p-md text-center energized">
+      <!--<div class="menu-footer p-md text-center energized">
         <p class="m-none">Version - 1.0.6</p>
-      </div>
+      </div>-->
     </ion-content>
   </ion-side-menu>
 </ion-side-menus>

@@ -11,6 +11,7 @@ angular
     $ionicFacebookAuth,
     $ionicUser,
     $cordovaGeolocation,
+    $timeout,
     Config,
     Auth,
     Firebase
@@ -56,24 +57,24 @@ angular
       $cordovaGeolocation
         .getCurrentPosition(posOptions)
         .then(
-          function (position) {
-            $log.log('Geolocation = ');
-            $log.log(position);
-            Config.ENV.USER.LATITUDE = position.coords.latitude;
-            Config.ENV.USER.LONGITUDE = position.coords.longitude;
-            user.latitude = Config.ENV.USER.LATITUDE;
-            user.longitude = Config.ENV.USER.LONGITUDE;
-            user.userAgent = ionic.Platform.ua;
-            return Firebase.includeFCMToken(user);
-          },
-          function (err) {
-            $log.log('Geolocation error = ');
-            $log.log(err);
-            user.latitude = Config.ENV.USER.LATITUDE;
-            user.longitude = Config.ENV.USER.LONGITUDE;
-            user.userAgent = ionic.Platform.ua;
-            return Firebase.includeFCMToken(user);
-          }
+        function (position) {
+          $log.log('Geolocation = ');
+          $log.log(position);
+          Config.ENV.USER.LATITUDE = position.coords.latitude;
+          Config.ENV.USER.LONGITUDE = position.coords.longitude;
+          user.latitude = Config.ENV.USER.LATITUDE;
+          user.longitude = Config.ENV.USER.LONGITUDE;
+          user.userAgent = ionic.Platform.ua;
+          return Firebase.includeFCMToken(user);
+        },
+        function (err) {
+          $log.log('Geolocation error = ');
+          $log.log(err);
+          user.latitude = Config.ENV.USER.LATITUDE;
+          user.longitude = Config.ENV.USER.LONGITUDE;
+          user.userAgent = ionic.Platform.ua;
+          return Firebase.includeFCMToken(user);
+        }
         )
         .then(function (user) {
           return Auth.login(user);
@@ -85,12 +86,41 @@ angular
           ctrl.savedUser.name = response.data.name;
           ctrl.savedUser.authtoken = response.data.authtoken;
           ctrl.savedUser.profileImage = response.data.profileImg;
+          ctrl.savedUser.freeProductEligibility = response.data.freeProductEligibility;
           Config.ENV.USER.AUTH_TOKEN = response.data.authtoken;
           Config.ENV.USER.NAME = response.data.name;
           Config.ENV.USER.PROFILE_IMG = response.data.profileImg;
           $rootScope.$emit('setUserDetailForMenu');
           $localStorage.savedUser = JSON.stringify(ctrl.savedUser);
-          $state.go('store.products.latest');
+          if (ctrl.savedUser.freeProductEligibility) {
+            // $state.go('store.freeProducts');
+            $state.go('store.products.latest');
+          } else {
+            $state.go('store.products.latest');
+          }
+          if (window.cordova) {
+            /* eslint-disable no-undef */
+            intercom.reset();
+            intercom.registerIdentifiedUser(
+              {
+                userId: ctrl.savedUser.userId,
+                email: ctrl.savedUser.email
+              }
+            );
+            intercom.updateUser({
+              /* eslint-disable camelcase */
+              custom_attributes: {
+                customer_name: ctrl.savedUser.name
+              }
+              /* eslint-enable camelcase */
+            });
+          }
+          /* eslint-enable no-undef */
+          if (Config.ENV.DEEP_LINK) {
+            $timeout(function () {
+              $location.path(Config.ENV.DEEP_LINK);
+            }, 1000);
+          }
 
           //$location.path('/store/products/latest');
         })
@@ -113,18 +143,18 @@ angular
       $cordovaGeolocation
         .getCurrentPosition(posOptions)
         .then(
-          function (position) {
-            $log.log('Geolocation = ');
-            $log.log(position);
-            Config.ENV.USER.LATITUDE = position.coords.latitude;
-            Config.ENV.USER.LONGITUDE = position.coords.longitude;
-            return $ionicFacebookAuth.login();
-          },
-          function (err) {
-            $log.log('Geolocation error = ');
-            $log.log(err);
-            return $ionicFacebookAuth.login();
-          }
+        function (position) {
+          $log.log('Geolocation = ');
+          $log.log(position);
+          Config.ENV.USER.LATITUDE = position.coords.latitude;
+          Config.ENV.USER.LONGITUDE = position.coords.longitude;
+          return $ionicFacebookAuth.login();
+        },
+        function (err) {
+          $log.log('Geolocation error = ');
+          $log.log(err);
+          return $ionicFacebookAuth.login();
+        }
         )
         .then(function () {
           $log.log('FB data ================');
@@ -151,16 +181,45 @@ angular
           ctrl.savedUser.name = $ionicUser.social.facebook.data.full_name;
           ctrl.savedUser.userId = $ionicUser.social.facebook.userId;
           ctrl.savedUser.authtoken = response.data.authtoken;
-          ctrl.savedUser.profileImage = img;
+          ctrl.savedUser.profileImage = response.data.profileImg ? response.data.profileImg : img;
+          ctrl.savedUser.freeProductEligibility = response.data.freeProductEligibility;
           ctrl.savedUser.socialLogin = true;
           Config.ENV.USER.AUTH_TOKEN = response.data.authtoken;
           Config.ENV.USER.NAME = response.data.name;
-          Config.ENV.USER.PROFILE_IMG = img;
+          Config.ENV.USER.PROFILE_IMG = ctrl.savedUser.profileImage;
           $rootScope.$emit('setUserDetailForMenu');
           $log.log('FB picture ================');
           $log.log(img);
           $localStorage.savedUser = JSON.stringify(ctrl.savedUser);
-          $state.go('store.products.latest');
+          if (ctrl.savedUser.freeProductEligibility) {
+            // $state.go('store.freeProducts');
+            $state.go('store.products.latest');
+          } else {
+            $state.go('store.products.latest');
+          }
+          if (window.cordova) {
+            /* eslint-disable no-undef */
+            intercom.reset();
+            intercom.registerIdentifiedUser(
+              {
+                userId: ctrl.savedUser.userId,
+                email: ctrl.savedUser.email
+              }
+            );
+            intercom.updateUser({
+              /* eslint-disable camelcase */
+              custom_attributes: {
+                customer_name: ctrl.savedUser.name
+              }
+              /* eslint-enable camelcase */
+            });
+          }
+          /* eslint-enable no-undef */
+          if (Config.ENV.DEEP_LINK) {
+            $timeout(function () {
+              $location.path(Config.ENV.DEEP_LINK);
+            }, 1000);
+          }
         })
         .catch(function (error) {
           $log.log(error);
@@ -197,17 +256,46 @@ angular
               ctrl.savedUser.email = $ionicUser.social.facebook.data.email;
               ctrl.savedUser.name = $ionicUser.social.facebook.data.full_name;
               ctrl.savedUser.userId = $ionicUser.social.facebook.userId;
-              ctrl.savedUser.profileImage = img;
+              ctrl.savedUser.profileImage = response.data.profileImg ? response.data.profileImg : img;
+              ctrl.savedUser.freeProductEligibility = response.data.freeProductEligibility;
               ctrl.savedUser.authtoken = response.data.authtoken;
               ctrl.savedUser.socialLogin = true;
               Config.ENV.USER.AUTH_TOKEN = response.data.authtoken;
               Config.ENV.USER.NAME = response.data.name;
-              Config.ENV.USER.PROFILE_IMG = img;
+              Config.ENV.USER.PROFILE_IMG = ctrl.savedUser.profileImage;
               $rootScope.$emit('setUserDetailForMenu');
               $log.log('FB picture ================');
               $log.log(img);
               $localStorage.savedUser = JSON.stringify(ctrl.savedUser);
-              $state.go('store.products.latest');
+              if (ctrl.savedUser.freeProductEligibility) {
+                // $state.go('store.freeProducts');
+                $state.go('store.products.latest');
+              } else {
+                $state.go('store.products.latest');
+              }
+              if (window.cordova) {
+                /* eslint-disable no-undef */
+                intercom.reset();
+                intercom.registerIdentifiedUser(
+                  {
+                    userId: ctrl.savedUser.userId,
+                    email: ctrl.savedUser.email
+                  }
+                );
+                intercom.updateUser({
+                  /* eslint-disable camelcase */
+                  custom_attributes: {
+                    customer_name: ctrl.savedUser.name
+                  }
+                  /* eslint-enable camelcase */
+                });
+              }
+              /* eslint-enable no-undef */
+              if (Config.ENV.DEEP_LINK) {
+                $timeout(function () {
+                  $location.path(Config.ENV.DEEP_LINK);
+                }, 1000);
+              }
             })
             .catch(function (error) {
               $log.log(error);
@@ -228,6 +316,12 @@ angular
     // Call autologin
     ctrl.autoLogin();
 
+    if (window.cordova) {
+      // eslint-disable-next-line no-undef
+      intercom.registerUnidentifiedUser();
+      // eslint-disable-next-line no-undef
+      intercom.setLauncherVisibility('VISIBLE');
+    }
     // Catching calls from outside this controller
     $rootScope.$on('internalLogin', function (event, user) {
       $log.log(event);

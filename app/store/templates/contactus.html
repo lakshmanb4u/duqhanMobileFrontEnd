@@ -1,24 +1,46 @@
-<ion-view view-title="Contact Us">
+<ion-view view-title="" class="contact-us">
   <!-- do you want padding? -->
   <ion-content class="padding">
-    <p>We would love to hear from you. Please provide us your valuable feedback. You can also contact us if you are facing problem accessing the site. Please select appropriate subject and send it to us.</p>
+    <p>We would love to hear from you. Please provide us your valuable feedback. You can also contact us if you are facing problem
+      accessing the site. Please select appropriate subject and send it to us.</p>
     <form name="ctrl.ContactForm" ng-submit="ctrl.ContactUs()" novalidate="">
-      <label class="item item-input item-select">
-       <div class = "input-label">
+        <ion-list class="contact-form">
+      <ion-item class="item item-select">
+        <div class="input-label">
           Subject
-       </div>
-        <select ng-model="ctrl.statusCode" 
-        ng-options="count.name as count.name for count in ctrl.countList">
+        </div>
+        <select ng-model="ctrl.statusCode" ng-options="count.name as count.name for count in ctrl.countList">
         </select>
-      </label>
-      <label class="item item-input">
-        <textarea placeholder="Messege" ng-model="ctrl.Contact.status" style="height: 73px;"></textarea>
-      </label>
+      </ion-item>
+      <ion-item class="item item-input item-stacked-label">
+          <span class="input-label">Your Name</span>
+          <i class="icon ion-ios-person-outline placeholder-icon"></i>
+        <input type="text" name="name" placeholder="Name" required/>
+      </ion-item>
+      <ion-item class="item item-input item-stacked-label">
+          <span class="input-label">Email</span>
+          <i class="icon ion-ios-email-outline placeholder-icon"></i>
+        <input type="email" name="email" placeholder="Email Id" ng-model="ctrl.Contact.email" required/>
+        <em ng-show="ctrl.ContactForm.email.$error.required && ctrl.ContactForm.submitted" style="padding: 0 5px; font-size: 12px; color: red;">* Email is required</em>
+        <em ng-show="!ctrl.ContactForm.email.$error.required && ctrl.ContactForm.email.$invalid && ctrl.ContactForm.submitted" style="padding: 0 5px; font-size: 12px; color: red;">* Email is invalid</em>
+      </ion-item>
+      <ion-item class="item item-input item-stacked-label">
+          <span class="input-label">Phone</span>
+          <i class="icon ion-ios-telephone-outline placeholder-icon"></i>
+        <input type="text" name="mobile" placeholder="Phone Number" ng-model="ctrl.Contact.mobile" required/>
+        <em ng-show="ctrl.ContactForm.mobile.$error.required && ctrl.ContactForm.submitted" style="padding: 0 5px; font-size: 12px; color: red;">* Mobile is required</em>
+      </ion-item>
+      <ion-item class="item item-input item-stacked-label">
+          <span class="input-label">Message</span>
+        <textarea placeholder="Type your message" ng-model="ctrl.Contact.status" name="status" required></textarea>
+        <em ng-show="ctrl.ContactForm.status.$error.required && ctrl.ContactForm.submitted" style="padding: 0 5px; font-size: 12px; color: red;">* Messege is required</em>
+      </ion-item>
+    </ion-list>
       <button class="button button-full button-positive">
         Contact Us
       </button>
     </form>
-    <ion-list>
+    <ion-list class="contact-info">
       <ion-item class="item item-divider">
         Where you can find us?
       </ion-item>
@@ -34,7 +56,7 @@
             <i class="icon ion-iphone"></i> 00112696770
           </ion-item>-->
       <ion-item class="item item-icon-left">
-        <i class="icon ion-email"></i> admin@duqhan.com
+        <i class="icon ion-email"></i> <h2>admin@duqhan.com</h2>
       </ion-item>
     </ion-list>
   </ion-content>

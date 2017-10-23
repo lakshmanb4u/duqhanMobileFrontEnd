@@ -1,36 +1,35 @@
-<ion-view view-title="My Address">
+<ion-view view-title="">
   <!-- do you want padding? -->
   <ion-content class="padding my-address">
-    <div class="row">
-      <div class="col col-60">
-        <h5 class="m-none">{{ctrl.addresses.length}} saved addresses</h5>
-      </div>
-      <div class="col col-40 text-right">
-        <h5 class="positive m-none" ng-click="ctrl.addAddress()">Add address</h5>
-      </div>
-    </div>
+    <h5 ng-click="ctrl.addAddress()">Add address</h5>
     <ion-list>
       <div class="card" ng-repeat="address in ctrl.addresses" ng-class="{'active-address': address.status == 1}">
-<!--         <div class="badge-wrapper" ng-show="address.status == 1">
-          <span class="badge badge-balanced">Default</span>
-        </div> -->
+
         <div class="item item item-icon-left item-icon-right item-text-wrap">
-          <i class="icon ion-checkmark-circled balanced" ng-show="address.status == 1"></i>
-          <h2>{{address.contactName}}</h2>
-          <i class="icon ion-android-more-vertical" ng-click="ctrl.openAddressOptions($event, address)"></i>
-        </div>
-        <div class="item item-icon-left item-text-wrap">
-          <i class="icon ion-ios-telephone"></i>
+          <div class="radio-box">
+            <input type="radio" name="radio" id="mme" value="mme">
+            <label for="mme"></label>
+          </div>
+          <strong ng-click="ctrl.openAddressOptions($event, address)">Edit</strong>
+          <h2>{{address.contactName}}
+            <span>Default</span>
+          </h2>
           <p>{{address.phone}}</p>
-        </div>
-        <div class="item item-icon-left item-text-wrap">
-          <i class="icon ion-ios-location"></i>
           <p>{{address.streetOne}}, {{address.streetTwo}}, {{address.city}}, {{address.state}} - {{address.zipCode}}</p>
         </div>
       </div>
 
     </ion-list>
   </ion-content>
+  <!-- <ion-footer-bar class="cart-footer">
+    <div class="row m-none p-none">
+      <div class="col">
+        <div class="button-bar">
+          <button class="button button-positive add-cart-button" ui-sref="store.checkout({cart: ctrl.cart})">Continue</button>
+        </div>
+      </div>
+    </div>
+  </ion-footer-bar> -->
 </ion-view>
 
 <script id="address-options-popover.html" type="text/ng-template">

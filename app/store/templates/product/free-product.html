@@ -1,0 +1,113 @@
+<ion-view view-title="" class="free-product">
+  <!-- do you want padding? -->
+  <ion-content class="padding product-tab-content has-footer">
+
+    <!-- content goes here -->
+    <ion-slide-box delegate-handle="image-viewer" show-pager="true" class="m-t-md">
+      <ion-slide ng-repeat="i in ctrl.product.images">
+        <img src="{{i.imgUrl || 'store/assets/images/default.jpg' | cloudinaryImageTransformation}}">
+      </ion-slide>
+    </ion-slide-box>
+    <div class="product-brief p-sm" style="border:none;">
+      <h1 class="product-name">{{ctrl.product.name}}</h1>
+      <p style="color: #ff771c;">
+        <span>&#2352; {{ctrl.product.salesPrice}}</p>
+      <div style="border-bottom: 1px solid #cdcdcd;height:1px;"></div>
+      <!-- <p class="product-price m-b-none"><span>Rs.{{ctrl.product.orginalPrice}}</span> Free </p> -->
+    </div>
+    <div class="product-detail p-sm" style="margin-top:-15px !important;">
+      <div class="size-wrapper m-b-md" ng-show="ctrl.product.description">
+        <div class="values">Description</div>
+        <div style="font-family: 'Lato';color: black;">{{ctrl.product.description}}</div>
+      </div>
+
+      <div style="border-bottom: 1px solid #cdcdcd;height:1px;margin-bottom:10px;"></div>
+
+      <div class="values" style="margin-bottom:10px;">Specification</div>
+
+      <div class="size-wrapper m-b-md" ng-show="ctrl.product.specifications">
+        <!--<div class="values">Specification</div>-->
+        <ion-list class="product-specification">
+          <ion-item ng-repeat="(key, value) in ctrl.product.specifications" style="background: #ebebeb;margin-bottom:5px;font-family: 'tahoma'">
+          {{key.replace('-', ' ')}}
+            <span class="item-note">{{value}}</span>
+          </ion-item>
+        </ion-list>
+      </div>
+      <div class="size-wrapper m-b-md" ng-show="ctrl.product.sizeArr">
+        <div class="row m-b-xs">
+          <div class="col title">Sizes</div>
+        </div>
+        <div class="values">{{ctrl.product.sizeArr}}</div>
+      </div>
+      <div class="color-wrapper m-b-md" ng-show="ctrl.product.colorArr">
+        <div class="row m-b-xs">
+          <div class="col title">Options</div>
+        </div>
+        <div class="values">{{ctrl.product.colorArr}}</div>
+      </div>
+      <!-- <div class="shipping-time-wrapper m-b-md">
+        <div class="row m-b-xs">
+          <div class="col title">Estimated Arrival</div>
+        </div>
+        <div class="values">3-4 Weeks</div>
+      </div> -->
+
+      <div class="shipping-time-wrapper m-b-md" style="font-family: 'tahoma';font-size: 17px;">
+        We guarantee a safe and secure shopping experience so you never have to worry.
+      </div>
+
+      <div class="shipping-cost-wrapper m-b-md hidden">
+        <div class="row m-b-xs">
+          <div class="col title">Estimated Shipping</div>
+        </div>
+        <div class="values">Rs. 0</div>
+      </div>
+    </div>
+    <!-- <div class="duqhan-guarantee">
+      <div class="stamp-wraper">
+        <p>We guarantee a safe and secure shopping experience so you never have to worry.</p>
+      </div>
+    </div> -->
+
+
+
+  </ion-content>
+  <ion-footer-bar class="bar-dark">
+    <button class="button button-clear button-light button-block p-none" ng-click="ctrl.prepareCart(ctrl.product)">GET IT FREE NOW</button>
+  </ion-footer-bar>
+</ion-view>
+
+<script id="select-address-modal.html" type="text/ng-template">
+  <ion-modal-view class="new-address-modal">
+    <ion-header-bar class="bar-energized">
+      <h1 class="title">Select address</h1>
+    </ion-header-bar>
+    <ion-content class="has-footer">
+      <ion-list>
+        <ion-radio ng-model="ctrl.selectedAddress" ng-value="address" ng-repeat="address in ctrl.addresses">
+          <h2>{{address.contactName}}</h2>
+          <p>{{address.streetOne}}, {{address.streetTwo}}, {{address.city}}, {{address.state}} - {{address.zipCode}}</p>
+          <p>{{address.phone}}</p>
+        </ion-radio>
+        <div class="item item-text-wrap" ng-hide="ctrl.addresses.length > 0">
+          You have not added any address yet. Add one now, before the purchase.
+          <!-- <button class="button button-clear button-block button-positive" ng-click="ctrl.closeModal()" ui-sref="store.myaddress">My addresses</button> -->
+        </div>
+      </ion-list>
+      <div class="m-t-sm padding">
+        <button class="button button-block button-balanced" ng-click="ctrl.addAddress()">Add address</button>
+      </div>
+      <div class="error server-side text-center m-t-md" ng-hide="ctrl.addressSelectionError || ctrl.selectedAddress">
+        <i class="ion-information-circled"></i> Please select an address
+      </div>
+    </ion-content>
+    <ion-footer-bar>
+      <div class="button-bar">
+        <button class="button button-positive" ng-click="ctrl.selectAddress()">Deliver here</button>
+        <button class="button button-stable" ng-click="ctrl.closeModal()">Cancel</button>
+      </div>
+    </ion-footer-bar>
+  </ion-modal-view>
+</script>
+<div ng-controller="AddressCtrl as ctrl"></div>
