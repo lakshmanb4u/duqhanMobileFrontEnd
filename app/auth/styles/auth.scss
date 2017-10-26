@@ -84,25 +84,112 @@ $light: #ffffff !default;
       padding: 0 16px;
       margin-bottom: 30px;
       .item {
-        width: 80%;
-        margin-left: 10%;
-        margin-top: 0;
+        width: auto;
         padding: 0;
+        margin: 10px 20px 0 20px;
         &.item-input {
           border-bottom: 1px solid rgba(36, 34, 34, .15);
+        }
+        input {
+          padding: 10px 0;
+          font-family: "Lato";
+          font-weight: 400;
+          font-size: 20px;
+          height: auto;
+          line-height: normal;          
+          &::-webkit-input-placeholder {
+            color: #000000;
+          }
+          &::-moz-placeholder {
+            color: #000000;
+          }
+          &:-ms-input-placeholder {
+            color: #000000;
+          }
+          &:-moz-placeholder {
+            color: #000000;
+          }
+          &:placeholder {
+            color: #000000;
+          }
         }
         .button-clear {
           padding: 0;
           color: #242222;
+          font-family: "Lato";
+          font-weight: 300;
+          font-size: 18px;
+          max-height: none;
+          margin: 10px 0;
+          border: none;
+        }
+        a {
+          color: #242222;
+          font-family: "Lato";
+          font-weight: 300;
+          font-size: 18px;
+          text-decoration: none;
           span {
             color: #f28433;
+            font-weight: 700;
+            font-size: 16px;
           }
+        }
+        .button-energized {
+          height: 60px;
         }
       }
     }
   }
 }
+.forget {
+  .list {
+    .item {
+      p {
+        text-overflow: unset;
+        white-space: normal;
+      }
+      strong {
+        color: #242222;
+        font-family: "Lato";
+        font-weight: 400;
+        font-size: 22px;
+        display: block;
+        margin: 0 0 20px 0;
+      }
+      &.has-errors {
+        border-bottom: 1px solid rgba(36, 34, 34, 0.15) !important;
+        margin-bottom: 40px;
+      }
+    }
+    .sub-text {
+      padding-top: 0;
+    }
+  }
+}
 
+.signup {
+  .list {
+    padding-top: 40px;
+    margin-top: 20px;
+    .item {
+      &.item-stacked-label {
+        border-bottom: 1px solid rgba(36, 34, 34, 0.15) !important;
+        margin-bottom: 20px;
+        span {
+          position: absolute;
+          right: 0;
+          bottom: 12px;
+        }
+      }
+      span {
+        font-size: 12px;
+        display: block;
+        text-align: right;
+      }
+    }
+  }
+}
 .landing {
   .list-inset {
     .list {
@@ -112,9 +199,9 @@ $light: #ffffff !default;
     }
 
     .item:first-child {
-      margin-top: 30px;
       .logo {
         width: 60px;
+        margin-top: 30px;
       }
       .logo-text {
         font-size: 14px;
@@ -159,8 +246,8 @@ $light: #ffffff !default;
 
     .sub-text p {
       color: #000;
-      font-size: 14px;
-      line-height: 18px;;
+      font-size: 20px;
+      line-height: 24px;
       font-family: "Lato", sans-serif;
     }
 

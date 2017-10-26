@@ -16,7 +16,7 @@
             </ion-item>
             <form name="ctrl.loginForm" ng-submit="ctrl.login()" novalidate="">
                 <ion-item class="item item-input" ng-class="{ 'has-errors' : ctrl.loginForm.email.$invalid && ctrl.loginForm.submitted, 'no-errors' : ctrl.loginForm.email.$valid}">
-                    <input name="email" type="email" placeholder="Email" ng-model="ctrl.user.email" required="">
+                    <input name="email" type="email" placeholder="Enter your email" ng-model="ctrl.user.email" required="">
                 </ion-item>
                 <div class="error-container" ng-show="ctrl.loginForm.email.$error && ctrl.loginForm.$submitted" ng-messages="ctrl.loginForm.email.$error">
                     <div ng-messages-include="error-list.html"></div>
@@ -34,22 +34,15 @@
                 </div>
                 <ion-item class="item">
                     <div class="text-right">
-                        <button class="button button-clear button-stable" ui-sref="forgot-password">
-                            Forgot Password?
-                        </button>
+                        <button class="button-clear"  ui-sref="forgot-password">Forgot Password?</button>
                     </div>
                 </ion-item>
                 <ion-item class="item item-button">
-                    <button class="button button-block button-energized">
-                        Login
-                    </button>
+                    <button class="button button-block button-energized">Login</button>
                 </ion-item>
                 <ion-item class="item">
                     <div class="text-center">
-                        <button class="button button-clear button-stable" ui-sref="signup">
-                            New user?
-                            <span>Register here</span>
-                        </button>
+                        <a ui-sref="signup">New user? <span>Register here</span></a>
                     </div>
                 </ion-item>
             </form>
