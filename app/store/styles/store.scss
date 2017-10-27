@@ -1128,7 +1128,7 @@ $assertive: #ef473a !default;
   background: #f9f5f2 url(../assets/images/about-bg.png) no-repeat center bottom;
   background-size: 50% auto;
   .list {
-    padding: 20px;
+    padding: 0 20px;
     .item {
       background: none;
       border: none;
@@ -1317,19 +1317,44 @@ $assertive: #ef473a !default;
 // Orders Page
 // -------------------------------
 .order-history {
-  background: #e8e8e8;
+  background: #f9f5f2;
   .card {
-    margin-top: 10px;
+    background: none;
+    margin: 0;
+    box-shadow: none;
+    padding: 10px 0;
+    border-bottom: 1px solid #cfccca;
     .item {
+      background: none;
+      font-family: "Lato";
       img {
         width: auto;
         height: auto;
+        background: #fff;
+        padding: 10px;
+        box-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+      }
+      h2 {
+        overflow: hidden;
+        white-space: nowrap;
+        color: #000;
+        font-size: 18px;
+        margin: 5px 0;
+      }
+      h4 {
+        color: #000;
+        font-size: 12px;
+        span:last-child {
+          color: #ff771c;
+          margin-bottom: 5px;
+        }
       }
       h3 {
         color: $balanced;
       }
       p {
         font-size: 12px;
+        color: #000;
       }
       &.item-divider {
         padding-left: 10px;
@@ -1339,10 +1364,43 @@ $assertive: #ef473a !default;
   }
 }
 
+.no-search {
+  background: none;
+  box-shadow: none;
+  .item {
+    background-color: #f6f6f7;
+    border: none;
+    margin: 0;
+    padding: 20px 0;
+    img {
+      width: 50%;
+      display: block;
+      margin: 0 auto;
+    }
+    p {
+      color: #000;
+      font-family: "Lato";
+      font-weight: 400;
+      margin: 10px 0 0 0;
+      font-size: 22px;
+      text-align: center;
+      span {
+        font-weight: 300;
+        font-size: 16px;
+        display: block;
+        margin: 6px 0 10px 0;
+      }
+    }
+  }
+}
+
 .order-detail {
-  background-color: #e5e5e5;
+  background-color: #f9f5f2;
+  color: #000;
   .card {
+    background:none; 
     margin-top: 10px;
+    box-shadow: none;
     .item.item-image {
       position: relative;
       img {
@@ -1353,8 +1411,14 @@ $assertive: #ef473a !default;
       border-width: 0;
       padding-top: 7px;
       padding-bottom: 7px;
+      background: none;
+      border-radius: 0;
+      border: none;
       h2 {
         font-size: 20px;
+      }
+      p {
+        color: #000;
       }
       i.icon {
         font-size: 16px;
@@ -1371,6 +1435,10 @@ $assertive: #ef473a !default;
         text-align: center;
       }
     }
+  }
+  .button-positive {
+    background-color: #ff771c;
+    box-shadow: none;
   }
 }
 

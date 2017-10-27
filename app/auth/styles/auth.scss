@@ -91,10 +91,10 @@ $light: #ffffff !default;
           border-bottom: 1px solid rgba(36, 34, 34, .15);
         }
         input {
-          padding: 10px 0;
+          padding: 15px 0;
           font-family: "Lato";
           font-weight: 400;
-          font-size: 20px;
+          font-size: 16px;
           height: auto;
           line-height: normal;          
           &::-webkit-input-placeholder {
@@ -118,7 +118,7 @@ $light: #ffffff !default;
           color: #242222;
           font-family: "Lato";
           font-weight: 300;
-          font-size: 18px;
+          font-size: 14px;
           max-height: none;
           margin: 10px 0;
           border: none;
@@ -127,16 +127,16 @@ $light: #ffffff !default;
           color: #242222;
           font-family: "Lato";
           font-weight: 300;
-          font-size: 18px;
+          font-size: 14px;
           text-decoration: none;
           span {
             color: #f28433;
             font-weight: 700;
-            font-size: 16px;
+            font-size: 12px;
           }
         }
         .button-energized {
-          height: 60px;
+          height: 50px;
         }
       }
     }
@@ -246,7 +246,7 @@ $light: #ffffff !default;
 
     .sub-text p {
       color: #000;
-      font-size: 20px;
+      font-size: 18px;
       line-height: 24px;
       font-family: "Lato", sans-serif;
     }
