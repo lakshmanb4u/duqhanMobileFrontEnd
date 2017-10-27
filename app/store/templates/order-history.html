@@ -5,12 +5,10 @@
     <ion-list>
       <div ng-repeat="order in ctrl.orders">
         <div class="card" ui-sref="store.orderdetails({order: order})">
-          <div class="item item-divider">
-            {{order.orderDate | dateFilter1}} ({{order.orderId}})
-          </div>
           <div class="item item-thumbnail-left item-text-wrap">
             <img src="{{order.prodImg}}">
             <h2>{{order.productName}}</h2>
+            <h4><span>{{order.orderDate | dateFilter1}}</span> | <span>({{order.orderId}})</span></h4>
             <h3 class="text-capitalize">{{order | orderStatusFilter}}</h3>
             <!--             <p ng-if="order.trackerBean">
               <span ng-if="order.trackerBean.status == 'delivered'">Delivered On</span>
@@ -31,10 +29,5 @@
       </div>
     </ion-list>
     <ion-infinite-scroll ng-if="!ctrl.noMoreItemsAvailable" on-infinite="ctrl.loadMore()" distance="1%" immediate-check="false"></ion-infinite-scroll>
-    <div class="duqhan-guarantee">
-      <div class="stamp-wraper">
-        <p>We guarantee a safe and secure shopping experience so you never have to worry.</p>
-      </div>
-    </div>
   </ion-content>
 </ion-view>

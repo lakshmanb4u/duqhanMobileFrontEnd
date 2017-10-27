@@ -1,65 +1,75 @@
 <ion-view view-title="Sign up">
   <!-- do you want padding? -->
-  <ion-content class="padding authenticate">
+  <ion-content class="padding landing signup">
 
     <!-- content goes here -->
     <ion-list class="list-inset">
-      <ion-item class="item text-center">
-        <div class="logo-wrapper">
-          <img class="logo" src="main/assets/images/logo.png" style="width: 56px; height: 55px">
-          <p class="logo-text">Duqhan</p>
-        </div>
-      </ion-item>
 
-      <!-- <ion-item class="item item-button">
-        <button class="button icon-left ion-social-facebook button-block button-facebook" ng-click="ctrl.facebookLogin()">
-          Login with Facebook
-        </button>
-      </ion-item> -->
+      
 
       <form name="ctrl.signupForm" ng-submit="ctrl.signup()" novalidate="">
-        <ion-item class="item item-input" ng-class="{ 'has-errors' : ctrl.signupForm.name.$invalid, 'no-errors' : ctrl.signupForm.name.$valid}">
-          <i class="icon ion-ios-person-outline placeholder-icon"></i>
-          <input name="name" type="text" placeholder="Name" ng-model="ctrl.user.name" required="">
+        <ion-item class="item item-input item-stacked-label" ng-class="{ 'has-errors' : ctrl.signupForm.name.$invalid, 'no-errors' : ctrl.signupForm.name.$valid}">
+          <label>Full Name</label>
+          <input name="name" type="text" placeholder="Full Name" ng-model="ctrl.user.name" required="">
         </ion-item>
         <div class="error-container" ng-show="ctrl.signupForm.name.$error && ctrl.signupForm.$submitted" ng-messages="ctrl.signupForm.name.$error">
           <div ng-messages-include="error-list.html"></div>
         </div>
 
-        <ion-item class="item item-input" ng-class="{ 'has-errors' : ctrl.signupForm.email.$invalid, 'no-errors' : ctrl.signupForm.email.$valid}">
-          <i class="icon ion-ios-email-outline placeholder-icon"></i>
-          <input name="email" type="email" placeholder="E-Mail" ng-model="ctrl.user.email" required="">
+        <ion-item class="item item-input item-stacked-label" ng-class="{ 'has-errors' : ctrl.signupForm.email.$invalid, 'no-errors' : ctrl.signupForm.email.$valid}">
+            <label>Email</label>
+          <input name="email" type="email" placeholder="Email*" ng-model="ctrl.user.email" required="">
         </ion-item>
         <div class="error-container" ng-show="ctrl.signupForm.email.$error && ctrl.signupForm.$submitted" ng-messages="ctrl.signupForm.email.$error">
           <div ng-messages-include="error-list.html"></div>
         </div>
-
-        <ion-item class="item item-input" ng-class="{ 'has-errors' : ctrl.signupForm.password.$invalid, 'no-errors' : ctrl.signupForm.password.$valid}">
-          <i class="icon ion-ios-locked-outline placeholder-icon"></i>
-          <input name="password" type="password" placeholder="Password" ng-model="ctrl.user.password" required="">
+        <ion-item class="item item-input item-stacked-label" ng-class="{ 'has-errors' : ctrl.signupForm.password.$invalid, 'no-errors' : ctrl.signupForm.password.$valid}">
+            <label>Password</label>
+          <input name="password" type="password" placeholder="Password *" ng-model="ctrl.user.password" required="">
         </ion-item>
         <div class="error-container" ng-show="ctrl.signupForm.password.$error && ctrl.signupForm.$submitted" ng-messages="ctrl.signupForm.password.$error">
           <div ng-messages-include="error-list.html"></div>
         </div>
+        <ion-item class="item item-input item-stacked-label">
+            <label>Confirm Password</label>
+            <span>( Min. 8 Characters )</span>
+            <input name="password" type="password" placeholder="Confirm Password *" required="">
+          </ion-item>
+
+          
+        <ion-item class="item item-input item-stacked-label">
+            <label>Mobile Number</label>
+            <input name="tel" type="password" placeholder="Mobile Number *" required="">
+          </ion-item>
+          
+        <ion-item class="item">
+            <span>( For Order Updates )</span>
+          </ion-item>
+
+
+
 
         <div class="error server-side text-center m-t-md" ng-show="ctrl.responseCB && ctrl.signupForm.$submitted">
           <i class="ion-information-circled"></i> {{ctrl.responseCB}}
         </div>
 
         <ion-item class="item item-button">
-          <button class="button button-block button-positive">
+          <button class="button button-block button-energized">
             Sign up
           </button>
         </ion-item>
+        
+              <ion-item class="item">
+                  <div class="text-center">
+                      <a ui-sref="login">Already use Duqhan?</a>
+                  </div>
+              </ion-item>
+
+
       </form>
 
-      <ion-item class="item item-divider">
-        <div class="">
-          <button class="button button-clear button-stable" ui-sref="login">
-            Already use Duqhan?
-          </button>
-        </div>
-      </ion-item>
+
+
     </ion-list>
 
     <div class="list" ng-if="ctrl.user.resultType">
