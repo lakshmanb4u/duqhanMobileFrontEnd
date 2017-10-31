@@ -137,8 +137,10 @@ angular.module('store')
     ctrl.getTopLevelMenu = function () {
       Product.getChildCategories(0)
         .then(function (response) {
-          $log.log(response.data);
           ctrl.topLevelMenu = response;
+          $log.log('ctrl.topLevelMenu=======================================');
+          $log.log(ctrl.topLevelMenu);
+          $log.log('ctrl.topLevelMenu=======================================');
         })
         .catch(function (response) {
           $log.log(response);

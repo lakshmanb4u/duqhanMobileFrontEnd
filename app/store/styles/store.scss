@@ -317,6 +317,12 @@ $assertive: #ef473a !default;
       top: 70px;
     }
   }
+  &.products-container {
+    .products-tab-content {
+      top: 0;
+      padding-top: 0;
+    }
+  }
 }
 
 .free-products.pane {
@@ -1800,6 +1806,24 @@ div.hscroller-card-animated-11 {
     .button {
       margin-top: 0; 
       margin-bottom: 0;
+    }
+  }
+}
+
+.category-slides-wrapper {
+  height: 95px;
+  margin-top: 15px;
+  padding: 0 15px;
+  .swiper-slide {
+    text-align: center;
+    text-transform: uppercase;
+    font-family: "Lato";
+    color: #080809;
+    font-size: 10px;
+    line-height: 12px;
+    img {
+      border-radius: 50%;
+      background-color: #ff771c;
     }
   }
 }

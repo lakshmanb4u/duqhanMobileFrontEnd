@@ -54,7 +54,7 @@ angular
         abstract: true,
         views: {
           storeContent: {
-            templateUrl: 'store/templates/products/products-tab.html',
+            templateUrl: 'store/templates/products/products-container.html',
             controller: 'ProductsCtrl as ctrl'
           }
         }
@@ -63,10 +63,8 @@ angular
         url: '/latest',
         cache: true,
         views: {
-          latestProductsContent: {
+          productsContent: {
             templateUrl: 'store/templates/products/products.html'
-
-            // controller: 'ProductsCtrl as ctrl'
           }
         }
       })
@@ -74,10 +72,8 @@ angular
         url: '/recent',
         // cache: false,
         views: {
-          recentProductsContent: {
+          productsContent: {
             templateUrl: 'store/templates/products/products.html'
-
-            // controller: 'ProductsCtrl as ctrl'
           }
         }
       })

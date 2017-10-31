@@ -6,53 +6,31 @@
       <div class="card category-card">
         <div class="item item-text-wrap">
           {{ctrl.productCategory || 'Category'}}
-          <!--<div class="category-link" ui-sref="store.categories({categoryId: ctrl.categoryId})">Other Categories</div>-->
         </div>
       </div>
 
-      <!--<ion-scroll direction="x" overflow-scroll="false" ng-if="ctrl.categories">
-        <div class="category-tab-wrapper">
-          <div class="category-tab" ng-repeat="c in ctrl.categories" ui-sref="store.productsByCategory({categoryId: c.categoryId})">
-            {{c.categoryName}}
-          </div>
-        </div>
-      </ion-scroll>-->
-
-      <!--<horizontal-tab ng-if="ctrl.categories">
-        <hcard ng-repeat="c in ctrl.categories" index="{{$index}}" desc="{{c.categoryName}}" ui-sref="store.productsByCategory({categoryId: c.categoryId})"></hcard>
-      </horizontal-tab>-->
-
-      <!--<div class="slider-wrapper">
-        <div class="left slider-buttons">
-          <button class="button button-positive button-clear no-animation icon ion-chevron-left" ng-click="ctrl.previousSlide()" ng-if="ctrl.slideIndex > 0"></button>
-        </div>
-        <div class="right slider-buttons">
-          <button class="button button-positive button-clear no-animation icon ion-chevron-right" ng-click="ctrl.nextSlide()" ng-if="ctrl.categories.length > (ctrl.slideIndex+1)"></button>
-        </div>
-        <ion-slide-box delegate-handle="image-viewer" show-pager="true" class="m-t-md" auto-play="true" does-continue="true" on-slide-changed="ctrl.slideChanged(index)" class="">
-          <ion-slide ng-repeat="c in ctrl.categories">
-            <div class="" ui-sref="store.productsByCategory({categoryId: c.categoryId})">
-              {{c.categoryName}}
-            </div>
-          </ion-slide>
-        </ion-slide-box>
-      </div>-->
-
-      <!--<div class="myslides">
-        <ks-swiper-container loop="true" show-nav-buttons="true" slides-per-view="4" space-between="5" pagination-clickable="false">
-          <ks-swiper-slide ng-repeat="s in [1,2,3,4,5]">
-            <img ng-src="http://api.randomuser.me/portraits/thumb/women/{{s}}.jpg">
+      <!-- <div class="category-slides-wrapper" ng-if="ctrl.categories.length > 0">
+        <ks-swiper-container loop="false" show-nav-buttons="false" slides-per-view="4" space-between="5" swiper="ctrl.swiper" on-ready="onReadySwiper(swiper)">
+          <ks-swiper-slide class="swiper-slide" ng-repeat="c in ctrl.categories" ui-sref="store.productsByCategory({categoryId: c.categoryId})">
+            <img src="main/assets/images/rings.png" /> {{c.categoryName}}
           </ks-swiper-slide>
         </ks-swiper-container>
-      </div>-->
+      </div> -->
+      <div class="category-slides-wrapper" ng-if="ctrl.categories.length > 0">
+        <ks-swiper-container loop="false" show-nav-buttons="false" slides-per-view="4" space-between="5" swiper="ctrl.swiper" on-ready="onReadySwiper(swiper)">
+          <ks-swiper-slide class="swiper-slide" ng-repeat="c in ctrl.categories" ui-sref="store.productsByCategory({categoryId: c.categoryId})">
+            <img src="{{c.imgUrl}}" /> {{c.displayText}}
+          </ks-swiper-slide>
+        </ks-swiper-container>
+      </div>
 
-      <div class="category-slides" ng-if="ctrl.categories">
-        <ks-swiper-container swiper="ctrl.swiper" loop="false" show-nav-buttons="true" slides-per-view="2" space-between="5" on-ready="onReadySwiper(swiper)">
+      <!-- <div class="category-slides" ng-if="ctrl.categories">
+        <ks-swiper-container swiper="ctrl.swiper" loop="false" show-nav-buttons="false" slides-per-view="4" space-between="5" on-ready="onReadySwiper(swiper)">
           <ks-swiper-slide ng-repeat="c in ctrl.categories" ui-sref="store.productsByCategory({categoryId: c.categoryId})">
             {{c.categoryName}}
           </ks-swiper-slide>
         </ks-swiper-container>
-      </div>
+      </div> -->
 
 
       <div class="row p-l-n p-r-n products-row">
@@ -66,7 +44,9 @@
             <div class="item p-xs b-t-n" style="font-family: 'Lato', sans-serif;color:#080809;">
               <span style="font-size: 0.9em;">{{p.name}}</span>
               <br/>
-              <span style="font-size: 0.7em;">&#2352;  <span style="color: #ff771c;font-family: 'Lato', sans-serif;">{{p.discountedPrice}}</span>              &nbsp; <span style="color: #ff771c;text-decoration: line-through;font-family: 'Lato', sans-serif;">{{p.price}}</span>
+              <span style="font-size: 0.7em;">&#2352;
+                <span style="color: #ff771c;font-family: 'Lato', sans-serif;">{{p.discountedPrice}}</span> &nbsp;
+                <span style="color: #ff771c;text-decoration: line-through;font-family: 'Lato', sans-serif;">{{p.price}}</span>
               </span>
             </div>
 

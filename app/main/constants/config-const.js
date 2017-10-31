@@ -1,11 +1,11 @@
 'use strict';
 angular.module('main')
-.constant('Config', {
+  .constant('Config', {
 
-  // gulp environment: injects environment vars
-  ENV: {
-    /*inject-env*/
-    'SERVER_URL': 'https://www.prameelarice.com/',
+    // gulp environment: injects environment vars
+    ENV: {
+      /*inject-env*/
+      'SERVER_URL': 'https://www.prameelarice.com/',
     'SOME_OTHER_URL': 'http://duqhan-staging.aq3cm3hjga.us-east-1.elasticbeanstalk.com/',
     'USER': {
       'AUTH_TOKEN': null,
@@ -22,12 +22,12 @@ angular.module('main')
     },
     'PRODUCTS_PER_PAGE': 50,
     'DEEP_LINK': null
-    /*endinject*/
-  },
+      /*endinject*/
+    },
 
-  // gulp build-vars: injects build vars
-  BUILD: {
-    /*inject-build*/
-    /*endinject*/
-  }
-});
+    // gulp build-vars: injects build vars
+    BUILD: {
+      /*inject-build*/
+      /*endinject*/
+    }
+  });

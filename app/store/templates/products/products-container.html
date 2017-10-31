@@ -1,0 +1,16 @@
+<ion-pane class="products-tab-pane products-container">
+  <div class="category-slides-wrapper" ng-if="menu.topLevelMenu.length > 0">
+    <ks-swiper-container loop="false" show-nav-buttons="false" slides-per-view="4" space-between="5">
+      <ks-swiper-slide class="swiper-slide" ui-sref="store.products.latest">
+        <img src="https://storage.googleapis.com/duqhan-images/category/Latest.png" /> Latest
+      </ks-swiper-slide>
+      <ks-swiper-slide class="swiper-slide" ui-sref="store.products.recent">
+        <img src="https://storage.googleapis.com/duqhan-images/category/Recent.png" /> Recent
+      </ks-swiper-slide>
+      <ks-swiper-slide class="swiper-slide" ng-repeat="c in menu.topLevelMenu" ui-sref="store.productsByCategory({categoryId: c.categoryId})">
+        <img src="{{c.imgUrl}}" /> {{c.displayText}}
+      </ks-swiper-slide>
+    </ks-swiper-container>
+  </div>
+  <ion-nav-view name="productsContent"></ion-nav-view>
+</ion-pane>
