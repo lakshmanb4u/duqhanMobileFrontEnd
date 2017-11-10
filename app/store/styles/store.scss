@@ -1714,9 +1714,9 @@ div.hscroller-card-animated-11 {
   width: 60px;
   height: 44px;
   background-size: 22px auto;
-  position: absolute;
-  left: 0;
-  top: 0;
+  position: relative;
+  left: -5px;
+  top: -5px;
 }
 
 .bar button.ion-custom-home {
@@ -1777,7 +1777,7 @@ div.hscroller-card-animated-11 {
   height: 44px;
   background-size: 30px auto;
   position: relative;
-  left: 55px;
+  left: 0;
   top: -6px;
 }
 

@@ -27,7 +27,7 @@ angular.module('store')
             if (!p.available) {
               var notification = {};
               notification.type = 'failure';
-              notification.text = 'Some of your products are out of stack.';
+              notification.text = 'Some of your products are out of stock.';
               $rootScope.$emit('setNotification', notification);
               return;
             }

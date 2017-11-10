@@ -12,9 +12,7 @@
       <!-- nav button, shown if applicable -->
       <ion-nav-buttons side="left">
         <button class="ion-custom-navicon" menu-toggle="primary"></button>
-
-        <button class="ion-custom-icon"></button>
-
+        <button class="ion-custom-icon" ui-sref="store.products.latest"></button>
       </ion-nav-buttons>
       <ion-nav-buttons side="right">
         <button class="ion-custom-home" ui-sref="store.products.latest"></button>
@@ -74,13 +72,13 @@
         <!-- <ion-item menu-close ng-repeat="m in menu.topLevelMenu" ui-sref="store.productsByCategory({categoryId: m.categoryId})" ng-class="{'active': $state.includes('store.productsByCategory')}">
           <span><img src="store/assets/images/nav-icon2.png" alt="" /></span><strong>{{m.categoryName}}</strong>
         </ion-item> -->
-        <ion-item menu-close ui-sref="store.productsByCategory({categoryId: 1})" ng-class="{'active': $state.includes('store.productsByCategory')}">
+        <ion-item menu-close ui-sref="store.productsByCategory({categoryId: 1})" ng-class="{'active': $state.includes('store.productsByCategory', {categoryId: 1})}">
           <span>
             <img src="main/assets/images/nav/Jewelry-&-Accessories.png" alt="" />
           </span>
           <strong>Jewelry</strong>
         </ion-item>
-        <ion-item menu-close ui-sref="store.productsByCategory({categoryId: 25})" ng-class="{'active': $state.includes('store.productsByCategory')}">
+        <ion-item menu-close ui-sref="store.productsByCategory({categoryId: 25})" ng-class="{'active': $state.includes('store.productsByCategory', {categoryId: 25})}">
           <span>
             <img src="main/assets/images/nav/Luggage-&-Bags.png" alt="" />
           </span>

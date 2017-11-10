@@ -13,6 +13,7 @@ angular
     $ionicPopup,
     $location,
     $sce,
+    $ionicSideMenuDelegate,
     Store,
     BusyLoader
   ) {
@@ -373,4 +374,6 @@ angular
     $scope.$on('$ionicView.beforeEnter', function (event, viewData) {
       viewData.enableBack = true;
     });
+
+    $ionicSideMenuDelegate.canDragContent(false);
   });
