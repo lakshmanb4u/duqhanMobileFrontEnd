@@ -11,7 +11,8 @@
     <div class="product-brief p-sm" style="border:none;">
       <h1 class="product-name">{{ctrl.product.name}}</h1>
       <p style="color: #ff771c;">
-        <span>&#2352; {{ctrl.product.salesPrice}}</p>
+        <!-- <span>&#2352; {{ctrl.product.salesPrice}}</p> -->
+        <span>{{ctrl.product.salesPrice | currency:"&#8377;"}}</span>
       <div style="border-bottom: 1px solid #cdcdcd;height:1px;"></div>
       <!-- <p class="product-price m-b-none"><span>Rs.{{ctrl.product.orginalPrice}}</span> Free </p> -->
     </div>

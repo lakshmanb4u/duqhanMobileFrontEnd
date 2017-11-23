@@ -20,7 +20,7 @@
           <div class="item p-xs b-t-n" style="font-family: 'Lato', sans-serif;color:#080809;">
             <span style="font-size: 0.9em;">{{p.name}}</span>
             <p>Free Shipping | 3-4 Weeks Delivery</p>
-            <span style="font-size: 0.7em;">&#2352;
+            <span style="font-size: 0.7em;">&#8377;
               <span style="color: #ff771c;font-family: 'Lato', sans-serif;">{{p.discountedPrice}}</span> &nbsp;
               <span style="color: #ff771c;text-decoration: line-through;font-family: 'Lato', sans-serif;">{{p.price}}</span>
             </span>
@@ -39,6 +39,9 @@
           </div> -->
         </div>
       </div>
+    </div>
+    <div class="row center-align" ng-if="ctrl.spiner">
+      <img class="ht50" src="store/assets/images/spiner1.gif">
     </div>
     <div class="p-lg"></div>
     <ion-infinite-scroll ng-if="!ctrl.noMoreItemsAvailable" on-infinite="ctrl.loadMore()" distance="50%" immediate-check="false"></ion-infinite-scroll>

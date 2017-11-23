@@ -67,6 +67,7 @@
     ]
   },
   "dependencies": {
-    "@ionic/cloud": "^0.16.0"
+    "@ionic/cloud": "^0.16.0",
+    "angular-jk-rating-stars": "^1.0.8"
   }
 }

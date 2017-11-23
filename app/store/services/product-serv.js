@@ -41,6 +41,21 @@ angular.module('store')
       });
 
       return q.promise;
+    },
+    getChildCategoriesById: function (categoryId) {
+      var q = $q.defer();
+
+      Store.getChildCategoriesById(categoryId)
+      .then(function (response) {
+        $log.log(response);
+        q.resolve(response.data.categoryDtos);
+      })
+      .catch(function (err) {
+        $log.log(err);
+        q.reject(err);
+      });
+
+      return q.promise;
     }
   };
 });

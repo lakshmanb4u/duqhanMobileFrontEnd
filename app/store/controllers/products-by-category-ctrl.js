@@ -22,7 +22,6 @@ angular
     /* Storing contextual this in a variable for easy access */
 
     var ctrl = this;
-
     $ionicSideMenuDelegate.canDragContent( false );
 
     /*----------  Storing url parameter (product id) in scope ----------*/
@@ -36,7 +35,7 @@ angular
     ctrl.page = 0;
     ctrl.noMoreItemsAvailable = false;
     ctrl.initialize = false;
-
+    ctrl.spiner = false;
     /*==================================================
     Section: Slider button to navigate throuh images
     ==================================================*/
@@ -59,7 +58,7 @@ angular
     ===============================================*/
 
     ctrl.loadChildCategories = function () {
-      Product.getChildCategories( ctrl.categoryId )
+      Product.getChildCategoriesById( ctrl.categoryId )
         .then( function ( categories ) {
           ctrl.categories = categories;
           $log.log( '====================================================' );
@@ -95,6 +94,8 @@ angular
       };
       if ( ctrl.products.length === 0 ) {
         BusyLoader.show();
+      } else {
+        ctrl.spiner = true;
       }
       Product.getProductList( productsParam )
         .then( function ( data ) {
@@ -109,10 +110,12 @@ angular
           }
           ctrl.productCategory = data.categoryName;
           BusyLoader.hide();
+          ctrl.spiner = false;
         } )
         .catch( function ( response ) {
           $log.log( response );
           BusyLoader.hide();
+          ctrl.spiner = false;
         } );
     };
 

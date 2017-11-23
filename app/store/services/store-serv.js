@@ -94,6 +94,14 @@ angular.module('store')
           }
         });
       },
+      saveReview: function (param) {
+        return $http.post(Config.ENV.SERVER_URL + 'user/save-review', param, {
+          transformResponse: function (response) {
+            var data = JSON.parse(response);
+            return data;
+          }
+        });
+      },
       updateProfileImage: function (filePath, id) {
         var q = $q.defer();
         var options = {};
@@ -118,6 +126,16 @@ angular.module('store')
         var category = {};
         category.categoryId = categoryId;
         return $http.post(Config.ENV.SERVER_URL + 'get-child-category', category, {
+          transformResponse: function (response) {
+            var data = JSON.parse(response);
+            return data;
+          }
+        });
+      },
+      getChildCategoriesById: function (categoryId) {
+        var category = {};
+        category.categoryId = categoryId;
+        return $http.post(Config.ENV.SERVER_URL + 'get-child-category-byid', category, {
           transformResponse: function (response) {
             var data = JSON.parse(response);
             return data;

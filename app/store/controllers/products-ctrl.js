@@ -29,12 +29,14 @@ angular.module('store')
   ctrl.start = 0;
   ctrl.page = 0;
   ctrl.noMoreItemsAvailable = false;
-
+  ctrl.spiner = false;
   /*----------  Get list of products from backend  ----------*/
 
   ctrl.loadProductList = function (productsParam) {
     if (ctrl.products.length === 0) {
       BusyLoader.show();
+    } else {
+      ctrl.spiner = true;
     }
     var products = [];
     Store.getProducts(productsParam)
@@ -58,10 +60,12 @@ angular.module('store')
         ctrl.noMoreItemsAvailable = false;
       }
       BusyLoader.hide();
+      ctrl.spiner = false;
     })
     .catch(function (response) {
       $log.log(response);
       BusyLoader.hide();
+      ctrl.spiner = false;
     });
   };
 

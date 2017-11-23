@@ -147,6 +147,19 @@ angular.module('store')
         });
     };
 
+    ctrl.activeTab = '';
+    ctrl.getActiveclass = function (name, statevalue) {
+      if (ctrl.activeTab === name && statevalue) {
+        return 'active';
+      }
+      return '';
+    };
+
+    ctrl.setCategoryName = function (name) {
+      ctrl.activeTab = name;
+    };
+
+
     ctrl.getTopLevelMenu();
 
     /*=====  End of Getting top level menu  ======*/

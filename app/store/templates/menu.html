@@ -69,10 +69,10 @@
         <!--<ion-item menu-close ui-sref="store.products.recent">
           Recent
         </ion-item>-->
-        <!-- <ion-item menu-close ng-repeat="m in menu.topLevelMenu" ui-sref="store.productsByCategory({categoryId: m.categoryId})" ng-class="{'active': $state.includes('store.productsByCategory')}">
+        <ion-item menu-close ng-repeat="m in menu.topLevelMenu" ui-sref="store.productsByCategory({categoryId: m.categoryId})" ng-click="menu.setCategoryName(m.categoryName)" ng-class="menu.getActiveclass(m.categoryName, $state.includes('store.productsByCategory'))">
           <span><img src="store/assets/images/nav-icon2.png" alt="" /></span><strong>{{m.categoryName}}</strong>
-        </ion-item> -->
-        <ion-item menu-close ui-sref="store.productsByCategory({categoryId: 1})" ng-class="{'active': $state.includes('store.productsByCategory', {categoryId: 1})}">
+        </ion-item> 
+       <!--  <ion-item menu-close ui-sref="store.productsByCategory({categoryId: 1})" ng-class="{'active': $state.includes('store.productsByCategory', {categoryId: 1})}">
           <span>
             <img src="main/assets/images/nav/Jewelry-&-Accessories.png" alt="" />
           </span>
@@ -83,7 +83,7 @@
             <img src="main/assets/images/nav/Luggage-&-Bags.png" alt="" />
           </span>
           <strong>Bags</strong>
-        </ion-item>
+        </ion-item> -->
         <!-- <ion-item menu-close ui-sref="store.productsByCategory({categoryId: 39})" ng-class="{'active': $state.includes('store.productsByCategory')}">
           <span>
             <img src="main/assets/images/nav/toys.png" alt="" />

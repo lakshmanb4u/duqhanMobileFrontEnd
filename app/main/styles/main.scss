@@ -608,7 +608,86 @@ $tabs-height:                     35px !default;
     left: 0;
     position: absolute;	
 }
+.star-button{
+    min-width: 0 !important;
+    padding: 0 !important;
+    background: transparent !important;
+}
 
+.comment-subject{
+  font-size: 20px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mr-t-5{
+  margin-top: 5px !important;
+}
+
+.mr-b-10{
+  margin-bottom: 10px;
+}
+
+.pd{
+  padding: 20px;
+}
+.pd-t-20{
+  padding-top: 20px;
+}
+.pd-b-10{
+    padding-bottom: 10px;
+}
+.pd-t-25{
+  padding-top: 25px;
+}
+
+.font-wt-600{
+  font-weight: 600;
+}
+
+.ht50{
+  height: 50px !important;
+}
+
+input[type=text], select.inputTag {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block !important;
+    border: 1px solid #ccc !important;
+    border-radius: 4px;
+    box-sizing: border-box;
+    background-color: #f9f5f2
+}
+
+textarea, select.inputTag {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0 !important;
+    display: inline-block !important;
+    border: 1px solid #ccc !important;
+    border-radius: 4px;
+    box-sizing: border-box;
+    background-color: #f9f5f2
+}
+.submitBtn{
+    width: 33%;
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-left: 34%;
+}
+.reviewDiv{
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #e0dedd;
+}
 
 // The path for our ionicons font files, relative to the built & temporary main.css
 // -------------------------------

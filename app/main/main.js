@@ -9,7 +9,8 @@ angular
     'angulartics',
     'angulartics.facebook.pixel',
     'auth',
-    'store'
+    'store',
+    'jkAngularRatingStars'
   ])
   .config(function ($stateProvider, $urlRouterProvider) {
     // $httpProvider.interceptors.push('HttpInterceptor');

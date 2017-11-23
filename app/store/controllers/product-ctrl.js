@@ -15,6 +15,7 @@ angular
     $sce,
     $ionicSideMenuDelegate,
     Store,
+    $window,
     BusyLoader
   ) {
     /* Storing contextual this in a variable for easy access */
@@ -36,6 +37,7 @@ angular
     /*----------  Initialize product object  ----------*/
 
     ctrl.product = {};
+    ctrl.tabActive = 'detail';
 
     /*----------  Get details of a product from backend  ----------*/
 
@@ -367,6 +369,55 @@ angular
           return true;
         }
       });
+    };
+    $scope.rating = 0;
+    $scope.comment = '';
+    $scope.cmtTittle = '';
+    $scope.reviewFlag = false;
+    $scope.cmtBar = true;
+
+    ctrl.addReviewDiv = function () {
+      $scope.reviewFlag = true;
+      $scope.cmtBar = false;
+      document.getElementById('reviewId').style.backgroundColor = 'rgba(0,0,0,0.2)';
+      setTimeout(function () {
+        document.getElementById('review1').focus();
+      }, 300);
+    };
+    ctrl.showDetail = function () {
+      ctrl.tabActive = 'detail';
+      $scope.cmtBar = true;
+      $scope.reviewFlag = false;
+    };
+    $scope.onItemRating = function (rating) {
+      $scope.rating = rating;
+    };
+
+    ctrl.reviewClose = function () {
+      document.getElementById('reviewId').style.backgroundColor = '#f9f5f2';
+      $scope.reviewFlag = false;
+    },
+
+    ctrl.addReview = function (cmtTittle, comment) {
+      var review = {};
+      review.comment = comment;
+      review.subject = cmtTittle;
+      review.rating = $scope.rating;
+      review.productId = $stateParams.productId;
+      Store.saveReview(review)
+      .then(function (response) {
+        ctrl.product.reviews = response.data.reviews;
+        $scope.rating = 0;
+        $scope.comment = '';
+        $scope.cmtTittle = '';
+        document.getElementById('reviewId').style.backgroundColor = '#f9f5f2';
+        $scope.reviewFlag = false;
+        $scope.cmtBar = true;
+      })
+      .catch(function (response) {
+        $log.log(response);
+      });
+
     };
 
     /*=====  End of Add a product to the cart  ======*/

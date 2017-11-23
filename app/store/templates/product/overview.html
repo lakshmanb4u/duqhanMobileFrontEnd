@@ -1,17 +1,20 @@
 <ion-view>
   <!-- do you want padding? -->
-  <ion-content class="padding product-tab-content has-footer has-tabs">
+  <ion-content class="product-tab-content has-footer" style="top:0px">
 
     <!-- content goes here -->
+    <div class="padding">
     <ion-slide-box delegate-handle="image-viewer" show-pager="true" class="m-t-md">
       <ion-slide ng-repeat="i in ctrl.product.images">
         <img src="{{i.imgUrl || 'store/assets/images/default.jpg' | cloudinaryImageTransformation}}">
       </ion-slide>
     </ion-slide-box>
+  </div>
     <div class="product-brief p-sm" style="border:none;">
       <h1 class="product-name">{{ctrl.product.name}}</h1>
       <p style="color: #ff771c;">
-        <span>&#2352; {{ctrl.product.salesPrice}}</span>
+        <!-- <span>&#2352; {{ctrl.product.salesPrice}}</span> -->
+        <span>{{ctrl.product.salesPrice | currency:"&#8377;"}}</span>
         <span ng-if="!ctrl.allSelected"> onward</span>
       </p>
 
@@ -19,7 +22,19 @@
       <!-- <p class="product-price m-b-none"><span>Rs.{{ctrl.product.orginalPrice}}</span> Rs.{{ctrl.product.salesPrice}}</p>
       -->
     </div>
-    <div class="product-detail p-sm" style="margin-top:-15px !important;">
+    <div class="button-bar" style="padding: 10px 0 47px 0;">
+      <div class="row">
+        <div class="col col-50 text-center" ng-class="ctrl.tabActive =='detail'?'active-tab':'inactive-tab'" ng-click="ctrl.showDetail()">
+          Details
+        </div>
+        <div class="col col-50 text-center" ng-class="ctrl.tabActive=='review'?'active-tab':'inactive-tab'" ng-click="ctrl.tabActive='review'">
+          Reviews
+        </div>
+      </div>
+    </div>
+
+
+    <div class="product-detail p-sm" ng-if="ctrl.tabActive == 'detail'" style="margin-top: -50px;padding-bottom: 50px !important;">
       <div class="size-wrapper m-b-md" ng-show="ctrl.product.description">
         <div class="values">Description</div>
         <div style="font-family: 'Lato';color: black;">{{ctrl.product.description}}</div>
@@ -88,6 +103,48 @@
         <div class="values">Rs. 0</div>
       </div>
     </div>
+
+
+     <div class="product-detail p-sm" id="reviewId" ng-if="ctrl.tabActive == 'review'" style="margin-top: -50px;padding-bottom: 50px !important;">
+
+       <div>
+      <div class="values mr-b-10">Customer Reviews</div>
+        <div class="reviewDiv" ng-repeat="review in ctrl.product.reviews">
+
+          <div class="row pd-t-25 pd-b-10">
+
+            <div>
+              <jk-rating-stars rating="review.rating" read-only="true" ></jk-rating-stars>
+            </div>
+
+            <div class="comment-subject">
+              <span> &nbsp;&nbsp;&nbsp;{{review.subject}}</span>
+            </div>
+
+          </div>
+
+          <div class="row mr-t-5">
+              By &nbsp;<span class="values">{{review.userName}}</span>
+              &nbsp;On&nbsp;<span class="clr-gray">{{review.date | date:'dd MMMM yyyy'}}</span>
+          </div>
+
+          <div class="row mr-t-5">
+               <span>{{review.comment}}</span>
+          </div>
+
+         </div>
+         <!-- <div class="values mr-t-5 mr-b-10">
+             See all&nbsp;{{ctrl.product.ratingCount.ret}}&nbsp;reviews
+          </div> -->
+      </div>
+       <!-- <div class="row">
+        <input class="submitBtn" type="submit" value="Write a Reviews" ng-click="ctrl.addReviewDiv()">
+      </div> -->
+      
+     
+
+       
+     </div>
     <!-- <div class="duqhan-guarantee">
       <div class="stamp-wraper">
         <p>We guarantee a safe and secure shopping experience so you never have to worry.</p>
@@ -100,7 +157,7 @@
   </ion-content>
 
   <ion-footer-bar>
-    <div class="button-bar">
+    <div class="button-bar" ng-if="ctrl.tabActive == 'detail'">
       <div class="row">
         <div class="col col-50 text-center addToCart" ng-click="ctrl.addToBagNew(ctrl.product)">
           Add to Cart
@@ -110,6 +167,14 @@
         </div>
       </div>
     </div>
+    <div class="button-bar" ng-if="ctrl.tabActive == 'review'">
+      <div class="row" id='one' ng-click="ctrl.addReviewDiv()">
+        <div class="col text-center addToCart">
+          Write a Reviews
+        </div>
+      </div>
+    </div>
+
   </ion-footer-bar>
 
 
@@ -119,4 +184,28 @@
       <button class="button button-positive add-cart-button" ng-click="ctrl.addToBag(ctrl.product)">Add to Bag</button> 
     </div>
   </ion-footer-bar> -->
+
+  <div class="rev-sec" ng-if="reviewFlag">
+       <a class="closebtn" ng-click="ctrl.reviewClose()">&times;</a> 
+       <div class="pd">
+          <div class="values mr-b-10 clr-or">Give us a Review</div>
+         <div>
+              <jk-rating-stars rating="0" read-only="false" ng-model="rating" on-rating="onItemRating(rating)"></jk-rating-stars>
+        </div>
+
+        <div>
+            <input class="inputTag" id="review1" type="text" id="title" name="title" placeholder="Tittle..." ng-model="cmtTittle" style="padding: 10px;">
+        </div>
+
+        <div>
+            <textarea class="inputTag" rows="4" cols="50" ng-model="comment" placeholder="Write review..." style="padding: 10px;"></textarea>
+        </div>
+
+        <div>
+          <input class="submitBtn" type="submit" value="Submit" ng-click="ctrl.addReview(cmtTittle,comment)">
+          <!-- <input  type="submit" value="Cancle" ng-click="ctrl.reviewClose()"> -->
+        </div>
+
+      </div>
+  </div>
 </ion-view>
