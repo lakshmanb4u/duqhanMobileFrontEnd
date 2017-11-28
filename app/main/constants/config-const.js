@@ -20,7 +20,7 @@ angular.module('main')
       'API_KEY': '211572778157664',
       'API_SECRET': 'BjqvouftX41P4NHFbAEPFaBWFog'
     },
-    'PRODUCTS_PER_PAGE': 50,
+    'PRODUCTS_PER_PAGE': 20,
     'DEEP_LINK': null
       /*endinject*/
     },

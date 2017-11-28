@@ -36,6 +36,7 @@ angular
     ctrl.noMoreItemsAvailable = false;
     ctrl.initialize = false;
     ctrl.spiner = false;
+    ctrl.apicallflag = false;
     /*==================================================
     Section: Slider button to navigate throuh images
     ==================================================*/
@@ -97,8 +98,10 @@ angular
       } else {
         ctrl.spiner = true;
       }
+      ctrl.apicallflag = false;
       Product.getProductList( productsParam )
         .then( function ( data ) {
+          ctrl.apicallflag = true;
           /* Randoize items */
           data.products.sort( function () {
             return 0.5 - Math.random();
