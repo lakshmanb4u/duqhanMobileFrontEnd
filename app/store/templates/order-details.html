@@ -74,7 +74,7 @@
           - {{ctrl.order.addressDto.zipCode}}</p>
       </div>
     </div>
-    <button class="button button-block button-positive" ng-if="ctrl.order.status === 'approved'" ng-click="ctrl.cancelOrder(ctrl.order.orderId)">
+    <button class="button button-block button-positive" ng-if="ctrl.order.status === 'delivered' && ctrl.checkDate(ctrl.order.deliveryDate)" ng-click="ctrl.returnOrder(ctrl.order.orderId)">
       Return Item
     </button>
     <button class="button button-block button-stable" ng-if="(ctrl.order.status === 'approved') && (ctrl.order.returnStatus === 'requested')">

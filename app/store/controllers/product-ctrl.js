@@ -21,6 +21,7 @@ angular
     /* Storing contextual this in a variable for easy access */
 
     var ctrl = this;
+    ctrl.clickonaddBag = false;
 
     $log.log(
       'Hello from your Controller: ProductCtrl in module store:. This is your controller:',
@@ -118,6 +119,11 @@ angular
       ctrl.propertyList.selectedPropertyId = property.id;
       ctrl.checkSelectedProperties();
       ctrl.propertyListModal.hide();
+      setTimeout(function () {
+        if (ctrl.clickonaddBag) {
+          ctrl.addToBagNew(ctrl.selectedProduct);
+        }
+      },500);
     };
 
     /*----------  Setting Price after selecting categories  ----------*/
@@ -249,7 +255,10 @@ angular
     };
 
     ctrl.addToBagNew = function (product) {
+      ctrl.clickonaddBag = true;
+      ctrl.selectedProduct = product;
       if (ctrl.allSelected) {
+        ctrl.clickonaddBag = false;
         var productSelected = {};
         productSelected.mapId = ctrl.mapId;
         productSelected.discountOfferPct = ctrl.discountOfferPct;
@@ -285,10 +294,26 @@ angular
         // $log.log('============================= END ===============================');
 
       } else {
-        $ionicPopup.alert({
+        var obj = false;
+        for (var i = 0;i < ctrl.product.properties.length;i++) {
+          obj = false;
+          for (var k = 0;k < ctrl.product.properties[i].propertyValues.length;k++) {
+            var ids = ctrl.product.properties[i].propertyValues[k].id;
+            if (ctrl.allSelectedArr.indexOf(ids.toString()) !== -1) {
+              obj = true;
+              break;
+            }
+          }
+          if (!obj) {
+            ctrl.openPropertyList(ctrl.product.properties[i]);
+            break;
+          }
+        }
+
+        /*$ionicPopup.alert({
           title: 'Choose options',
           template: 'Please choose all the options'
-        });
+        });*/
       }
     };
 

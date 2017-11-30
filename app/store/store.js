@@ -236,6 +236,15 @@ angular
           }
         }
       })
+      .state('store.returnOrder', {
+        url: '/return-order/:orderId',
+        views: {
+          storeContent: {
+            templateUrl: 'store/templates/order-return.html',
+            controller: 'OrderHistoryCtrl as ctrl'
+          }
+        }
+      })
       .state('store.customersupport', {
         url: '/customer-support/:p',
         views: {

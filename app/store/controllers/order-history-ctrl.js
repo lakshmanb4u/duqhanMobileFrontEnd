@@ -1,6 +1,6 @@
 'use strict';
 angular.module('store')
-.controller('OrderHistoryCtrl', function ($log, $rootScope, $stateParams, $state, $scope, Store, Config) {
+.controller('OrderHistoryCtrl', function ($log, $rootScope, $stateParams, $state, $scope, Store, Config, ImageUpload, BusyLoader) {
 
   $log.log('Hello from your Controller: OrderHistoryCtrl in module store:. This is your controller:', this);
 
@@ -49,6 +49,53 @@ angular.module('store')
       $log.log(error);
     });
   };
+
+  ctrl.checkDate = function (deliverdate) {
+    if (deliverdate) {
+      var deliverdateObj = new Date(deliverdate.replace( /(\d{2})\/(\d{2})\/(\d{4})/, "$2/$1/$3"));
+      var currentdateObj = new Date();
+      var timeDiff = Math.abs(currentdateObj.getTime() - deliverdateObj.getTime());
+      var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24)); 
+      if(diffDays <= 7){
+        return true;
+      }
+    }
+    return false;
+  };
+
+  ctrl.returnOrder = function (orderId){
+    $state.go('store.returnOrder', {orderId : orderId});
+  };
+
+  ctrl.goBackOrderHistory = function () {
+    $state.go('store.orderhistory');
+  };
+
+  ctrl.openImageSourceSelector = function () {
+      $log.log( ionic.Platform.device() );
+      ImageUpload.getImageSource()
+        .then( function ( source ) {
+          $log.log( source );
+          return ImageUpload.getPicture( source );
+        } )
+        .then( function ( url ) {
+          BusyLoader.show();
+          return Store.updateProfileImage( url, ctrl.user.id );
+        } )
+        .then( function ( data ) {
+          $log.log( data );
+          var res = JSON.parse( data.response );
+          $log.log( res );
+          ctrl.user.profileImg = res.profileImg;
+          Config.ENV.USER.PROFILE_IMG = ctrl.user.profileImg;
+          $rootScope.$emit( 'setUserDetailForMenu' );
+          BusyLoader.hide();
+        } )
+        .catch( function ( response ) {
+          $log.log( response );
+          BusyLoader.hide();
+        } );
+    };
 
   /*----------  call the function at the time of initialization  ----------*/
 
