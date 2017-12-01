@@ -1870,3 +1870,38 @@ div.hscroller-card-animated-11 {
     }
   }
 }
+
+.likeunlikeDiv{
+    background: white;
+    width: 60px;
+    height: 60px;
+    position: fixed;
+    bottom: 22%;
+    right: 3%;
+    border-radius: 50%;
+    box-shadow: 0px 1px 6px rgba(0, 0, 0, 1);
+}
+
+.like{
+  background: url(../assets/images/Like-icon.png) no-repeat center center;
+  border: none;
+  padding: 0;
+  width: 60px;
+  height: 44px;
+  background-size: 30px auto;
+  position: relative;
+  left: 0;
+  top: 5px;
+}
+
+.unlike{
+  background: url(../assets/images/like-icons.png) no-repeat center center;
+  border: none;
+  padding: 0;
+  width: 60px;
+  height: 44px;
+  background-size: 30px auto;
+  position: relative;
+  left: 0;
+  top: 5px;
+}

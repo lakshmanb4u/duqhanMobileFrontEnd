@@ -34,7 +34,7 @@ angular.module('store')
     });
   };
 
-  ctrl.cancelOrder = function (order) {
+    ctrl.cancelOrder = function (order) {
     console.log('orderId     : '+order.orderId);
     var order = {'orderId': order.orderId};
     $log.log('hi');
@@ -51,68 +51,57 @@ angular.module('store')
     });
   };
 
-  ctrl.returnOrderReq = function () {
-      console.log('hvhgccjgjhj'+ctrl.returnIssue);
-      var order = {orderId: $stateParams.orderId,returnText:ctrl.returnIssue,file:null};
-      Store.returnOrd(order)
-      .then(function (response) {
-        $log.log(response);
-        var notification = {};
-        notification.type = 'success';
-        notification.text = 'Your request has been recieved. We will process it within 7 working days.';
-        $rootScope.$emit('setNotification', notification);
-      })
-      .catch(function (error) {
-        $log.log(error);
-      });
-  };  
-
   ctrl.checkDate = function (deliverdate) {
     if (deliverdate) {
-      var deliverdateObj = new Date(deliverdate.replace( /(\d{2})\/(\d{2})\/(\d{4})/, "$2/$1/$3"));
+      var deliverdateObj = new Date(deliverdate.replace( /(\d{2})\/(\d{2})\/(\d{4})/, '$2/$1/$3'));
       var currentdateObj = new Date();
       var timeDiff = Math.abs(currentdateObj.getTime() - deliverdateObj.getTime());
-      var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24)); 
-      if(diffDays <= 7){
+      var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
+      if (diffDays <= 7) {
         return true;
       }
     }
     return false;
   };
 
-  ctrl.returnOrder = function (orderId){
-    $state.go('store.returnOrder', {orderId : orderId});
+  ctrl.returnOrder = function (orderId) {
+    $state.go('store.returnOrder', { orderId: orderId});
   };
 
   ctrl.goBackOrderHistory = function () {
     $state.go('store.orderhistory');
   };
 
+  ctrl.returnImg = undefined;
   ctrl.openImageSourceSelector = function () {
-      $log.log( ionic.Platform.device() );
-      ImageUpload.getImageSource()
-        .then( function ( source ) {
-          $log.log( source );
-          return ImageUpload.getPicture( source );
-        } )
-        .then( function ( url ) {
-          BusyLoader.show();
-          return Store.updateProfileImage( url, ctrl.user.id );
-        } )
-        .then( function ( data ) {
-          $log.log( data );
-          var res = JSON.parse( data.response );
-          $log.log( res );
-          ctrl.user.profileImg = res.profileImg;
-          Config.ENV.USER.PROFILE_IMG = ctrl.user.profileImg;
-          $rootScope.$emit( 'setUserDetailForMenu' );
-          BusyLoader.hide();
-        } )
-        .catch( function ( response ) {
-          $log.log( response );
-          BusyLoader.hide();
-        } );
-    };
+    $log.log(ionic.Platform.device());
+    ImageUpload.getImageSource()
+      .then( function ( source ) {
+        $log.log( source );
+        return ImageUpload.getPicture( source );
+      } )
+      .then( function ( url ) {
+        $log.log(url);
+        ctrl.returnImg = url;
+      })
+      .catch( function ( response ) {
+        $log.log( response );
+      } );
+  };
+
+  ctrl.returnOrderReq = function () {
+    if (ctrl.returnImg) {
+      BusyLoader.show();
+      Store.returnOrderReq(ctrl.returnImg,$stateParams.orderId,ctrl.returnIssue).then(function (response) {
+        $log.log(response);
+        BusyLoader.hide();
+      })
+      .catch(function (response) {
+        $log.log(response);
+        BusyLoader.hide();
+      });
+    }
+  };
 
   /*----------  call the function at the time of initialization  ----------*/
 
@@ -146,5 +135,4 @@ angular.module('store')
   /*----------  Storing Order object  ----------*/
 
   ctrl.order = $stateParams.order;
-
 });

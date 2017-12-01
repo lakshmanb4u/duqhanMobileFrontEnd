@@ -247,14 +247,6 @@ angular.module('store')
           }
         });
       },
-    
-      returnOrd: function (order) {
-        return  $http({
-          url: Config.ENV.SERVER_URL + 'user/order/request_return',
-          method: "POST",
-          params: order
-          });
-      },
       contactUs: function (details) {
         return $http.post(Config.ENV.SERVER_URL + 'user/contact-us', details);
       },
@@ -265,6 +257,35 @@ angular.module('store')
             return data;
           }
         });
+      },
+      likeUnlikeProduct: function (likeUnlikeData) {
+        return $http.post(Config.ENV.SERVER_URL + 'user/likeUlike', likeUnlikeData, {
+          transformResponse: function (response) {
+            var data = JSON.parse(response);
+            return data;
+          }
+        });
+      },
+      returnOrderReq: function (filePath, orderId, text) {
+        var q = $q.defer();
+        var options = {};
+        options.fileKey = 'file';
+        options.fileName = filePath.substr(filePath.lastIndexOf('/') + 1);
+        options.mimeType = 'image/jpeg';
+        options.chunkedMode = false;
+        options.params = {
+          orderId: orderId,
+          returnText: text
+        };
+        var server = encodeURI(Config.ENV.SERVER_URL + 'user/order/request_return');
+
+        $cordovaFileTransfer.upload(server, filePath, options)
+          .then(function (result) {
+            q.resolve(result);
+          }, function (err) {
+            q.reject(err);
+          });
+        return q.promise;
       }
     };
   });

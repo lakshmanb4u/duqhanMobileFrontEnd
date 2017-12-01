@@ -150,10 +150,6 @@
         <p>We guarantee a safe and secure shopping experience so you never have to worry.</p>
       </div>
     </div> -->
-
-
-
-
   </ion-content>
 
   <ion-footer-bar>
@@ -176,6 +172,17 @@
     </div>
 
   </ion-footer-bar>
+
+  <!-- <div class="likeUnlike" ng-click="ctrl.likeUnlick(ctrl.product.id)">
+      <img src="/store/assets/images/Like-icon.png" class="likeimg" ng-if="!ctrl.likeUnlikeFlag"/>
+      <img src="/store/assets/images/like-icons.png" class="Unlikeimg" ng-if="ctrl.likeUnlikeFlag"/>
+  </div> --> 
+  <div class="likeunlikeDiv" ng-click="ctrl.likeUnlick(ctrl.product.id)">
+    <div class="like" ng-if="!ctrl.likeUnlikeFlag">
+    </div>
+    <div class="unlike" ng-if="ctrl.likeUnlikeFlag">
+    </div>
+  </div>
 
 
   <!-- <ion-footer-bar class="">

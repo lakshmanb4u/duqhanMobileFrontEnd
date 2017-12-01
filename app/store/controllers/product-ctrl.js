@@ -22,6 +22,7 @@ angular
 
     var ctrl = this;
     ctrl.clickonaddBag = false;
+    ctrl.likeUnlikeFlag = false;
 
     $log.log(
       'Hello from your Controller: ProductCtrl in module store:. This is your controller:',
@@ -49,6 +50,11 @@ angular
         .then(function (response) {
           $log.log(response.data);
           ctrl.product = response.data;
+          if (ctrl.product.likeUnlikeDetails) {
+            ctrl.likeUnlikeFlag = ctrl.product.likeUnlikeDetails.likeUnlike;
+          } else {
+            ctrl.likeUnlikeFlag = false;
+          }
           $log.log(ctrl.images);
           $log.log(ctrl.product.images);
           var sizeArr = [];
@@ -339,6 +345,26 @@ angular
 
     ctrl.closeModal = function () {
       ctrl.modal.hide();
+    };
+
+
+    ctrl.likeUnlick = function (productId) {
+      $log.log(productId);
+      ctrl.likeUnlikeFlag = ctrl.likeUnlikeFlag ? false : true;
+      BusyLoader.show();
+      var likeunlikeObj = {
+        productId: $stateParams.productId,
+        likeUnlike: ctrl.likeUnlikeFlag
+      };
+      Store.likeUnlikeProduct(likeunlikeObj)
+      .then(function (response) {
+        $log.log(response);
+        BusyLoader.hide();
+      })
+      .catch(function (response) {
+        $log.log(response);
+        BusyLoader.hide();
+      });
     };
 
     /*----------  Open a Action sheet to select the size of the product  ----------*/
