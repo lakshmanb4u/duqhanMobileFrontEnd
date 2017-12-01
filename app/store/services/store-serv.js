@@ -247,6 +247,14 @@ angular.module('store')
           }
         });
       },
+    
+      returnOrd: function (order) {
+        return  $http({
+          url: Config.ENV.SERVER_URL + 'user/order/request_return',
+          method: "POST",
+          params: order
+          });
+      },
       contactUs: function (details) {
         return $http.post(Config.ENV.SERVER_URL + 'user/contact-us', details);
       },

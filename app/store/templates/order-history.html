@@ -19,6 +19,7 @@
               <span>Estimated Delivery On</span>
               {{order.orderDate | dateFilter3}}
             </p>
+            <button class="button button-block button-positive" ng-if="order.status != 'delivered' && order.status != 'shipped' && order.status != 'order cancel'" ng-click="ctrl.cancelOrder({{order}})">Cancel</button>
           </div>
         </div>
       </div>

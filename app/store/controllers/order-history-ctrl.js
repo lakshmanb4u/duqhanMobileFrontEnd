@@ -34,21 +34,38 @@ angular.module('store')
     });
   };
 
-  ctrl.cancelOrder = function (orderId) {
-    var order = {'orderId': orderId};
+  ctrl.cancelOrder = function (order) {
+    console.log('orderId     : '+order.orderId);
+    var order = {'orderId': order.orderId};
     $log.log('hi');
     Store.cancelOrd(order)
     .then(function (response) {
       $log.log(response);
       var notification = {};
       notification.type = 'success';
-      notification.text = 'Your request has been recieved. We will process it within 7 working days.';
+      notification.text = 'Your order has been cancelled';
       $rootScope.$emit('setNotification', notification);
     })
     .catch(function (error) {
       $log.log(error);
     });
   };
+
+  ctrl.returnOrderReq = function () {
+      console.log('hvhgccjgjhj'+ctrl.returnIssue);
+      var order = {orderId: $stateParams.orderId,returnText:ctrl.returnIssue,file:null};
+      Store.returnOrd(order)
+      .then(function (response) {
+        $log.log(response);
+        var notification = {};
+        notification.type = 'success';
+        notification.text = 'Your request has been recieved. We will process it within 7 working days.';
+        $rootScope.$emit('setNotification', notification);
+      })
+      .catch(function (error) {
+        $log.log(error);
+      });
+  };  
 
   ctrl.checkDate = function (deliverdate) {
     if (deliverdate) {

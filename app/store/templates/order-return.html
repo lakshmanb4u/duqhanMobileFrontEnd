@@ -11,8 +11,8 @@
   		<textarea rows="5" placeholder="product issue....." ng-model="ctrl.returnIssue"></textarea>
   	</div>
    	<div style="display: flex;">
-   		<button class="button button-block button-positive" style="margin: 5px;">Confirmed</button>
+   		<button class="button button-block button-positive" style="margin: 5px;" ng-click="ctrl.returnOrderReq()">Confirmed</button>
    		<button class="button button-block" style="margin: 5px;" ng-click="ctrl.goBackOrderHistory()">Cancel</button>
-   	</div>
+		 </div>
   </ion-content>
 </ion-view>
