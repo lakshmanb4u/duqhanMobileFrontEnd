@@ -34,7 +34,7 @@
 
 
       <div class="row p-l-n p-r-n products-row">
-        <div class="col col-50 m-product" ng-repeat="p in ctrl.products">
+        <div class="col col-50 m-product" ng-repeat="p in ctrl.products" ng-show="p.imgurl">
           <div class="product-preview" ui-sref="store.product.overview({productId: p.productId})">
             <!-- <span class="discount">{{p.discountPCT| number : 0}}%</span> -->
             <div class="item-image">
@@ -42,7 +42,7 @@
             </div>
 
             <div class="item p-xs b-t-n" style="font-family: 'Lato', sans-serif;color:#080809;">
-              <span style="font-size: 0.9em;">{{p.name}}</span>
+              <span style="font-size: 0.9em;"></span>
               <br/>
               <span style="font-size: 0.7em;">&#8377;
                 <span style="color: #ff771c;font-family: 'Lato', sans-serif;">{{p.discountedPrice}}</span> &nbsp;
