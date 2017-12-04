@@ -266,7 +266,7 @@ angular.module('store')
           }
         });
       },
-      returnOrderReq: function (filePath, orderId, text) {
+      returnOrderReq: function (filePath, orderId, text,authToken) {
         var q = $q.defer();
         var options = {};
         options.fileKey = 'file';
@@ -275,7 +275,8 @@ angular.module('store')
         options.chunkedMode = false;
         options.params = {
           orderId: orderId,
-          returnText: text
+          returnText: text,
+          authToken: authToken
         };
         var server = encodeURI(Config.ENV.SERVER_URL + 'user/order/request_return');
 

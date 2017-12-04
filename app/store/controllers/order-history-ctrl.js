@@ -92,9 +92,10 @@ angular.module('store')
   ctrl.returnOrderReq = function () {
     if (ctrl.returnImg) {
       BusyLoader.show();
-      Store.returnOrderReq(ctrl.returnImg,$stateParams.orderId,ctrl.returnIssue).then(function (response) {
+      Store.returnOrderReq(ctrl.returnImg,$stateParams.orderId,ctrl.returnIssue,Config.ENV.USER.AUTH_TOKEN).then(function (response) {
         $log.log(response);
         BusyLoader.hide();
+        $state.go('store.orderhistory');
       })
       .catch(function (response) {
         $log.log(response);
