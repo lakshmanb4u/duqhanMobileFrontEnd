@@ -1905,3 +1905,16 @@ div.hscroller-card-animated-11 {
   left: 0;
   top: 5px;
 }
+
+.likecount{ 
+    background: url(../assets/images/likecount.png) no-repeat center center;
+    border: none;
+    padding: 0;
+    width: 60px;
+    height: 44px;
+    background-size: 30px auto;
+    position: relative;
+    left: -4px!important;
+    display: inline-block !important;
+    top: 20px!important;
+}

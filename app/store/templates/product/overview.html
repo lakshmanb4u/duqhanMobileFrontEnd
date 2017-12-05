@@ -12,16 +12,26 @@
   </div>
     <div class="product-brief p-sm" style="border:none;">
       <h1 class="product-name">{{ctrl.product.name}}</h1>
-      <p style="color: #ff771c;">
+      <div clas="price-like" style="position:relative">
+      <p style="color: #ff771c;float:left;">
         <!-- <span>&#2352; {{ctrl.product.salesPrice}}</span> -->
         <span>{{ctrl.product.salesPrice | currency:"&#8377;"}}</span>
         <span ng-if="!ctrl.allSelected"> onward</span>
+        <div ng-click="ctrl.likeUnlick(ctrl.product.id)" style="position: absolute;
+        top: -20px;
+        right: 0;">
+            <div class="like" ng-if="!ctrl.likeUnlikeFlag">
+            </div>
+            <div class="unlike" ng-if="ctrl.likeUnlikeFlag">
+            </div>
+          </div>
       </p>
-
-      <div style="border-bottom: 1px solid #cdcdcd;height:1px;"></div>
+      </div>
+      <div style="border-bottom: 1px solid #cdcdcd;height:1px;clear:both;"></div>
       <!-- <p class="product-price m-b-none"><span>Rs.{{ctrl.product.orginalPrice}}</span> Rs.{{ctrl.product.salesPrice}}</p>
       -->
     </div>
+   
     <div class="button-bar" style="padding: 10px 0 47px 0;">
       <div class="row">
         <div class="col col-50 text-center" ng-class="ctrl.tabActive =='detail'?'active-tab':'inactive-tab'" ng-click="ctrl.showDetail()">
@@ -177,11 +187,11 @@
       <img src="/store/assets/images/Like-icon.png" class="likeimg" ng-if="!ctrl.likeUnlikeFlag"/>
       <img src="/store/assets/images/like-icons.png" class="Unlikeimg" ng-if="ctrl.likeUnlikeFlag"/>
   </div> --> 
-  <div class="likeunlikeDiv" ng-click="ctrl.likeUnlick(ctrl.product.id)">
+  <!--<div class="likeunlikeDiv" ng-click="ctrl.likeUnlick(ctrl.product.id)">
     <div class="like" ng-if="!ctrl.likeUnlikeFlag">
     </div>
     <div class="unlike" ng-if="ctrl.likeUnlikeFlag">
-    </div>
+    </div>-->
   </div>
 
 
