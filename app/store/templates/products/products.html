@@ -4,6 +4,23 @@
   </ion-header-bar> -->
   <ion-content class="padding products-tab-content">
 
+  <div class="category-slides-wrapper" ng-if="menu.topLevelMenu.length > 0">
+    <ks-swiper-container loop="false" show-nav-buttons="true" slides-per-view="4" space-between="5">
+      <ks-swiper-slide class="swiper-slide" ui-sref="store.products.latest">
+        <img class="slide-img" src="https://storage.googleapis.com/duqhan-images/category/Latest.png" />
+      </ks-swiper-slide>
+      <ks-swiper-slide class="swiper-slide" ui-sref="store.products.recent">
+        <img class="slide-img" src="https://storage.googleapis.com/duqhan-images/category/Recent.png" /> 
+      </ks-swiper-slide>
+      <ks-swiper-slide class="swiper-slide" ng-repeat="c in menu.topLevelMenu" ui-sref="store.productsByCategory({categoryId: c.categoryId})" ng-click="menu.getProductByCategory()" style="margin-right: 2px !important;">
+        <img ng-if="c.imgUrl != '-'" class="slide-img" src="{{c.imgUrl}}" />
+        <div ng-if="c.imgUrl == '-'" class="slide-img" style="border: 1px solid #ff771c;border-radius: 50%;">
+          <span class="cat-name">{{c.displayText}}</span>
+        </div>
+      </ks-swiper-slide>
+    </ks-swiper-container>
+  </div>
+
     <!-- content goes here -->
 
     <div class="row p-l-n p-r-n products-row">
@@ -16,14 +33,24 @@
           <span class="latest-box">{{p.discountPCT| number : 0}}%</span>
           <div class="item-image">
             <img src="{{p.imgurl || 'store/assets/images/default.jpg' | cloudinaryThumbTransformation}}">
-          </div>
+            <!-- <div ng-click="ctrl.likeUnlick(p.id)" style="position: absolute;top: -25px;right: 0;">
+            <div class="like" ng-if="!ctrl.likeUnlikeFlag">
+            </div>
+            <div class="unlike" ng-if="ctrl.likeUnlikeFlag">
+            </div>
+          </div> -->
+          </div> 
           <div class="item p-xs b-t-n" style="font-family: 'Lato', sans-serif;color:#080809;">
             <span style="font-size: 0.9em;"></span>
             <p style="font-size: 13px">Free Shipping | 3-4 Wks</p>
             <span style="font-size: 0.7em;">&#8377;
               <span style="color: #ff771c;font-family: 'Lato', sans-serif;">{{p.discountedPrice}}</span> &nbsp;
               <span style="color: #ff771c;text-decoration: line-through;font-family: 'Lato', sans-serif;">{{p.price}}</span>
-              <span style="margin-left: 25px;">{{p.likeUnlikeCount}}<div class="likecount"></div></span>
+             <span>
+             <!-- <div class="likecount">
+              <span style="position: relative;top: -2px;color: #33cd5f;">{{p.likeUnlikeCount}}</span>
+               <img src="./main/assets/images/heart-icon.png" style="width: 15px;" />
+             </div></span>  -->
             </span>
           </div>
 

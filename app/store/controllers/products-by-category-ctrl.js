@@ -37,6 +37,7 @@ angular
     ctrl.initialize = false;
     ctrl.spiner = false;
     ctrl.apicallflag = false;
+    ctrl.likeUnlikeFlag = false;
     /*==================================================
     Section: Slider button to navigate throuh images
     ==================================================*/
@@ -50,6 +51,21 @@ angular
         $log.log( 'slideChangeStart' );
       } );
     };
+
+    ctrl.getProduct = function () {
+      $ionicScrollDelegate.scrollTop();
+      ctrl.products = [];
+      ctrl.start = 0;
+      ctrl.page = 0;
+      ctrl.noMoreItemsAvailable = false;
+      if ($state.current.name === 'store.productsByCategory' ) {
+        ctrl.initialize = true;
+        ctrl.loadProductListByCategory();
+        ctrl.loadChildCategories();
+      } else if ($state.current.name === 'store.categories') {
+        ctrl.loadChildCategories();
+      }
+    };
     /*==================================================
     End: Slider button to navigate throuh images
     ==================================================*/
@@ -61,7 +77,8 @@ angular
     ctrl.loadChildCategories = function () {
       Product.getChildCategoriesById( ctrl.categoryId )
         .then( function ( categories ) {
-          ctrl.categories = categories;
+          ctrl.categories = categories.categoryDtos;
+          ctrl.categoryName = categories.categoryName;
           $log.log( '====================================================' );
           $log.log( ctrl.categories );
           $log.log( '====================================================' );
@@ -72,11 +89,17 @@ angular
         } );
     };
 
+    $scope.countValue = 0;
+
     /*----------  call the function at the time of initialization  ----------*/
 
-    if ( $state.current.name === 'store.categories' ) {
+    //mnt
+
+    /*if ( $state.current.name === 'store.categories' ) {
       ctrl.loadChildCategories();
-    }
+    }*/
+
+    //end
 
     /*=====  End of Show category list page  ======*/
 
@@ -102,16 +125,16 @@ angular
       Product.getProductList( productsParam )
         .then( function ( data ) {
           ctrl.apicallflag = true;
+          $scope.countValue = 0;
           /* Randoize items */
-          data.products.sort( function () {
+          /*data.products.sort( function () {
             return 0.5 - Math.random();
-          } );
+          } );*/
           ctrl.products = ctrl.products.concat( data.products );
           ctrl.page++;
           if ( data.products.length > 0 ) {
             ctrl.noMoreItemsAvailable = false;
           }
-          ctrl.productCategory = data.categoryName;
           BusyLoader.hide();
           ctrl.spiner = false;
         } )
@@ -122,6 +145,8 @@ angular
         } );
     };
 
+    ctrl.loadProductListByCategory();
+    ctrl.loadChildCategories();
     /*----------  Load more products  ----------*/
     ctrl.loadMore = function () {
       if ( !ctrl.noMoreItemsAvailable ) {
@@ -133,19 +158,22 @@ angular
       }
     };
 
-    /*----------  call the function at the time of initialization  ----------*/
+ /*----------  call the function at the time of initialization  ----------*/
 
-    if ( $state.current.name === 'store.productsByCategory' ) {
+    //mnt
+    /*if ( $state.current.name === 'store.productsByCategory' ) {
       if ( !ctrl.initialize ) {
         ctrl.initialize = true;
         ctrl.loadProductListByCategory();
         ctrl.loadChildCategories();
       }
-    }
+    }*/
+    //end
 
     /*----------  Get the products depending on which page user is in  ----------*/
 
-    $rootScope.$on( '$stateChangeSuccess', function ( event, toState ) {
+    //mnt
+    /*$rootScope.$on( '$stateChangeSuccess', function ( event, toState ) {
       $ionicScrollDelegate.scrollTop();
       ctrl.products = [];
       ctrl.start = 0;
@@ -156,7 +184,33 @@ angular
         ctrl.loadProductListByCategory();
         ctrl.loadChildCategories();
       }
-    } );
+    });*/
+
+    //end
+
+    /*ctrl.likeUnlick = function (productId) {
+      $log.log(productId);
+      ctrl.likeUnlikeFlag = ctrl.likeUnlikeFlag ? false : true;
+      BusyLoader.show();
+      var likeunlikeObj = {
+        productId: $stateParams.productId,
+        likeUnlike: ctrl.likeUnlikeFlag
+      };
+      Store.likeUnlikeProduct(likeunlikeObj)
+      .then(function (response) {
+        $log.log(response);
+        if (ctrl.likeUnlikeFlag) {
+          ctrl.product.likeUnlikeCount++;
+        } else {
+          ctrl.product.likeUnlikeCount--;
+        }
+        BusyLoader.hide();
+      })
+      .catch(function (response) {
+        $log.log(response);
+        BusyLoader.hide();
+      });
+    };*/
 
     /*=====  End of Show products by category  ======*/
 

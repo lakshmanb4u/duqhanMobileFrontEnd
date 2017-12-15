@@ -34,11 +34,9 @@ angular.module('store')
     });
   };
 
-    ctrl.cancelOrder = function (order) {
-    console.log('orderId     : '+order.orderId);
-    var order = {'orderId': order.orderId};
-    $log.log('hi');
-    Store.cancelOrd(order)
+  ctrl.cancelOrder = function (order) {
+    var orderObj = {'orderId': order.orderId};
+    Store.cancelOrd(orderObj)
     .then(function (response) {
       $log.log(response);
       var notification = {};

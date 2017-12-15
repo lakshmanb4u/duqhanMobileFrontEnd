@@ -48,7 +48,7 @@ angular.module('store')
       Store.getChildCategoriesById(categoryId)
       .then(function (response) {
         $log.log(response);
-        q.resolve(response.data.categoryDtos);
+        q.resolve(response.data);
       })
       .catch(function (err) {
         $log.log(err);

@@ -54,6 +54,38 @@ angular.module('store')
           }
         });
       },
+      getProductReviews: function (param) {
+        return $http.post(Config.ENV.SERVER_URL + 'user/get-product-reviews', param, {
+          transformResponse: function (response) {
+            var data = JSON.parse(response);
+            return data;
+          }
+        });
+      },
+      saveRecentRecord: function (param) {
+        return $http.post(Config.ENV.SERVER_URL + 'user/save-recent-record', param, {
+          transformResponse: function (response) {
+            var data = JSON.parse(response);
+            return data;
+          }
+        });
+      },
+      getLikeUnlike: function (param) {
+        return $http.post(Config.ENV.SERVER_URL + 'user/get-like-unlike', param, {
+          transformResponse: function (response) {
+            var data = JSON.parse(response);
+            return data;
+          }
+        });
+      },
+      setPropertyRecored: function (param) {
+        return $http.post(Config.ENV.SERVER_URL + 'user/set-property-record', param, {
+          transformResponse: function (response) {
+            var data = JSON.parse(response);
+            return data;
+          }
+        });
+      },
       getCart: function () {
         return $http.post(Config.ENV.SERVER_URL + 'user/cart', {
           transformResponse: function (response) {

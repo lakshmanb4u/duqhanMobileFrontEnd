@@ -9,17 +9,18 @@
             <img src="{{order.prodImg}}">
             <h2>{{order.productName}}</h2>
             <h4><span>{{order.orderDate | dateFilter1}}</span> | <span>({{order.orderId}})</span></h4>
-            <h3 class="text-capitalize">{{order.status}}</h3>
+            <h3 style="float: left;" class="text-capitalize">{{order.status}}</h3>
             <!--             <p ng-if="order.trackerBean">
               <span ng-if="order.trackerBean.status == 'delivered'">Delivered On</span>
               <span ng-if="!(order.trackerBean.status == 'delivered')">Estimated Delivery On</span>
               {{order.trackerBean.estDeliveryDate | dateFilter1}}
             </p> -->
-            <p ng-if="order.status === 'approved'">
+            <span class="cancel-link" ng-if="order.status == 'created' || order.status == 'order confirmed' || order.status == 'order placed' || order.status == 'approved'" ng-click="ctrl.cancelOrder({{order}})">Cancel Order</span>
+            <p style="float: left;" ng-if="order.status === 'approved'">
               <span>Estimated Delivery On</span>
               {{order.orderDate | dateFilter3}}
             </p>
-            <button class="button button-block button-positive" ng-if="order.status != 'delivered' && order.status != 'shipped' && order.status != 'order cancel' && order.status != 'order cancel'" ng-click="ctrl.cancelOrder({{order}})" style="width:50%;">Cancel</button>
+            <!-- <button class="button button-block button-positive" ng-if="order.status == 'created' || order.status == 'order confirmed' || order.status == 'order placed' || order.status == 'approved'" ng-click="ctrl.cancelOrder({{order}})" style="width:50%;">Cancel</button> -->
           </div>
         </div>
       </div>

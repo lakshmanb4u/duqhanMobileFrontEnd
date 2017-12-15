@@ -66,7 +66,8 @@ $assertive: #ef473a !default;
       vertical-align: middle;
       margin-right: 10px;
       img {
-        width: 30px;
+        height: 30px;
+        width: 25px;
         vertical-align: middle;
       }
     }
@@ -1338,8 +1339,13 @@ $assertive: #ef473a !default;
         width: auto;
         height: auto;
         background: #fff;
-        padding: 10px;
+        padding: 5px;
         box-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        position: absolute;
+        top: 5px;
+        left: 0px;
+        max-width: 100px;
+        max-height: 96px;
       }
       h2 {
         overflow: hidden;
@@ -1856,7 +1862,6 @@ div.hscroller-card-animated-11 {
 .category-slides-wrapper {
   height: 95px;
   margin-top: 15px;
-  padding: 0 15px;
   .swiper-slide {
     text-align: center;
     text-transform: uppercase;
@@ -1865,8 +1870,6 @@ div.hscroller-card-animated-11 {
     font-size: 10px;
     line-height: 12px;
     img {
-      border-radius: 50%;
-      background-color: #ff771c;
     }
   }
 }
@@ -1883,7 +1886,7 @@ div.hscroller-card-animated-11 {
 }
 
 .like{
-  background: url(../assets/images/Like-icon.png) no-repeat center center;
+  background: url(../assets/images/unlove.png) no-repeat center center;
   border: none;
   padding: 0;
   width: 60px;
@@ -1891,11 +1894,11 @@ div.hscroller-card-animated-11 {
   background-size: 30px auto;
   position: relative;
   left: 0;
-  top: 5px;
+  top: 9px;
 }
 
 .unlike{
-  background: url(../assets/images/like-icons.png) no-repeat center center;
+  background: url(../assets/images/heart-icon.png) no-repeat center center;
   border: none;
   padding: 0;
   width: 60px;
@@ -1903,18 +1906,93 @@ div.hscroller-card-animated-11 {
   background-size: 30px auto;
   position: relative;
   left: 0;
-  top: 5px;
+  top: 9px;
 }
 
 .likecount{ 
-    background: url(../assets/images/likecount.png) no-repeat center center;
-    border: none;
-    padding: 0;
-    width: 60px;
-    height: 44px;
-    background-size: 30px auto;
+  border: none;
+  padding: 0;
+  background-size: 30px auto;
+  position: absolute;
+  display: inline-block !important;
+  right: 15px;
+  bottom: 8px;
+}
+.swiper-button-prev{
+    left: 0px;
+    right: auto;
+    height: 20px;
+    top: 55%;
+}
+.swiper-button-next{
+    right: 0px;
+    left: auto;
+    height: 20px;
+    top: 55%;
+}
+.special{
+    margin: 2%;
+}
+.special img{
+    height: 30% !important;
+    width: 45% !important;
+    padding: 3%;
+    box-shadow: 0px 2px 9px #888888;
+}
+.slide-img{
+    width: 79px !important;
+    height: 83px !important;
+    padding: 2px !important;
+}
+.slide-name{
     position: relative;
-    left: -4px!important;
-    display: inline-block !important;
-    top: 20px!important;
+    top: -10px;
+    color: #ff771c;
+    font-size: 12px;
+}
+.like-count{
+    position: absolute;
+    top: 0px;
+    right: 50px;
+    font-size: 20px;
+    color: #33cd5f;
+}
+.cancel-link{
+    float: left;
+    position: relative;
+    left: 85px;
+    top: -3px;
+    color: #ff771c;
+    font-size: 13px;
+}
+.cat-name{
+    ptext-align: center;
+    color: #ff771c;
+    position: relative;
+    top: 30px;
+    font-size: 12px;
+}
+.likeDiv{
+    position: absolute;
+    right: 10px;
+    top: 53%;
+}
+@media screen and (min-width: 410px) and (max-width: 765px) {
+    .likeDiv {
+      top: 60%;
+    }
+}
+@media screen and (min-width: 766px) {
+    .likeDiv {
+      top: 73%;
+    }
+}
+.marg-0 {
+    margin: 0 !important;
+}
+.cart-img {
+    max-width: 129px !important;
+    max-height: 133px !important;
+    width: 129px !important;
+    height: 133px !important;
 }

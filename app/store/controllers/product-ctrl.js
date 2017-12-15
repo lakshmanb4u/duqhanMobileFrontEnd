@@ -50,11 +50,6 @@ angular
         .then(function (response) {
           $log.log(response.data);
           ctrl.product = response.data;
-          if (ctrl.product.likeUnlikeDetails) {
-            ctrl.likeUnlikeFlag = ctrl.product.likeUnlikeDetails.likeUnlike;
-          } else {
-            ctrl.likeUnlikeFlag = false;
-          }
           $log.log(ctrl.images);
           $log.log(ctrl.product.images);
           var sizeArr = [];
@@ -78,12 +73,42 @@ angular
           if (ctrl.product.properties.length === 0) {
             ctrl.checkSelectedProperties();
           }
+          ctrl.saveRecentRecord($stateParams.productId);
+          ctrl.getLikeUnlike($stateParams.productId);
         })
         .catch(function (response) {
           $log.log(response);
         })
         .finally(function () {
           BusyLoader.hide();
+        });
+    };
+
+    ctrl.saveRecentRecord = function (productId) {
+      var productParam = { productId: productId };
+      Store.saveRecentRecord(productParam)
+        .then(function (response) {
+          $log.log(response.data);
+        })
+        .catch(function (response) {
+          $log.log(response);
+        });
+    };
+    ctrl.getLikeUnlike = function (productId) {
+      var productParam = { productId: productId };
+      Store.getLikeUnlike(productParam)
+        .then(function (response) {
+          console.log(response);
+          ctrl.product.likeUnlikeDetails = response.data.likeUnlikeDetails;
+          if (ctrl.product.likeUnlikeDetails) {
+            ctrl.likeUnlikeFlag = ctrl.product.likeUnlikeDetails.likeUnlike;
+          } else {
+            ctrl.likeUnlikeFlag = false;
+          }
+
+        })
+        .catch(function (response) {
+          $log.log(response);
         });
     };
 
@@ -94,7 +119,6 @@ angular
     /*----------  call the function at the time of initialization  ----------*/
 
     ctrl.loadProductDetail($stateParams.productId);
-
     /*=====  End of Get product details  ======*/
 
     /*==================================================
@@ -125,6 +149,17 @@ angular
       ctrl.propertyList.selectedPropertyId = property.id;
       ctrl.checkSelectedProperties();
       ctrl.propertyListModal.hide();
+      var propertyRecordObj = {
+        productId: $stateParams.productId,
+        name: ctrl.propertyList.property
+      };
+      Store.setPropertyRecored(propertyRecordObj)
+      .then(function (response) {
+        $log.log(response);
+      })
+      .catch(function (response) {
+        $log.log(response);
+      });
       setTimeout(function () {
         if (ctrl.clickonaddBag) {
           ctrl.addToBagNew(ctrl.selectedProduct);
@@ -268,6 +303,7 @@ angular
         var productSelected = {};
         productSelected.mapId = ctrl.mapId;
         productSelected.discountOfferPct = ctrl.discountOfferPct;
+        productSelected.productId = product.productId;
         Store.addToCart(productSelected)
           .then(function (response) {
             $log.log(response.data);
@@ -347,7 +383,20 @@ angular
       ctrl.modal.hide();
     };
 
-
+    ctrl.recordSave = function () {
+      var propertyRecordObj = {
+        productId: $stateParams.productId,
+        name: 'checkout'
+      };
+      Store.setPropertyRecored(propertyRecordObj)
+      .then(function (response) {
+        $log.log(response);
+      })
+      .catch(function (response) {
+        $log.log(response);
+      });
+      $state.go('store.cart');
+    };
     ctrl.likeUnlick = function (productId) {
       $log.log(productId);
       ctrl.likeUnlikeFlag = ctrl.likeUnlikeFlag ? false : true;
@@ -359,6 +408,11 @@ angular
       Store.likeUnlikeProduct(likeunlikeObj)
       .then(function (response) {
         $log.log(response);
+        if (ctrl.likeUnlikeFlag) {
+          ctrl.product.likeUnlikeCount++;
+        } else {
+          ctrl.product.likeUnlikeCount--;
+        }
         BusyLoader.hide();
       })
       .catch(function (response) {
@@ -426,6 +480,25 @@ angular
     $scope.cmtTittle = '';
     $scope.reviewFlag = false;
     $scope.cmtBar = true;
+    ctrl.reviewApi = true;
+    ctrl.getProductReviews = function () {
+      if (ctrl.reviewApi) {
+        var productParam = { productId: $stateParams.productId };
+        BusyLoader.show();
+        Store.getProductReviews(productParam)
+        .then(function (response) {
+          $log.log(response.data);
+          ctrl.product.reviews = response.data.reviews;
+          ctrl.reviewApi = false;
+        })
+        .catch(function (response) {
+          $log.log(response);
+        })
+        .finally(function () {
+          BusyLoader.hide();
+        });
+      }
+    };
 
     ctrl.addReviewDiv = function () {
       $scope.reviewFlag = true;

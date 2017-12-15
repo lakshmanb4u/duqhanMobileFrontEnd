@@ -30,6 +30,7 @@ angular.module('store')
   ctrl.page = 0;
   ctrl.noMoreItemsAvailable = false;
   ctrl.spiner = false;
+  ctrl.likeUnlikeFlag = false;
   /*----------  Get list of products from backend  ----------*/
 
   ctrl.loadProductList = function (productsParam) {
@@ -127,6 +128,29 @@ angular.module('store')
       ctrl.loadLatestProductList();
     }
   });
+ /* ctrl.likeUnlick = function (productId) {
+      $log.log(productId);
+      ctrl.likeUnlikeFlag = ctrl.likeUnlikeFlag ? false : true;
+      BusyLoader.show();
+      var likeunlikeObj = {
+        productId: $stateParams.productId,
+        likeUnlike: ctrl.likeUnlikeFlag
+      };
+      Store.likeUnlikeProduct(likeunlikeObj)
+      .then(function (response) {
+        $log.log(response);
+        if (ctrl.likeUnlikeFlag) {
+          ctrl.product.likeUnlikeCount++;
+        } else {
+          ctrl.product.likeUnlikeCount--;
+        }
+        BusyLoader.hide();
+      })
+      .catch(function (response) {
+        $log.log(response);
+        BusyLoader.hide();
+      });
+    };*/
 
   /*=====  End of Get product list  ======*/
 

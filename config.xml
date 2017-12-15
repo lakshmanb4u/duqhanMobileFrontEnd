@@ -83,5 +83,10 @@
         <preference name="android-targetSdkVersion" value="26" />
     </platform>
     <plugin name="cordova-plugin-intercom" spec="~4.0.0" />
+    <plugin name="cordova-fabric-plugin" spec="~1.1.10">
+        <variable name="FABRIC_API_KEY" value="d5329f3a51b3fc8f3a04486bfd45344b86d67fa2" />
+        <variable name="FABRIC_API_SECRET" value="f62fbae1d5a168e6bf2eca22ed4157b6ed3dad6d85edc07b2b6b069747568d1c" />
+    </plugin>
+    <plugin name="cordova-plugin-flurryanalytics" spec="~1.4.6" />
     <engine name="android" spec="~6.1.2" />
 </widget>

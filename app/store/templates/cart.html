@@ -11,11 +11,11 @@
         <span>Check what we've got for you and get it swished!</span>
       </div>
     </div>
-    <div class="cart-items cart-list" ng-repeat="p in ctrl.cart.products">
+    <div class="cart-items cart-list marg-0" ng-repeat="p in ctrl.cart.products">
       <div class="row product" ng-class="{'out-of-stack': p.available === 0}">
         <div class="col col-40 text-center" ui-sref="store.product.overview({productId: p.productId})">
-          <div class="cart-list-img">
-            <img src="{{p.imgurl || 'store/assets/images/default.jpg'}}">
+          <div>
+            <img class="cart-img" src="{{p.imgurl || 'store/assets/images/default.jpg'}}">
           </div>
         </div>
         <div class="col col-60">

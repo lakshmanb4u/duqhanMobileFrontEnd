@@ -1,11 +1,11 @@
 <ion-view>
-  <ion-pane class="product-by-category-pane">
+  <ion-pane class="product-by-category-pane"> 
     <ion-content class="padding products-tab-content">
 
       <!-- content goes here -->
       <div class="card category-card">
         <div class="item item-text-wrap">
-          {{ctrl.productCategory || 'Category'}}
+          {{ctrl.categoryName || 'Category'}}
         </div>
       </div>
 
@@ -17,9 +17,12 @@
         </ks-swiper-container>
       </div> -->
       <div class="category-slides-wrapper" ng-if="ctrl.categories.length > 0">
-        <ks-swiper-container loop="false" show-nav-buttons="false" slides-per-view="4" space-between="5" swiper="ctrl.swiper" on-ready="onReadySwiper(swiper)">
-          <ks-swiper-slide class="swiper-slide" ng-repeat="c in ctrl.categories" ui-sref="store.productsByCategory({categoryId: c.categoryId})">
-            <img src="{{c.imgUrl}}" /> {{c.displayText}}
+        <ks-swiper-container loop="false" show-nav-buttons="true" slides-per-view="4" space-between="5" swiper="ctrl.swiper" on-ready="onReadySwiper(swiper)">
+          <ks-swiper-slide class="swiper-slide col75" ng-repeat="c in ctrl.categories" ui-sref="store.productsByCategory({categoryId: c.categoryId})" ng-click="ctrl.getProduct()">
+            <img ng-if="c.imgUrl != '-'" class="slide-img" src="{{c.imgUrl}}" />
+             <div ng-if="c.imgUrl == '-'" class="slide-img" style="border: 1px solid #ff771c;border-radius: 50%;">
+               <span class="cat-name">{{c.displayText}}</span>
+             </div>
           </ks-swiper-slide>
         </ks-swiper-container>
       </div>
@@ -34,20 +37,31 @@
 
 
       <div class="row p-l-n p-r-n products-row">
-        <div class="col col-50 m-product" ng-repeat="p in ctrl.products" ng-show="p.imgurl">
+        <div class="col col-50 m-product" ng-repeat="p in ctrl.products" ng-show="p.imgurl" >
           <div class="product-preview" ui-sref="store.product.overview({productId: p.productId})">
             <!-- <span class="discount">{{p.discountPCT| number : 0}}%</span> -->
             <div class="item-image">
               <img src="{{p.imgurl || 'store/assets/images/default.jpg' | cloudinaryThumbTransformation}}">
+              <!-- <div ng-click="ctrl.likeUnlick(ctrl.product.id)" style="position: absolute;top: -25px;right: 0;">
+                <div class="like" ng-if="!ctrl.likeUnlikeFlag">
+                </div>
+                <div class="unlike" ng-if="ctrl.likeUnlikeFlag">
+                </div>
+              </div> -->
             </div>
 
             <div class="item p-xs b-t-n" style="font-family: 'Lato', sans-serif;color:#080809;">
               <span style="font-size: 0.9em;"></span>
-              <br/>
+              <p style="font-size: 13px">Free Shipping | 3-4 Wks</p>
               <span style="font-size: 0.7em;">&#8377;
                 <span style="color: #ff771c;font-family: 'Lato', sans-serif;">{{p.discountedPrice}}</span> &nbsp;
                 <span style="color: #ff771c;text-decoration: line-through;font-family: 'Lato', sans-serif;">{{p.price}}</span>
               </span>
+              <!-- <span>
+               <div class="likecount">
+                <span style="position: relative;top: -2px;font-size: 13px;color: #33cd5f;">{{p.likeUnlikeCount}}</span>
+                 <img src="./main/assets/images/heart-icon.png" style="width: 15px;" />
+               </div></span>  -->
             </div>
 
             <!-- <div class="item item-divider">

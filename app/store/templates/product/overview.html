@@ -9,6 +9,12 @@
         <img src="{{i.imgUrl || 'store/assets/images/default.jpg' | cloudinaryImageTransformation}}">
       </ion-slide>
     </ion-slide-box>
+    <div ng-click="ctrl.likeUnlick(ctrl.product.id)" class="likeDiv">
+            <div class="like" ng-if="!ctrl.likeUnlikeFlag">
+            </div>
+            <div class="unlike" ng-if="ctrl.likeUnlikeFlag">
+            </div>
+    </div>
   </div>
     <div class="product-brief p-sm" style="border:none;">
       <h1 class="product-name">{{ctrl.product.name}}</h1>
@@ -17,14 +23,7 @@
         <!-- <span>&#2352; {{ctrl.product.salesPrice}}</span> -->
         <span>{{ctrl.product.salesPrice | currency:"&#8377;"}}</span>
         <span ng-if="!ctrl.allSelected"> onward</span>
-        <div ng-click="ctrl.likeUnlick(ctrl.product.id)" style="position: absolute;
-        top: -20px;
-        right: 0;">
-            <div class="like" ng-if="!ctrl.likeUnlikeFlag">
-            </div>
-            <div class="unlike" ng-if="ctrl.likeUnlikeFlag">
-            </div>
-          </div>
+        <!-- <div class="like-count">{{ctrl.product.likeUnlikeCount}}</div> -->
       </p>
       </div>
       <div style="border-bottom: 1px solid #cdcdcd;height:1px;clear:both;"></div>
@@ -37,7 +36,7 @@
         <div class="col col-50 text-center" ng-class="ctrl.tabActive =='detail'?'active-tab':'inactive-tab'" ng-click="ctrl.showDetail()">
           Details
         </div>
-        <div class="col col-50 text-center" ng-class="ctrl.tabActive=='review'?'active-tab':'inactive-tab'" ng-click="ctrl.tabActive='review'">
+        <div class="col col-50 text-center" ng-class="ctrl.tabActive=='review'?'active-tab':'inactive-tab'" ng-click="ctrl.tabActive='review';ctrl.getProductReviews()">
           Reviews
         </div>
       </div>

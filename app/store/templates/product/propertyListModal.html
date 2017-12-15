@@ -3,14 +3,17 @@
     <div class="buttons">
       <button class="button icon ion-chevron-left" ng-click="ctrl.closePropertyListModal()"></button>
     </div>
-    <h1 class="title">{{ctrl.propertyList.property}}</h1>
+    <h1 class="title">SELECT&nbsp{{ctrl.propertyList.property}}</h1>
   </ion-header-bar>
   <ion-content class="has-footer">
-    <ion-list>
+    <span ng-repeat="p in ctrl.propertyList.propertyValues" ng-click="ctrl.propertySelected(p)" class="half-size special" data-ng-bind-html="ctrl.trustAsHtml(p.value)">`
+      <div data-ng-bind-html="ctrl.trustAsHtml(p.value)"></div>
+    </span>
+ <!-- <ion-list>
       <ion-item class="item-text-wrap" ng-repeat="p in ctrl.propertyList.propertyValues" ng-click="ctrl.propertySelected(p)">
         <div data-ng-bind-html="ctrl.trustAsHtml(p.value)"></div>
       </ion-item>
-    </ion-list>
+    </ion-list> -->
   </ion-content>
   <ion-footer-bar class="bar-balanced">
     <button class="button button-full" ng-click="ctrl.closePropertyListModal()">Close</button>

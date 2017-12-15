@@ -72,6 +72,14 @@ angular.module('store')
         });
     };
 
+   /* ctrl.callGetProduct = function(){
+      console.log("ssss");
+      if($state.current.name == 'store.productsByCategory'){
+        $rootScope.$emit("getSubCategoryProduct");
+      }
+      window.history.back();
+    }*/
+
 
     /*----------  call the function at the time of initialization  ----------*/
 
@@ -79,12 +87,6 @@ angular.module('store')
 
 
     /*----------  catching calls from outside of this controller  ----------*/
-
-    $rootScope.$on('getCartTotalNumber', function (event) {
-      $log.log(event);
-      $log.log('on getCartTotalNumber');
-      ctrl.getCartTotalNumber();
-    });
 
     /*=====  End of Get the number of items in user's cart  ======*/
 
@@ -103,6 +105,11 @@ angular.module('store')
     $rootScope.$on('setUserDetailForMenu', function (event) {
       $log.log(event);
       ctrl.setUserDetailForMenu();
+    });
+
+    $rootScope.$on('getCartTotalNumber', function (event) {
+      $log.log(event);
+      ctrl.getCartTotalNumber();
     });
 
     /*=====  End of Include user's name and image in scope to display in sidebar  ======*/

@@ -3,7 +3,7 @@
   	<div style="text-align: center;">
   		<div>
             <div>
-              <img src="{{ctrl.returnImg | store/assets/images/profile-img.png}}" ng-click="ctrl.openImageSourceSelector()">
+              <img src="{{ctrl.returnImg || 'store/assets/images/profile-img.png'}}" ng-click="ctrl.openImageSourceSelector()">
             </div>
          </div>
   	</div>
