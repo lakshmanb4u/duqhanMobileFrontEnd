@@ -80,6 +80,26 @@ angular
           return Auth.login(user);
         })
         .then(function (response) {
+          /*var flurryAnalytics = new FlurryAnalytics({
+          appKey: WVVWC7WW3JRHFXM4GKPM,
+          //userId: response.results.id,
+          userId: '123433367879',
+          logLevel: 'ERROR',                  // (VERBOSE, DEBUG, INFO, WARN, ERROR)
+          enableLogging: true,                // defaults to false
+          enableEventLogging: false,          // should every event show up the app's log, defaults to true
+          enableCrashReporting: true,         // should app crashes be recorded in flurry, defaults to false, iOS only
+          enableBackgroundSessions: true,     // should the session continue when the app is the background, defaults to false, iOS only
+          reportSessionsOnClose: false,       // should data be pushed to flurry when the app closes, defaults to true, iOS only
+          reportSessionsOnPause: false
+          });
+          console.log(flurryAnalytics);*/
+          /*var signupParams = {
+          userid: response.results.id,
+          userName: response.results.name,
+          type: 'facebook'
+          }*/
+          /*flurryAnalytics.logEvent('SignIn', signupParams, function() {
+          }, function(err) {});*/
           $log.log(response);
           ctrl.savedUser.email = user.email;
           ctrl.savedUser.password = user.password;

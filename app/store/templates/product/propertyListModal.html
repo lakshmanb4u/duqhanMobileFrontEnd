@@ -5,7 +5,7 @@
     </div>
     <h1 class="title">SELECT&nbsp{{ctrl.propertyList.property}}</h1>
   </ion-header-bar>
-  <ion-content class="has-footer">
+  <ion-content class="has-footer mrg-size">
     <span ng-repeat="p in ctrl.propertyList.propertyValues" ng-click="ctrl.propertySelected(p)" class="half-size special" data-ng-bind-html="ctrl.trustAsHtml(p.value)">`
       <div data-ng-bind-html="ctrl.trustAsHtml(p.value)"></div>
     </span>
