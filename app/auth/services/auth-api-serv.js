@@ -9,6 +9,10 @@ angular.module('auth')
       return $http.post(Config.ENV.SERVER_URL + 'login', user);
     },
 
+    guestLogin: function (user) {
+      return $http.post(Config.ENV.SERVER_URL + 'guest-login', user);
+    },
+
     signup: function (user) {
       return $http.post(Config.ENV.SERVER_URL + 'signup', user);
     },

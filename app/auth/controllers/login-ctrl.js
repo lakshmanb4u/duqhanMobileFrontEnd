@@ -28,5 +28,8 @@ angular.module('auth')
   ctrl.facebookLogin = function () {
     $rootScope.$emit('internalFacebookLogin', ctrl.user);
   };
+  $rootScope.$on('onLoginFail', function (event, response) {
+    ctrl.responseCB = response;
+  });
 
 });

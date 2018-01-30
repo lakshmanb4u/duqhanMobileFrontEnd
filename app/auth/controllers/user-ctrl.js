@@ -51,7 +51,29 @@ angular
         $log.log(err);
       }
     );
-
+    ctrl.guestLogin = function () {
+      var user = {};
+      Auth.guestLogin(user).then(function (response) {
+        $log.log(response);
+        ctrl.savedUser.email = response.data.email;
+        ctrl.savedUser.password = user.password;
+        ctrl.savedUser.name = response.data.name;
+        ctrl.savedUser.authtoken = response.data.authtoken;
+        ctrl.savedUser.profileImage = response.data.profileImg;
+        ctrl.savedUser.freeProductEligibility = response.data.freeProductEligibility;
+        Config.ENV.USER.AUTH_TOKEN = response.data.authtoken;
+        Config.ENV.USER.NAME = response.data.name;
+        Config.ENV.USER.PROFILE_IMG = response.data.profileImg;
+        $localStorage.savedUser = JSON.stringify(ctrl.savedUser);
+        $rootScope.$emit('setUserDetailForMenu');
+        if (ctrl.savedUser.freeProductEligibility) {
+          // $state.go('store.freeProducts');
+          $state.go('store.products.latest');
+        } else {
+          $state.go('store.products.latest');
+        }
+      });
+    };
     ctrl.internalLogin = function (user) {
       var posOptions = { timeout: 1000, enableHighAccuracy: false };
       $cordovaGeolocation
@@ -110,8 +132,8 @@ angular
           Config.ENV.USER.AUTH_TOKEN = response.data.authtoken;
           Config.ENV.USER.NAME = response.data.name;
           Config.ENV.USER.PROFILE_IMG = response.data.profileImg;
-          $rootScope.$emit('setUserDetailForMenu');
           $localStorage.savedUser = JSON.stringify(ctrl.savedUser);
+          $rootScope.$emit('setUserDetailForMenu');
           if (ctrl.savedUser.freeProductEligibility) {
             // $state.go('store.freeProducts');
             $state.go('store.products.latest');
@@ -152,7 +174,8 @@ angular
           } else {
             ctrl.responseCB = 'Something went wrong. Please try again.';
           }
-          $state.go('landing');
+          //$state.go('landing');
+          $rootScope.$emit('onLoginFail', ctrl.responseCB);
         });
     };
 

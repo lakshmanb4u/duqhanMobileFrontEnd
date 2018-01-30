@@ -19,7 +19,7 @@
         <button class="ion-custom-search" ng-click="menu.toggleSearchBar()"></button>
         <!--         <button class="button button-small button-icon button-clear ion-levels">
         </button> -->
-        <button class="ion-custom-cart" ui-sref="store.cart">
+        <button ng-if="menu.guest" class="ion-custom-cart" ui-sref="store.cart">
           <span class="badge badge-dark header-badge" ng-show="menu.cartTotalNumber>0">{{menu.cartTotalNumber}}</span>
         </button>
       </ion-nav-buttons>
@@ -93,7 +93,7 @@
         <!--<ion-item class="item-divider">
           Settings
         </ion-item>-->
-        <ion-item menu-close ui-sref="store.profile" ng-class="{'active': $state.includes('store.profile')}">
+        <ion-item ng-if="menu.guest" menu-close ui-sref="store.profile" ng-class="{'active': $state.includes('store.profile')}">
           <span>
             <img src="store/assets/images/nav-icon3.png" alt="" />
           </span>
@@ -102,19 +102,19 @@
         <!--<ion-item menu-close ui-sref="store.changepassword" ng-class="{'active': $state.includes('store.changepassword')}">
           My Password
         </ion-item>-->
-        <ion-item menu-close ui-sref="store.myaddress" ng-class="{'active': $state.includes('store.myaddress')}">
+        <ion-item ng-if="menu.guest" menu-close ui-sref="store.myaddress" ng-class="{'active': $state.includes('store.myaddress')}">
           <span>
             <img src="store/assets/images/nav-icon4.png" alt="" />
           </span>
           <strong>My Addresses</strong>
         </ion-item>
-        <ion-item menu-close ui-sref="store.cart" ng-class="{'active': $state.includes('store.cart')}">
+        <ion-item ng-if="menu.guest" menu-close ui-sref="store.cart" ng-class="{'active': $state.includes('store.cart')}">
           <span>
             <img src="store/assets/images/nav-icon5.png" alt="" />
           </span>
           <strong>My Cart</strong>
         </ion-item>
-        <ion-item menu-close ui-sref="store.orderhistory" ng-class="{'active': $state.includes('store.orderhistory')}">
+        <ion-item ng-if="menu.guest" menu-close ui-sref="store.orderhistory" ng-class="{'active': $state.includes('store.orderhistory')}">
           <span>
             <img src="store/assets/images/nav-icon6.png" alt="" />
           </span>
@@ -156,7 +156,7 @@
           </span>
           <strong>Terms & Conditions</strong>
         </ion-item>
-        <ion-item menu-close ng-click="menu.logout()">
+        <ion-item ng-if="menu.guest" menu-close ng-click="menu.logout()">
           <span>
             <img src="store/assets/images/nav-icon13.png" alt="" />
           </span>

@@ -1,0 +1,35 @@
+
+
+jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore duqhan-release-key.keystore /home/tushar/dev/workspace/duqhan/platforms/android/build/outputs/apk/android-release-unsigned.apk duqhan
+
+./zipalign -v 4 /home/tushar/dev/workspace/duqhan/platforms/android/build/outputs/apk/android-release-unsigned.apk duqhan-release-signed-1.0.29.apk
+
+
+gulp --cordova "plugin add cordova-fabric-plugin --variable FABRIC_API_KEY=d5329f3a51b3fc8f3a04486bfd45344b86d67fa2 --variable FABRIC_API_SECRET=f62fbae1d5a168e6bf2eca22ed4157b6ed3dad6d85edc07b2b6b069747568d1c --save"
+
+gulp --cordova "plugin add cordova-plugin-firebase-analytics --save"
+
+
+
+C++
+The Google services plugin for Gradle loads the google-services.json file you just downloaded. Modify your build.gradle files to use the plugin.
+
+Project-level build.gradle (<project>/build.gradle):
+
+buildscript {
+  dependencies {
+    // Add this line
+    classpath 'com.google.gms:google-services:3.1.0'
+  }
+}
+App-level build.gradle (<project>/<app-module>/build.gradle):
+
+...
+// Add to the bottom of the file
+apply plugin: 'com.google.gms.google-services'
+includes Analytics by default help_outline
+Finally, press "Sync now" in the bar that appears in the IDE:
+
+
+
+gulp --cordova "plugin add cordova-plugin-flurryanalytics --save"

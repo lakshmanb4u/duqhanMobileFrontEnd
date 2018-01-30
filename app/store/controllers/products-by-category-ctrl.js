@@ -10,6 +10,7 @@ angular
     $ionicScrollDelegate,
     $ionicSideMenuDelegate,
     $ionicSlideBoxDelegate,
+    $ionicPopover,
     Product,
     Config,
     BusyLoader
@@ -27,7 +28,6 @@ angular
     /*----------  Storing url parameter (product id) in scope ----------*/
 
     ctrl.categoryId = $stateParams.categoryId;
-
     /*----------  Initialize products object  ----------*/
 
     ctrl.products = [];
@@ -38,6 +38,8 @@ angular
     ctrl.spiner = false;
     ctrl.apicallflag = false;
     ctrl.likeUnlikeFlag = false;
+    ctrl.isThirdLevelCategory = false;
+    ctrl.showPopover = false;
     /*==================================================
     Section: Slider button to navigate throuh images
     ==================================================*/
@@ -79,6 +81,17 @@ angular
         .then( function ( categories ) {
           ctrl.categories = categories.categoryDtos;
           ctrl.categoryName = categories.categoryName;
+          var array = categories.parentPath.split('=');
+          if (array.length >= 3) {
+            ctrl.isThirdLevelCategory = true;
+            if (categories.childCount > 0) {
+              ctrl.showPopover = true;
+            } else {
+              ctrl.showPopover = false;
+            }
+          } else {
+            ctrl.isThirdLevelCategory = false;
+          }
           $log.log( '====================================================' );
           $log.log( ctrl.categories );
           $log.log( '====================================================' );
@@ -214,4 +227,34 @@ angular
 
     /*=====  End of Show products by category  ======*/
 
+    /*===== Show Popover =====*/
+    var template = '<ion-popover-view>' + '<ion-content>' +
+      '<ion-list><ion-item ng-repeat="c in ctrl.categories" ng-click="closePopover()" ui-sref="store.productsByCategory({categoryId: c.categoryId})">{{c.displayText}}</ion-item></ion-list>' + '</ion-content>' + '</ion-popover-view>';
+
+    $scope.popover = $ionicPopover.fromTemplate(template, {
+      scope: $scope
+    });
+
+    $scope.openPopover = function ($event) {
+      $scope.popover.show($event);
+    };
+
+    $scope.closePopover = function () {
+      $scope.popover.hide();
+    };
+
+     //Cleanup the popover when we're done with it!
+    $scope.$on('$destroy', function () {
+      $scope.popover.remove();
+    });
+
+     // Execute action on hide popover
+    $scope.$on('popover.hidden', function () {
+      // Execute action
+    });
+
+     // Execute action on remove popover
+    $scope.$on('popover.removed', function () {
+      // Execute action
+    });
   } );

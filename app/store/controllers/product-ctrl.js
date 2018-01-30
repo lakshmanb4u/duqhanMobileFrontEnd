@@ -9,6 +9,7 @@ angular
     $ionicActionSheet,
     $ionicModal,
     $scope,
+    $localStorage,
     $rootScope,
     $ionicPopup,
     $location,
@@ -16,6 +17,8 @@ angular
     $ionicSideMenuDelegate,
     Store,
     $window,
+    Common,
+    Auth,
     BusyLoader
   ) {
     /* Storing contextual this in a variable for easy access */
@@ -298,6 +301,26 @@ angular
     ctrl.addToBagNew = function (product) {
       ctrl.clickonaddBag = true;
       ctrl.selectedProduct = product;
+      if ($localStorage.savedUser) {
+        var savedUser = JSON.parse($localStorage.savedUser);
+        if (savedUser.email === 'guest@gmail.com') {
+          var title = 'Sign In?',
+            cancelText = 'No',
+            okText = 'Yes';
+          Common.getConfirmation(title, cancelText, okText)
+          .then(function (response) {
+            if (response) {
+              $log.log(response);
+              $localStorage.$reset();
+              $location.path('/landing');
+            }
+          })
+          .catch(function (response) {
+            $log.log(response);
+          });
+          return;
+        }
+      }
       if (ctrl.allSelected) {
         ctrl.clickonaddBag = false;
         var productSelected = {};
@@ -305,32 +328,32 @@ angular
         productSelected.discountOfferPct = ctrl.discountOfferPct;
         productSelected.productId = product.productId;
         Store.addToCart(productSelected)
-          .then(function (response) {
-            $log.log(response.data);
-            if (response.data.status === 'success') {
-              productSelected.response = 'Item Added to your Bag!';
-              ctrl.openModal(productSelected, product);
-              $rootScope.$emit('getCartTotalNumber');
-            } else if (response.data.status === 'Product already added') {
-              productSelected.response = 'Item is already in the Bag!';
-              ctrl.openModal(productSelected, product);
-            } else {
-              ctrl.showAlert = function () {
-                var alertPopup = $ionicPopup.alert({
-                  title: 'Out of Stock',
-                  template: 'Oops! You just missed the last item in stock. It got sold out. Hurry up and purchase the items you like before they get sold out too.'
-                });
+        .then(function (response) {
+          $log.log(response.data);
+          if (response.data.status === 'success') {
+            productSelected.response = 'Item Added to your Bag!';
+            ctrl.openModal(productSelected, product);
+            $rootScope.$emit('getCartTotalNumber');
+          } else if (response.data.status === 'Product already added') {
+            productSelected.response = 'Item is already in the Bag!';
+            ctrl.openModal(productSelected, product);
+          } else {
+            ctrl.showAlert = function () {
+              var alertPopup = $ionicPopup.alert({
+                title: 'Out of Stock',
+                template: 'Oops! You just missed the last item in stock. It got sold out. Hurry up and purchase the items you like before they get sold out too.'
+              });
 
-                alertPopup.then(function () {
-                  $state.go('store.products.latest');
-                });
-              };
-              ctrl.showAlert();
-            }
-          })
-          .catch(function (response) {
-            $log.log(response);
-          });
+              alertPopup.then(function () {
+                $state.go('store.products.latest');
+              });
+            };
+            ctrl.showAlert();
+          }
+        })
+        .catch(function (response) {
+          $log.log(response);
+        });
         // $log.log('============================ START ==============================');
         // $log.log('ADD TO CART');
         // $log.log('============================= END ===============================');

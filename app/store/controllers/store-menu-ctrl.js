@@ -24,7 +24,13 @@ angular.module('store')
     /*==============================
     =            Logout            =
     ==============================*/
-
+    ctrl.guest = true;
+    if ($localStorage.savedUser) {
+      var savedUser = JSON.parse($localStorage.savedUser);
+      if (savedUser.email === 'guest@gmail.com') {
+        ctrl.guest = false;
+      }
+    }
     ctrl.logout = function () {
       if (window.cordova) {
         // eslint-disable-next-line no-undef
@@ -98,6 +104,13 @@ angular.module('store')
     ctrl.setUserDetailForMenu = function () {
       ctrl.username = Config.ENV.USER.NAME;
       ctrl.profileImage = Config.ENV.USER.PROFILE_IMG;
+      ctrl.guest = true;
+      if ($localStorage.savedUser) {
+        var savedUser = JSON.parse($localStorage.savedUser);
+        if (savedUser.email === 'guest@gmail.com') {
+          ctrl.guest = false;
+        }
+      }
     };
 
     ctrl.setUserDetailForMenu();

@@ -3,9 +3,14 @@
     <ion-content class="padding products-tab-content">
 
       <!-- content goes here -->
-      <div class="card category-card">
+      <div class="card category-card" >
         <div class="item item-text-wrap">
-          {{ctrl.categoryName || 'Category'}}
+          <div style="">{{ctrl.categoryName || 'Category'}}
+          <div style="float:right;" ng-show="ctrl.showPopover">
+          <a style="color: white;font-size: 25px;" ng-click = "openPopover($event)"><i class="icon ion-ios-more-outline"></i></a>
+          </div>
+          </div>
+          </div> 
         </div>
       </div>
 
@@ -16,7 +21,7 @@
           </ks-swiper-slide>
         </ks-swiper-container>
       </div> -->
-      <div class="category-slides-wrapper" ng-if="ctrl.categories.length > 0">
+      <div class="category-slides-wrapper" ng-if="ctrl.categories.length > 0 && !ctrl.isThirdLevelCategory">
         <ks-swiper-container loop="false" show-nav-buttons="true" slides-per-view="4" space-between="5" swiper="ctrl.swiper" on-ready="onReadySwiper(swiper)">
           <ks-swiper-slide class="swiper-slide col75" ng-repeat="c in ctrl.categories" ui-sref="store.productsByCategory({categoryId: c.categoryId})" ng-click="ctrl.getProduct()">
             <img ng-if="c.imgUrl != '-'" class="slide-img" src="{{c.imgUrl}}" />
