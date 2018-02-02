@@ -53,16 +53,29 @@ angular.module( 'store' )
           $log.log( response );
         } );
     };
+    ctrl.getCountryCode = function () {
+      Store.getCountryCode()
+        .then( function ( response ) {
+          $log.log( response );
+          ctrl.countryCode = response.data.currencyCodes;
+          console.log(ctrl.countryCode);
+          $log.log( ctrl.user );
+        } )
+        .catch( function ( response ) {
+          $log.log( response );
+        } );
+    };
 
     ctrl.user.image = 'store/assets/images/user.png';
 
     ctrl.getProfileDetails();
-
+    ctrl.getCountryCode();
     /*----------  call the function when user is in profile page  ----------*/
 
     $rootScope.$on( '$stateChangeSuccess', function ( event, toState ) {
       if ( toState.name === 'store.profile' ) {
         ctrl.getProfileDetails();
+        ctrl.getCountryCode();
       }
     } );
 

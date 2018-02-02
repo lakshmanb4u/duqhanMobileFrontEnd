@@ -60,6 +60,14 @@
           {{ctrl.user.dob| date: "dd/MM/yyyy"}}
           <span class="placeholder-icon" ng-hide="ctrl.user.dob2">Date of Birth</span>
         </ion-item>
+        <ion-item class="item item-input item-stacked-label">
+          <span class="input-label">Date of Birth</span>
+          <select ng-model="ctrl.user.currencyCode">
+          <option ng-repeat="c in ctrl.countryCode" value="{{c.code}}">
+            {{c.code}}
+          </option>
+          </select>
+        </ion-item>
       </ion-list>
     </ion-content>
 

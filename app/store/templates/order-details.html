@@ -41,12 +41,12 @@
           </div>
           <div class="col">
             <p>Price</p>
-            <h3>Rs. {{ctrl.order.paymentAmount}}</h3>
+            <h3>{{ctrl.order.paymentAmount | currencySymbol:ctrl.order.symbol}}</h3>
           </div>
         </div>
       </div>
       <div class="item item-text-wrap">
-        <p class="text-italic balanced">Offer: You have saved Rs. {{ctrl.order.price - ctrl.order.paymentAmount}} with this purchase.</p>
+        <p class="text-italic balanced">Offer: You have saved {{ctrl.order.price - ctrl.order.paymentAmount | currencySymbol:ctrl.order.symbol}} with this purchase.</p>
       </div>
       <div class="item item-text-wrap backdrop-layer text-capitalize">
         {{ctrl.order | orderStatusFilter}}

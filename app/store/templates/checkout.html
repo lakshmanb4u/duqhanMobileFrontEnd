@@ -41,8 +41,8 @@
               <span ng-if="p.color">Color: {{p.color}}, </span>
               <span>Qty: {{p.qty}}</span>
             </p>
-            <h3>Rs.{{p.discountedPrice * p.qty}}
-              <span class="discounted-price">Rs.{{p.price * p.qty}}</span>
+            <h3>{{p.discountedPrice * p.qty | currencySymbol:ctrl.cart.symbol}}
+              <span class="discounted-price">{{p.price * p.qty | currencySymbol:ctrl.cart.symbol}}</span>
               <span class="discount-percentage">{{p.discountPCT| number : 0}}% off</span>
             </h3>
             <!--<p>Delivery: <span>Rs.{{p.shippingRate | number : 0}} ({{p.shippingTime}} days)</span></p>-->
@@ -61,19 +61,19 @@
       <a class="item">
         Total price ({{ctrl.cart.products.length}} items)
         <span class="item-note">
-          Rs.{{ctrl.cart.orderTotal}}
+          Rs.{{ctrl.cart.orderTotal | currencySymbol:ctrl.cart.symbol}}
         </span>
       </a>
       <a class="item">
         Delivery
         <span class="item-note">
-          Rs.{{ctrl.cart.shippingTotal | number : 0}}
+          {{ctrl.cart.shippingTotal | number : 0 | currencySymbol:ctrl.cart.symbol}}
         </span>
       </a>
       <a class="item">
         Amount payble
         <span class="item-note">
-          Rs.{{ctrl.cart.orderTotalWithShipping | number : 0}}
+          {{ctrl.cart.orderTotalWithShipping | number : 0 | currencySymbol:ctrl.cart.symbol}}
         </span>
       </a>
     </div>
@@ -93,7 +93,7 @@
   <ion-footer-bar class="cart-footer">
     <div class="row m-none p-none">
       <div class="col col-40 text-center">
-        <h3>Rs.{{ctrl.cart.orderTotalWithShipping | number : 0}}</h3>
+        <h3>{{ctrl.cart.orderTotalWithShipping || 0 | currencySymbol:ctrl.cart.symbol}}</h3>
         <button class="button-clear button-small button-light return-policy-button" ui-sref="store.returnpolicy">
           Return Policy
         </button>

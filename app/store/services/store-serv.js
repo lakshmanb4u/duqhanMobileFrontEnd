@@ -118,6 +118,14 @@ angular.module('store')
           }
         });
       },
+      getCountryCode: function () {
+        return $http.post(Config.ENV.SERVER_URL + 'user/get-country-code', {
+          transformResponse: function (response) {
+            var data = JSON.parse(response);
+            return data;
+          }
+        });
+      },
       updateProfileDetails: function (user) {
         return $http.post(Config.ENV.SERVER_URL + 'user/update-profile-details', user, {
           transformResponse: function (response) {

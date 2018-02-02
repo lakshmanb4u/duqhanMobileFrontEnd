@@ -14,7 +14,8 @@ angular
     $timeout,
     Config,
     Auth,
-    Firebase
+    Firebase,
+    $http
   ) {
     var ctrl = this;
 
@@ -84,6 +85,7 @@ angular
           $log.log(position);
           Config.ENV.USER.LATITUDE = position.coords.latitude;
           Config.ENV.USER.LONGITUDE = position.coords.longitude;
+	  user.countryCode = ctrl.countryCode;	
           user.latitude = Config.ENV.USER.LATITUDE;
           user.longitude = Config.ENV.USER.LONGITUDE;
           user.userAgent = ionic.Platform.ua;
@@ -191,6 +193,7 @@ angular
           $log.log(position);
           Config.ENV.USER.LATITUDE = position.coords.latitude;
           Config.ENV.USER.LONGITUDE = position.coords.longitude;
+          user.countryCode = ctrl.countryCode;
           return $ionicFacebookAuth.login();
         },
         function (err) {
@@ -375,5 +378,10 @@ angular
       $log.log(event);
       $log.log('on internalFacebookLogin');
       ctrl.internalFacebookLogin();
+    });
+    $http.get('http://ip-api.com/json')
+    .success(function(data) {
+      console.log(data.countryCode)
+      ctrl.countryCode = data.countryCode;
     });
   });

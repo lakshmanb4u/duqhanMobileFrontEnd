@@ -26,8 +26,7 @@
             <span ng-if="p.color">Color: {{p.color}}</span>
           </p> -->
           <h3>
-            <strong>र</strong>
-            <em>{{p.discountedPrice}}</em>
+            <em>{{p.discountedPrice | currencySymbol:ctrl.cart.symbol}}</em>
             <span>{{p.price}}</span>
           </h3>
           <p>
@@ -76,7 +75,7 @@
       <a class="item">
         <span>Item Total</span>
         <span class="item-note">
-          Rs.{{ctrl.getCartItemTotal() || 0}}
+          {{ctrl.getCartItemTotal() | currencySymbol:ctrl.cart.symbol}}
         </span>
       </a>
       <!--<a class="item">
@@ -87,11 +86,11 @@
       </a>-->
       <a class="item">
         <span>Discount {{ctrl.getDiscountPctTotal()| number : 0 || 0}}%</span>
-        <span class="item-note">- Rs.{{ctrl.getDiscountTotal() || 0}}</span>
+        <span class="item-note">- {{ctrl.getDiscountTotal() || 0 | currencySymbol:ctrl.cart.symbol}}</span>
       </a>
       <a class="item">
         <span>Order Total</span>
-        <span class="item-note">Rs.{{ctrl.getOrderTotal() || 0}}</span>
+        <span class="item-note">{{ctrl.getOrderTotal() || 0 | currencySymbol:ctrl.cart.symbol}}</span>
       </a>
       <!--<a class="item item-divider">
         Free Shipping
@@ -104,7 +103,7 @@
   <ion-footer-bar class="cart-footer" ng-show="ctrl.cart.products">
     <div class="row m-none p-none">
       <div class="col col-40 text-center">
-        <h3>Rs.{{ctrl.getOrderTotal() || 0}}</h3>
+        <h3>{{ctrl.getOrderTotal() || 0 | currencySymbol:ctrl.cart.symbol}}</h3>
         <button class="button-clear button-small button-light return-policy-button" ui-sref="store.returnpolicy">
           Return Policy
         </button>

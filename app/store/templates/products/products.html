@@ -43,8 +43,8 @@
           <div class="item p-xs b-t-n" style="font-family: 'Lato', sans-serif;color:#080809;">
             <span style="font-size: 0.9em;"></span>
             <p style="font-size: 13px">Free Shipping | 3-4 Wks</p>
-            <span style="font-size: 0.7em;">&#8377;
-              <span style="color: #ff771c;font-family: 'Lato', sans-serif;">{{p.discountedPrice}}</span> &nbsp;
+            <span style="font-size: 0.7em;">
+              <span style="color: #ff771c;font-family: 'Lato', sans-serif;">{{p.discountedPrice | currencySymbol:p.symbol}}</span> &nbsp;
               <span style="color: #ff771c;text-decoration: line-through;font-family: 'Lato', sans-serif;">{{p.price}}</span>
              <span>
              <!-- <div class="likecount">
