@@ -1,0 +1,92 @@
+<ion-view view-title="Sign up">
+  <!-- do you want padding? -->
+  <ion-content class="padding landing signup">
+
+    <!-- content goes here -->
+    <ion-list class="list-inset">
+
+      
+
+      <form name="ctrl.signupForm" ng-submit="ctrl.signup()" novalidate="">
+        <ion-item class="item item-input item-stacked-label" ng-class="{ 'has-errors' : ctrl.signupForm.name.$invalid, 'no-errors' : ctrl.signupForm.name.$valid}">
+          <label>Full Name</label>
+          <input name="name" type="text" placeholder="Full Name" ng-model="ctrl.user.name" required="">
+        </ion-item>
+        <div class="error-container" ng-show="ctrl.signupForm.name.$error && ctrl.signupForm.$submitted" ng-messages="ctrl.signupForm.name.$error">
+          <div ng-messages-include="error-list.html"></div>
+        </div>
+
+        <ion-item class="item item-input item-stacked-label" ng-class="{ 'has-errors' : ctrl.signupForm.email.$invalid, 'no-errors' : ctrl.signupForm.email.$valid}">
+            <label>Email</label>
+          <input name="email" type="email" placeholder="Email*" ng-model="ctrl.user.email" required="">
+        </ion-item>
+        <div class="error-container" ng-show="ctrl.signupForm.email.$error && ctrl.signupForm.$submitted" ng-messages="ctrl.signupForm.email.$error">
+          <div ng-messages-include="error-list.html"></div>
+        </div>
+        <ion-item class="item item-input item-stacked-label" ng-class="{ 'has-errors' : ctrl.signupForm.password.$invalid, 'no-errors' : ctrl.signupForm.password.$valid}">
+            <label>Password</label>
+          <input name="password" type="password" placeholder="Password *" ng-model="ctrl.user.password" required="">
+        </ion-item>
+        <div class="error-container" ng-show="ctrl.signupForm.password.$error && ctrl.signupForm.$submitted" ng-messages="ctrl.signupForm.password.$error">
+          <div ng-messages-include="error-list.html"></div>
+        </div>
+        <ion-item class="item item-input item-stacked-label">
+            <label>Confirm Password</label>
+            <span>( Min. 8 Characters )</span>
+            <input name="password" type="password" placeholder="Confirm Password *" required="">
+          </ion-item>
+
+          
+        <ion-item class="item item-input item-stacked-label">
+            <label>Mobile Number</label>
+            <input name="tel" type="password" placeholder="Mobile Number *" required="">
+          </ion-item>
+          
+        <ion-item class="item">
+            <span>( For Order Updates )</span>
+          </ion-item>
+
+
+
+
+        <div class="error server-side text-center m-t-md" ng-show="ctrl.responseCB && ctrl.signupForm.$submitted">
+          <i class="ion-information-circled"></i> {{ctrl.responseCB}}
+        </div>
+
+        <ion-item class="item item-button">
+          <button class="button button-block button-energized">
+            Sign up
+          </button>
+        </ion-item>
+        
+              <ion-item class="item">
+                  <div class="text-center">
+                      <a ui-sref="store.guestLogin({productId: ctrl.productId})">Already use Duqhan?</a>
+                  </div>
+              </ion-item>
+
+
+      </form>
+
+
+
+    </ion-list>
+
+    <div class="list" ng-if="ctrl.user.resultType">
+      <ion-item class="item item-divider">{{ctrl.user.resultType}} for {{ctrl.user.email}}:</ion-item>
+      <ion-item class="item item-text-wrap">
+        <pre>{{ctrl.user.result | json}}</pre>
+      </ion-item>
+    </div>
+
+  </ion-content>
+</ion-view>
+
+<script id="error-list.html" type="text/ng-template">
+  <div class="error" ng-message="required">
+    <i class="ion-information-circled"></i> This field is required!
+  </div>
+  <div class="error" ng-message="email">
+    <i class="ion-information-circled"></i> This is not a valid email!
+  </div>
+</script>

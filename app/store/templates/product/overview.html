@@ -22,7 +22,7 @@
       <div clas="price-like" style="position:relative">
       <p style="color: #ff771c;float:left;">
         <!-- <span>&#2352; {{ctrl.product.salesPrice}}</span> -->
-        <span>{{ctrl.product.salesPrice | ctrl.product.symbol}}</span>
+        <span>{{ctrl.product.salesPrice | currencySymbol:ctrl.product.symbol}}</span>
         <span ng-if="!ctrl.allSelected"> onward</span>
         <!-- <div class="like-count">{{ctrl.product.likeUnlikeCount}}</div> -->
       </p>

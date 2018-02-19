@@ -61,7 +61,7 @@ angular
       })
       .state('store.products.latest', {
         url: '/latest',
-        cache: true,
+        cache: false,
         views: {
           productsContent: {
             templateUrl: 'store/templates/products/products.html'
@@ -70,7 +70,7 @@ angular
       })
       .state('store.products.recent', {
         url: '/recent',
-        // cache: false,
+        cache: false,
         views: {
           productsContent: {
             templateUrl: 'store/templates/products/products.html'
@@ -89,7 +89,7 @@ angular
       })
       .state('store.productsByCategory', {
         url: '/products-by-category/:categoryId',
-        // cache: false,
+        cache: false,
         views: {
           storeContent: {
             templateUrl: 'store/templates/products/products-by-category.html',
@@ -314,6 +314,51 @@ angular
           storeContent: {
             templateUrl: 'store/templates/misc/terms-conditions.html',
             controller: 'TermsConditionsCtrl as ctrl'
+          }
+        }
+      })
+      .state('store.guestLanding', {
+        url: '/guest-landing/:productId',
+        views: {
+          storeContent: {
+            templateUrl: 'store/templates/guest-landing.html',
+            controller: 'GuestUserCtrl as ctrl'
+          }
+        }
+      })
+      .state('store.guestLogin', {
+        url: '/guest-login/:productId',
+        views: {
+          storeContent: {
+            templateUrl: 'store/templates/guest-login.html',
+            controller: 'GuestUserCtrl as ctrl'
+          }
+        }
+      })
+      .state('store.signup', {
+        url: '/signup/:productId',
+        views: {
+          storeContent: {
+            templateUrl: 'store/templates/guest-signup.html',
+            controller: 'GuestSignupCtrl as ctrl'
+          }
+        }
+      })
+      .state('store.forgotPassword', {
+        url: '/forgot-password/:productId',
+        views: {
+          storeContent: {
+            templateUrl: 'store/templates/forgot-passwordG.html',
+            controller: 'ForgotPasswordCtrlG as ctrl'
+          }
+        }
+      })
+      .state('store.changePassword', {
+        url: '/change-password/:email/:productId',
+        views: {
+          storeContent: {
+            templateUrl: 'store/templates/change-passwordG.html',
+            controller: 'ForgotPasswordCtrlG as ctrl'
           }
         }
       });

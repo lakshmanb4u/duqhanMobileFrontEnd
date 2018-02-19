@@ -39,7 +39,11 @@ angular.module('store')
       if ($localStorage.savedUser) {
         var savedUser = JSON.parse($localStorage.savedUser);
         if (savedUser.socialLogin) {
-          $ionicFacebookAuth.logout();
+          facebookConnectPlugin.logout(function (success) {
+
+          },function (err) {
+            console.log('facebook error --', err);
+          });
         }
         Auth.logout(savedUser)
           .then(function (response) {

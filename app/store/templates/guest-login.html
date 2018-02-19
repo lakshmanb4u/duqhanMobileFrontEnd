@@ -1,0 +1,62 @@
+<ion-view view-title="Duqhan" hide-nav-bar="true">
+    <!-- do you want padding? -->
+    <ion-content class="padding landing">
+
+        <!-- content goes here -->
+        <ion-list class="list-inset">
+            <ion-item class="item">
+                <div class="text-center">
+                    <img class="logo" src="main/assets/images/logo.png" style="width: 60px;">
+                    <p class="logo-text">Duqhan</p>
+                </div>
+            </ion-item>
+            <ion-item class="text-center sub-text">
+                <p>Sign in to Processed Further
+                    <br/> Products !</p>
+            </ion-item>
+            <form name="ctrl.loginForm" ng-submit="ctrl.login()" novalidate="">
+                <ion-item class="item item-input" ng-class="{ 'has-errors' : ctrl.loginForm.email.$invalid && ctrl.loginForm.submitted, 'no-errors' : ctrl.loginForm.email.$valid}">
+                    <input name="email" type="email" placeholder="Enter your email" ng-model="ctrl.user.email" required="">
+                </ion-item>
+                <div class="error-container" ng-show="ctrl.loginForm.email.$error && ctrl.loginForm.$submitted" ng-messages="ctrl.loginForm.email.$error">
+                    <div ng-messages-include="error-list.html"></div>
+                </div>
+
+                <ion-item class="item item-input" ng-class="{ 'has-errors' : ctrl.loginForm.password.$invalid && ctrl.loginForm.submitted, 'no-errors' : ctrl.loginForm.password.$valid}">
+                    <input name="password" type="password" placeholder="Password" ng-model="ctrl.user.password" required="">
+                </ion-item>
+                <div class="error-container" ng-show="ctrl.loginForm.password.$error && ctrl.loginForm.$submitted" ng-messages="ctrl.loginForm.password.$error">
+                    <div ng-messages-include="error-list.html"></div>
+                </div>
+
+                <div class="error server-side text-center m-t-md" ng-show="ctrl.responseCB && ctrl.loginForm.$submitted">
+                    <i class="ion-information-circled"></i> {{ctrl.responseCB}}
+                </div>
+                <ion-item class="item">
+                    <div class="text-right">
+                        <a class="button-clear" ui-sref="store.forgotPassword({productId: ctrl.productId})">Forgot Password?</a>
+                    </div>
+                </ion-item>
+                <ion-item class="item item-button">
+                    <button type="submit" class="button button-block button-energized">Login</button>
+                </ion-item>
+                <ion-item class="item">
+                    <div class="text-center">
+                        <a ui-sref="store.signup({productId: ctrl.productId})">New user?
+                            <span>Register here</span>
+                        </a>
+                    </div>
+                </ion-item>
+            </form>
+        </ion-list>
+
+    </ion-content>
+</ion-view>
+<script id="error-list.html" type="text/ng-template">
+    <div class="error" ng-message="required">
+        <i class="ion-information-circled"></i> This field is required!
+    </div>
+    <div class="error" ng-message="email">
+        <i class="ion-information-circled"></i> This is not a valid email!
+    </div>
+</script>

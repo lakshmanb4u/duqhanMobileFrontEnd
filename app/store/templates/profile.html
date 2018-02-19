@@ -62,10 +62,10 @@
         </ion-item>
         <ion-item class="item item-input item-stacked-label">
           <span class="input-label">Select Currency</span>
-          <select ng-model="ctrl.user.currencyCode">
-          <option ng-repeat="c in ctrl.countryCode" value="{{c.code}}">
+          <select ng-model="ctrl.user.currencyCode" ng-options="c.code as c.code for c in ctrl.countryCode">
+          <!-- <option ng-repeat="c in ctrl.countryCode" value="{{c.code}}">
             {{c.code}}
-          </option>
+          </option> -->
           </select>
         </ion-item>
       </ion-list>

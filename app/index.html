@@ -31,23 +31,23 @@
   <!-- endbuild -->
 
   <!-- Facebook Pixel Code -->
-  <script>
+   <!-- <script>
     !function (f, b, e, v, n, t, s) {
       if (f.fbq) return; n = f.fbq = function () {
         n.callMethod ?
           n.callMethod.apply(n, arguments) : n.queue.push(arguments)
       };
-      if (!f._fbq) f._fbq = n; n.push = n; n.loaded = !0; n.version = '2.0';
+      if (!f._fbq) f._fbq = n; n.push = n; n.loaded = !0; n.version = '2.8';
       n.queue = []; t = b.createElement(e); t.async = !0;
       t.src = v; s = b.getElementsByTagName(e)[0];
       s.parentNode.insertBefore(t, s)
     }(window, document, 'script',
       'https://connect.facebook.net/en_US/fbevents.js');
-    fbq('init', '1612756512132293');
+    fbq('init', '698576100317336');
       // fbq('track', 'PageView');
-  </script>
-  <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1612756512132293&ev=PageView&noscript=1"
-    /></noscript>
+  </script> 
+  <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=698576100317336&ev=PageView&noscript=1"
+    /></noscript> --> 
   <!-- End Facebook Pixel Code -->
 </head>
 
@@ -60,7 +60,7 @@
   </ion-nav-bar>
   <!-- the current view will be rendered in the <ion-nav-view> directive -->
   <ion-nav-view></ion-nav-view>
-
+  
   
  
 </body>
@@ -88,10 +88,14 @@
   <script src="bower_components/angulartics/src/angulartics.js"></script>
   <script src="bower_components/angulartics-facebook-pixel/dist/angulartics-facebook-pixel.min.js"></script>
   <script src="bower_components/angular-jk-rating-stars/dist/jk-rating-stars.js"></script>
+  <script src="bower_components/angularjs-social-login/angularjs-social-login.js"></script>
+  <script src="bower_components/angular-facebook/lib/angular-facebook.js"></script>
   <!-- endbower -->
   <script src="bower_components/ionic-ion-imageCacheFactory/ionic.ion.imagecachefactory.js"></script>
   <script src="bower_components/ionic-cloud/ionic.cloud.min.js"></script>
   <script src="bower_components/angular-jk-rating-stars/dist/jk-rating-stars.js"></script>
+  <!-- <script src="bower_components/angularjs-social-login/angularjs-social-login.js"></script> -->
+  <script src="bower_components/angular-facebook/lib/angular-facebook.js"></script>
   <!-- endbuild -->
   <!-- mindnerves -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -122,15 +126,18 @@
   <script src="store/controllers/misc/terms-conditions-ctrl.js"></script>
   <script src="store/controllers/misc/privacy-policy-ctrl.js"></script>
   <script src="store/controllers/misc/about-ctrl.js"></script>
+  <script src="main/main.js"></script>
+  <script src="store/controllers/GuestUserCtrl.js"></script>
+  <script src="store/controllers/guestSinup.js"></script>
   <script src="store/controllers/free-products-ctrl.js"></script>
   <script src="store/controllers/free-product-ctrl.js"></script>
+  <script src="store/controllers/forgotPasswordG.js"></script>
   <script src="store/controllers/customer-support-ctrl.js"></script>
   <script src="store/controllers/contactus-ctrl.js"></script>
   <script src="store/controllers/checkout-ctrl.js"></script>
   <script src="store/controllers/cart-ctrl.js"></script>
   <script src="store/controllers/address-ctrl.js"></script>
   <script src="store/constants/store-config-const.js"></script>
-  <script src="main/main.js"></script>
   <script src="main/services/httpInterceptor-serv.js"></script>
   <script src="main/services/firebase-serv.js"></script>
   <script src="main/services/busyLoader-serv.js"></script>
@@ -145,7 +152,26 @@
   <script src="app.js"></script>
   <!-- endinject -->
   <!-- endbuild -->
+  <!-- <script type="text/javascript">
+    window.fbAsyncInit = function() {
+        FB.init({
+        appId            : '698576100317336',
+        autoLogAppEvents : true,
+        xfbml            : true,
+        version          : 'v2.8'
+        });
+      };
+
+      (function(d, s, id){
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) {return;}
+        js = d.createElement(s); js.id = id;
+        js.src = "https://connect.facebook.net/en_US/sdk.js";
+        fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));
+  </script> -->
    <script type="text/javascript">
+
       angular.element(document).ready(function () {
         if (window.cordova) {
           console.log("Running in Cordova, will bootstrap AngularJS once 'deviceready' event fires.");
@@ -159,5 +185,6 @@
         }
       });
   </script>
+
 
 </html>

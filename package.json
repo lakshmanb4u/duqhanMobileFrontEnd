@@ -36,7 +36,7 @@
     "gulp-size": "^2.0.0",
     "gulp-sourcemaps": "^1.5.2",
     "gulp-uglify": "^2.0.0",
-    "gulp-useref": "^3.0.4",
+    "gulp-useref": "^3.0.44",
     "karma": "^1.1.0",
     "karma-angular-filesort": "^1.0.0",
     "karma-jasmine": "^1.0.2",
@@ -68,6 +68,7 @@
   },
   "dependencies": {
     "@ionic/cloud": "^0.16.0",
-    "angular-jk-rating-stars": "^1.0.8"
+    "angular-jk-rating-stars": "^1.0.8",
+    "angularjs-social-login": "^2.6.1"
   }
 }

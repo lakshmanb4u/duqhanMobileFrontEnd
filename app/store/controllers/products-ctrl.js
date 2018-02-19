@@ -155,27 +155,27 @@ angular.module('store')
   /*=====  End of Get product list  ======*/
 
 });
+var currency_symbols = {
+  'USD': '$', // US Dollar
+  'EUR': '€', // Euro
+  'GBP': '£', // British Pound Sterling
+  'ILS': '₪', // Israeli New Sheqel
+  'INR': '₹', // Indian Rupee
+  'JPY': '¥', // Japanese Yen
+  'KRW': '₩', // South Korean Won
+  'NGN': '₦', // Nigerian Naira
+  'PHP': '₱', // Philippine Peso
+  'PLN': 'zł', // Polish Zloty
+  'PYG': '₲', // Paraguayan Guarani
+  'THB': '฿', // Thai Baht
+  'UAH': '₴', // Ukrainian Hryvnia
+  'VND': '₫', // Vietnamese Dong
+  'KWD': 'د.ك',
+};
 angular
   .module('store').filter('currencySymbol', function ($filter) {
-     return function(amount, currency) {
-         return $filter('currency')(amount, currency_symbols[currency]);
-     }
+    return function (amount, currency) {
+      return $filter('currency')(amount, currency_symbols[currency]);
+    };
   });
 
-  var currency_symbols = {
-     'USD': '$', // US Dollar
-     'EUR': '€', // Euro
-     'GBP': '£', // British Pound Sterling
-     'ILS': '₪', // Israeli New Sheqel
-     'INR': '₹', // Indian Rupee
-     'JPY': '¥', // Japanese Yen
-     'KRW': '₩', // South Korean Won
-     'NGN': '₦', // Nigerian Naira
-     'PHP': '₱', // Philippine Peso
-     'PLN': 'zł', // Polish Zloty
-     'PYG': '₲', // Paraguayan Guarani
-     'THB': '฿', // Thai Baht
-     'UAH': '₴', // Ukrainian Hryvnia
-     'VND': '₫', // Vietnamese Dong
-     'KWD': 'د.ك',
-  };

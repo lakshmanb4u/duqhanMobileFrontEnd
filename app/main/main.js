@@ -10,7 +10,8 @@ angular
     'angulartics.facebook.pixel',
     'auth',
     'store',
-    'jkAngularRatingStars'
+    'jkAngularRatingStars',
+    'facebook'
   ])
   .config(function ($stateProvider, $urlRouterProvider) {
     // $httpProvider.interceptors.push('HttpInterceptor');
@@ -34,6 +35,9 @@ angular
     window.fabric.Crashlytics.addLog('about to send a crash for testing!');
     window.fabric.Crashlytics.sendCrash();*/
   })
+  /*.config(function (FacebookProvider) {
+    FacebookProvider.init('698576100317336');
+  })*/
   .config(function ($ionicConfigProvider) {
     $ionicConfigProvider.scrolling.jsScrolling(false);
   })

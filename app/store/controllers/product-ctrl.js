@@ -312,7 +312,7 @@ angular
             if (response) {
               $log.log(response);
               $localStorage.$reset();
-              $location.path('/landing');
+              $location.path('/store/guest-landing/' + $stateParams.productId);
             }
           })
           .catch(function (response) {
@@ -320,6 +320,10 @@ angular
           });
           return;
         }
+      }
+      if (!$localStorage.savedUser) {
+        $localStorage.$reset();
+        $location.path('/store/guest-landing/' + $stateParams.productId);
       }
       if (ctrl.allSelected) {
         ctrl.clickonaddBag = false;

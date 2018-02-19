@@ -19,7 +19,7 @@ var eslint = function (fail) {
   };
 };
 gulp.task('eslint', eslint());
-gulp.task('eslint-throw', eslint(true));
+gulp.task('eslint-throw', eslint(false));
 
 // check app for jsonlint errors
 var jsonlint = function (fail) {
