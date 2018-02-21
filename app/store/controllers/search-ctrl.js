@@ -30,8 +30,8 @@ angular.module('store')
         ctrl.searchNotFound = true;
       }
       ctrl.page++;
-      if (result.data.products.length == 0) {
-        ctrl.noMoreItemsAvailable = true;
+      if (result.data.products.length > 0) {
+        ctrl.noMoreItemsAvailable = false;
       }
     })
     .catch(function (response) {
