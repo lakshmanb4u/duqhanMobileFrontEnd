@@ -10,7 +10,7 @@
       </div>
 
 
-      <div class="card no-search" ng-if="ctrl.products && ctrl.products.length == 0">
+      <div class="card no-search" ng-if="ctrl.searchNotFound">
         <div class="item item-text-wrap">
           <img src="store/assets/images/search-icon2.png" />
           <p>Search Not Found
@@ -48,12 +48,12 @@
           </div>
         </div>
       </div>
-      <div class="card" ng-hide="ctrl.products.length > 0">
+      <div class="card" ng-if="ctrl.noMoreItemsAvailable">
         <div class="item item-text-wrap">
           No item found in that name. Try something else.
         </div>
       </div>
-      <ion-infinite-scroll ng-if="!ctrl.noMoreItemsAvailable" on-infinite="ctrl.loadMore()" distance="1%" immediate-check="false"></ion-infinite-scroll>
+      <ion-infinite-scroll ng-if="ctrl.noMoreItemsAvailable" on-infinite="ctrl.loadMore()" distance="1%" immediate-check="false"></ion-infinite-scroll>
       <div class="p-lg"></div>
     </ion-content>
   </ion-pane>

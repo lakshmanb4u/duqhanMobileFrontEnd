@@ -10,6 +10,7 @@ angular.module('store')
   ctrl.start = 0;
   ctrl.page = 0;
   ctrl.noMoreItemsAvailable = false;
+  ctrl.searchNotFound = false;
   ctrl.searchProduct = function (searchText) {
     /*----------  Storing url parameter (product id) in scope ----------*/
     ctrl.searchText = searchText;
@@ -25,9 +26,12 @@ angular.module('store')
         return .5 - Math.random();
       });
       ctrl.products = ctrl.products.concat(result.data.products);
+      if (ctrl.products.length == 0){
+        ctrl.searchNotFound = true;
+      }
       ctrl.page++;
-      if (result.data.products.length > 0) {
-        ctrl.noMoreItemsAvailable = false;
+      if (result.data.products.length == 0) {
+        ctrl.noMoreItemsAvailable = true;
       }
     })
     .catch(function (response) {
