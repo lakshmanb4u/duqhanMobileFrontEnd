@@ -10,13 +10,14 @@
         <img class="slide-img" src="https://storage.googleapis.com/duqhan-images/category/Latest.png" />
       </ks-swiper-slide>
       <ks-swiper-slide class="swiper-slide" ui-sref="store.products.recent">
-        <img class="slide-img" src="https://storage.googleapis.com/duqhan-images/category/Recent.png" /> 
+        <img class="slide-img" src="https://storage.googleapis.com/duqhan-images/category/Recent.png" />
       </ks-swiper-slide>
       <ks-swiper-slide class="swiper-slide" ng-repeat="c in menu.topLevelMenu" ui-sref="store.productsByCategory({categoryId: c.categoryId})" style="margin-right: 2px !important;">
         <img ng-if="c.imgUrl != '-'" class="slide-img" src="{{c.imgUrl}}" />
         <div ng-if="c.imgUrl == '-'" class="slide-img" style="border: 1px solid #ff771c;border-radius: 50%;">
           <span class="cat-name">{{c.displayText}}</span>
         </div>
+        <span class="slide-name">{{c.displayText}}</span>
       </ks-swiper-slide>
     </ks-swiper-container>
   </div>
