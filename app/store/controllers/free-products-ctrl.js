@@ -21,8 +21,12 @@ angular.module('store')
       }
       var products = [];
       ctrl.showStatus = false;
+      var s = new Date().getTime();
       Store.getFreeProducts()
         .then(function (response) {
+          var e = new Date().getTime();
+          var t = e-s;
+          Store.awsCloudWatch('JS Get free product','JS get-free-product',t);
           $log.log(response);
           products = response.data.products;
           ctrl.status = response.data.status;

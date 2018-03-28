@@ -5,6 +5,7 @@ angular.module('auth')
 	$location,
 	$ionicAuth,
   $state,
+  Store,
   $stateParams,
   Auth
   ) {
@@ -23,8 +24,12 @@ angular.module('auth')
     if (ctrl.requestPasswordResetForm.$valid) {
       var user = {};
       user.email = ctrl.user.email;
+      var s = new Date().getTime();
       Auth.requestPasswordReset(user)
       .then(function (response) {
+        var e = new Date().getTime();
+          var t = e-s;
+          Store.awsCloudWatch('JS Request password reset','JS request-password-reset',t);
         $log.log(response);
         $state.go('change-password', { email: response.data.email });
         // $location.path('/change-password');
@@ -40,8 +45,12 @@ angular.module('auth')
     if (ctrl.confirmPasswordResetForm.$valid) {
       ctrl.user.email = $stateParams.email;
       ctrl.user.newPassword = ctrl.user.newPassword;
+      var s = new Date().getTime();
       Auth.confirmPasswordReset(ctrl.user)
       .then(function (response) {
+        var e = new Date().getTime();
+          var t = e-s;
+         Store.awsCloudWatch('JS Confirm password reset','JS confirm-password_reset',t);
         $log.log(response);
         $location.path('/login');
       })

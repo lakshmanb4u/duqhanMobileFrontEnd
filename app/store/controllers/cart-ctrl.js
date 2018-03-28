@@ -19,8 +19,12 @@ angular.module('store')
     /*----------  Get items in cart from backend  ----------*/
 
     ctrl.loadCartItems = function () {
+      var s = new Date().getTime();
       Store.getCart()
         .then(function (response) {
+          var e = new Date().getTime();
+          var t = e-s;
+          Store.awsCloudWatch('JS Cart','JS cart',t);
           $log.log(response.data);
           ctrl.cart = response.data;
           angular.forEach(ctrl.cart.products, function (p) {
@@ -130,9 +134,12 @@ angular.module('store')
             var item = {};
             item.cartId = p.cartId;
             item.mapId = p.productPropertiesMapId;
-
+            var s = new Date().getTime();
             Store.removeFromCart(item)
               .then(function (response) {
+                var e = new Date().getTime();
+                var t = e-s;
+                Store.awsCloudWatch('JS Remove from Cart','JS remove-from-cart',t);
                 $log.log(response.data);
                 $rootScope.$emit('getCartTotalNumber');
                 var notification = {};

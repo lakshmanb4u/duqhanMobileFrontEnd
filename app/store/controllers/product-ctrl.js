@@ -49,8 +49,12 @@ angular
     ctrl.loadProductDetail = function (productId) {
       var productParam = { productId: productId };
       BusyLoader.show();
+      var s = new Date().getTime();
       Store.getProductDetail(productParam)
         .then(function (response) {
+          var e = new Date().getTime();
+          	var t = e-s;
+          	Store.awsCloudWatch('JS Get product details','JS get-product-detail',t);
           $log.log(response.data);
           ctrl.product = response.data;
           $log.log(ctrl.images);
@@ -89,9 +93,13 @@ angular
 
     ctrl.saveRecentRecord = function (productId) {
       var productParam = { productId: productId };
+      var s = new Date().getTime();
       Store.saveRecentRecord(productParam)
         .then(function (response) {
           $log.log(response.data);
+            var e = new Date().getTime();
+          	var t = e-s;
+          	Store.awsCloudWatch('JS Save recent record','JS save-recent-record',t);
         })
         .catch(function (response) {
           $log.log(response);
@@ -268,9 +276,12 @@ angular
     ctrl.addToBagPersist = function (productSelected, product) {
       // delete productSelected.size;
       // $log.log(ctrl.productSelected);
-
+      var s = new Date().getTime();
       Store.addToCart(productSelected)
         .then(function (response) {
+          var e = new Date().getTime();
+          var t = e-s;
+          Store.awsCloudWatch('JS Add to cart','JS add-to-cart',t);
           $log.log(response.data);
           if (response.data.status === 'success') {
             productSelected.response = 'Item Added to your Bag!';
@@ -331,8 +342,12 @@ angular
         productSelected.mapId = ctrl.mapId;
         productSelected.discountOfferPct = ctrl.discountOfferPct;
         productSelected.productId = product.productId;
+        var s = new Date().getTime();
         Store.addToCart(productSelected)
         .then(function (response) {
+          var e = new Date().getTime();
+          			var t = e-s;
+          			Store.awsCloudWatch('JS Add to cart','JS add-to-cart',t);
           $log.log(response.data);
           if (response.data.status === 'success') {
             productSelected.response = 'Item Added to your Bag!';
@@ -512,8 +527,12 @@ angular
       if (ctrl.reviewApi) {
         var productParam = { productId: $stateParams.productId };
         BusyLoader.show();
+        var s = new Date().getTime();
         Store.getProductReviews(productParam)
         .then(function (response) {
+          var e = new Date().getTime();
+            var t = e-s;
+            Store.awsCloudWatch('JS Get product reviews','JS get-product-reviews',t);
           $log.log(response.data);
           ctrl.product.reviews = response.data.reviews;
           ctrl.reviewApi = false;
@@ -555,8 +574,12 @@ angular
       review.subject = cmtTittle;
       review.rating = $scope.rating;
       review.productId = $stateParams.productId;
+      var s = new Date().getTime();
       Store.saveReview(review)
       .then(function (response) {
+        var e = new Date().getTime();
+            var t = e-s;
+            Store.awsCloudWatch('JS Save review','JS save-review',t);
         ctrl.product.reviews = response.data.reviews;
         $scope.rating = 0;
         $scope.comment = '';

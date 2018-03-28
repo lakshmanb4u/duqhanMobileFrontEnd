@@ -47,8 +47,12 @@ angular
     ===========================================*/
 
     ctrl.getDefaultAddress = function () {
+      var s = new Date().getTime();
       Store.getDefaultAddress()
         .then(function (response) {
+          var e = new Date().getTime();
+          var t = e-s;
+          Store.awsCloudWatch('JS Get default addresses','JS get-default-addresses',t);
           $log.log('getDefaultAddress');
           $log.log(response.data.addresses);
           if (response.data.addresses.length > 0) {
@@ -80,8 +84,12 @@ angular
 
     ctrl.getShippingDetails = function (cart) {
       $log.log(cart);
+      var s = new Date().getTime();
       Store.getShippingDetails(cart)
         .then(function (response) {
+          var e = new Date().getTime();
+          var t = e-s;
+          Store.awsCloudWatch('JS Get shipment','JS get-shipment',t);
           $log.log('getShippingDetails');
           $log.log(response.data);
           var tempCart = response.data;
@@ -123,9 +131,13 @@ angular
     ctrl.addressSelectionError = true;
 
     ctrl.changeAddress = function () {
+      var s = new Date().getTime();
       Store.getAddresses()
         .then(function (response) {
           ctrl.addresses = response.data.addresses;
+          var e = new Date().getTime();
+          var t = e-s;
+          Store.awsCloudWatch('JS Get addresses','JS get-addresses',t);
           ctrl.modal.show();
         })
         .catch(function (error) {
@@ -256,8 +268,12 @@ angular
       ctrl.cart.deliveryAddressId = ctrl.address.addressId;
       ctrl.cart.addressDto = ctrl.address;
 
+      var s = new Date().getTime();
       Store.checkout(ctrl.cart)
         .then(function (response) {
+          var e = new Date().getTime();
+          var t = e-s;
+          Store.awsCloudWatch('JS Checkout','JS checkout',t);
           $log.log('response ==');
           $log.log(response.data.status);
           ctrl.paymentUrl = response.data.paymentUrl;
@@ -321,8 +337,12 @@ angular
     ctrl.checkPaymentStatus = function () {
       $log.log('checkPaymentStatus');
       $log.log(ctrl.payKey);
+      var s = new Date().getTime();
       Store.checkPaymentStatus(ctrl.payKey)
         .then(function (response) {
+          var e = new Date().getTime();
+          var t = e-s;
+          Store.awsCloudWatch('JS Check payment status','JS check-payment-status',t);
           $log.log(response);
           $rootScope.$emit('getCartTotalNumber');
           var notification = {};

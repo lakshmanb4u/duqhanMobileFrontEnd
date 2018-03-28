@@ -18,8 +18,12 @@ angular.module('store')
     ctrl.loadFreeProductDetail = function (productId) {
       var productParam = { productId: productId };
       BusyLoader.show();
+      var s = new Date().getTime();
       Store.getProductDetail(productParam)
         .then(function (response) {
+          var e = new Date().getTime();
+          var t = e-s;
+          Store.awsCloudWatch('JS Get product detail','JS get-product-detail',t);
           $log.log(response.data);
           ctrl.product = response.data;
           $log.log(ctrl.images);

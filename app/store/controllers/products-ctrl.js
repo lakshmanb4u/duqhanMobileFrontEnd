@@ -40,8 +40,13 @@ angular.module('store')
       ctrl.spiner = true;
     }
     var products = [];
+    var s = new Date().getTime();
     Store.getProducts(productsParam)
     .then(function (response) {
+      var e = new Date().getTime();
+      var t = e-s;
+      console.log("total time taken",t);
+      Store.awsCloudWatch('JS Get product','JS get-product',t);
       $log.log(response);
       products = response.data.products;
       ctrl.productCategory = response.data.categoryName;

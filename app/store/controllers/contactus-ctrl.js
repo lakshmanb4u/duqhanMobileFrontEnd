@@ -36,8 +36,12 @@ angular
       ctrl.ContactForm.submitted = true;
       if (ctrl.ContactForm.$valid) {
         ctrl.Contact.statusCode = ctrl.statusCode;
+        var s = new Date().getTime();
         Store.contactUs(ctrl.Contact)
           .then(function (response) {
+            var e = new Date().getTime();
+            var t = e-s;
+            Store.awsCloudWatch('JS Contact us','JS contact-us',t);
             $log.log(response);
             var notification = {};
             notification.type = 'success';

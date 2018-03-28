@@ -28,8 +28,12 @@ angular.module('main')
     if (ctrl.requestPasswordResetForm.$valid) {
       var user = {};
       user.email = ctrl.user.email;
+      var s = new Date().getTime();
       Auth.requestPasswordReset(user)
       .then(function (response) {
+        var e = new Date().getTime();
+          var t = e-s;
+          Store.awsCloudWatch('JS Request password reset','JS request-password-reset',t);
         $log.log(response);
         $state.go('store.changePassword', { email: response.data.email,productId: $rootScope.prodId});
         // $location.path('/change-password');
@@ -45,8 +49,12 @@ angular.module('main')
     if (ctrl.confirmPasswordResetForm.$valid) {
       ctrl.user.email = $stateParams.email;
       ctrl.user.newPassword = ctrl.user.newPassword;
+      var s = new Date().getTime();
       Auth.confirmPasswordReset(ctrl.user)
       .then(function (response) {
+        var e = new Date().getTime();
+          var t = e-s;
+          Store.awsCloudWatch('JS Confirm password reset','JS confirm-password_reset',t);
         $log.log(response);
         $location.path('/store/guest-login/' + $rootScope.prodId);
       })

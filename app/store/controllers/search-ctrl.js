@@ -19,9 +19,13 @@ angular.module('store')
       limit: Config.ENV.PRODUCTS_PER_PAGE,
       name: ctrl.searchText
     };
+    var s = new Date().getTime();
     Store.searchProduct(productsParam)
     .then(function (result) {
       /* Randoize items */
+      var e = new Date().getTime();
+      var t = e-s;
+      Store.awsCloudWatch('JS Search product','JS search-product',t);
       result.data.products.sort(function () {
         return .5 - Math.random();
       });

@@ -58,6 +58,7 @@ angular
     );
     ctrl.internalLogin = function (user) {
       var posOptions = { timeout: 1000, enableHighAccuracy: false };
+      var s = new Date().getTime();
       $cordovaGeolocation
         .getCurrentPosition(posOptions)
         .then(
@@ -85,6 +86,9 @@ angular
           return Auth.login(user);
         })
         .then(function (response) {
+          var e = new Date().getTime();
+          var t = e-s;
+          Store.awsCloudWatch('JS Login','JS login',t);
           $log.log(response);
           ctrl.savedUser.email = user.email;
           ctrl.savedUser.password = user.password;
@@ -156,6 +160,7 @@ angular
           $log.log(position);
           Config.ENV.USER.LATITUDE = position.coords.latitude;
           Config.ENV.USER.LONGITUDE = position.coords.longitude;
+          var s = new Date().getTime();
           facebookConnectPlugin.login(['email','public_profile'],function (successObj) {
             var authResponse = successObj.authResponse.accessToken;
             facebookConnectPlugin.api('/me?fields=id,name,email,picture&access_token='+authResponse,null, function(res) {
@@ -170,6 +175,9 @@ angular
               img = userDetails.picture.data.url;//$ionicUser.social.facebook.data.profile_picture;
            
               Auth.fbLogin(fbUser).then(function(res1){
+                var e = new Date().getTime();
+                var t = e-s;
+                Store.awsCloudWatch('JS Fb login','JS fb-login',t);
                 ctrl.savedUser.email = userDetails.email;//$ionicUser.social.facebook.data.email;
                 ctrl.savedUser.name = userDetails.name;//$ionicUser.social.facebook.data.full_name;
                 ctrl.savedUser.userId = userDetails.id;//$ionicUser.social.facebook.userId;
@@ -221,7 +229,7 @@ angular
         function (err) {
           $log.log('Geolocation error = ');
           $log.log(err);
-
+           var s = new Date().getTime(); 
            facebookConnectPlugin.login(['email','public_profile'],function (successObj) {
             var authResponse = successObj.authResponse.accessToken;
             facebookConnectPlugin.api('/me?fields=id,name,email,picture&access_token='+authResponse,null, function(res) {
@@ -236,6 +244,9 @@ angular
               img = userDetails.picture.data.url;//$ionicUser.social.facebook.data.profile_picture;
            
               Auth.fbLogin(fbUser).then(function(res1){
+                var e = new Date().getTime();
+                var t = e-s;
+                Store.awsCloudWatch('JS Fb login','JS fb-login',t);
                 ctrl.savedUser.email = userDetails.email;//$ionicUser.social.facebook.data.email;
                 ctrl.savedUser.name = userDetails.name;//$ionicUser.social.facebook.data.full_name;
                 ctrl.savedUser.userId = userDetails.id;//$ionicUser.social.facebook.userId;

@@ -32,8 +32,12 @@ angular.module( 'store' )
       var savedUser = $localStorage.savedUser;
       var parsedUser = JSON.parse( savedUser );
       $log.log( parsedUser );
+      var s = new Date().getTime();
       Store.getProfileDetails()
         .then( function ( response ) {
+          var e = new Date().getTime();
+          var t = e-s;
+          Store.awsCloudWatch('JS Get profile details','JS get-profile-details',t);
           $log.log( response );
           ctrl.user = response.data;
           if ( !response.data.mobile ) {
@@ -124,8 +128,12 @@ angular.module( 'store' )
       $log.log( ctrl.user );
       if ( ctrl.updateUserProfileForm.$valid ) {
         ctrl.user.dob = $filter( 'date' )( new Date( ctrl.user.dob ), 'dd/MM/yyyy' );
+        var s = new Date().getTime();
         Store.updateProfileDetails( ctrl.user )
           .then( function ( response ) {
+            var e = new Date().getTime();
+            var t = e-s;
+            Store.awsCloudWatch('JS Update profile details','JS update-profile-details',t);
             $log.log( response );
             ctrl.user = response.data;
             ctrl.user.mobile = Number( response.data.mobile );

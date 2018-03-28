@@ -11,6 +11,19 @@ angular.module('store')
     $log.log('Hello from your Service: Store in module store');
 
     return {
+      awsCloudWatch: function (name,apiName,time) {
+        var param={
+          name: name,
+          apiName: apiName,
+          timeTaken: time,
+        };
+         return $http.post(Config.ENV.SERVER_URL + 'user/aws-cloud-watch', param, {
+          transformResponse: function (response) {
+            var data = JSON.parse(response);
+            return data;
+          }
+        });
+      },
       getProducts: function (param) {
         // return $http.get('dummy/products.json');
         return $http.post(Config.ENV.SERVER_URL + 'user/get-product', param, {

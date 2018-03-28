@@ -21,8 +21,12 @@ angular.module('store')
       start: ctrl.start + (ctrl.page * Config.ENV.PRODUCTS_PER_PAGE),
       limit: Config.ENV.PRODUCTS_PER_PAGE,
     };
+    var s = new Date().getTime();
     Store.getOrderHistory(param)
     .then(function (response) {
+      var e = new Date().getTime();
+      var t = e-s;
+      Store.awsCloudWatch('JS Get order details','JS get-order-details',t);
       ctrl.orders = ctrl.orders.concat(response.data.orderDetailsDtos);
       ctrl.page++;
       if (response.data.orderDetailsDtos > 0) {
@@ -36,8 +40,12 @@ angular.module('store')
 
   ctrl.cancelOrder = function (order) {
     var orderObj = {'orderId': order.orderId};
+    var s = new Date().getTime();
     Store.cancelOrd(orderObj)
     .then(function (response) {
+      var e = new Date().getTime();
+      var t = e-s;
+      Store.awsCloudWatch('JS Cancel order','JS cancel-order',t);
       $log.log(response);
       var notification = {};
       notification.type = 'success';

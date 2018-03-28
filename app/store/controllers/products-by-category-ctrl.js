@@ -7,6 +7,7 @@ angular
     $state,
     $rootScope,
     $scope,
+    Store,
     $ionicScrollDelegate,
     $ionicSideMenuDelegate,
     $ionicSlideBoxDelegate,
@@ -77,8 +78,12 @@ angular
     ===============================================*/
 
     ctrl.loadChildCategories = function () {
+      var s = new Date().getTime();
       Product.getChildCategoriesById( ctrl.categoryId )
         .then( function ( categories ) {
+          var e = new Date().getTime();
+          		var t = e-s;
+          		Store.awsCloudWatch('JS Get category','JS get-child-category',t);
           ctrl.categories = categories.categoryDtos;
           ctrl.categoryName = categories.categoryName;
           var array = categories.parentPath.split('=');
@@ -135,8 +140,13 @@ angular
         ctrl.spiner = true;
       }
       ctrl.apicallflag = false;
+      var s = new Date().getTime();
       Product.getProductList( productsParam )
         .then( function ( data ) {
+          	var e = new Date().getTime();
+            var t = e-s;
+            console.log("total time taken",t);
+            Store.awsCloudWatch('JS Get product','JS get-product',t);
           ctrl.apicallflag = true;
           $scope.countValue = 0;
           /* Randoize items */

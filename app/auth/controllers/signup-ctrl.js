@@ -5,6 +5,7 @@ angular.module('auth')
   $rootScope,
   $cordovaGeolocation,
   Config,
+  Store,
   BusyLoader,
   Auth
 ) {
@@ -33,6 +34,7 @@ angular.module('auth')
       BusyLoader.show();
       ctrl.user.password = ctrl.user.password;
       var posOptions = {timeout: 1000, enableHighAccuracy: false};
+      var s = new Date().getTime();
       $cordovaGeolocation.getCurrentPosition(posOptions)
       .then(function (position) {
         $log.log('Geolocation = ');
@@ -52,6 +54,9 @@ angular.module('auth')
         return Auth.signup(ctrl.user);
       })
       .then(function (response) {
+        var e = new Date().getTime();
+        var t = e-s;
+       Store.awsCloudWatch('JS Signup','JS signup',t);
         $log.log(response);
         $rootScope.$emit('internalLogin', ctrl.user);
       })

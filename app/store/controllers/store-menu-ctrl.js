@@ -45,8 +45,12 @@ angular.module('store')
             console.log('facebook error --', err);
           });
         }
+        var s = new Date().getTime();
         Auth.logout(savedUser)
           .then(function (response) {
+            var e = new Date().getTime();
+            var t = e-s;
+            Store.awsCloudWatch('JS Logout','JS logout',t);
             $log.log(response);
             $localStorage.$reset();
             $location.path('/landing');
@@ -72,8 +76,12 @@ angular.module('store')
     ==============================================================*/
 
     ctrl.getCartTotalNumber = function () {
+      var s = new Date().getTime();
       Store.getCartTotalNumber()
         .then(function (response) {
+          var e = new Date().getTime();
+          var t = e-s;
+          Store.awsCloudWatch('JS Get cart count','JS get-cart-count',t);
           $log.log(response.data);
           ctrl.cartTotalNumber = response.data.cartCount;
         })

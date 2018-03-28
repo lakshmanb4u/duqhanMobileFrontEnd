@@ -17,8 +17,13 @@ angular.module('store')
   ==============================================*/
 
   ctrl.loadAddresses = function () {
+    var s = new Date().getTime();
     Store.getAddresses()
     .then(function (response) {
+      var e = new Date().getTime();
+      var t = e-s;
+      Store.awsCloudWatch('JS Get addresses','JS get-addresses',t);
+      $log.log('Address is : ', response);
       ctrl.addresses = response.data.addresses;
     })
     .catch(function (error) {
@@ -60,8 +65,12 @@ angular.module('store')
     if (ctrl.addAddressForm.$valid) {
       $log.log(ctrl.addressDTO);
       ctrl.addressDTO.status = ctrl.addressDTO.status ? 1 : 2;
+      var s = new Date().getTime();
       Store.saveAddress(ctrl.addressDTO)
       .then(function (response) {
+        var e = new Date().getTime();
+        var t = e-s;
+        Store.awsCloudWatch('JS Save address','JS save-address',t);
         $log.log(response);
         if (ctrl.addressDTO.fromCheckout) {
           $rootScope.$emit('setTempAddressForCheckout', response.data.addresses[0]);
@@ -92,8 +101,12 @@ angular.module('store')
   ctrl.setDefaultAddress = function () {
     $log.log(ctrl.popover.address);
     ctrl.closeAddressOptions();
+    var s = new Date().getTime();
     Store.setDefaultAddress(ctrl.popover.address.addressId)
     .then(function (response) {
+      var e = new Date().getTime();
+      var t = e-s;
+      Store.awsCloudWatch('JS Set default addresses','JS set-default-addresses',t);
       $log.log(response);
       ctrl.loadAddresses();
     })
@@ -125,8 +138,12 @@ angular.module('store')
 
   ctrl.removeAddress = function () {
     ctrl.closeAddressOptions();
+    var s = new Date().getTime();
     Store.deactivateAddress(ctrl.popover.address.addressId)
     .then(function (response) {
+      var e = new Date().getTime();
+      var t = e-s;
+      Store.awsCloudWatch('JS Deactivate address','JS deactivate-address',t);
       $log.log(response);
       ctrl.loadAddresses();
     })
