@@ -7,6 +7,7 @@ angular.module('store')
     $localStorage,
     $ionicFacebookAuth,
     $rootScope,
+    $ionicHistory,
     $timeout,
     $state,
     Config,
@@ -194,6 +195,12 @@ angular.module('store')
 
     ctrl.getTopLevelMenu();
 
+    ctrl.goToRoot = function (){
+      $state.go('store.products.latest');
+      $ionicHistory.nextViewOptions({
+        disableBack: true
+      });
+    }
     /*=====  End of Getting top level menu  ======*/
 
     /*============================================

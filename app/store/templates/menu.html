@@ -12,10 +12,10 @@
       <!-- nav button, shown if applicable -->
       <ion-nav-buttons side="left">
         <button class="ion-custom-navicon" menu-toggle="primary"></button>
-        <button class="ion-custom-icon" ui-sref="store.products.latest"></button>
+        <button class="ion-custom-icon" ng-click="menu.goToRoot()"></button>
       </ion-nav-buttons>
       <ion-nav-buttons side="right">
-        <button class="ion-custom-home" ui-sref="store.products.latest"></button>
+        <button class="ion-custom-home" ng-click="menu.goToRoot()"></button>
         <button class="ion-custom-search" ng-click="menu.toggleSearchBar()"></button>
         <!--         <button class="button button-small button-icon button-clear ion-levels">
         </button> -->
