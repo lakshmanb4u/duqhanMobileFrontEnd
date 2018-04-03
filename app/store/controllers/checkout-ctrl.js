@@ -158,6 +158,10 @@ angular
       }
     };
 
+    ctrl.setSelectedAddess= function(address) {
+      ctrl.selectedAddress = address;
+    };
+
     ctrl.addAddress = function () {
       ctrl.closeModal();
       $rootScope.$emit('addAddress', true);

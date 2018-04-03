@@ -113,7 +113,7 @@
     </ion-header-bar>
     <ion-content class="has-footer">
       <ion-list>
-        <ion-radio ng-model="ctrl.selectedAddress" ng-value="address" ng-repeat="address in ctrl.addresses">
+        <ion-radio ng-value="1" value="1" ng-model="address.status" ng-init="ctrl.setSelectedAddess(address)" ng-click="ctrl.setSelectedAddess(address)" ng-repeat="address in ctrl.addresses">
           <h2>{{address.contactName}}</h2>
           <p>{{address.streetOne}}, {{address.streetTwo}}, {{address.city}}, {{address.state}} - {{address.zipCode}}</p>
           <p>{{address.phone}}</p>
