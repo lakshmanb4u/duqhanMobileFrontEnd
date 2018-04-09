@@ -26,7 +26,7 @@ angular.module('store')
         .then(function (response) {
           var e = new Date().getTime();
           var t = e-s;
-          Store.awsCloudWatch('JS Get free product','JS get-free-product',t);
+          Store.awsCloudWatch('JS Mob Get free product','JS Mob get-free-product',t);
           $log.log(response);
           products = response.data.products;
           ctrl.status = response.data.status;

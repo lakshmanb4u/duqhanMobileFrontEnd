@@ -23,7 +23,7 @@ angular.module('store')
         .then(function (response) {
           var e = new Date().getTime();
           var t = e-s;
-          Store.awsCloudWatch('JS Get product detail','JS get-product-detail',t);
+          Store.awsCloudWatch('JS Mob Get product detail','JS Mob get-product-detail',t);
           $log.log(response.data);
           ctrl.product = response.data;
           $log.log(ctrl.images);

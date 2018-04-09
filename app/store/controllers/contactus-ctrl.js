@@ -41,7 +41,7 @@ angular
           .then(function (response) {
             var e = new Date().getTime();
             var t = e-s;
-            Store.awsCloudWatch('JS Contact us','JS contact-us',t);
+            Store.awsCloudWatch('JS Mob Contact us','JS Mob contact-us',t);
             $log.log(response);
             var notification = {};
             notification.type = 'success';

@@ -25,7 +25,7 @@ angular.module('store')
       /* Randoize items */
       var e = new Date().getTime();
       var t = e-s;
-      Store.awsCloudWatch('JS Search product','JS search-product',t);
+      Store.awsCloudWatch('JS Mob Search product','JS Mob search-product',t);
       result.data.products.sort(function () {
         return .5 - Math.random();
       });

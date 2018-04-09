@@ -29,7 +29,7 @@ angular.module('auth')
       .then(function (response) {
         var e = new Date().getTime();
           var t = e-s;
-          Store.awsCloudWatch('JS Request password reset','JS request-password-reset',t);
+          Store.awsCloudWatch('JS Mob Request password reset','JS Mob request-password-reset',t);
         $log.log(response);
         $state.go('change-password', { email: response.data.email });
         // $location.path('/change-password');
@@ -50,7 +50,7 @@ angular.module('auth')
       .then(function (response) {
         var e = new Date().getTime();
           var t = e-s;
-         Store.awsCloudWatch('JS Confirm password reset','JS confirm-password_reset',t);
+         Store.awsCloudWatch('JS Mob Confirm password reset','JS Mob confirm-password_reset',t);
         $log.log(response);
         $location.path('/login');
       })

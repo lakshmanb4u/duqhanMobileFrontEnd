@@ -9,10 +9,10 @@
         <img src="{{i.imgUrl || 'store/assets/images/default.jpg' | cloudinaryImageTransformation}}">
       </ion-slide>
     </ion-slide-box>
-    <div ng-click="ctrl.likeUnlick(ctrl.product.id)" class="likeDiv">
-            <div class="like" ng-if="!ctrl.likeUnlikeFlag">
+    <div ng-click="ctrl.likeUnlick(ctrl.product.id)" class="likeeDiv">
+            <div class="likee" ng-if="!ctrl.likeUnlikeFlag">
             </div>
-            <div class="unlike" ng-if="ctrl.likeUnlikeFlag">
+            <div class="unlikee" ng-if="ctrl.likeUnlikeFlag">
             </div>
     </div>
  
@@ -148,7 +148,7 @@
           </div> -->
       </div>
        <!-- <div class="row">
-        <input class="submitBtn" type="submit" value="Write a Reviews" ng-click="ctrl.addReviewDiv()">
+        <input class="submitBtn" type="submit" value="Write a Review" ng-click="ctrl.addReviewDiv()">
       </div> -->
       
      
@@ -176,7 +176,7 @@
     <div class="button-bar" ng-if="ctrl.tabActive == 'review'">
       <div class="row" id='one' ng-click="ctrl.addReviewDiv()">
         <div class="col text-center addToCart">
-          Write a Reviews
+          Write a Review
         </div>
       </div>
     </div>

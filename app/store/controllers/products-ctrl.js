@@ -46,7 +46,7 @@ angular.module('store')
       var e = new Date().getTime();
       var t = e-s;
       console.log("total time taken",t);
-      Store.awsCloudWatch('JS Get product','JS get-product',t);
+      Store.awsCloudWatch('JS Mob Get product','JS Mob get-product',t);
       $log.log(response);
       products = response.data.products;
       ctrl.productCategory = response.data.categoryName;

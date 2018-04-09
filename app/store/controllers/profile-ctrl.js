@@ -37,7 +37,7 @@ angular.module( 'store' )
         .then( function ( response ) {
           var e = new Date().getTime();
           var t = e-s;
-          Store.awsCloudWatch('JS Get profile details','JS get-profile-details',t);
+          Store.awsCloudWatch('JS Mob Get profile details','JS Mob get-profile-details',t);
           $log.log( response );
           ctrl.user = response.data;
           if ( !response.data.mobile ) {
@@ -133,7 +133,7 @@ angular.module( 'store' )
           .then( function ( response ) {
             var e = new Date().getTime();
             var t = e-s;
-            Store.awsCloudWatch('JS Update profile details','JS update-profile-details',t);
+            Store.awsCloudWatch('JS Mob Update profile details','JS Mob update-profile-details',t);
             $log.log( response );
             ctrl.user = response.data;
             ctrl.user.mobile = Number( response.data.mobile );

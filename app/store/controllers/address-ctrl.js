@@ -22,7 +22,7 @@ angular.module('store')
     .then(function (response) {
       var e = new Date().getTime();
       var t = e-s;
-      Store.awsCloudWatch('JS Get addresses','JS get-addresses',t);
+      Store.awsCloudWatch('JS Mob Get addresses','JS Mob get-addresses',t);
       $log.log('Address is : ', response);
       ctrl.addresses = response.data.addresses;
     })
@@ -70,7 +70,7 @@ angular.module('store')
       .then(function (response) {
         var e = new Date().getTime();
         var t = e-s;
-        Store.awsCloudWatch('JS Save address','JS save-address',t);
+        Store.awsCloudWatch('JS Mob Save address','JS Mob save-address',t);
         $log.log(response);
         if (ctrl.addressDTO.fromCheckout) {
           $rootScope.$emit('setTempAddressForCheckout', response.data.addresses[0]);
@@ -106,7 +106,7 @@ angular.module('store')
     .then(function (response) {
       var e = new Date().getTime();
       var t = e-s;
-      Store.awsCloudWatch('JS Set default addresses','JS set-default-addresses',t);
+      Store.awsCloudWatch('JS Mob Set default addresses','JS Mob set-default-addresses',t);
       $log.log(response);
       ctrl.loadAddresses();
     })
@@ -143,7 +143,7 @@ angular.module('store')
     .then(function (response) {
       var e = new Date().getTime();
       var t = e-s;
-      Store.awsCloudWatch('JS Deactivate address','JS deactivate-address',t);
+      Store.awsCloudWatch('JS Mob Deactivate address','JS Mob deactivate-address',t);
       $log.log(response);
       ctrl.loadAddresses();
     })

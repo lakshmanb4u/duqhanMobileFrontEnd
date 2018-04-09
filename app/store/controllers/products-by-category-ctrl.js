@@ -83,7 +83,7 @@ angular
         .then( function ( categories ) {
           var e = new Date().getTime();
           		var t = e-s;
-          		Store.awsCloudWatch('JS Get category','JS get-child-category',t);
+          		Store.awsCloudWatch('JS Mob Get category','JS Mob get-child-category',t);
           ctrl.categories = categories.categoryDtos;
           ctrl.categoryName = categories.categoryName;
           var array = categories.parentPath.split('=');
@@ -146,7 +146,7 @@ angular
           	var e = new Date().getTime();
             var t = e-s;
             console.log("total time taken",t);
-            Store.awsCloudWatch('JS Get product','JS get-product',t);
+            Store.awsCloudWatch('JS Mob Get product','JS Mob get-product',t);
           ctrl.apicallflag = true;
           $scope.countValue = 0;
           /* Randoize items */

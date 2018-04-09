@@ -24,7 +24,7 @@ angular.module('store')
         .then(function (response) {
           var e = new Date().getTime();
           var t = e-s;
-          Store.awsCloudWatch('JS Cart','JS cart',t);
+          Store.awsCloudWatch('JS Mob Cart','JS Mob cart',t);
           $log.log(response.data);
           ctrl.cart = response.data;
           angular.forEach(ctrl.cart.products, function (p) {
@@ -139,7 +139,7 @@ angular.module('store')
               .then(function (response) {
                 var e = new Date().getTime();
                 var t = e-s;
-                Store.awsCloudWatch('JS Remove from Cart','JS remove-from-cart',t);
+                Store.awsCloudWatch('JS Mob Remove from Cart','JS Mob remove-from-cart',t);
                 $log.log(response.data);
                 $rootScope.$emit('getCartTotalNumber');
                 var notification = {};

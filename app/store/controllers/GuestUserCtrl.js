@@ -88,7 +88,7 @@ angular
         .then(function (response) {
           var e = new Date().getTime();
           var t = e-s;
-          Store.awsCloudWatch('JS Login','JS login',t);
+          Store.awsCloudWatch('JS Mob Login','JS Mob login',t);
           $log.log(response);
           ctrl.savedUser.email = user.email;
           ctrl.savedUser.password = user.password;
@@ -177,7 +177,7 @@ angular
               Auth.fbLogin(fbUser).then(function(res1){
                 var e = new Date().getTime();
                 var t = e-s;
-                Store.awsCloudWatch('JS Fb login','JS fb-login',t);
+                Store.awsCloudWatch('JS Mob Fb login','JS Mob fb-login',t);
                 ctrl.savedUser.email = userDetails.email;//$ionicUser.social.facebook.data.email;
                 ctrl.savedUser.name = userDetails.name;//$ionicUser.social.facebook.data.full_name;
                 ctrl.savedUser.userId = userDetails.id;//$ionicUser.social.facebook.userId;
@@ -246,7 +246,7 @@ angular
               Auth.fbLogin(fbUser).then(function(res1){
                 var e = new Date().getTime();
                 var t = e-s;
-                Store.awsCloudWatch('JS Fb login','JS fb-login',t);
+                Store.awsCloudWatch('JS Mob Fb login','JS Mob fb-login',t);
                 ctrl.savedUser.email = userDetails.email;//$ionicUser.social.facebook.data.email;
                 ctrl.savedUser.name = userDetails.name;//$ionicUser.social.facebook.data.full_name;
                 ctrl.savedUser.userId = userDetails.id;//$ionicUser.social.facebook.userId;

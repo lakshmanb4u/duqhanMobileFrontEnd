@@ -51,7 +51,7 @@ angular.module('store')
           .then(function (response) {
             var e = new Date().getTime();
             var t = e-s;
-            Store.awsCloudWatch('JS Logout','JS logout',t);
+            Store.awsCloudWatch('JS Mob Logout','JS Mob logout',t);
             $log.log(response);
             $localStorage.$reset();
             $location.path('/landing');
@@ -82,7 +82,7 @@ angular.module('store')
         .then(function (response) {
           var e = new Date().getTime();
           var t = e-s;
-          Store.awsCloudWatch('JS Get cart count','JS get-cart-count',t);
+          Store.awsCloudWatch('JS Mob Get cart count','JS Mob get-cart-count',t);
           $log.log(response.data);
           ctrl.cartTotalNumber = response.data.cartCount;
         })

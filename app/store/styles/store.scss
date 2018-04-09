@@ -65,6 +65,7 @@ $assertive: #ef473a !default;
       display: inline-block;
       vertical-align: middle;
       margin-right: 10px;
+      white-space: normal;
       img {
         height: 30px;
         width: 25px;
@@ -77,6 +78,7 @@ $assertive: #ef473a !default;
       font-weight: 400;
       color: #fff;      
       font-family: "Lato";
+      white-space: normal;
     }
   }
 }
@@ -853,19 +855,29 @@ $assertive: #ef473a !default;
           height: auto;
           line-height: normal;          
           &::-webkit-input-placeholder {
-            color: #15173b;
+            font-weight: 200;
+            color: #a8a6ac;
+            font-size: 14px;
           }
           &::-moz-placeholder {
-            color: #15173b;
+            font-weight: 200;
+            color: #a8a6ac;
+            font-size: 14px;
           }
           &:-ms-input-placeholder {
-            color: #15173b;
+            font-weight: 200;
+            color: #a8a6ac;
+            font-size: 14px;
           }
           &:-moz-placeholder {
-            color: #15173b;
+            font-weight: 200;
+            color: #a8a6ac;
+            font-size: 14px;
           }
           &:placeholder {
-            color: #15173b;
+            font-weight: 200;
+            color: #a8a6ac;
+            font-size: 14px;
           }
         }
       }
@@ -1147,6 +1159,10 @@ $assertive: #ef473a !default;
         line-height: 24px;
         color: #15173b;
         margin-bottom: 20px;
+        text-align: justify;
+      }
+      p:nth-child(1){
+        padding-top: 15px;
       }
       h2 {
         font-family: "Lato";
@@ -1894,7 +1910,7 @@ div.hscroller-card-animated-11 {
   background-size: 30px auto;
   position: relative;
   left: 0;
-  top: 9px;
+  top: -2px;
 }
 
 .unlike{
@@ -1906,7 +1922,7 @@ div.hscroller-card-animated-11 {
   background-size: 30px auto;
   position: relative;
   left: 0;
-  top: 9px;
+  top: -2px;
 }
 
 .likecount{ 
@@ -1984,7 +2000,8 @@ div.hscroller-card-animated-11 {
 .likeDiv{
     position: absolute;
     right: 10px;
-    top: 53%;
+    top: 54%;
+    z-index: 9999;
 }
 .close-addCart{
     font-size: 25px;
@@ -1993,9 +2010,10 @@ div.hscroller-card-animated-11 {
 }
 @media screen and (min-width: 410px) and (max-width: 765px) {
     .likeDiv {
-      top: 60%;
+      top: 54%;
     }
 }
+
 @media screen and (min-width: 766px) {
     .likeDiv {
       top: 73%;
@@ -2012,4 +2030,27 @@ div.hscroller-card-animated-11 {
 }
 .mrg-size .scroll{
     margin-top: 12px !important;
+}
+
+.likee{
+  background: url(../assets/images/unlove.png) no-repeat center center;
+    border: none;
+    padding: 0;
+    width: 60px;
+    height: 44px;
+    background-size: 30px auto;
+}
+.unlikee{
+  background: url(../assets/images/heart-icon.png) no-repeat center center;
+    border: none;
+    padding: 0;
+    width: 60px;
+    height: 44px;
+    background-size: 30px auto;
+}
+.likeeDiv{
+  position: absolute;
+    right: 5px;
+    top: 30px;
+    z-index: 9999;
 }

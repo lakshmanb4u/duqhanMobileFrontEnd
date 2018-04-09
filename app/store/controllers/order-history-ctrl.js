@@ -26,7 +26,7 @@ angular.module('store')
     .then(function (response) {
       var e = new Date().getTime();
       var t = e-s;
-      Store.awsCloudWatch('JS Get order details','JS get-order-details',t);
+      Store.awsCloudWatch('JS Mob Get order details','JS Mob get-order-details',t);
       ctrl.orders = ctrl.orders.concat(response.data.orderDetailsDtos);
       ctrl.page++;
       if (response.data.orderDetailsDtos > 0) {
@@ -45,7 +45,7 @@ angular.module('store')
     .then(function (response) {
       var e = new Date().getTime();
       var t = e-s;
-      Store.awsCloudWatch('JS Cancel order','JS cancel-order',t);
+      Store.awsCloudWatch('JS Mob Cancel order','JS Mob cancel-order',t);
       $log.log(response);
       var notification = {};
       notification.type = 'success';

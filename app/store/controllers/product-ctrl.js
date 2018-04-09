@@ -54,7 +54,7 @@ angular
         .then(function (response) {
           var e = new Date().getTime();
           	var t = e-s;
-          	Store.awsCloudWatch('JS Get product details','JS get-product-detail',t);
+          	Store.awsCloudWatch('JS Mob Get product details','JS Mob get-product-detail',t);
           $log.log(response.data);
           ctrl.product = response.data;
           $log.log(ctrl.images);
@@ -99,7 +99,7 @@ angular
           $log.log(response.data);
             var e = new Date().getTime();
           	var t = e-s;
-          	Store.awsCloudWatch('JS Save recent record','JS save-recent-record',t);
+          	Store.awsCloudWatch('JS Mob Save recent record','JS Mob save-recent-record',t);
         })
         .catch(function (response) {
           $log.log(response);
@@ -281,7 +281,7 @@ angular
         .then(function (response) {
           var e = new Date().getTime();
           var t = e-s;
-          Store.awsCloudWatch('JS Add to cart','JS add-to-cart',t);
+          Store.awsCloudWatch('JS Mob Add to cart','JS Mob add-to-cart',t);
           $log.log(response.data);
           if (response.data.status === 'success') {
             productSelected.response = 'Item Added to your Bag!';
@@ -347,7 +347,7 @@ angular
         .then(function (response) {
           var e = new Date().getTime();
           			var t = e-s;
-          			Store.awsCloudWatch('JS Add to cart','JS add-to-cart',t);
+          			Store.awsCloudWatch('JS Mob Add to cart','JS Mob add-to-cart',t);
           $log.log(response.data);
           if (response.data.status === 'success') {
             productSelected.response = 'Item Added to your Bag!';
@@ -532,7 +532,7 @@ angular
         .then(function (response) {
           var e = new Date().getTime();
             var t = e-s;
-            Store.awsCloudWatch('JS Get product reviews','JS get-product-reviews',t);
+            Store.awsCloudWatch('JS Mob Get product reviews','JS Mob get-product-reviews',t);
           $log.log(response.data);
           ctrl.product.reviews = response.data.reviews;
           ctrl.reviewApi = false;
@@ -579,7 +579,7 @@ angular
       .then(function (response) {
         var e = new Date().getTime();
             var t = e-s;
-            Store.awsCloudWatch('JS Save review','JS save-review',t);
+            Store.awsCloudWatch('JS Mob Save review','JS Mob save-review',t);
         ctrl.product.reviews = response.data.reviews;
         $scope.rating = 0;
         $scope.comment = '';

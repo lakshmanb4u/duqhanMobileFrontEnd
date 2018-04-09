@@ -52,7 +52,7 @@ angular
         .then(function (response) {
           var e = new Date().getTime();
           var t = e-s;
-          Store.awsCloudWatch('JS Get default addresses','JS get-default-addresses',t);
+          Store.awsCloudWatch('JS Mob Get default addresses','JS Mob get-default-addresses',t);
           $log.log('getDefaultAddress');
           $log.log(response.data.addresses);
           if (response.data.addresses.length > 0) {
@@ -89,7 +89,7 @@ angular
         .then(function (response) {
           var e = new Date().getTime();
           var t = e-s;
-          Store.awsCloudWatch('JS Get shipment','JS get-shipment',t);
+          Store.awsCloudWatch('JS Mob Get shipment','JS Mob get-shipment',t);
           $log.log('getShippingDetails');
           $log.log(response.data);
           var tempCart = response.data;
@@ -137,7 +137,7 @@ angular
           ctrl.addresses = response.data.addresses;
           var e = new Date().getTime();
           var t = e-s;
-          Store.awsCloudWatch('JS Get addresses','JS get-addresses',t);
+          Store.awsCloudWatch('JS Mob Get addresses','JS Mob get-addresses',t);
           ctrl.modal.show();
         })
         .catch(function (error) {
@@ -277,7 +277,7 @@ angular
         .then(function (response) {
           var e = new Date().getTime();
           var t = e-s;
-          Store.awsCloudWatch('JS Checkout','JS checkout',t);
+          Store.awsCloudWatch('JS Mob Checkout','JS Mob checkout',t);
           $log.log('response ==');
           $log.log(response.data.status);
           ctrl.paymentUrl = response.data.paymentUrl;
@@ -346,7 +346,7 @@ angular
         .then(function (response) {
           var e = new Date().getTime();
           var t = e-s;
-          Store.awsCloudWatch('JS Check payment status','JS check-payment-status',t);
+          Store.awsCloudWatch('JS Mob Check payment status','JS Mob check-payment-status',t);
           $log.log(response);
           $rootScope.$emit('getCartTotalNumber');
           var notification = {};

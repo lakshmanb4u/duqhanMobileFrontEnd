@@ -56,7 +56,7 @@ angular.module('main')
       .then(function (response) {
         var e = new Date().getTime();
         var t = e-s;
-        Store.awsCloudWatch('JS Signup','JS signup',t);
+        Store.awsCloudWatch('JS Mob Signup','JS Mob signup',t);
         $log.log(response);
         $rootScope.$emit('internalGuestLogin', ctrl.user);
       })
