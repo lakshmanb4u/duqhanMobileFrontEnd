@@ -37,7 +37,7 @@
         </ks-swiper-container>
       </div> -->
       <div class="category-slides-wrapper" ng-if="ctrl.categories.length > 0 && !ctrl.isThirdLevelCategory">
-        <ks-swiper-container loop="false" show-nav-buttons="true" slides-per-view="4" space-between="5" swiper="ctrl.swiper" on-ready="onReadySwiper(swiper)">
+        <ks-swiper-container swiper="swiper" loop="false" show-nav-buttons="true" slides-per-view="4" space-between="0">
           <ks-swiper-slide class="swiper-slide col75" ng-repeat="c in ctrl.categories" ui-sref="store.productsByCategory({categoryId: c.categoryId})">
             <img ng-if="c.imgUrl != '-'" class="slide-img" src="{{c.imgUrl}}" />
              <div ng-if="c.imgUrl == '-'" class="slide-img" style="border: 1px solid #ff771c;border-radius: 50%;">

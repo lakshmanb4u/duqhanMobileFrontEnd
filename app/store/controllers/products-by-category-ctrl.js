@@ -24,6 +24,18 @@ angular
     /* Storing contextual this in a variable for easy access */
 
     var ctrl = this;
+  ctrl.next = function () {
+    var length = document.getElementsByClassName('swiper-container').length;
+    var mySwiper = document.getElementsByClassName('swiper-container')[length-1].swiper;
+    mySwiper.slideNext();
+  };
+
+  ctrl.prev = function () {
+    var length = document.getElementsByClassName('swiper-container').length;
+  var mySwiper = document.getElementsByClassName('swiper-container')[length-1].swiper;
+    mySwiper.slidePrev();
+  };
+
     $ionicSideMenuDelegate.canDragContent( false );
 
     /*----------  Storing url parameter (product id) in scope ----------*/
@@ -54,20 +66,6 @@ angular
         $log.log( 'slideChangeStart' );
       } );
     };*/
-
-    var mySwiper = new Swiper('.swiper-container', {
-  });
-  
-  ctrl.next = function () {
-    var mySwiper = document.querySelector('.swiper-container').swiper;
-    mySwiper.slideNext();
-  };
-
-  ctrl.prev = function () {
-      var mySwiper = document.querySelector('.swiper-container').swiper;
-      mySwiper.slidePrev();
-    };
-
     ctrl.getProduct = function () {
       $ionicScrollDelegate.scrollTop();
       ctrl.products = [];
@@ -113,7 +111,7 @@ angular
           $log.log( '====================================================' );
           $log.log( ctrl.categories );
           $log.log( '====================================================' );
-          ctrl.swiper.initObservers();
+          //ctrl.swiper.initObservers();
         } )
         .catch( function ( response ) {
           $log.log( response );
