@@ -22,26 +22,14 @@ angular
     );
 
     /* Storing contextual this in a variable for easy access */
-
     var ctrl = this;
-  ctrl.next = function () {
-    var length = document.getElementsByClassName('swiper-container').length;
-    var mySwiper = document.getElementsByClassName('swiper-container')[length-1].swiper;
-    mySwiper.slideNext();
-  };
-
-  ctrl.prev = function () {
-    var length = document.getElementsByClassName('swiper-container').length;
-  var mySwiper = document.getElementsByClassName('swiper-container')[length-1].swiper;
-    mySwiper.slidePrev();
-  };
-
     $ionicSideMenuDelegate.canDragContent( false );
 
     /*----------  Storing url parameter (product id) in scope ----------*/
 
     ctrl.categoryId = $stateParams.categoryId;
     /*----------  Initialize products object  ----------*/
+
 
     ctrl.products = [];
     ctrl.start = 0;
@@ -66,6 +54,17 @@ angular
         $log.log( 'slideChangeStart' );
       } );
     };*/
+  ctrl.next = function () {
+    var length = document.getElementsByClassName('swiper-container').length;
+    var mySwiper = document.getElementsByClassName('swiper-container')[length-1].swiper;
+    mySwiper.slideNext();
+  };
+
+  ctrl.prev = function () {
+    var length = document.getElementsByClassName('swiper-container').length;
+  var mySwiper = document.getElementsByClassName('swiper-container')[length-1].swiper;
+    mySwiper.slidePrev();
+  };
     ctrl.getProduct = function () {
       $ionicScrollDelegate.scrollTop();
       ctrl.products = [];

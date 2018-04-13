@@ -10,13 +10,15 @@ angular.module('store')
   $ionicScrollDelegate,
   BusyLoader,
   Store,
-  Config
+  Config,
+  $ionicHistory
 ) {
 
   /* Storing contextual this in a variable for easy access */
 
   var ctrl = this;
 
+  
   $log.log('Hello from your Controller: ProductsCtrl in module store:. This is your controller:', ctrl);
 
   /*========================================
@@ -33,8 +35,6 @@ angular.module('store')
   ctrl.likeUnlikeFlag = false;
   /*----------  Get list of products from backend  ----------*/
 
-  var mySwiper = new Swiper('.swiper-container', {
-  });
   
   ctrl.next = function () {
     var mySwiper = document.querySelector('.swiper-container').swiper;
