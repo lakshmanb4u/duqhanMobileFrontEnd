@@ -1,3 +1,18 @@
+<style>
+  .category-slides-wrapper {
+    width: 95% !important;
+    margin: auto;
+    margin-top: 15px;
+}
+.swiper-button-next{
+  display: none;
+  top: 7%;
+}
+.swiper-button-prev{
+  display: none;
+  top: 7%;
+}
+</style>
 <ion-view>
   <!-- <ion-header-bar align-title="center" class="bar-subheader bar-balanced">
     <h1 class="title">You can now pay with Paytm and PayPal </h1>
@@ -5,7 +20,7 @@
   <ion-content class="padding products-tab-content">
 
   <div class="category-slides-wrapper" ng-if="menu.topLevelMenu.length > 0">
-    <ks-swiper-container loop="false" show-nav-buttons="true" slides-per-view="4" space-between="5">
+    <ks-swiper-container swiper="swiper" loop="false" show-nav-buttons="true" slides-per-view="4" space-between="0">
       <ks-swiper-slide class="swiper-slide" ui-sref="store.products.latest">
         <img class="slide-img" src="https://storage.googleapis.com/duqhan-images/category/Latest.png" />
       </ks-swiper-slide>
@@ -21,7 +36,8 @@
       </ks-swiper-slide>
     </ks-swiper-container>
   </div>
-
+  <div class="swiper-button-next" style="display: block !important;" ng-click="ctrl.next()"></div>
+  <div class="swiper-button-prev" style="display: block !important;" ng-click=ctrl.prev()></div>
     <!-- content goes here -->
 
     <div class="row p-l-n p-r-n products-row">

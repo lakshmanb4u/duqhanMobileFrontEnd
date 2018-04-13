@@ -44,7 +44,7 @@ angular
     /*==================================================
     Section: Slider button to navigate throuh images
     ==================================================*/
-    ctrl.swiper = {};
+    /*ctrl.swiper = {};
     $scope.next = function () {
       ctrl.swiper.slideNext();
     };
@@ -53,6 +53,19 @@ angular
       swiper.on( 'slideChangeStart', function () {
         $log.log( 'slideChangeStart' );
       } );
+    };*/
+
+    var mySwiper = new Swiper('.swiper-container', {
+  });
+  
+  ctrl.next = function () {
+    var mySwiper = document.querySelector('.swiper-container').swiper;
+    mySwiper.slideNext();
+  };
+
+  ctrl.prev = function () {
+      var mySwiper = document.querySelector('.swiper-container').swiper;
+      mySwiper.slidePrev();
     };
 
     ctrl.getProduct = function () {

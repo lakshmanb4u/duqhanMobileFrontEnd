@@ -1,3 +1,18 @@
+<style>
+  .category-slides-wrapper {
+    width: 95% !important;
+    margin: auto;
+    margin-top: 15px;
+}
+.swiper-button-next{
+  display: none;
+  top: 16%;
+}
+.swiper-button-prev{
+  display: none;
+  top: 16%;
+}
+</style>
 <ion-view>
   <ion-pane class="product-by-category-pane"> 
     <ion-content class="padding products-tab-content">
@@ -32,6 +47,8 @@
           </ks-swiper-slide>
         </ks-swiper-container>
       </div>
+      <div ng-if="ctrl.categories.length > 0 && !ctrl.isThirdLevelCategory" class="swiper-button-next" style="display: block !important;" ng-click="ctrl.next()"></div>
+      <div ng-if="ctrl.categories.length > 0 && !ctrl.isThirdLevelCategory" class="swiper-button-prev" style="display: block !important;" ng-click=ctrl.prev()></div>
 
       <!-- <div class="category-slides" ng-if="ctrl.categories">
         <ks-swiper-container swiper="ctrl.swiper" loop="false" show-nav-buttons="false" slides-per-view="4" space-between="5" on-ready="onReadySwiper(swiper)">

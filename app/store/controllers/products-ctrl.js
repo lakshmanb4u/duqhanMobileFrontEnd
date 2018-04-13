@@ -33,6 +33,19 @@ angular.module('store')
   ctrl.likeUnlikeFlag = false;
   /*----------  Get list of products from backend  ----------*/
 
+  var mySwiper = new Swiper('.swiper-container', {
+  });
+  
+  ctrl.next = function () {
+    var mySwiper = document.querySelector('.swiper-container').swiper;
+    mySwiper.slideNext();
+  };
+
+  ctrl.prev = function () {
+      var mySwiper = document.querySelector('.swiper-container').swiper;
+      mySwiper.slidePrev();
+    };
+
   ctrl.loadProductList = function (productsParam) {
     if (ctrl.products.length === 0) {
       BusyLoader.show();
