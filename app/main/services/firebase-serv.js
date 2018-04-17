@@ -5,19 +5,19 @@ angular.module('main').factory('Firebase', function ($log, $q) {
   return {
     includeFCMToken: function (user) {
       var q = $q.defer();
-      q.resolve(user);
-      // if (window.cordova) {
-      //   // eslint-disable-next-line no-undef
-      //   FCMPlugin.getToken( function (token) {
-      //     $log.log('fcmToken===================');
-      //     $log.log(token);
-      //     $log.log('fcmToken===================');
-      //     user.fcmToken = token;
-      //     q.resolve(user);
-      //   });
-      // } else {
-      //   q.resolve(user);
-      // }
+      //q.resolve(user);
+       if (window.cordova) {
+         // eslint-disable-next-line no-undef
+        FCMPlugin.getToken( function (token) {
+           $log.log('fcmToken===================');
+           $log.log(token);
+           $log.log('fcmToken===================');
+           user.fcmToken = token;
+           q.resolve(user);
+         });
+       } else {
+         q.resolve(user);
+       }
       return q.promise;
     }
   };
