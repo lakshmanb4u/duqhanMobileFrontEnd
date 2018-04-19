@@ -55,15 +55,21 @@
 
 
     </ion-list>
+     <div style="margin: 10px 0 10px 20px;">
+      <input type="text" placeholder="Have a Promocode?" name="" class="promo-code-input" ng-model="ctrl.promoCode"></input>
+      <div class="promo-code-btn" ng-click="ctrl.applyPromo(ctrl.promoCode)">Apply</div>
+    </div>
+    <span ng-if="ctrl.error" class="promo-code-err">Invalid Promocode</span>
 
     <h5 class="price-details">Price details</h5>
     <div class="list summary cart-pay">
       <a class="item">
         Total price ({{ctrl.cart.products.length}} items)
         <span class="item-note">
-          Rs.{{ctrl.cart.orderTotal | currencySymbol:ctrl.cart.symbol}}
+          {{ctrl.cart.orderTotal | currencySymbol:ctrl.cart.symbol}}
         </span>
       </a>
+     
       <a class="item">
         Delivery
         <span class="item-note">
@@ -73,7 +79,7 @@
       <a class="item">
         Amount payble
         <span class="item-note">
-          {{ctrl.cart.orderTotalWithShipping | number : 0 | currencySymbol:ctrl.cart.symbol}}
+          {{ctrl.cart.orderTotalWithShipping | currencySymbol:ctrl.cart.symbol}}
         </span>
       </a>
     </div>

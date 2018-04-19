@@ -58,7 +58,8 @@ angular.module('auth')
         var t = e-s;
        Store.awsCloudWatch('JS Mob Signup','JS Mob signup',t);
         $log.log(response);
-        $rootScope.$emit('internalLogin', ctrl.user);
+        $rootScope._internalLogin(ctrl.user);
+        //$rootScope.$emit('internalLogin', ctrl.user);
       })
       .catch(function (response) {
         BusyLoader.hide();
@@ -73,7 +74,8 @@ angular.module('auth')
   };
 
   ctrl.facebookLogin = function () {
-    $rootScope.$emit('internalFacebookLogin', ctrl.user);
+    $rootScope._internalFacebookLogin();
+    //$rootScope.$emit('internalFacebookLogin', ctrl.user);
   };
 
 });

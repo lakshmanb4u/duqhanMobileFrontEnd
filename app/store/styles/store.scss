@@ -659,6 +659,7 @@ $assertive: #ef473a !default;
   font-size: 14px;
   font-weight: 400;
   margin: 10px 0 10px 20px;
+  clear: both;
 }
 .review-products {
   font-family: "Lato";
@@ -1241,20 +1242,30 @@ $assertive: #ef473a !default;
             line-height: normal;
             font-family: "Lato";
             &::-webkit-input-placeholder {
-              color: #15173b;
-            }
-            &::-moz-placeholder {
-              color: #15173b;
-            }
-            &:-ms-input-placeholder {
-              color: #15173b;
-            }
-            &:-moz-placeholder {
-              color: #15173b;
-            }
-            &:placeholder {
-              color: #15173b;
-            }
+            font-weight: 200;
+            color: #a8a6ac;
+            font-size: 14px;
+          }
+          &::-moz-placeholder {
+            font-weight: 200;
+            color: #a8a6ac;
+            font-size: 14px;
+          }
+          &:-ms-input-placeholder {
+            font-weight: 200;
+            color: #a8a6ac;
+            font-size: 14px;
+          }
+          &:-moz-placeholder {
+            font-weight: 200;
+            color: #a8a6ac;
+            font-size: 14px;
+          }
+          &:placeholder {
+            font-weight: 200;
+            color: #a8a6ac;
+            font-size: 14px;
+          }
           }
           textarea {
             font-family: "Lato";
@@ -2066,4 +2077,26 @@ div.hscroller-card-animated-11 {
 .swiper-button-prev{
   display: none;
   top: 52px;
+}
+.promo-code-btn{
+  background: #12b46a;
+  width: 24%;
+  padding: 6px 13px;
+  float: left;
+  display: inline-block;
+  margin: 8px 12px;
+  color: white;
+  text-align: center;
+}
+.promo-code-input{
+  max-width: 67%;
+  padding: 7px 15px !important;
+  display: inline-block;
+  float: left;
+}
+.promo-code-err{
+  color: red;
+  display: block;
+  clear: left;
+  margin: 10px 0 10px 20px;
 }

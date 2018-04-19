@@ -39,13 +39,17 @@ angular.module('store')
       }
       if ($localStorage.savedUser) {
         var savedUser = JSON.parse($localStorage.savedUser);
-        if (savedUser.socialLogin) {
+        if (savedUser.email === 'guest@gmail.com') {
+          $localStorage.$reset();
+          $state.go('landing');
+         }else{
+          if (savedUser.socialLogin) {
           facebookConnectPlugin.logout(function (success) {
-
           },function (err) {
             console.log('facebook error --', err);
           });
         }
+      }
         var s = new Date().getTime();
         Auth.logout(savedUser)
           .then(function (response) {

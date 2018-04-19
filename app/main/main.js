@@ -41,7 +41,16 @@ angular
   .config(function ($ionicConfigProvider) {
     $ionicConfigProvider.scrolling.jsScrolling(false);
   })
-  .run(function ($ionicPlatform, $log, $rootScope, $state) {
+  .run(function ($ionicPlatform, $log, $rootScope, $state, $localStorage) {
+    if (angular.isUndefined($localStorage.savedUser)) {
+      var obj ={
+        email :'guest@gmail.com',
+        password :'dukhan123',
+        name :'Guest User',
+        authtoken :'dukhan123'
+      }
+      $localStorage.savedUser =  JSON.stringify(obj); 
+    }
     $rootScope.$state = $state;
     $ionicPlatform.ready(function () {
       /* eslint-disable no-undef */
@@ -59,6 +68,13 @@ angular
         } catch (e) {
           $log.log(e);
         }
+        FCMPlugin.onNotification(function(data,a,b,c){
+          if(data.wasTapped){
+            //Notification was received on device tray and tapped by the user.
+          }else{
+            //Notification was received in foreground. Maybe the user needs to be notified.
+          }
+        });
       }
 
       /* eslint-enable no-undef */

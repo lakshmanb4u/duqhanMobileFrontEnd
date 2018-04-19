@@ -43,7 +43,13 @@ angular
 
     ctrl.product = {};
     ctrl.tabActive = 'detail';
-
+    if (angular.isUndefined($localStorage.savedUser)) {
+        var url = $state.current.name;
+        var pid = $state.params.productId; 
+        $localStorage.url = url;
+        $localStorage.pid = pid;
+        $state.go('landing', {'url': url, 'pid': pid});
+    }
     /*----------  Get details of a product from backend  ----------*/
 
     ctrl.loadProductDetail = function (productId) {
@@ -321,22 +327,20 @@ angular
           Common.getConfirmation(title, cancelText, okText)
           .then(function (response) {
             if (response) {
-              $log.log(response);
               $localStorage.$reset();
-              $location.path('/store/guest-landing/' + $stateParams.productId);
+              var url = $state.current.name;
+              var pid = $state.params.productId; 
+              $localStorage.url = url;
+              $localStorage.pid = pid;
+              $state.go('landing', {'url': url, 'pid': pid});
             }
           })
           .catch(function (response) {
             $log.log(response);
           });
           return;
-        }
-      }
-      if (!$localStorage.savedUser) {
-        $localStorage.$reset();
-        $location.path('/store/guest-landing/' + $stateParams.productId);
-      }
-      if (ctrl.allSelected) {
+        }else{
+        if (ctrl.allSelected) {
         ctrl.clickonaddBag = false;
         var productSelected = {};
         productSelected.mapId = ctrl.mapId;
@@ -346,8 +350,8 @@ angular
         Store.addToCart(productSelected)
         .then(function (response) {
           var e = new Date().getTime();
-          			var t = e-s;
-          			Store.awsCloudWatch('JS Mob Add to cart','JS Mob add-to-cart',t);
+                var t = e-s;
+                Store.awsCloudWatch('JS Mob Add to cart','JS Mob add-to-cart',t);
           $log.log(response.data);
           if (response.data.status === 'success') {
             productSelected.response = 'Item Added to your Bag!';
@@ -399,6 +403,12 @@ angular
           template: 'Please choose all the options'
         });*/
       }
+      }
+      /*if (!$localStorage.savedUser) {
+        $localStorage.$reset();
+        $location.path('/store/guest-landing/' + $stateParams.productId);
+      }*/
+     }
     };
 
 

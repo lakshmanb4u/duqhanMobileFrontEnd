@@ -6,12 +6,14 @@ angular
     $location,
     $state,
     $localStorage,
+    $stateParams,
     $rootScope,
     $ionicAuth,
     $ionicFacebookAuth,
     $ionicUser,
     $cordovaGeolocation,
     $timeout,
+    $scope,
     Config,
     Auth,
     Store,
@@ -26,6 +28,11 @@ angular
       ctrl
     );
 
+    if(angular.isDefined($localStorage.savedUser)){
+      //if (JSON.parse($localStorage.savedUser).name == 'Guest User'){
+        $state.go('store.products.latest');
+      
+    };
     ctrl.user = {
       email: '',
       password: ''
@@ -38,16 +45,6 @@ angular
       socialLogin: false,
       userId: ''
     };
-
-    FCMPlugin.onNotification(function(data){
-    if(data.wasTapped){
-      //Notification was received on device tray and tapped by the user.
-      alert( JSON.stringify(data) );
-    }else{
-      //Notification was received in foreground. Maybe the user needs to be notified.
-      alert( JSON.stringify(data) );
-    }
-    });
 
     ctrl.loggingUser = {};
 
@@ -80,12 +77,14 @@ angular
         Config.ENV.USER.PROFILE_IMG = response.data.profileImg;
         $localStorage.savedUser = JSON.stringify(ctrl.savedUser);
         $rootScope.$emit('setUserDetailForMenu');
-        if (ctrl.savedUser.freeProductEligibility) {
-          // $state.go('store.freeProducts');
-          $state.go('store.products.latest');
-        } else {
-          $state.go('store.products.latest');
-        }
+        if ($stateParams.url != null){
+            var url = $stateParams.url;
+            var productId = $stateParams.pid;
+            //$location.path(url);
+            $state.go(url,{ 'productId': productId })
+          } else {
+            $state.go('store.products.latest');
+          }
       });
     };
     ctrl.internalLogin = function (user) {
@@ -153,9 +152,12 @@ angular
           Config.ENV.USER.PROFILE_IMG = response.data.profileImg;
           $localStorage.savedUser = JSON.stringify(ctrl.savedUser);
           $rootScope.$emit('setUserDetailForMenu');
-          if (ctrl.savedUser.freeProductEligibility) {
-            // $state.go('store.freeProducts');
-            $state.go('store.products.latest');
+          $localStorage.savedUser = JSON.stringify(ctrl.savedUser);
+          if ($stateParams.url != null){
+            var url = $stateParams.url;
+            var productId = $stateParams.pid;
+            //$location.path(url);
+            $state.go(url,{ 'productId': productId })
           } else {
             $state.go('store.products.latest');
           }
@@ -243,8 +245,11 @@ angular
                 Config.ENV.USER.PROFILE_IMG = ctrl.savedUser.profileImage;
                 $rootScope.$emit('setUserDetailForMenu');
                 $localStorage.savedUser = JSON.stringify(ctrl.savedUser);
-                if (ctrl.savedUser.freeProductEligibility) {
-                  $state.go('store.products.latest');
+                if ($stateParams.url != null){
+                  var url = $stateParams.url;
+                  var productId = $stateParams.pid;
+                  //$location.path(url);
+                  $state.go(url,{ 'productId': productId })
                 } else {
                   $state.go('store.products.latest');
                 }
@@ -311,8 +316,11 @@ angular
                 Config.ENV.USER.PROFILE_IMG = ctrl.savedUser.profileImage;
                 $rootScope.$emit('setUserDetailForMenu');
                 $localStorage.savedUser = JSON.stringify(ctrl.savedUser);
-                if (ctrl.savedUser.freeProductEligibility) {
-                  $state.go('store.products.latest');
+                if ($stateParams.url != null){
+                  var url = $stateParams.url;
+                  var productId = $stateParams.pid;
+                  //$location.path(url);
+                  $state.go(url,{ 'productId': productId })
                 } else {
                   $state.go('store.products.latest');
                 }
@@ -402,9 +410,11 @@ angular
             $log.log('FB picture ================');
             $log.log(img);
             $localStorage.savedUser = JSON.stringify(ctrl.savedUser);
-            if (ctrl.savedUser.freeProductEligibility) {
-              // $state.go('store.freeProducts');
-              $state.go('store.products.latest');
+            if ($stateParams.url != null){
+            var url = $stateParams.url;
+            var productId = $stateParams.pid;
+            //$location.path(url);
+            $state.go(url,{ 'productId': productId })
             } else {
               $state.go('store.products.latest');
             }
@@ -454,7 +464,7 @@ angular
     };
 
     // Call autologin
-    ctrl.autoLogin();
+    //ctrl.autoLogin();
 
     if (window.cordova) {
       // eslint-disable-next-line no-undef
@@ -463,7 +473,17 @@ angular
       intercom.setLauncherVisibility('VISIBLE');
     }
     // Catching calls from outside this controller
-    $rootScope.$on('internalLogin', function (event, user) {
+    $rootScope._internalLogin = function(user){
+        $log.log(event);
+       // $log.log('on internalLogin');
+        ctrl.internalLogin(user);
+    };
+    $rootScope._internalFacebookLogin = function(){
+        $log.log(event);
+        //$log.log('on internalFacebookLogin');
+        ctrl.internalFacebookLogin();
+    };
+    /*$rootScope.$on('internalLogin', function (event, user) {
       $log.log(event);
       $log.log('on internalLogin');
       ctrl.internalLogin(user);
@@ -472,7 +492,7 @@ angular
       $log.log(event);
       $log.log('on internalFacebookLogin');
       ctrl.internalFacebookLogin();
-    });
+    });*/
     $http.get('http://ip-api.com/json')
     .success(function (data) {
       console.log(data.countryCode);

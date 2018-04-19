@@ -22,16 +22,27 @@ angular
     /* Storing contextual this in a variable for easy access */
 
     var ctrl = this;
+    var promoCode = {
+      "grab10" : 10,
+      "duqhan15" : 15,
+      "special20" : 20,
+      "boom25" : 25,
+      "big40" : 40,
+    }
 
     /*----------  Storing cart object  ----------*/
-
+    ctrl.error = false;
     ctrl.cart = $stateParams.cart;
     ctrl.cart.orderTotal = 0;
     ctrl.cart.shippingTotal = 0;
+   // ctrl.cart.itemTotal = 0;
+    ctrl.cart.orderTotalWithShipping =
+    ctrl.cart.orderTotal + ctrl.cart.shippingTotal;
     angular.forEach(ctrl.cart.products, function (p, itr) {
       if (p.available) {
         ctrl.cart.orderTotal = ctrl.cart.orderTotal + p.discountedPrice * p.qty;
         ctrl.cart.shippingTotal = ctrl.cart.shippingTotal + p.shippingRate;
+        //ctrl.cart.itemTotal = ctrl.cart.itemTotal + p.price * p.qty;
       } else {
         ctrl.cart.products.splice(itr, 1);
       }
@@ -39,13 +50,25 @@ angular
     // angular.forEach(ctrl.cart.products, function (p) {
     //   ctrl.cart.shippingTotal = ctrl.cart.shippingTotal + p.shippingRate;
     // });
-    ctrl.cart.orderTotalWithShipping =
-      ctrl.cart.orderTotal + ctrl.cart.shippingTotal;
+    
 
     /*===========================================
     =            Get default address            =
     ===========================================*/
 
+    ctrl.applyPromo = function (code) {
+      console.log("in promo code",code);
+      if(promoCode[code]){
+        ctrl.cart.orderTotal = ctrl.cart.orderTotal-(ctrl.cart.orderTotal*(promoCode[code]/100));
+        ctrl.cart.orderTotalWithShipping =
+        ctrl.cart.orderTotal + ctrl.cart.shippingTotal;
+        ctrl.cart.discountTotal += (ctrl.cart.orderTotal*(promoCode[code]/100));
+        //ctrl.cart.discountPctTotal += promoCode[code];
+        ctrl.error = false;
+      }else{
+        ctrl.error = true;
+      }
+    };
     ctrl.getDefaultAddress = function () {
       var s = new Date().getTime();
       Store.getDefaultAddress()

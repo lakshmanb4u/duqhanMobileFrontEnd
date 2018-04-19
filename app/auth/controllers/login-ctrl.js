@@ -20,13 +20,15 @@ angular.module('auth')
       ctrl.responseCB = '';
       if (ctrl.loginForm.$valid) {
         ctrl.loginForm.submitted = true;
-        $rootScope.$emit('internalLogin', ctrl.user);
+        $rootScope._internalLogin(ctrl.user);
+        //$rootScope.$emit('internalLogin', ctrl.user);
       }
     }
   };
 
   ctrl.facebookLogin = function () {
-    $rootScope.$emit('internalFacebookLogin', ctrl.user);
+    $rootScope._internalFacebookLogin();
+    //$rootScope.$emit('internalFacebookLogin', ctrl.user);
   };
   $rootScope.$on('onLoginFail', function (event, response) {
     ctrl.responseCB = response;

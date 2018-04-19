@@ -13,7 +13,11 @@ angular.module('auth', [
     .state('landing', {
       url: '/landing',
       templateUrl: 'auth/templates/landing.html',
-      controller: 'UserCtrl as ctrl'
+      controller: 'UserCtrl as ctrl',
+      params:{
+        'url': null,
+        'pid': null
+      }
     })
     .state('signup', {
       url: '/signup',
