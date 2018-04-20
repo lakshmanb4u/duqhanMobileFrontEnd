@@ -16,7 +16,7 @@ angular
   .config(function ($stateProvider, $urlRouterProvider) {
     // $httpProvider.interceptors.push('HttpInterceptor');
     // ROUTING with ui.router
-    $urlRouterProvider.otherwise('/landing');
+    $urlRouterProvider.otherwise('/store/products/latest');
   })
   // ADD: initialize $ionicCloudProvider with app_id
   .config(function ($ionicCloudProvider) {

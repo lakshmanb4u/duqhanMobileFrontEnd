@@ -55,9 +55,11 @@ angular
     /*===========================================
     =            Get default address            =
     ===========================================*/
-
+    ctrl.promoFlag = true;
     ctrl.applyPromo = function (code) {
       console.log("in promo code",code);
+      if(ctrl.promoFlag){
+        ctrl.promoFlag = false;
       if(promoCode[code]){
         ctrl.cart.orderTotal = ctrl.cart.orderTotal-(ctrl.cart.orderTotal*(promoCode[code]/100));
         ctrl.cart.orderTotalWithShipping =
@@ -68,6 +70,7 @@ angular
       }else{
         ctrl.error = true;
       }
+      };
     };
     ctrl.getDefaultAddress = function () {
       var s = new Date().getTime();
