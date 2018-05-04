@@ -34,6 +34,9 @@ angular
     /*
     window.fabric.Crashlytics.addLog('about to send a crash for testing!');
     window.fabric.Crashlytics.sendCrash();*/
+    var Crashlytics = FirebaseCrashlytics.initialise();
+    Crashlytics.logException("my caught Exception");
+    // sample index.js
   })
   /*.config(function (FacebookProvider) {
     FacebookProvider.init('698576100317336');
@@ -41,7 +44,40 @@ angular
   .config(function ($ionicConfigProvider) {
     $ionicConfigProvider.scrolling.jsScrolling(false);
   })
-  .run(function ($ionicPlatform, $log, $rootScope, $state, $localStorage) {
+  .run(function ($ionicPlatform, $log, $rootScope, $state, $localStorage ,$location) {
+    var app = {
+      initialize: function() {
+        console.log("in initialize");
+        this.bindEvents();
+      },
+      bindEvents: function() {
+        console.log("in bindEvents");
+        document.addEventListener('deviceready', this.onDeviceReady, false);
+        document.addEventListener('resume', this.onDeviceResume, false);
+      },
+      onDeviceReady: function() {
+        console.log("in onDeviceReady");
+        app.handleBranch();
+      },
+      onDeviceResume: function() {
+        console.log("in onDeviceResume");
+        app.handleBranch();
+      },
+      handleBranch: function() {
+        // Branch initialization
+        console.log("in handleBranch");
+        Branch.initSession().then(function(data) {
+          if (data['+clicked_branch_link']) {
+            // read deep link data on click
+            console.log("depp link",data);
+            //$state.go('store.product', {'productId': 67702 })
+            location.href = data.$android_url;
+          }
+        });
+      }
+    };
+    console.log("------------------>app initialization");
+    app.initialize();
     if (angular.isUndefined($localStorage.savedUser)) {
       var obj ={
         email :'guest@gmail.com',
@@ -76,7 +112,10 @@ angular
           }
         });
       }
-
       /* eslint-enable no-undef */
     });
   });
+
+  function DeepLinkHandler(data){
+    console.log('here called....',data);
+  }

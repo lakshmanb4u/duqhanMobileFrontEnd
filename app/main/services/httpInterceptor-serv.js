@@ -51,6 +51,8 @@ angular
       },
       responseError: function (err) {
         if (err.status === 401) {
+          var Crashlytics = FirebaseCrashlytics.initialise();
+          Crashlytics.logException("my caught Exception");
           $rootScope.$emit('Unauthorized');
         }
         if (--loadingCount === 0) {

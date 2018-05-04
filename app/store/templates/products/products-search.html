@@ -24,13 +24,13 @@
         <div class="col col-50 m-product" ng-repeat="p in ctrl.products">
           <div class="product-preview" ui-sref="store.product.overview({productId: p.productId})">
             <!-- <span class="discount">{{p.discountPCT| number : 0}}%</span> -->
-            <span class="latest-box">{{p.discountPCT| number : 0}}%</span>
+            <span class="latest-box">{{p.discountPCT| number : 0}}% off</span>
             <div class="item-image">
               <img src="{{p.imgurl || 'store/assets/images/default.jpg' | cloudinaryThumbTransformation}}">
             </div>
             <div class="item p-xs b-t-n" style="font-family: 'Lato', sans-serif;color:#080809;">
-              <span style="font-size: 0.9em;">{{p.name}}</span>
-              <br/>
+              <span style="font-size: 0.9em;"></span>
+              <p style="font-size: 13px">Free Shipping | 3-4 Wks</p>
               <span style="font-size: 0.7em;">
                 <span style="color: #ff771c;font-family: 'Lato', sans-serif;">{{p.discountedPrice | currencySymbol:p.symbol}}</span> &nbsp;
                 <span style="color: #ff771c;text-decoration: line-through;font-family: 'Lato', sans-serif;">{{p.price}}</span>

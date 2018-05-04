@@ -206,12 +206,12 @@ angular
       var userDetails = {};
       var img = null;
       var posOptions = { timeout: 1000, enableHighAccuracy: false };
-      if (window.cordova) {
+      /*if (window.cordova) {
         FCMPlugin.getToken( function (token) {
            user.fcmToken = token;
            q.resolve(user);
          });
-       }; 
+       }; */
       $cordovaGeolocation
         .getCurrentPosition(posOptions)
         .then(
@@ -236,10 +236,8 @@ angular
               img = userDetails.picture.data.url;//$ionicUser.social.facebook.data.profile_picture;
               if (window.cordova) {
                 FCMPlugin.getToken( function (token) {
-                   fbUser.fcmToken = token;
-                 });
-               }; 
-              Auth.fbLogin(fbUser).then(function(res1){
+                fbUser.fcmToken = token;
+                Auth.fbLogin(fbUser).then(function(res1){
                 var e = new Date().getTime();
                 var t = e-s;
                 Store.awsCloudWatch('JS Mob Fb login','JS Mob fb-login',t);
@@ -285,6 +283,8 @@ angular
                 }, 1000);
               }
             })
+                 });
+               }; 
             //return Firebase.includeFCMToken(fbUser);
             }, function(err){
               console.log("err-", err);
@@ -312,9 +312,7 @@ angular
               if (window.cordova) {
                 FCMPlugin.getToken( function (token) {
                    fbUser.fcmToken = token;
-                 });
-               };
-              Auth.fbLogin(fbUser).then(function(res1){
+                   Auth.fbLogin(fbUser).then(function(res1){
                 var e = new Date().getTime();
                 var t = e-s;
                 Store.awsCloudWatch('JS Mob Fb login','JS Mob fb-login',t);
@@ -360,6 +358,8 @@ angular
                 }, 1000);
               }
             })
+                 });
+               };
             //return Firebase.includeFCMToken(fbUser);
             }, function(err){
               console.log("err-", err);
