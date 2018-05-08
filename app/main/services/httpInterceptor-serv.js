@@ -10,6 +10,7 @@ angular
     $rootScope
   ) {
     var loadingCount = 0;
+    var flag = false;
     return {
       request: function (config) {
         if (!Config.ENV.USER.AUTH_TOKEN) {
@@ -54,7 +55,9 @@ angular
           var Crashlytics = FirebaseCrashlytics.initialise();
           Crashlytics.logException("my caught Exception");
           if(err.config.url == "https://duqhan.com/api/user/get-product") {
+          if(flag == false) {
             $rootScope.$emit('Unauthorized');
+            flag = true;
           }
         }
         if (--loadingCount === 0) {
