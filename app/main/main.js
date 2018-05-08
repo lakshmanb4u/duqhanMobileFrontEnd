@@ -44,7 +44,7 @@ angular
   .config(function ($ionicConfigProvider) {
     $ionicConfigProvider.scrolling.jsScrolling(false);
   })
-  .run(function ($ionicPlatform, $log, $rootScope, $state, $localStorage ,$location) {
+  .run(function ($ionicPlatform, $log, $rootScope, $state, $localStorage ,$location, Auth, Config, $stateParams) {
     var app = {
       initialize: function() {
         console.log("in initialize");
@@ -78,6 +78,36 @@ angular
     };
     console.log("------------------>app initialization");
     app.initialize();
+    
+    $rootScope.$on('Unauthorized', function (event, response) {
+      console.log("Unauthorized....");
+      var savedUser = JSON.parse($localStorage.savedUser);
+      Auth.logout(savedUser);
+      var user = {};
+      Auth.guestLogin(user).then(function (response) {
+        $log.log(response);
+        savedUser.email = response.data.email;
+        savedUser.password = user.password;
+        savedUser.name = response.data.name;
+        savedUser.authtoken = response.data.authtoken;
+        savedUser.profileImage = response.data.profileImg;
+        savedUser.freeProductEligibility = response.data.freeProductEligibility;
+        Config.ENV.USER.AUTH_TOKEN = response.data.authtoken;
+        Config.ENV.USER.NAME = response.data.name;
+        Config.ENV.USER.PROFILE_IMG = response.data.profileImg;
+        $localStorage.savedUser = JSON.stringify(savedUser);
+        $rootScope.$emit('setUserDetailForMenu');
+        /*if ($stateParams.url != null){
+            var url = $stateParams.url;
+            var productId = $stateParams.pid;
+            //$location.path(url);
+            $state.go(url,{ 'productId': productId })
+          } else {*/
+            //$state.go('store.products.latest');
+            $state.reload();
+          //}
+      });
+    });
     if (angular.isUndefined($localStorage.savedUser)) {
       var obj ={
         email :'guest@gmail.com',

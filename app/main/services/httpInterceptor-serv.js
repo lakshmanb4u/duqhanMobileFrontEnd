@@ -53,7 +53,9 @@ angular
         if (err.status === 401) {
           var Crashlytics = FirebaseCrashlytics.initialise();
           Crashlytics.logException("my caught Exception");
-          $rootScope.$emit('Unauthorized');
+          if(err.config.url == "https://duqhan.com/api/user/get-product") {
+            $rootScope.$emit('Unauthorized');
+          }
         }
         if (--loadingCount === 0) {
           $rootScope.$broadcast('loading:finish');
