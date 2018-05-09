@@ -45,6 +45,10 @@ angular
     $ionicConfigProvider.scrolling.jsScrolling(false);
   })
   .run(function ($ionicPlatform, $log, $rootScope, $state, $localStorage ,$location, Auth, Config, $stateParams) {
+    if (window.cordova) {
+      intercom.registerUnidentifiedUser();
+      intercom.setLauncherVisibility('VISIBLE');
+    }
     var app = {
       initialize: function() {
         console.log("in initialize");
@@ -116,6 +120,25 @@ angular
         authtoken :'dukhan123'
       }
       $localStorage.savedUser =  JSON.stringify(obj); 
+    }
+    if (angular.isDefined($localStorage.savedUser)) {
+      var savedUser = JSON.parse($localStorage.savedUser);
+      if (savedUser.email != 'guest@gmail.com') {
+        if (window.cordova) {
+            intercom.reset();
+            intercom.registerIdentifiedUser(
+              {
+                userId: savedUser.userId,
+                email: savedUser.email
+              }
+            );
+            intercom.updateUser({
+              custom_attributes: {
+                customer_name: savedUser.name
+              }
+            });
+          }
+      }
     }
     $rootScope.$state = $state;
     $ionicPlatform.ready(function () {
