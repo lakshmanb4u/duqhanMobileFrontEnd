@@ -12,8 +12,8 @@
           <span ng-if="ctrl.productSelected.size.sizeText">Size: {{ctrl.productSelected.size.sizeText}}, </span>
           <span ng-if="ctrl.productSelected.size.sizeColor.colorText">Color: {{ctrl.productSelected.size.sizeColor.colorText}}</span>
         </p>
-        <h4 class="positive text-italic" ng-if="ctrl.productSelected.size">You have saved Rs.{{ctrl.productSelected.size.sizeColor.orginalPrice - ctrl.productSelected.size.sizeColor.salesPrice}}</h4>
-        <h4 class="positive text-italic" ng-if="!ctrl.productSelected.size">You have saved Rs.{{ctrl.product.orginalPrice - ctrl.product.salesPrice}}</h4>
+        <h4 class="positive text-italic" ng-if="ctrl.productSelected.size">You have saved {{ctrl.productSelected.size.sizeColor.orginalPrice - ctrl.productSelected.size.sizeColor.salesPrice | currencySymbol:ctrl.product.symbol}}</h4>
+        <h4 class="positive text-italic" ng-if="!ctrl.productSelected.size">You have saved {{ctrl.product.orginalPrice - ctrl.product.salesPrice | currencySymbol:ctrl.product.symbol}}</h4>
       </ion-item>
     </ion-list>
     <div class="button-bar bar-energized">
