@@ -507,9 +507,8 @@ angular
       $log.log('on internalFacebookLogin');
       ctrl.internalFacebookLogin();
     });*/
-    $http.get('http://ip-api.com/json')
+    $http.get('https://api.ipdata.co')
     .success(function (data) {
-      console.log(data.countryCode);
-      ctrl.countryCode = data.countryCode;
+      ctrl.countryCode = data.country_code;
     });
   });

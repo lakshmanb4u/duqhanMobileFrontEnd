@@ -11,7 +11,9 @@ angular.module('store')
   BusyLoader,
   Store,
   Config,
-  $ionicHistory
+  $ionicHistory,
+  $localStorage,
+  $http
 ) {
 
   /* Storing contextual this in a variable for easy access */
@@ -126,8 +128,15 @@ angular.module('store')
   };
 
   /*----------  call the function at the time of initialization  ----------*/
-
-  ctrl.loadLatestProductList();
+  if($localStorage.countryCode){
+    ctrl.loadLatestProductList();
+  }else{
+    $http.get('https://api.ipdata.co')
+    .success(function(data) {
+    $localStorage.countryCode = data.country_code;
+    ctrl.loadLatestProductList();
+  });
+  }
 
   /*----------  Get the latest or recent products depending on which page user is in  ----------*/
 

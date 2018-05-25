@@ -28,6 +28,7 @@ angular
           Config.ENV.USER.AUTH_TOKEN
         ) {
           config.headers['X-Auth-Token'] = Config.ENV.USER.AUTH_TOKEN;
+          config.headers['X-Country-Code']=$localStorage.countryCode;
         }
         if (++loadingCount === 1) {
           $rootScope.$broadcast('loading:progress');

@@ -44,7 +44,7 @@ angular
   .config(function ($ionicConfigProvider) {
     $ionicConfigProvider.scrolling.jsScrolling(false);
   })
-  .run(function ($ionicPlatform, $log, $rootScope, $state, $localStorage ,$location, Auth, Config, $stateParams) {
+  .run(function ($ionicPlatform, $log, $rootScope, $state, $localStorage ,$location, Auth, Config, $stateParams, $http) {
     if (window.cordova) {
       intercom.registerUnidentifiedUser();
       intercom.setLauncherVisibility('VISIBLE');
@@ -83,11 +83,17 @@ angular
     console.log("------------------>app initialization");
     app.initialize();
     
+    $http.get('https://api.ipdata.co')
+    .success(function(data) {
+      $localStorage.countryCode = data.country_code;
+    });
+    
     $rootScope.$on('Unauthorized', function (event, response) {
       console.log("Unauthorized....");
       var savedUser = JSON.parse($localStorage.savedUser);
       Auth.logout(savedUser);
       var user = {};
+      $scope.countryCode = ctrl.countryCode;
       Auth.guestLogin(user).then(function (response) {
         $log.log(response);
         savedUser.email = response.data.email;

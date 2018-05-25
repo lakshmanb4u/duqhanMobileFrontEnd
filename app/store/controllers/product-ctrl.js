@@ -19,7 +19,8 @@ angular
     $window,
     Common,
     Auth,
-    BusyLoader
+    BusyLoader,
+    $http
   ) {
     /* Storing contextual this in a variable for easy access */
 
@@ -134,8 +135,10 @@ angular
     ctrl.productId = $stateParams.productId;
 
     /*----------  call the function at the time of initialization  ----------*/
-
+  
     ctrl.loadProductDetail($stateParams.productId);
+    
+    
     /*=====  End of Get product details  ======*/
 
     /*==================================================
