@@ -1,4 +1,4 @@
-<ion-side-menus enable-menu-with-back-views="false">
+<ion-side-menus enable-menu-with-back-views="true">
 
   <!-- CONTENT -->
   <ion-side-menu-content>
@@ -7,10 +7,11 @@
     <!-- the nav bar will be updated as we navigate between views -->
     <ion-nav-bar align-title="left" class="bar-energized">
       <!-- back button, shown if applicable -->
-      <ion-nav-back-button>
-      </ion-nav-back-button>
+     <!--  <ion-nav-back-button>
+      </ion-nav-back-button> -->
       <!-- nav button, shown if applicable -->
       <ion-nav-buttons side="left">
+      <button ng-if="!($state.includes('store.products.latest'))" ng-click="$ionicGoBack()" class="ion-custom-back"></button>
         <button class="ion-custom-navicon" menu-toggle="primary"></button>
         <button class="ion-custom-icon" ng-click="menu.goToRoot()"></button>
       </ion-nav-buttons>

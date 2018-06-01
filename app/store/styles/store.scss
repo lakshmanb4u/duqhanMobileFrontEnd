@@ -1764,6 +1764,17 @@ div.hscroller-card-animated-11 {
 	top: -5px;
 }
 
+.bar button.ion-custom-back {
+  background: url(../assets/images/back.png) no-repeat center center;
+  border: none;
+  padding: 0;
+  width: 25px;
+  height: 43px;
+  background-size: 22px auto;
+  position: relative;
+  top: -5px;
+}
+
 .bar button.ion-custom-search {
 	background: url(../assets/images/search-icon.png) no-repeat center center;
 	border: none;
@@ -1807,7 +1818,7 @@ div.hscroller-card-animated-11 {
   background: url(../assets/images/icon.png) no-repeat center center;
   border: none;
   padding: 0;
-  width: 60px;
+  width: 40px;
   height: 44px;
   background-size: 30px auto;
   position: relative;

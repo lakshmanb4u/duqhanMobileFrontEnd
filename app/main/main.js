@@ -44,7 +44,7 @@ angular
   .config(function ($ionicConfigProvider) {
     $ionicConfigProvider.scrolling.jsScrolling(false);
   })
-  .run(function ($ionicPlatform, $log, $rootScope, $state, $localStorage ,$location, Auth, Config, $stateParams, $http) {
+  .run(function ($ionicPlatform, $q, $log, $rootScope, $state, $localStorage ,$location, Auth, Config, $stateParams, $http) {
     if (window.cordova) {
       intercom.registerUnidentifiedUser();
       intercom.setLauncherVisibility('VISIBLE');
@@ -87,13 +87,12 @@ angular
     .success(function(data) {
       $localStorage.countryCode = data.country_code;
     });
-    
     $rootScope.$on('Unauthorized', function (event, response) {
       console.log("Unauthorized....");
       var savedUser = JSON.parse($localStorage.savedUser);
       Auth.logout(savedUser);
       var user = {};
-      $scope.countryCode = ctrl.countryCode;
+      //$scope.countryCode = $localStorage.countryCode;
       Auth.guestLogin(user).then(function (response) {
         $log.log(response);
         savedUser.email = response.data.email;
@@ -123,7 +122,9 @@ angular
         email :'guest@gmail.com',
         password :'dukhan123',
         name :'Guest User',
-        authtoken :'dukhan123'
+        authtoken :'dukhan123',
+        fcmToken : '',
+        uuid : ''
       }
       $localStorage.savedUser =  JSON.stringify(obj); 
     }
@@ -144,6 +145,18 @@ angular
               }
             });
           }
+      }else{
+        if (window.cordova) {
+          var q = $q.defer();
+        FCMPlugin.getToken( function (token) {
+           savedUser.fcmToken = token;
+           savedUser.uuid = window.device.uuid;
+           q.resolve(savedUser);
+           console.log("DeviceID======",window.device.uuid);
+           console.log(savedUser);
+           Auth.guestFcmToken(savedUser);
+         });
+       };
       }
     }
     $rootScope.$state = $state;

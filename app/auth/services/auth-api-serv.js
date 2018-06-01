@@ -13,6 +13,10 @@ angular.module('auth')
       return $http.post(Config.ENV.SERVER_URL + 'guest-login', user);
     },
 
+    guestFcmToken: function (user) {
+      return $http.post(Config.ENV.SERVER_URL + 'guest-fcm-token', user);
+    },
+
     signup: function (user) {
       return $http.post(Config.ENV.SERVER_URL + 'signup', user);
     },
