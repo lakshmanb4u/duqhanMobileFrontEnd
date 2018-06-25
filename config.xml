@@ -95,5 +95,7 @@
         <link-domain value="6t23.app.link" />
         <ios-team-release value="H8XNU3K88B" />
     </branch-config>
+    <plugin name="cordova-plugin-google-analytics" spec="~1.8.3" />
+   
     <engine name="android" spec="~6.1.2" />
 </widget>

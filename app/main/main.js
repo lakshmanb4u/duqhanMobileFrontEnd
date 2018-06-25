@@ -61,6 +61,14 @@ angular
       },
       onDeviceReady: function() {
         console.log("in onDeviceReady");
+        setTimeout(function(){
+        if (typeof window.analytics !== undefined){
+            window.ga.startTrackerWithId('UA-120903553-1');
+         }
+         else {
+            console.log("error in analytics");
+         }
+       },3000);
         app.handleBranch();
       },
       onDeviceResume: function() {
@@ -83,10 +91,17 @@ angular
     console.log("------------------>app initialization");
     app.initialize();
     
-    $http.get('https://api.ipdata.co')
-    .success(function(data) {
-      $localStorage.countryCode = data.country_code;
-    });
+    if($localStorage.countryCode){
+
+    } else {
+        $http.get('https://api.ipdata.co')
+      .success(function(data) {
+        $localStorage.countryCode = data.country_code;
+      })
+      .error(function(data){
+          $localStorage.countryCode = "IN";
+      });
+    }
     $rootScope.$on('Unauthorized', function (event, response) {
       console.log("Unauthorized....");
       var savedUser = JSON.parse($localStorage.savedUser);
@@ -145,10 +160,10 @@ angular
               }
             });
           }
-      }else{
-        if (window.cordova) {
-          var q = $q.defer();
-        FCMPlugin.getToken( function (token) {
+      }
+      if (window.cordova) {
+           var q = $q.defer();
+           FCMPlugin.getToken(function (token) {
            savedUser.fcmToken = token;
            savedUser.uuid = window.device.uuid;
            q.resolve(savedUser);
@@ -157,7 +172,6 @@ angular
            Auth.guestFcmToken(savedUser);
          });
        };
-      }
     }
     $rootScope.$state = $state;
     $ionicPlatform.ready(function () {

@@ -51,7 +51,6 @@ angular
     //   ctrl.cart.shippingTotal = ctrl.cart.shippingTotal + p.shippingRate;
     // });
     
-
     /*===========================================
     =            Get default address            =
     ===========================================*/
@@ -383,6 +382,32 @@ angular
             $cordovaFacebook.logPurchase(ctrl.cart.orderTotalWithShipping, 'INR');
             $analytics.eventTrack('Purchase', { currency: 'INR', value: ctrl.cart.orderTotalWithShipping });
             $rootScope.$emit('setNotification', notification);
+            var contents = [];
+            angular.forEach(ctrl.cart.products, function (p) {
+                contents.push({
+                      id: p.productId,
+                      quantity: p.qty,
+                      item_price: p.discountedPrice
+                })
+              });
+           !function (f, b, e, v, n, t, s) {
+            if (f.fbq) return; n = f.fbq = function () {
+              n.callMethod ?
+                n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+            };
+            if (!f._fbq) f._fbq = n; n.push = n; n.loaded = !0; n.version = '2.0';
+            n.queue = []; t = b.createElement(e); t.async = !0;
+            t.src = v; s = b.getElementsByTagName(e)[0];
+            s.parentNode.insertBefore(t, s)
+            }(window, document, 'script',
+              'https://connect.facebook.net/en_US/fbevents.js');
+            fbq('init', '1612756512132293');
+            fbq('track', 'Purchase', {
+              value: ctrl.cart.orderTotal,
+              currency: 'INR',
+              content_type: 'product',
+              contents : contents
+            });
           } else if (response.data.status === 'retry') {
             $state.go('store.cart');
             notification.type = 'failure';
@@ -399,6 +424,26 @@ angular
           $log.log(error);
         });
     };
+
+    /*facebook pixel code*/
+         !function (f, b, e, v, n, t, s) {
+      if (f.fbq) return; n = f.fbq = function () {
+        n.callMethod ?
+          n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+      };
+      if (!f._fbq) f._fbq = n; n.push = n; n.loaded = !0; n.version = '2.0';
+      n.queue = []; t = b.createElement(e); t.async = !0;
+      t.src = v; s = b.getElementsByTagName(e)[0];
+      s.parentNode.insertBefore(t, s)
+    }(window, document, 'script',
+      'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '1612756512132293');
+    fbq('track', 'InitiateCheckout', {
+            value: ctrl.cart.orderTotal,
+            currency: 'INR',
+            content_type: "product",
+      });
+      /*facebook pixel code End*/
 
     /*=====  End of Payment section  ======*/
 

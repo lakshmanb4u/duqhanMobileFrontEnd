@@ -35,7 +35,6 @@ angular
     $log.log('Current location ==============================');
     $log.log($location.path());
     $log.log('Current location ==============================');
-
     /*=============================================
     =            Get product details            =
     =============================================*/
@@ -52,7 +51,6 @@ angular
         $state.go('landing', {'url': url, 'pid': pid});
     }
     /*----------  Get details of a product from backend  ----------*/
-
     ctrl.loadProductDetail = function (productId) {
       var productParam = { productId: productId };
       BusyLoader.show();
@@ -87,6 +85,28 @@ angular
           if (ctrl.product.properties.length === 0) {
             ctrl.checkSelectedProperties();
           }
+      /*facebook pixel code*/
+         /*facebook pixel code*/
+         !function (f, b, e, v, n, t, s) {
+        if (f.fbq) return; n = f.fbq = function () {
+          n.callMethod ?
+            n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+        };
+        if (!f._fbq) f._fbq = n; n.push = n; n.loaded = !0; n.version = '2.0';
+        n.queue = []; t = b.createElement(e); t.async = !0;
+        t.src = v; s = b.getElementsByTagName(e)[0];
+        s.parentNode.insertBefore(t, s)
+      }(window, document, 'script',
+        'https://connect.facebook.net/en_US/fbevents.js');
+      fbq('init', '1612756512132293');
+        fbq('track', 'ViewContent', {
+            value: ctrl.product.salesPrice,
+            currency: 'INR',
+            content_ids: ctrl.product.productId,
+            content_type: "product",
+          });
+      /*facebook pixel code End*/
+      /*facebook pixel code End*/
           ctrl.saveRecentRecord($stateParams.productId);
           ctrl.getLikeUnlike($stateParams.productId);
         })
@@ -360,6 +380,27 @@ angular
             productSelected.response = 'Item Added to your Bag!';
             ctrl.openModal(productSelected, product);
             $rootScope.$emit('getCartTotalNumber');
+             /*facebook pixel code*/
+          !function (f, b, e, v, n, t, s) {
+                if (f.fbq) return; n = f.fbq = function () {
+                  n.callMethod ?
+                    n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+                };
+                if (!f._fbq) f._fbq = n; n.push = n; n.loaded = !0; n.version = '2.0';
+                n.queue = []; t = b.createElement(e); t.async = !0;
+                t.src = v; s = b.getElementsByTagName(e)[0];
+                s.parentNode.insertBefore(t, s)
+              }(window, document, 'script',
+                'https://connect.facebook.net/en_US/fbevents.js');
+              fbq('init', '1612756512132293');
+                fbq('track', 'AddToCart', {
+            value: ctrl.product.salesPrice,
+            currency: 'INR',
+            content_ids: ctrl.product.productId,
+            content_type: "product",
+          });
+
+      /*facebook pixel code End*/
           } else if (response.data.status === 'Product already added') {
             productSelected.response = 'Item is already in the Bag!';
             ctrl.openModal(productSelected, product);

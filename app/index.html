@@ -49,9 +49,39 @@
   <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=698576100317336&ev=PageView&noscript=1"
     /></noscript> --> 
   <!-- End Facebook Pixel Code -->
+  <!-- Facebook Pixel Code -->
+   <script>
+   !function (f, b, e, v, n, t, s) {
+      if (f.fbq) return; n = f.fbq = function () {
+        n.callMethod ?
+          n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+      };
+      if (!f._fbq) f._fbq = n; n.push = n; n.loaded = !0; n.version = '2.0';
+      n.queue = []; t = b.createElement(e); t.async = !0;
+      t.src = v; s = b.getElementsByTagName(e)[0];
+      s.parentNode.insertBefore(t, s)
+    }(window, document, 'script',
+      'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '1612756512132293');
+    fbq('track', 'PageView');
+  </script>
+  <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=1612756512132293&ev=PageView&noscript=1"
+  /></noscript>  
+  <!-- End Facebook Pixel Code -->
+  <script src="cordova.js"></script>
+
 </head>
 
 <body>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-120903553-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-120903553-1');
+  </script>
 
   <!-- the nav bar will be updated as we navigate between views -->
   <!-- <ion-nav-bar> can be removed when using sidemenu (contained in menu.html) -->
@@ -65,7 +95,6 @@
  
 </body>
 <!-- will be a 404 during development -->
-  <script src="cordova.js"></script>
 
   <!-- build:js scripts/vendor.js -->
   <!-- bower:js -->

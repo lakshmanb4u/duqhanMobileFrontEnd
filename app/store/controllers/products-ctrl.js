@@ -28,7 +28,23 @@ angular.module('store')
   ========================================*/
 
   /*----------  Initialize products object  ----------*/
+  //$cordovaGoogleAnalytics.startTrackerWithId('UA-120903553-1');
+  //$cordovaGoogleAnalytics.trackView('Home Screen');
+ /* setTimeout(function(){
 
+      window.ga.startTrackerWithId('UA-120903553-1',30,
+                   function(success){
+                     alert(JSON.stringify(success));
+                   },
+                   function(error){
+                     alert(JSON.stringify(error));
+                  }); 
+
+ }, 3000); */
+    setTimeout(function(){
+      window.ga.trackView('Home Screen');
+    },4000);
+    
   ctrl.products = [];
   ctrl.start = 0;
   ctrl.page = 0;
@@ -135,7 +151,10 @@ angular.module('store')
     .success(function(data) {
     $localStorage.countryCode = data.country_code;
     ctrl.loadLatestProductList();
-  });
+  })
+    .error(function(data){
+        $localStorage.countryCode = "IN";
+    });
   }
 
   /*----------  Get the latest or recent products depending on which page user is in  ----------*/

@@ -507,8 +507,16 @@ angular
       $log.log('on internalFacebookLogin');
       ctrl.internalFacebookLogin();
     });*/
+
+    if($localStorage.countryCode){
+
+    } else {  
     $http.get('https://api.ipdata.co')
-    .success(function (data) {
-      ctrl.countryCode = data.country_code;
-    });
+      .success(function (data) {
+        ctrl.countryCode = data.country_code;
+      })
+      .error(function(data){
+        ctrl.countryCode = "IN";
+      });
+    }
   });
