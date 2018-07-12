@@ -96,6 +96,13 @@ angular
           		Store.awsCloudWatch('JS Mob Get category','JS Mob get-child-category',t);
           ctrl.categories = categories.categoryDtos;
           ctrl.categoryName = categories.categoryName;
+          setTimeout(function(){
+                    if (typeof window.ga !== undefined){
+                    window.ga.trackView(ctrl.categoryName);
+                    window.ga.trackEvent(ctrl.categoryName, 'CategoryProducts');
+                    console.log("GA Object",window.ga);
+                    }
+                  },3000);
           var array = categories.parentPath.split('=');
           if (array.length >= 3) {
             ctrl.isThirdLevelCategory = true;

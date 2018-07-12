@@ -22,6 +22,13 @@ angular.module('store')
       var s = new Date().getTime();
       Store.getCart()
         .then(function (response) {
+          setTimeout(function(){
+                      if (typeof window.ga !== undefined){
+                      window.ga.trackView('Cart Screen');
+                      window.ga.trackEvent('Cart', 'Viewed');
+                      console.log("GA Object",window.ga);
+                      }
+                    },1000);
           var e = new Date().getTime();
           var t = e-s;
           Store.awsCloudWatch('JS Mob Cart','JS Mob cart',t);

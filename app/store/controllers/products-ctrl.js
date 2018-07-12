@@ -28,22 +28,14 @@ angular.module('store')
   ========================================*/
 
   /*----------  Initialize products object  ----------*/
-  //$cordovaGoogleAnalytics.startTrackerWithId('UA-120903553-1');
-  //$cordovaGoogleAnalytics.trackView('Home Screen');
- /* setTimeout(function(){
 
-      window.ga.startTrackerWithId('UA-120903553-1',30,
-                   function(success){
-                     alert(JSON.stringify(success));
-                   },
-                   function(error){
-                     alert(JSON.stringify(error));
-                  }); 
-
- }, 3000); */
     setTimeout(function(){
-      window.ga.trackView('Home Screen');
-    },4000);
+          if (typeof window.ga !== undefined){
+          window.ga.trackView('Home Screen');
+          window.ga.trackEvent('Home', 'Viewed');
+          console.log("GA Object",window.ga);
+          }
+        },5000);
     
   ctrl.products = [];
   ctrl.start = 0;
@@ -132,6 +124,7 @@ angular.module('store')
 
   /*----------  Load more products  ----------*/
   ctrl.loadMore = function () {
+    
     if (!ctrl.noMoreItemsAvailable) {
       ctrl.noMoreItemsAvailable = true;
       $scope.$broadcast('scroll.infiniteScrollComplete');

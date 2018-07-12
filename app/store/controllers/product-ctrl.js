@@ -62,6 +62,13 @@ angular
           	Store.awsCloudWatch('JS Mob Get product details','JS Mob get-product-detail',t);
           $log.log(response.data);
           ctrl.product = response.data;
+          setTimeout(function(){
+                                if (typeof window.ga !== undefined){
+                                window.ga.trackView(ctrl.product.categoryName);
+                                window.ga.trackEvent(ctrl.product.categoryName, 'Viewed');
+                                console.log("GA Object",window.ga);
+                                }
+                              },4000);
           $log.log(ctrl.images);
           $log.log(ctrl.product.images);
           var sizeArr = [];

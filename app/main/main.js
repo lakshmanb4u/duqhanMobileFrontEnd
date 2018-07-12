@@ -62,13 +62,16 @@ angular
       onDeviceReady: function() {
         console.log("in onDeviceReady");
         setTimeout(function(){
-        if (typeof window.analytics !== undefined){
-            window.ga.startTrackerWithId('UA-120903553-1');
+        if (typeof window.ga !== undefined){
+            console.log("Ga Object",window.ga);
+            window.ga.startTrackerWithId('UA-120903553-1', 30);
+            window.ga.debugMode();
+            //window.ga.trackView('Home Screen');
          }
          else {
             console.log("error in analytics");
          }
-       },3000);
+       },4000);
         app.handleBranch();
       },
       onDeviceResume: function() {
