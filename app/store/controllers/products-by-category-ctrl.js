@@ -99,7 +99,7 @@ angular
           setTimeout(function(){
                     if (typeof window.ga !== undefined){
                     window.ga.trackView(ctrl.categoryName);
-                    window.ga.trackEvent(ctrl.categoryName, 'CategoryProducts');
+                    window.ga.trackEvent("Product","Viewed",ctrl.categoryName);
                     console.log("GA Object",window.ga);
                     }
                   },3000);

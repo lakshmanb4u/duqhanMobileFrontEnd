@@ -29,7 +29,13 @@
       <div class="error-container" ng-show="ctrl.addAddressForm.zipCode.$error && ctrl.addAddressForm.$submitted" ng-messages="ctrl.addAddressForm.zipCode.$error">
         <div ng-messages-include="error-list.html"></div>
       </div>
-
+       <ion-item class="item item-input item-stacked-label" ng-class="{ 'has-errors' : ctrl.addAddressForm.houseNo.$invalid, 'no-errors' : ctrl.addAddressForm.houseNo.$valid}">
+        <span class="input-label">House No</span>
+        <input name="houseNo" type="number" placeholder="House no" ng-model="ctrl.addressDTO.houseNo" required="">
+      </ion-item>
+       <div class="error-container" ng-show="ctrl.addAddressForm.houseNo.$error && ctrl.addAddressForm.$submitted" ng-messages="ctrl.addAddressForm.houseNo.$error">
+        <div ng-messages-include="error-list.html"></div>
+      </div>
       <ion-item class="item item-input item-stacked-label" ng-class="{ 'has-errors' : ctrl.addAddressForm.streetOne.$invalid, 'no-errors' : ctrl.addAddressForm.streetOne.$valid}">
         <span class="input-label">Street</span>
         <input name="streetOne" type="text" placeholder="Street 1" ng-model="ctrl.addressDTO.streetOne" required="">

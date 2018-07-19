@@ -41,9 +41,27 @@ angular.module('store')
           }
         });
       },
+      searchAutoComplete: function (param) {
+       // return $http.get('dummy/products.json');
+       return $http.post(Config.ENV.SERVER_URL + 'user/search-autoComplete', param, {
+         transformResponse: function (response) {
+           var data = JSON.parse(response);
+           return data;
+         }
+       });
+     },
       searchProduct: function (param) {
         // return $http.get('dummy/products.json');
         return $http.post(Config.ENV.SERVER_URL + 'user/search-product', param, {
+          transformResponse: function (response) {
+            var data = JSON.parse(response);
+            return data;
+          }
+        });
+      },
+      getPriceFilter: function (param) {
+        // return $http.get('dummy/products.json');
+        return $http.post(Config.ENV.SERVER_URL + 'user/get-price-filter', param, {
           transformResponse: function (response) {
             var data = JSON.parse(response);
             return data;

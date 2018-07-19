@@ -104,6 +104,7 @@ angular
       .error(function(data){
           $localStorage.countryCode = "IN";
       });
+      //$localStorage.countryCode = "IN";
     }
     $rootScope.$on('Unauthorized', function (event, response) {
       console.log("Unauthorized....");

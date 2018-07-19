@@ -64,8 +64,8 @@ angular
           ctrl.product = response.data;
           setTimeout(function(){
                                 if (typeof window.ga !== undefined){
-                                window.ga.trackView(ctrl.product.categoryName);
-                                window.ga.trackEvent(ctrl.product.categoryName, 'Viewed');
+                                window.ga.trackView(ctrl.product.name);
+                                window.ga.trackEvent("Product","Viewed",ctrl.product.name);
                                 console.log("GA Object",window.ga);
                                 }
                               },4000);
@@ -387,6 +387,13 @@ angular
             productSelected.response = 'Item Added to your Bag!';
             ctrl.openModal(productSelected, product);
             $rootScope.$emit('getCartTotalNumber');
+            setTimeout(function(){
+                if (typeof window.ga !== undefined){
+                window.ga.trackView(ctrl.product.name);
+                window.ga.trackEvent('Product','Add To Cart',ctrl.product.name);
+                console.log("GA Object",window.ga);
+                }
+            },4000);
              /*facebook pixel code*/
           !function (f, b, e, v, n, t, s) {
                 if (f.fbq) return; n = f.fbq = function () {

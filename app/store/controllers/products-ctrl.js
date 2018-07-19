@@ -147,6 +147,7 @@ angular.module('store')
   })
     .error(function(data){
         $localStorage.countryCode = "IN";
+        ctrl.loadLatestProductList();
     });
   }
 
