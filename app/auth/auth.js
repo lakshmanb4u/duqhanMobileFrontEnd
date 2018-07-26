@@ -1,6 +1,7 @@
 'use strict';
 angular.module('auth', [
   'ionic',
+  'ionicImgCache',
   'ngCordova',
   'ui.router',
   'ngMessages'

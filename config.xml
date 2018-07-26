@@ -14,6 +14,9 @@
     <hook src="./customhooks/after_plugin_install/after_plugin_install.js" type="after_platform_add" />
     <platform name="android">
         <allow-intent href="market:*" />
+        <allow-intent href="cdvfile://*" />
+        <access origin="cdvfile://*" />
+        <preference name="AndroidPersistentFileLocation" value="Compatibility" />
         <icon density="ldpi" src="resources\android\icon\drawable-ldpi-icon.png" />
         <icon density="mdpi" src="resources\android\icon\drawable-mdpi-icon.png" />
         <icon density="hdpi" src="resources\android\icon\drawable-hdpi-icon.png" />
@@ -32,18 +35,19 @@
         <splash density="port-xhdpi" src="resources\android\splash\drawable-port-xhdpi-screen.png" />
         <splash density="port-xxhdpi" src="resources\android\splash\drawable-port-xxhdpi-screen.png" />
         <splash density="port-xxxhdpi" src="resources\android\splash\drawable-port-xxxhdpi-screen.png" />
-<resource-file src="google-services.json" target="app\google-services.json" />
-<resource-file src="res/android/strings.xml" target="app\src\main\res\values/strings.xml" />
+        <resource-file src="google-services.json" target="app\google-services.json" />
+        <resource-file src="res/android/strings.xml" target="app\src\main\res\values/strings.xml" />
     </platform>
     <platform name="ios">
         <allow-intent href="itms:*" />
         <allow-intent href="itms-apps:*" />
         <resource-file src="GoogleService-Info.plist" />
+        <preference name="iosPersistentFileLocation" value="Library" />
     </platform>
     <icon src="resources\android\icon\drawable-xhdpi-icon.png" />
     <preference name="orientation" value="portrait" />
-    <preference name="SplashScreen" value="screen" />
-    <preference name="SplashScreenDelay" value="3000" />
+    <preference name="SplashScreen" value="resources\android\icon\drawable-xxxhdpi-icon.png" />
+    <preference name="SplashScreenDelay" value="500" />
     <preference name="AndroidLaunchMode" value="singleTask" />
     <preference name="intercom-app-id" value="zcqrnybo" />
     <preference name="intercom-ios-api-key" value="ios_sdk-78df7bb8ccea89a11689e2f98ff3e3026683bd58" />
@@ -95,5 +99,6 @@
         <ios-team-release value="H8XNU3K88B" />
     </branch-config>
     <plugin name="cordova-plugin-google-analytics" spec="^1.8.3" />
-    <engine name="android" spec="~7.1.0" />
+    <engine name="android" spec="^7.1.0" />
+    <engine name="browser" spec="^5.0.3" />
 </widget>

@@ -57,7 +57,7 @@
       <ion-list>
         <ion-item class="item-image menu-image">
 
-          <img src="{{menu.profileImage || 'store/assets/images/user.png'}}">
+          <img ion-img-cache ng-src="{{menu.profileImage || 'store/assets/images/user.png'}}">
 
           <h2>{{menu.username}}</h2>
         </ion-item>
@@ -71,7 +71,7 @@
           Recent
         </ion-item>-->
         <ion-item menu-close ng-repeat="m in menu.topLevelMenu" ui-sref="store.productsByCategory({categoryId: m.categoryId})" ng-click="menu.setCategoryName(m.categoryName)" ng-class="menu.getActiveclass(m.categoryName, $state.includes('store.productsByCategory'))">
-          <span><img src="{{m.menuIcon}}" alt="" /></span><strong>{{m.categoryName}}</strong>
+          <span><img ion-img-cache ng-src="{{m.menuIcon}}" alt="" /></span><strong>{{m.categoryName}}</strong>
         </ion-item> 
        <!--  <ion-item menu-close ui-sref="store.productsByCategory({categoryId: 1})" ng-class="{'active': $state.includes('store.productsByCategory', {categoryId: 1})}">
           <span>

@@ -5,7 +5,7 @@
     <!-- content goes here -->
     <ion-slide-box delegate-handle="image-viewer" show-pager="true" class="m-t-md">
       <ion-slide ng-repeat="i in ctrl.product.images">
-        <img src="{{i.imgUrl || 'store/assets/images/default.jpg' | cloudinaryImageTransformation}}">
+        <img ion-img-cache ng-src="{{i.imgUrl || 'store/assets/images/default.jpg' | cloudinaryImageTransformation}}">
       </ion-slide>
     </ion-slide-box>
     <div class="product-brief p-sm" style="border:none;">

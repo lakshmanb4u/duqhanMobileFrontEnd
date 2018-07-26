@@ -39,7 +39,7 @@
       <div class="category-slides-wrapper" ng-if="ctrl.categories.length > 0 && !ctrl.isThirdLevelCategory">
         <ks-swiper-container swiper="swiper" loop="false" show-nav-buttons="true" slides-per-view="4" space-between="0">
           <ks-swiper-slide class="swiper-slide col75" ng-repeat="c in ctrl.categories" ui-sref="store.productsByCategory({categoryId: c.categoryId})">
-            <img ng-if="c.imgUrl != '-'" class="slide-img" src="{{c.imgUrl}}" />
+            <img ng-if="c.imgUrl != '-'" class="slide-img" ion-img-cache ng-src="{{c.imgUrl}}" />
              <div ng-if="c.imgUrl == '-'" class="slide-img" style="border: 1px solid #ff771c;border-radius: 50%;">
                <span class="cat-name">{{c.displayText}}</span>
              </div>
@@ -64,7 +64,7 @@
           <div class="product-preview" ui-sref="store.product.overview({productId: p.productId})">
             <!-- <span class="discount">{{p.discountPCT| number : 0}}%</span> -->
             <div class="item-image">
-              <img src="{{p.imgurl || 'store/assets/images/default.jpg' | cloudinaryThumbTransformation}}">
+              <img ion-img-cache ng-src="{{p.imgurl || 'store/assets/images/default.jpg' | cloudinaryThumbTransformation}}">
               <!-- <div ng-click="ctrl.likeUnlick(ctrl.product.id)" style="position: absolute;top: -25px;right: 0;">
                 <div class="like" ng-if="!ctrl.likeUnlikeFlag">
                 </div>

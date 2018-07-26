@@ -2,6 +2,7 @@
 angular
   .module('store', [
     'ionic',
+    'ionicImgCache',
     'ngCordova',
     'ui.router',
     'ionic-datepicker',

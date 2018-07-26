@@ -3,6 +3,7 @@ angular
   .module('main', [
     'ionic',
     'ionic.cloud',
+    'ionicImgCache',
     'ngCordova',
     'ui.router',
     'ngStorage',
@@ -44,47 +45,48 @@ angular
   .config(function ($ionicConfigProvider) {
     $ionicConfigProvider.scrolling.jsScrolling(false);
   })
-  .run(function ($ionicPlatform, $q, $log, $rootScope, $state, $localStorage ,$location, Auth, Config, $stateParams, $http) {
+  .run(function ($ionicPlatform, $q, $log, $rootScope, $state, $localStorage, $location, Auth, Config, $stateParams, $http) {
     if (window.cordova) {
       intercom.registerUnidentifiedUser();
       intercom.setLauncherVisibility('VISIBLE');
     }
     var app = {
-      initialize: function() {
+      initialize: function () {
         console.log("in initialize");
         this.bindEvents();
       },
-      bindEvents: function() {
+      bindEvents: function () {
         console.log("in bindEvents");
         document.addEventListener('deviceready', this.onDeviceReady, false);
         document.addEventListener('resume', this.onDeviceResume, false);
       },
-      onDeviceReady: function() {
+      onDeviceReady: function () {
         console.log("in onDeviceReady");
-        setTimeout(function(){
-        if (typeof window.ga !== undefined){
-            console.log("Ga Object",window.ga);
+        setTimeout(function () {
+          if (typeof window.ga !== undefined) {
+            console.log("Ga Object", window.ga);
             window.ga.startTrackerWithId('UA-120903553-1', 30);
             window.ga.debugMode();
             //window.ga.trackView('Home Screen');
-         }
-         else {
+          }
+          else {
             console.log("error in analytics");
-         }
-       },4000);
+          }
+        }, 4000);
         app.handleBranch();
+
       },
-      onDeviceResume: function() {
+      onDeviceResume: function () {
         console.log("in onDeviceResume");
         app.handleBranch();
       },
-      handleBranch: function() {
+      handleBranch: function () {
         // Branch initialization
         console.log("in handleBranch");
-        Branch.initSession().then(function(data) {
+        Branch.initSession().then(function (data) {
           if (data['+clicked_branch_link']) {
             // read deep link data on click
-            console.log("depp link",data);
+            console.log("depp link", data);
             //$state.go('store.product', {'productId': 67702 })
             location.href = data.$android_url;
           }
@@ -93,17 +95,17 @@ angular
     };
     console.log("------------------>app initialization");
     app.initialize();
-    
-    if($localStorage.countryCode){
+
+    if ($localStorage.countryCode) {
 
     } else {
-        $http.get('https://api.ipdata.co')
-      .success(function(data) {
-        $localStorage.countryCode = data.country_code;
-      })
-      .error(function(data){
+      $http.get('https://api.ipdata.co')
+        .success(function (data) {
+          $localStorage.countryCode = data.country_code;
+        })
+        .error(function (data) {
           $localStorage.countryCode = "IN";
-      });
+        });
       //$localStorage.countryCode = "IN";
     }
     $rootScope.$on('Unauthorized', function (event, response) {
@@ -131,51 +133,51 @@ angular
             //$location.path(url);
             $state.go(url,{ 'productId': productId })
           } else {*/
-            //$state.go('store.products.latest');
-            $state.reload();
-          //}
+        //$state.go('store.products.latest');
+        $state.reload();
+        //}
       });
     });
     if (angular.isUndefined($localStorage.savedUser)) {
-      var obj ={
-        email :'guest@gmail.com',
-        password :'dukhan123',
-        name :'Guest User',
-        authtoken :'dukhan123',
-        fcmToken : '',
-        uuid : ''
+      var obj = {
+        email: 'guest@gmail.com',
+        password: 'dukhan123',
+        name: 'Guest User',
+        authtoken: 'dukhan123',
+        fcmToken: '',
+        uuid: ''
       }
-      $localStorage.savedUser =  JSON.stringify(obj); 
+      $localStorage.savedUser = JSON.stringify(obj);
     }
     if (angular.isDefined($localStorage.savedUser)) {
       var savedUser = JSON.parse($localStorage.savedUser);
       if (savedUser.email != 'guest@gmail.com') {
         if (window.cordova) {
-            intercom.reset();
-            intercom.registerIdentifiedUser(
-              {
-                userId: savedUser.userId,
-                email: savedUser.email
-              }
-            );
-            intercom.updateUser({
-              custom_attributes: {
-                customer_name: savedUser.name
-              }
-            });
-          }
+          intercom.reset();
+          intercom.registerIdentifiedUser(
+            {
+              userId: savedUser.userId,
+              email: savedUser.email
+            }
+          );
+          intercom.updateUser({
+            custom_attributes: {
+              customer_name: savedUser.name
+            }
+          });
+        }
       }
       if (window.cordova) {
-           var q = $q.defer();
-           FCMPlugin.getToken(function (token) {
-           savedUser.fcmToken = token;
-           savedUser.uuid = window.device.uuid;
-           q.resolve(savedUser);
-           console.log("DeviceID======",window.device.uuid);
-           console.log(savedUser);
-           Auth.guestFcmToken(savedUser);
-         });
-       };
+        var q = $q.defer();
+        FCMPlugin.getToken(function (token) {
+          savedUser.fcmToken = token;
+          savedUser.uuid = window.device.uuid;
+          q.resolve(savedUser);
+          console.log("DeviceID======", window.device.uuid);
+          console.log(savedUser);
+          Auth.guestFcmToken(savedUser);
+        });
+      };
     }
     $rootScope.$state = $state;
     $ionicPlatform.ready(function () {
@@ -194,10 +196,10 @@ angular
         } catch (e) {
           $log.log(e);
         }
-        FCMPlugin.onNotification(function(data,a,b,c){
-          if(data.wasTapped){
+        FCMPlugin.onNotification(function (data, a, b, c) {
+          if (data.wasTapped) {
             //Notification was received on device tray and tapped by the user.
-          }else{
+          } else {
             //Notification was received in foreground. Maybe the user needs to be notified.
           }
         });
@@ -206,6 +208,6 @@ angular
     });
   });
 
-  function DeepLinkHandler(data){
-    console.log('here called....',data);
-  }
+function DeepLinkHandler(data) {
+  console.log('here called....', data);
+}

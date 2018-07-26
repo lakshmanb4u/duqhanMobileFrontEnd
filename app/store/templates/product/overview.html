@@ -6,7 +6,7 @@
     <div class="padding">
     <ion-slide-box delegate-handle="image-viewer" show-pager="true" class="m-t-md">
       <ion-slide ng-repeat="i in ctrl.product.images">
-        <img style="height: 394px" src="{{i.imgUrl || 'store/assets/images/default.jpg' | cloudinaryImageTransformation}}">
+        <img style="height: 394px" ion-img-cache ng-src="{{i.imgUrl || 'store/assets/images/default.jpg' | cloudinaryImageTransformation}}">
       </ion-slide>
     </ion-slide-box>
     <div ng-click="ctrl.likeUnlick(ctrl.product.id)" class="likeeDiv">

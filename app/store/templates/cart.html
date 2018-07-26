@@ -15,7 +15,7 @@
       <div class="row product" ng-class="{'out-of-stack': p.available === 0}">
         <div class="col col-40 text-center" ui-sref="store.product.overview({productId: p.productId})">
           <div>
-            <img class="cart-img" src="{{p.imgurl || 'store/assets/images/default.jpg'}}">
+            <img class="cart-img"  ion-img-cache ng-src="{{p.imgurl || 'store/assets/images/default.jpg'}}">
           </div>
         </div>
         <div class="col col-60">

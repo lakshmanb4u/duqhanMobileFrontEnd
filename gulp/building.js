@@ -32,7 +32,7 @@ gulp.task('clean', function () {
 gulp.task('build-app', ['clean', 'inject-all'], function () {
   var jsFilter = $.filter('**/*.js', {restore: true});
   var cssFilter = $.filter('**/*.css', {restore: true});
-
+// console.log(jsFilter);
   var stream = gulp.src('app/index.html') // main html file
     .pipe($.useref({searchPath: '{.tmp,app}'})); // all assets (without index.html)
 
@@ -41,7 +41,7 @@ gulp.task('build-app', ['clean', 'inject-all'], function () {
       .pipe(jsFilter)
       .pipe($.ngAnnotate({
         add: true,
-        sourcemap: true
+        sourcemap: false
       }))
       .pipe($.uglify())
       .pipe(jsFilter.restore)

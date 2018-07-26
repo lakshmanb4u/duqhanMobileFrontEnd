@@ -12,7 +12,7 @@
           </div> -->
           <span class="latest-box">Latest</span>
           <div class="item-image">
-            <img src="{{p.imgurl || 'store/assets/images/default.jpg' | cloudinaryThumbTransformation}}">
+            <img ion-img-cache ng-src="{{p.imgurl || 'store/assets/images/default.jpg' | cloudinaryThumbTransformation}}">
           </div>
           <div class="item p-xs b-t-n" style="font-family: 'Lato', sans-serif;color:#000;">
             <span style="font-size: 3.5vw;">{{p.name}}</span>

@@ -26,7 +26,7 @@
             <!-- <span class="discount">{{p.discountPCT| number : 0}}%</span> -->
             <span class="latest-box">{{p.discountPCT| number : 0}}% off</span>
             <div class="item-image">
-              <img src="{{p.imgurl || 'store/assets/images/default.jpg' | cloudinaryThumbTransformation}}">
+              <img ion-img-cache ng-src="{{p.imgurl || 'store/assets/images/default.jpg' | cloudinaryThumbTransformation}}">
             </div>
             <div class="item p-xs b-t-n" style="font-family: 'Lato', sans-serif;color:#080809;">
               <span style="font-size: 0.9em;"></span>
