@@ -36,7 +36,7 @@ angular
     window.fabric.Crashlytics.addLog('about to send a crash for testing!');
     window.fabric.Crashlytics.sendCrash();*/
     var Crashlytics = FirebaseCrashlytics.initialise();
-    Crashlytics.logException("my caught Exception");
+    Crashlytics.logException('my caught Exception');
     // sample index.js
   })
   /*.config(function (FacebookProvider) {
@@ -52,48 +52,48 @@ angular
     }
     var app = {
       initialize: function () {
-        console.log("in initialize");
+        console.log('in initialize');
         this.bindEvents();
       },
       bindEvents: function () {
-        console.log("in bindEvents");
+        console.log('in bindEvents');
         document.addEventListener('deviceready', this.onDeviceReady, false);
         document.addEventListener('resume', this.onDeviceResume, false);
       },
       onDeviceReady: function () {
-        console.log("in onDeviceReady");
+        console.log('in onDeviceReady');
         setTimeout(function () {
           if (typeof window.ga !== undefined) {
-            console.log("Ga Object", window.ga);
+            console.log('Ga Object', window.ga);
             window.ga.startTrackerWithId('UA-120903553-1', 30);
             window.ga.debugMode();
             //window.ga.trackView('Home Screen');
           }
           else {
-            console.log("error in analytics");
+            console.log('error in analytics');
           }
         }, 4000);
         app.handleBranch();
 
       },
       onDeviceResume: function () {
-        console.log("in onDeviceResume");
+        console.log('in onDeviceResume');
         app.handleBranch();
       },
       handleBranch: function () {
         // Branch initialization
-        console.log("in handleBranch");
+        console.log('in handleBranch');
         Branch.initSession().then(function (data) {
           if (data['+clicked_branch_link']) {
             // read deep link data on click
-            console.log("depp link", data);
+            console.log('depp link', data);
             //$state.go('store.product', {'productId': 67702 })
             location.href = data.$android_url;
           }
         });
       }
     };
-    console.log("------------------>app initialization");
+    console.log('------------------>app initialization');
     app.initialize();
 
     if ($localStorage.countryCode) {
@@ -104,12 +104,12 @@ angular
           $localStorage.countryCode = data.country_code;
         })
         .error(function (data) {
-          $localStorage.countryCode = "IN";
+          $localStorage.countryCode = 'IN';
         });
       //$localStorage.countryCode = "IN";
     }
     $rootScope.$on('Unauthorized', function (event, response) {
-      console.log("Unauthorized....");
+      console.log('Unauthorized....');
       var savedUser = JSON.parse($localStorage.savedUser);
       Auth.logout(savedUser);
       var user = {};
@@ -146,7 +146,7 @@ angular
         authtoken: 'dukhan123',
         fcmToken: '',
         uuid: ''
-      }
+      };
       $localStorage.savedUser = JSON.stringify(obj);
     }
     if (angular.isDefined($localStorage.savedUser)) {
@@ -173,17 +173,23 @@ angular
           savedUser.fcmToken = token;
           savedUser.uuid = window.device.uuid;
           q.resolve(savedUser);
-          console.log("DeviceID======", window.device.uuid);
+          console.log('DeviceID======', window.device.uuid);
           console.log(savedUser);
           Auth.guestFcmToken(savedUser);
         });
-      };
+      }
     }
     $rootScope.$state = $state;
     $ionicPlatform.ready(function () {
       /* eslint-disable no-undef */
       if (window.cordova) {
         try {
+          setTimeout(function () {
+            if (navigator.splashscreen) {
+              navigator.splashscreen.hide();
+            }
+          }, 500);
+
           // then override any default you want
           window.plugins.nativepagetransitions.globalOptions.duration = 700;
           window.plugins.nativepagetransitions.globalOptions.iosdelay = 100;
@@ -208,6 +214,6 @@ angular
     });
   });
 
-function DeepLinkHandler(data) {
+function DeepLinkHandler (data) {
   console.log('here called....', data);
 }

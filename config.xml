@@ -46,8 +46,9 @@
     </platform>
     <icon src="resources\android\icon\drawable-xhdpi-icon.png" />
     <preference name="orientation" value="portrait" />
-    <preference name="SplashScreen" value="resources\android\icon\drawable-xxxhdpi-icon.png" />
-    <preference name="SplashScreenDelay" value="500" />
+    <preference name="SplashScreen" value="screen" />
+    <preference name="AutoHideSplashScreen" value="false" />
+    <preference name="ShowSplashScreenSpinner" value="false" />
     <preference name="AndroidLaunchMode" value="singleTask" />
     <preference name="intercom-app-id" value="zcqrnybo" />
     <preference name="intercom-ios-api-key" value="ios_sdk-78df7bb8ccea89a11689e2f98ff3e3026683bd58" />

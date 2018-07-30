@@ -15,7 +15,7 @@ angular
     // TODO: load other modules selected during generation
   ])
 
-  .run(function ($ionicPlatform, $cordovaDeeplinks, $state, $timeout, $log, Config) {
+  .run(function ($ionicPlatform, $cordovaDeeplinks, $state, $timeout, $log, Config ) {
     $ionicPlatform.ready(function () {
       if (window.cordova) {
         $cordovaDeeplinks.route({
