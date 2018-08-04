@@ -45,6 +45,14 @@ angular
   .config(function ($ionicConfigProvider) {
     $ionicConfigProvider.scrolling.jsScrolling(false);
   })
+  .config(function($provide) {
+    $provide.decorator("$exceptionHandler", ['$delegate', function($delegate) {
+      return function(exception, cause) {
+        _errs.push(exception);
+        $delegate(exception, cause);
+      }
+    }])
+    })
   .run(function ($ionicPlatform, $q, $log, $rootScope, $state, $localStorage, $location, Auth, Config, $stateParams, $http) {
     if (window.cordova) {
       intercom.registerUnidentifiedUser();
